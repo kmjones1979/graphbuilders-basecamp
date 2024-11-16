@@ -44,8 +44,8 @@ const Home: NextPage = () => {
               <h1 className="mb-5 text-3xl font-bold text-white">Welcome to</h1>
               <h1 className="mb-5 text-5xl font-bold text-white">The Graph Builders Basecamp</h1>
               <p className="mb-5 text-white">
-                The Graph Builders Basecamp is a series of missions where you will test your ability to write smart
-                contracts and develop subgraphs on The Graph protocol.
+                A series of missions where you will test your ability to write smart contracts and develop subgraphs on
+                The Graph protocol.
               </p>
               <div className="flex items-center justify-center">
                 {isEnlisted ? (
