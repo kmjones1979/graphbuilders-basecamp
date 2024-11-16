@@ -1,38 +1,42 @@
-# 🏗 Scaffold-ETH 2
+# 🏗 The Graph Launchpad
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+## What is Scaffold-ETH?
 
 🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
 
 ⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+-   ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
+-   🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
+-   🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
+-   🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
+-   🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
 
 ![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
 
-## Requirements
+### Requirements
 
 Before you begin, you need to install the following tools:
 
-- [Node (>= v18.18)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+-   [Node (>= v18.18)](https://nodejs.org/en/download/)
+-   Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
+-   [Git](https://git-scm.com/downloads)
 
-## Quickstart
+### Quickstart
 
 To get started with Scaffold-ETH 2, follow the steps below:
 
-1. Install dependencies if it was skipped in CLI:
+1. Checkout the project...
 
 ```
-cd my-dapp-example
+git clone https://github.com/kmjones1979/launchpad-v2.git challenge-0-enlist
+cd challenge-0-enlist
+git checkout challenge-0-enlist
+```
+
+Then install all the dependencies
+
+```
 yarn install
 ```
 
@@ -62,9 +66,9 @@ Visit your app on: `http://localhost:3000`. You can interact with your smart con
 
 Run smart contract test with `yarn hardhat:test`
 
-- Edit your smart contracts in `packages/hardhat/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/hardhat/deploy`
+-   Edit your smart contracts in `packages/hardhat/contracts`
+-   Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
+-   Edit your deployment scripts in `packages/hardhat/deploy`
 
 ## 🚀 Setup The Graph Integration
 
@@ -209,8 +213,6 @@ After doing so, navigate to http://localhost:3000/subgraph and you should be abl
 
 If you want to look at the query code for this, it can be found the component located in the subgraph folder `packages/nextjs/app/subgraph/_components/GreetingsTable.tsx`
 
-
-
 #### ✅ Side Quest: Run a Matchstick Test ✅
 
 Matchstick is a [unit testing framework](https://thegraph.com/docs/en/developing/unit-testing-framework/), developed by [LimeChain](https://limechain.tech/), that enables subgraph developers to test their mapping logic in a sandboxed environment and deploy their subgraphs with confidence!
@@ -255,36 +257,41 @@ All 1 tests passed! 😎
 > NOTE: This step requires [deployment of contract](https://docs.scaffoldeth.io/deploying/deploy-smart-contracts) to live network. Checkout list of [supported networks](https://thegraph.com/docs/networks).
 
 1. Update the `packages/subgraph/subgraph.yaml` file with your contract address, network name, start block number(optional) :
-   ```diff
-   ...
-   -     network: localhost
-   +     network: sepolia
-         source:
-           abi: YourContract
-   +       address: "0x54FE7f8Db97e102D3b7d86cc34D885B735E31E8e"
-   +       startBlock: 5889410
-   ...
-   ```
-  TIP: For `startBlock` you can use block number of your deployed contract, which can be found by visiting deployed transaction hash in blockexplorer.
+
+    ```diff
+    ...
+    -     network: localhost
+    +     network: sepolia
+          source:
+            abi: YourContract
+    +       address: "0x54FE7f8Db97e102D3b7d86cc34D885B735E31E8e"
+    +       startBlock: 5889410
+    ...
+    ```
+
+    TIP: For `startBlock` you can use block number of your deployed contract, which can be found by visiting deployed transaction hash in blockexplorer.
 
 2. Create a new subgraph on [Subgraph Studio](https://thegraph.com/studio) and get "SUBGRAPH SLUG" and "DEPLOY KEY".
 
 3. Authenticate with the graph CLI:
-   ```sh
-   yarn graph auth --studio <DEPLOY KEY>
-   ```
+
+    ```sh
+    yarn graph auth --studio <DEPLOY KEY>
+    ```
 
 4. Deploy the subgraph to TheGraph Studio:
-   ```sh
-   yarn graph deploy --studio <SUBGRAPH SLUG>
-   ```
-   Once deployed, the CLI should output the Subgraph endpoints. Copy the HTTP endpoint and test your queries.
+
+    ```sh
+    yarn graph deploy --studio <SUBGRAPH SLUG>
+    ```
+
+    Once deployed, the CLI should output the Subgraph endpoints. Copy the HTTP endpoint and test your queries.
 
 5. Update `packages/nextjs/components/ScaffoldEthAppWithProviders.tsx` to use the above HTTP subgraph endpoint:
-   ```diff
-   - const subgraphUri = "http://localhost:8000/subgraphs/name/scaffold-eth/your-contract";
-   + const subgraphUri = 'YOUR_SUBGRAPH_ENDPOINT';
-   ```
+    ```diff
+    - const subgraphUri = "http://localhost:8000/subgraphs/name/scaffold-eth/your-contract";
+    + const subgraphUri = 'YOUR_SUBGRAPH_ENDPOINT';
+    ```
 
 ## A list of all available commands
 
@@ -375,6 +382,7 @@ yarn deploy
 ```
 
 Deploy a subgraph to TheGraph.
+
 ## Documentation
 
 Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.

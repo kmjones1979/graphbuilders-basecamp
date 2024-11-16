@@ -10,24 +10,24 @@ module.exports = {
     themes: [
       {
         light: {
-          primary: "#93BBFB",
-          "primary-content": "#212638",
-          secondary: "#DAE8FF",
-          "secondary-content": "#212638",
-          accent: "#93BBFB",
-          "accent-content": "#212638",
-          neutral: "#212638",
-          "neutral-content": "#ffffff",
-          "base-100": "#ffffff",
-          "base-200": "#f4f8ff",
-          "base-300": "#DAE8FF",
-          "base-content": "#212638",
-          info: "#93BBFB",
-          success: "#34EEB6",
-          warning: "#FFCF72",
-          error: "#FF8863",
+          primary: "#7C4DFF", // Vibrant purple
+          "primary-content": "#0A0A0A", // Black for contrast
+          secondary: "#9575CD", // Softer lavender purple
+          "secondary-content": "#FFFFFF", // White for readability
+          accent: "#B39DDB", // Muted lavender accent
+          "accent-content": "#0A0A0A", // Black for contrast
+          neutral: "#121212", // Deep black neutral
+          "neutral-content": "#FFFFFF", // White for text
+          "base-100": "#1A1A1A", // Dark gray background
+          "base-200": "#2A2A2A", // Slightly lighter gray
+          "base-300": "#3A3A3A", // Light gray
+          "base-content": "#E0D7FF", // Subtle purple-tinted text
+          info: "#9575CD", // Soft purple for info
+          success: "#7C4DFF", // Vibrant purple for success
+          warning: "#FFC400", // Yellow for warning
+          error: "#E57373", // Muted red for error
 
-          "--rounded-btn": "9999rem",
+          "--rounded-btn": "6px", // Slightly rounded buttons for elegance
 
           ".tooltip": {
             "--tooltip-tail": "6px",
@@ -42,24 +42,24 @@ module.exports = {
       },
       {
         dark: {
-          primary: "#212638",
-          "primary-content": "#F9FBFF",
-          secondary: "#323f61",
-          "secondary-content": "#F9FBFF",
-          accent: "#4969A6",
-          "accent-content": "#F9FBFF",
-          neutral: "#F9FBFF",
-          "neutral-content": "#385183",
-          "base-100": "#385183",
-          "base-200": "#2A3655",
-          "base-300": "#212638",
-          "base-content": "#F9FBFF",
-          info: "#385183",
-          success: "#34EEB6",
-          warning: "#FFCF72",
-          error: "#FF8863",
+          primary: "#7C4DFF", // Vibrant purple
+          "primary-content": "#0A0A0A", // Black for contrast
+          secondary: "#9575CD", // Softer lavender purple
+          "secondary-content": "#FFFFFF", // White for readability
+          accent: "#B39DDB", // Muted lavender accent
+          "accent-content": "#0A0A0A", // Black for contrast
+          neutral: "#0A0A0A", // Deep black neutral
+          "neutral-content": "#E0D7FF", // Subtle purple-tinted text
+          "base-100": "#0A0A0A", // Black background
+          "base-200": "#1A1A1A", // Slightly lighter black
+          "base-300": "#2A2A2A", // Dark gray
+          "base-content": "#E0D7FF", // Subtle purple-tinted text
+          info: "#9575CD", // Soft purple for info
+          success: "#7C4DFF", // Vibrant purple for success
+          warning: "#FFC400", // Yellow for warning
+          error: "#E57373", // Muted red for error
 
-          "--rounded-btn": "9999rem",
+          "--rounded-btn": "6px", // Slightly rounded buttons for elegance
 
           ".tooltip": {
             "--tooltip-tail": "6px",
@@ -78,10 +78,10 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        center: "0 0 12px -2px rgb(0 0 0 / 0.05)",
+        center: "0 0 12px -2px rgba(124, 77, 255, 0.5)", // Purple glow effect
       },
       animation: {
-        "pulse-fast": "pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "pulse-slow": "pulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite", // Slower pulse for elegance
       },
     },
   },
