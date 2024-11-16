@@ -1,6 +1,6 @@
 type Enlisted @entity {
     id: Bytes!
-    address: Bytes!
+    account: Bytes!
     blockNumber: BigInt!
     blockTimestamp: BigInt!
     transactionHash: Bytes!
