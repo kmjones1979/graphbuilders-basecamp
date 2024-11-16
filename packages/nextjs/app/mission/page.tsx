@@ -1,9 +1,13 @@
 import React from "react";
-import GreetingsTable from "./_components/GreetingsTable";
+import GetEnlisted from "./_components/GetEnlisted";
 import type { NextPage } from "next";
 
 const Subgraph: NextPage = () => {
-  return <></>;
+  return (
+    <>
+      <GetEnlisted />
+    </>
+  );
 };
 
 export default Subgraph;
