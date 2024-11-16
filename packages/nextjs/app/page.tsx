@@ -8,7 +8,7 @@ import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaf
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
 
-  const { data: isUserEnlisted } = useScaffoldReadContract({
+  const { data: isEnlisted } = useScaffoldReadContract({
     contractName: "Enlist",
     functionName: "isEnlisted",
     args: [connectedAddress],
@@ -36,7 +36,7 @@ const Home: NextPage = () => {
                 contracts and develop subgraphs on The Graph protocol.
               </p>
               <div className="flex items-center justify-center">
-                {isUserEnlisted ? (
+                {isEnlisted ? (
                   <p className="text-green-300">You are enlisted!</p>
                 ) : (
                   <p className="text-red-300">You are NOT Enlisted</p>
@@ -44,20 +44,26 @@ const Home: NextPage = () => {
               </div>
               <div className="flex items-center justify-center">
                 {connectedAddress ? (
-                  <button
-                    className="btn btn-primary"
-                    onClick={async () => {
-                      try {
-                        await writeContractAsync({
-                          functionName: "enlist",
-                        });
-                      } catch (e) {
-                        console.error("Error setting greeting:", e);
-                      }
-                    }}
-                  >
-                    Enlist
-                  </button>
+                  isEnlisted ? (
+                    <button className="btn btn-success" onClick={() => alert("Mission Started!")}>
+                      Begin
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-primary"
+                      onClick={async () => {
+                        try {
+                          await writeContractAsync({
+                            functionName: "enlist",
+                          });
+                        } catch (e) {
+                          console.error("Error enlisting:", e);
+                        }
+                      }}
+                    >
+                      Enlist
+                    </button>
+                  )
                 ) : (
                   <RainbowKitCustomConnectButton />
                 )}
