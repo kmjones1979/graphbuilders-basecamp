@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
@@ -7,6 +8,7 @@ import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaf
 
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
+  const router = useRouter();
 
   const { data: isEnlisted } = useScaffoldReadContract({
     contractName: "Enlist",
@@ -15,6 +17,16 @@ const Home: NextPage = () => {
   });
 
   const { writeContractAsync: writeContractAsync } = useScaffoldWriteContract("Enlist");
+
+  const handleEnlist = async () => {
+    try {
+      await writeContractAsync({
+        functionName: "enlist",
+      });
+    } catch (e) {
+      console.error("Error enlisting:", e);
+    }
+  };
 
   return (
     <>
@@ -45,22 +57,11 @@ const Home: NextPage = () => {
               <div className="flex items-center justify-center">
                 {connectedAddress ? (
                   isEnlisted ? (
-                    <button className="btn btn-success" onClick={() => alert("Mission Started!")}>
+                    <button className="btn btn-success" onClick={() => router.push("/mission")}>
                       Begin
                     </button>
                   ) : (
-                    <button
-                      className="btn btn-primary"
-                      onClick={async () => {
-                        try {
-                          await writeContractAsync({
-                            functionName: "enlist",
-                          });
-                        } catch (e) {
-                          console.error("Error enlisting:", e);
-                        }
-                      }}
-                    >
+                    <button className="btn btn-primary" onClick={handleEnlist}>
                       Enlist
                     </button>
                   )
