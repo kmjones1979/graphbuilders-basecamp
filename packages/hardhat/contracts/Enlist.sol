@@ -15,8 +15,6 @@ contract Enlist is Ownable {
 
 	mapping(address => bool) public isEnlisted;
 
-	event Enlisted(address indexed account);
-
 	/**
 	 * Constructor that sets the owner of the contract
 	 * The owner is the account that deploys the contract
@@ -27,7 +25,6 @@ contract Enlist is Ownable {
 	function enlist() public {
 		require(!isEnlisted[msg.sender], "You are already enlisted");
 		isEnlisted[msg.sender] = true;
-		emit Enlisted(msg.sender);
 	}
 
 	/**
