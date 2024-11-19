@@ -13,13 +13,14 @@ const Subgraph: NextPage = () => {
       </div>
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          You have arrived at the basecamp, you will need to setup your local development environment so that you can
-          begin your mission.
+          You have arrived at The Graph builders basecamp, adventure awaits you in the skies above but before you get
+          started you will need to setup your local development environment so that you can begin your mission.
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p>
-          1. Open up a new terminal and run the following command to spin up your local Graph Node inside of docker:
+          1. To do this, open up a new terminal and run the following command to spin up your local Graph Node inside of
+          docker:
         </p>
       </div>
       <CodeSnippet code="yarn run-node" button={true} />
