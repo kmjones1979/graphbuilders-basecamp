@@ -6,9 +6,12 @@ const SolidityContent: React.FC = () => {
     <>
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          You have arrived at The Graph Builders Academy, adventure awaits you in the skies above but before you get
-          started you will need to setup your local development environment so that you can begin your mission. You will
-          then process your enlistment status and transmit the data to The Graph's decentralized network.
+          You have arrived at The Graph Builders Academy, adventure awaits you in the skies above! In order to travel to
+          the outer limits of the galaxy you will first need to enlist the Academy and prove your worth with a basic
+          deployment of a subgraph. In this first mission you will, edit a basic smart contract, create a basic
+          AssemblyScript handler to process event data and then publish that subgraph to your local machine as well as
+          the Subgraph Studio. Once you have completed this mission you will be able to move on to the next mission and
+          travel to the stars!
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
@@ -44,17 +47,18 @@ receive() external payable {}
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
-          This contract allows you to enlist yourself to the Enlist contract. You should have done this on the main page
-          of this application. You can check your status by using the "Debug Contract" button and checking the
-          isEnlisted mapping for your wallet address. You can also call the enlist function on that page as well.
+          This contract allows you to enlist yourself to the smart contract. You should have done this on the main page
+          of this application. You can check your status by using the "Debug Contracts" tab in the header and checking
+          the isEnlisted mappings value for your wallet address. You can also call the enlist function on that page as
+          well.
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4 ">
         <p className="text-lg font-bold max-w-2xl">
           1. To get started with the first part of this mission, open up your editor and navigate to the enlist.sol file
-          in the hardhat/contracts folder. Your task is to add an event and an emit statement for the Enlisted event
-          within the contract. We will need this in order to properly index the data. Once this is done you will need to
-          deploy the contract to the network.
+          in the hardhat/contracts folder. Your task is to add an event called "Enlisted" and an emit statement for that
+          event within the enlist function. We will need this in order to properly index the data in the following
+          section. Once this is done you will need to redeploy the contract to hardhat.
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
