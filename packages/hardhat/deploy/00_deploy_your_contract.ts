@@ -3,12 +3,12 @@ import { DeployFunction } from "hardhat-deploy/types";
 import { Contract } from "ethers";
 
 /**
- * Deploys a contract named "Enlist" using the deployer account and
+ * Deploys a contract named "Welcome" using the deployer account and
  * constructor arguments set to the deployer address
  *
  * @param hre HardhatRuntimeEnvironment object.
  */
-const deployEnlist: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+const deployWelcome: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   /*
     On localhost, the deployer account is the one that comes with Hardhat, which is already funded.
 
@@ -22,10 +22,10 @@ const deployEnlist: DeployFunction = async function (hre: HardhatRuntimeEnvironm
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  await deploy("Enlist", {
+  await deploy("Welcome", {
     from: deployer,
     // Contract constructor arguments
-    args: [deployer],
+    args: [],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
@@ -33,11 +33,11 @@ const deployEnlist: DeployFunction = async function (hre: HardhatRuntimeEnvironm
   });
 
   // Get the deployed contract to interact with it after deploying.
-  // const Enlist = await hre.ethers.getContract<Contract>("Enlist", deployer);
+  // const Welcome = await hre.ethers.getContract<Contract>("Welcome", deployer);
 };
 
-export default deployEnlist;
+export default deployWelcome;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
-// e.g. yarn deploy --tags Enlist
-deployEnlist.tags = ["Enlist"];
+// e.g. yarn deploy --tags Welcome
+deployWelcome.tags = ["Welcome"];

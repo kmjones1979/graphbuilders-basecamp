@@ -3,30 +3,10 @@
 import { useRouter } from "next/navigation";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
-import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
-import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
   const router = useRouter();
-
-  const { data: isEnlisted } = useScaffoldReadContract({
-    contractName: "Enlist",
-    functionName: "isEnlisted",
-    args: [connectedAddress],
-  });
-
-  const { writeContractAsync: writeContractAsync } = useScaffoldWriteContract("Enlist");
-
-  const handleEnlist = async () => {
-    try {
-      await writeContractAsync({
-        functionName: "enlist",
-      });
-    } catch (e) {
-      console.error("Error enlisting:", e);
-    }
-  };
 
   return (
     <>
@@ -47,6 +27,9 @@ const Home: NextPage = () => {
                 A series of missions where you will test your ability to write smart contracts and develop subgraphs on
                 The Graph protocol.
               </p>
+              <button className="btn btn-success" onClick={() => router.push("/mission")}>
+                Begin
+              </button>
             </div>
           </div>
         </div>
