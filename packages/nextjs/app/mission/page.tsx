@@ -32,7 +32,7 @@ const Subgraph: NextPage = () => {
         <>
           <div className="flex justify-center top">
             <p className="text-lg text-center max-w-2xl">
-              You have arrived at The Graph builders Academy, adventure awaits you in the skies above but before you get
+              You have arrived at The Graph Builders Academy, adventure awaits you in the skies above but before you get
               started you will need to setup your local development environment so that you can begin your mission. You
               will then process your enlistment status and transmit the data to The Graph's decentralized network.
             </p>
@@ -96,7 +96,7 @@ contract Enlist {
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">Deploy your changes...</p>
           </div>
-          <CodeSnippet code="yarn deploy" button={true} />
+          <CodeSnippet code="yarn deploy --reset" button={true} />
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">Success will look like this:</p>
           </div>
