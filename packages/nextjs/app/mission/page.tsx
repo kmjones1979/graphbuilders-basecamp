@@ -19,14 +19,10 @@ const Subgraph: NextPage = () => {
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p>
-          1. Open up a new terminal and run the following command to spin up your local Graph Node inside of docker:
+          1. ...
         </p>
       </div>
-      <CodeSnippet code="yarn run-node" button={true} />
-      <div className="flex justify-center top mt-4 mb-4">
-        <p>You will know graph-node is ready when you see the following message:</p>
-      </div>
-      <CodeSnippet code="INFO Downloading latest blocks from Ethereum, this may take a few minutes..." button={false} />
+      <CodeSnippet code="git checkout mission-0-enlist" button={true} />
     </>
   );
 };
