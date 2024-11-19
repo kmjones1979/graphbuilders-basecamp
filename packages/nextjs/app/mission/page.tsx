@@ -14,13 +14,14 @@ const Subgraph: NextPage = () => {
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
           You have arrived at The Graph builders basecamp, adventure awaits you in the skies above but before you get
-          started you will need to setup your local development environment so that you can begin your mission.
+          started you will need to setup your local development environment so that you can begin your mission. You will
+          then process your enlistment status and transmit the data to The Graph's decentralized network.
         </p>
       </div>
-      <div className="flex justify-center top mt-4 mb-4">
-        <p>
-          1. To do this, open up a new terminal and run the following command to spin up your local Graph Node inside of
-          docker:
+      <div className="flex justify-center top mt-4 mb-4 ">
+        <p className="text-lg font-bold max-w-2xl">
+          1. To get started, open up a new terminal and run the following command to spin up your local Graph Node
+          inside of docker:
         </p>
       </div>
       <CodeSnippet code="yarn run-node" button={true} />
@@ -28,6 +29,109 @@ const Subgraph: NextPage = () => {
         <p>You will know graph-node is ready when you see the following message:</p>
       </div>
       <CodeSnippet code="INFO Downloading latest blocks from Ethereum, this may take a few minutes..." button={false} />
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg font-bold  max-w-2xl">
+          2. Next you will need to create a subgraph configuration inside your graph-node instance.
+        </p>
+      </div>
+      <CodeSnippet code="yarn local-create" button={true} />
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg font-bold  max-w-2xl">
+          3. Now you will need to complete the code for the handler to process the event data coming off the smart
+          contract. Open up your project in a text editor and navigate to the handler in
+          packages/subgraph/src/mapping.ts.
+        </p>
+      </div>
+      <CodeSnippet code="code ." button={true} />
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl">
+          In our case we have an event called Enlisted that we want to process and save to the database. In our case the
+          schema is called Enlisted and we have a function called handleEnlisted. In this function we will save the
+          event data to the database. Update the function to save the event data to the database, it should look like
+          this:
+        </p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
+          <pre>
+            <code className="language-typescript">
+              {`import { Enlisted as EnlistedEvent } from "../generated/Enlist/Enlist";
+import { Enlisted } from "../generated/schema";
+
+export function handleEnlisted(event: EnlistedEvent): void {
+    let entity = new Enlisted(
+        event.transaction.hash.concatI32(event.logIndex.toI32())
+    );
+    entity.account = event.params.account;
+
+    entity.blockNumber = event.block.number;
+    entity.blockTimestamp = event.block.timestamp;
+    entity.transactionHash = event.transaction.hash;
+
+    entity.save();
+}`}
+            </code>
+          </pre>
+        </div>
+      </div>
+
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg font-bold  max-w-2xl">4. Now ship your changes...</p>
+      </div>
+      <CodeSnippet code="yarn local-ship" button={true} />
+      <div className="flex justify-center top mt-4 mb-4">
+        <p>When prompted, enter the following version label:</p>
+      </div>
+      <CodeSnippet code='Which version label to use? (e.g. "v0.0.1"):' button={false} />
+
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg  max-w-2xl">Success will look like this:</p>
+      </div>
+
+      <div className="flex justify-center top mt-4 mb-4">
+        <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
+          <pre>
+            <code className="language-typescript">
+              {`Build completed: QmSPR7AmLy1FHX4aPdSKNn7GHXy5xGxz6xR6YuD6UMcfAc
+
+Deployed to http://localhost:8000/subgraphs/name/scaffold-eth/your-contract/graphql
+
+Subgraph endpoints:
+Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contract`}
+            </code>
+          </pre>
+        </div>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg font-bold  max-w-2xl">5. Open up the GraphiQL IDE to view your data.</p>
+      </div>
+
+      <div className="flex justify-center top mt-4 mb-4">
+        {" "}
+        <a href="http://localhost:8000/subgraphs/name/scaffold-eth/your-contract">
+          http://localhost:8000/subgraphs/name/scaffold-eth/your-contract
+        </a>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg  max-w-2xl">Try out the following query to see if your data is being saved:</p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
+          <pre>
+            <code className="language-typescript">
+              {`query MyQuery {
+  enlisteds(first: 10, orderBy: blockTimestamp, orderDirection: asc) {
+    account
+    blockNumber
+    blockTimestamp
+    id
+    transactionHash
+  }
+}`}
+            </code>
+          </pre>
+        </div>
+      </div>
     </>
   );
 };

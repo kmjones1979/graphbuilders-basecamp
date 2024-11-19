@@ -9,7 +9,7 @@ dataSources:
     network: localhost
     source:
       abi: Enlist
-      address: "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d"
+      address: "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
