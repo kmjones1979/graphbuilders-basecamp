@@ -29,7 +29,7 @@ To get started with the first challenge...
 ```
 git clone https://github.com/kmjones1979/launchpad-v2.git challenge-0-enlist
 cd challenge-0-enlist
-git checkout challenge-0-enlist
+git checkout mission-0-enlist
 ```
 
 Then install all the dependencies
