@@ -15,13 +15,13 @@ const Subgraph: NextPage = () => {
       </div>
       <div className="flex justify-center mt-4">
         <button
-          className={`rounded-lg px-4 py-2 ${activeTab === "solidity" ? "bg-purple-500" : "text-purple-400 text-purple-700"}`}
+          className={`rounded-lg px-4 py-2 ${activeTab === "solidity" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
           onClick={() => setActiveTab("solidity")}
         >
           Solidity
         </button>
         <button
-          className={`rounded-lg px-4 py-2 ${activeTab === "subgraph" ? "bg-purple-500" : "text-purple-400 text-purple-700"}`}
+          className={`rounded-lg px-4 py-2 ${activeTab === "subgraph" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
           onClick={() => setActiveTab("subgraph")}
         >
           Subgraph
@@ -38,6 +38,9 @@ const Subgraph: NextPage = () => {
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
+            <p className="text-lg max-w-2xl italic">The smart contract code for this mission is as follows:</p>
+          </div>
+          <div className="flex justify-center top mt-4 mb-4">
             <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
               <pre>
                 <code className="language-solidity">
@@ -52,15 +55,11 @@ contract Enlist is Ownable {
 
 	mapping(address => bool) public isEnlisted;
 
-	event Enlisted(address indexed account);
-
-	constructor(address _owner) Ownable(_owner) {
-	}
+	constructor(address _owner) Ownable(_owner) {}
 
 	function enlist() public {
 		require(!isEnlisted[msg.sender], "You are already enlisted");
 		isEnlisted[msg.sender] = true;
-		emit Enlisted(msg.sender);
 	}
 
 	function withdraw() public onlyOwner {
@@ -75,6 +74,41 @@ contract Enlist is Ownable {
               </pre>
             </div>
           </div>
+          <div className="flex justify-center top mt-4 mb-4">
+            <p className="text-lg max-w-2xl italic">
+              This contract allows you to enlist yourself to the Enlist contract. You should have done this on the main
+              page of this application. You can check your status by using the "Debug Contract" button and checking the
+              isEnlisted mapping for your wallet address.
+            </p>
+          </div>
+          <div className="flex justify-center top mt-4 mb-4 ">
+            <p className="text-lg font-bold max-w-2xl">
+              1. To get started with the first part of this mission, open up your editor and navigate to the enlist.sol
+              file in the hardhat/contracts folder. Your task is to add an event and an emit statement for the Enlisted
+              event within the contract. We will need this in order to properly index the data. Once this is done you
+              will need to deploy the contract to the network.
+            </p>
+          </div>
+          <CodeSnippet code="yarn deploy" button={true} />
+          <div className="flex justify-center top mt-4 mb-4">
+            <p className="text-lg max-w-2xl italic">Success will look like this:</p>
+          </div>
+
+          <div className="flex justify-center top mt-4 mb-4">
+            <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+              <pre>
+                <code className="language-solidity">
+                  {`deployed at 0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6 with 283218 gas`}
+                </code>
+              </pre>
+            </div>
+          </div>
+          <div className="flex justify-center top">
+            <p className="text-lg text-center max-w-2xl">
+              If you you were successful, go back to the top of the page and click on the Subgraph tab to continue with
+              the next part of the mission.
+            </p>
+          </div>
         </>
       )}
 
@@ -82,7 +116,8 @@ contract Enlist is Ownable {
         <>
           <div className="flex justify-center top">
             <p className="text-lg text-center max-w-2xl">
-              Next you will need to setup your local development environment so that you can begin your mission.
+              In this next part of the mission you will need to setup your local development environment so that you can
+              index the data from the smart contract.
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4 ">
