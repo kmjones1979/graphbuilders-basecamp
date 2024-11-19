@@ -47,28 +47,6 @@ const Home: NextPage = () => {
                 A series of missions where you will test your ability to write smart contracts and develop subgraphs on
                 The Graph protocol.
               </p>
-              <div className="flex items-center justify-center">
-                {isEnlisted ? (
-                  <p className="text-green-300">You are enlisted!</p>
-                ) : (
-                  <p className="text-red-300">You are NOT Enlisted</p>
-                )}
-              </div>
-              <div className="flex items-center justify-center">
-                {connectedAddress ? (
-                  isEnlisted ? (
-                    <button className="btn btn-success" onClick={() => router.push("/mission")}>
-                      Begin
-                    </button>
-                  ) : (
-                    <button className="btn btn-primary" onClick={handleEnlist}>
-                      Enlist
-                    </button>
-                  )
-                ) : (
-                  <RainbowKitCustomConnectButton />
-                )}
-              </div>
             </div>
           </div>
         </div>
