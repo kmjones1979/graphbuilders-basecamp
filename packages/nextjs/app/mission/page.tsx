@@ -49,22 +49,16 @@ pragma solidity >=0.8.0 <0.9.0;
 
 import "hardhat/console.sol";
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-
-contract Enlist is Ownable {
+contract Enlist {
 
 	mapping(address => bool) public isEnlisted;
 
-	constructor(address _owner) Ownable(_owner) {}
+	constructor() {
+	}
 
 	function enlist() public {
 		require(!isEnlisted[msg.sender], "You are already enlisted");
 		isEnlisted[msg.sender] = true;
-	}
-
-	function withdraw() public onlyOwner {
-		(bool success, ) = msg.sender.call{ value: address(this).balance }("");
-		require(success, "Failed to send Ether");
 	}
 
 	receive() external payable {}
@@ -78,7 +72,7 @@ contract Enlist is Ownable {
             <p className="text-lg max-w-2xl italic">
               This contract allows you to enlist yourself to the Enlist contract. You should have done this on the main
               page of this application. You can check your status by using the "Debug Contract" button and checking the
-              isEnlisted mapping for your wallet address.
+              isEnlisted mapping for your wallet address. You can also call the enlist function on that page as well.
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4 ">
@@ -88,6 +82,19 @@ contract Enlist is Ownable {
               event within the contract. We will need this in order to properly index the data. Once this is done you
               will need to deploy the contract to the network.
             </p>
+          </div>
+          <div className="flex justify-center top mt-4 mb-4">
+            <ul>
+              <li>
+                <a target="_blank" href="https://solidity-by-example.org/events/">
+                  {" "}
+                  👉🏼 Look at this page if you get lost... Solidity-by-Example (Events) 🔎
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="flex justify-center top mt-4 mb-4">
+            <p className="text-lg max-w-2xl italic">Deploy your changes...</p>
           </div>
           <CodeSnippet code="yarn deploy" button={true} />
           <div className="flex justify-center top mt-4 mb-4">
@@ -215,7 +222,7 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
 
           <div className="flex justify-center top mt-4 mb-4">
             {" "}
-            <a href="http://localhost:8000/subgraphs/name/scaffold-eth/your-contract">
+            <a target="_blank" href="http://localhost:8000/subgraphs/name/scaffold-eth/your-contract">
               🚀 http://localhost:8000/subgraphs/name/scaffold-eth/your-contract
             </a>
           </div>
