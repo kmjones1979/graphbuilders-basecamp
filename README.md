@@ -1,6 +1,16 @@
 # 🏗 The Graph Builders Basecamp
 
-## What is Scaffold-ETH?
+A series of missions where you will test your ability to write smart contracts and develop subgraphs on The Graph protocol.
+
+### What is The Graph?
+
+[The Graph](https://thegraph.com/) is a protocol for building decentralized applications (dApps) quickly on Ethereum and IPFS using GraphQL.
+
+Graph Node is an open source Rust implementation that event sources the Ethereum blockchain to deterministically update a data store that can be queried via the GraphQL endpoint.
+
+For detailed instructions and more context, check out the [Getting Started Guide](docs/getting-started.md).
+
+### What is Scaffold-ETH?
 
 🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
 
@@ -27,9 +37,9 @@ To get started with the first challenge...
 1. Checkout the project...
 
 ```
-git clone https://github.com/kmjones1979/launchpad-v2.git challenge-0-enlist
-cd challenge-0-enlist
-git checkout challenge-0-enlist
+git clone https://github.com/kmjones1979/launchpad-v2.git mission-0-enlist
+cd mission-0-enlist
+git checkout mission-0-enlist
 ```
 
 Then install all the dependencies
