@@ -45,7 +45,7 @@ const Home: NextPage = () => {
               <h1 className="mb-5 text-5xl font-bold text-white">The Graph Builders Basecamp</h1>
               <p className="mb-5 text-white">
                 A series of missions where you will test your ability to write smart contracts and develop subgraphs on
-                The Graph protocol.
+                The Graph protocol. To get started enlist in the program.
               </p>
               <div className="flex items-center justify-center">
                 {isEnlisted ? (
