@@ -1,4 +1,4 @@
-# 🏗 The Graph Launchpad
+# 🏗 The Graph Builders Basecamp
 
 ## What is Scaffold-ETH?
 
@@ -12,8 +12,6 @@
 -   🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
 -   🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
-
 ### Requirements
 
 Before you begin, you need to install the following tools:
@@ -24,7 +22,7 @@ Before you begin, you need to install the following tools:
 
 ### Quickstart
 
-To get started with Scaffold-ETH 2, follow the steps below:
+To get started with the first challenge...
 
 1. Checkout the project...
 
