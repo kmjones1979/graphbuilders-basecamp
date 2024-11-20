@@ -28,17 +28,16 @@ import "hardhat/console.sol";
 
 contract Enlist {
 
-mapping(address => bool) public isEnlisted;
+    mapping(address => bool) public isEnlisted;
 
-constructor() {
-}
+   constructor() {}
 
-function enlist() public {
-require(!isEnlisted[msg.sender], "You are already enlisted");
-isEnlisted[msg.sender] = true;
-}
+    function enlist() public {
+        require(!isEnlisted[msg.sender], "You are already enlisted");
+        isEnlisted[msg.sender] = true;
+    }
 
-receive() external payable {}
+    receive() external payable {}
 }
 `}
             </code>
@@ -90,8 +89,9 @@ receive() external payable {}
       </div>
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          If you you were successful, go back to the top of the page and click on the Subgraph tab to continue with the
-          next part of the mission.
+          Keep in mind this will reset the deployment of the contract, so you might need to enlist on the main page or
+          using "Debug Contracts" tab. If you you were successful, go back to the top of the page and click on the
+          Subgraph tab to continue with the next part of the mission.
         </p>
       </div>
     </>

@@ -1,7 +1,6 @@
 import React from "react";
 import CodeSnippet from "./CodeSnippet";
-
-// Adjust the import path as necessary
+import GetEnlisted from "./GetEnlisted";
 
 const SubgraphContent: React.FC = () => {
   return (
@@ -129,6 +128,17 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
       <div className="flex justify-center top mt-4 mb-4 ">
         <img className="rounded-lg max-w-2xl" src="/mission-0-response.png" alt="studio" />
       </div>
+
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg font-bold  max-w-2xl">
+          6. Now you will need to build the graph client artifacts... if you did this part correctly the results should
+          populate in the table below.
+        </p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <CodeSnippet code="yarn graphclient:build" button={true} />
+      </div>
+      <GetEnlisted />
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
           If you you were successful, go back to the top of the page and click on the Studio tab to continue with the

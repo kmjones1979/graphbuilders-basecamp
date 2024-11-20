@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import DeployContent from "./_components/DeployContent";
 import SolidityContent from "./_components/SolidityContent";
 import StudioContent from "./_components/StudioContent";
 import SubgraphContent from "./_components/SubgraphContent";
@@ -31,6 +32,12 @@ const Subgraph: NextPage = () => {
           Subgraph
         </button>
         <button
+          className={`rounded-lg px-4 py-2 ${activeTab === "deploy" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
+          onClick={() => setActiveTab("deploy")}
+        >
+          Deploy
+        </button>
+        <button
           className={`rounded-lg px-4 py-2 ${activeTab === "studio" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
           onClick={() => setActiveTab("studio")}
         >
@@ -40,6 +47,7 @@ const Subgraph: NextPage = () => {
 
       {activeTab === "solidity" && <SolidityContent />}
       {activeTab === "subgraph" && <SubgraphContent />}
+      {activeTab === "deploy" && <DeployContent />}
       {activeTab === "studio" && <StudioContent />}
     </>
   );

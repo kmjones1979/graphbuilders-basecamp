@@ -1,16 +1,16 @@
 import React from "react";
 import CodeSnippet from "./CodeSnippet";
 
-const StudioContent: React.FC = () => {
+const DeployContent: React.FC = () => {
   return (
     <>
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          In this next part of the mission you will deploy your subgraph to The Graph Subgraph Studio.
+          In this next part of the mission you will deploy your smart contract to a public network.
         </p>
       </div>
     </>
   );
 };
 
-export default StudioContent;
+export default DeployContent;
