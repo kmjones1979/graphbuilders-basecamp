@@ -4,6 +4,7 @@ import CodeSnippet from "./CodeSnippet";
 const SolidityContent: React.FC = () => {
   return (
     <>
+      {/* Part 1 */}
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
           You have arrived at The Graph Builders Academy, adventure awaits you in the skies above! In order to travel to

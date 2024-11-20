@@ -23,25 +23,25 @@ const Subgraph: NextPage = () => {
           className={`rounded-lg px-4 py-2 ${activeTab === "solidity" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
           onClick={() => setActiveTab("solidity")}
         >
-          Solidity
+          Part 1
         </button>
         <button
           className={`rounded-lg px-4 py-2 ${activeTab === "subgraph" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
           onClick={() => setActiveTab("subgraph")}
         >
-          Subgraph
+          Part 2
         </button>
         <button
           className={`rounded-lg px-4 py-2 ${activeTab === "deploy" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
           onClick={() => setActiveTab("deploy")}
         >
-          Deploy
+          Part 3
         </button>
         <button
           className={`rounded-lg px-4 py-2 ${activeTab === "studio" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
           onClick={() => setActiveTab("studio")}
         >
-          Studio
+          Part 4
         </button>
       </div>
 

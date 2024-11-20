@@ -5,6 +5,7 @@ import GetEnlisted from "./GetEnlisted";
 const SubgraphContent: React.FC = () => {
   return (
     <>
+      {/* Part 2 */}
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
           In this next part of the mission you will need to set up your local development environment so that you can
