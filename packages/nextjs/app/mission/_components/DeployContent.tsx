@@ -33,7 +33,6 @@ const DeployContent: React.FC = () => {
           following command.
         </p>
       </div>
-      <CodeSnippet code="yarn deploy --network sepolia" button={true} />
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
           If you need some Sepolia ETH, you can get some from the following faucets:{" "}
@@ -52,6 +51,23 @@ const DeployContent: React.FC = () => {
           </span>
         </p>
       </div>
+      <CodeSnippet code="yarn deploy --network sepolia" button={true} />
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">Success will look like the following:</p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+          <pre>
+            <code className="language-solidity">
+              {`deploying "Enlist" (tx: 0x2dea4c89a5f26850d3049c864c8151983b938568bef6668a950375ce97ee3d57)...
+deployed at 0xaF938C165A25327D8884d85f4dd156736144c987 with 143057 gas
+📝 Updated TypeScript contract definition file on ../nextjs/contracts/deployedContracts.ts
+`}
+            </code>
+          </pre>
+        </div>
+      </div>
+
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl font-bold">
           3. Last step we will want to verify our contract. This will make it easier for us to interact with it in the
@@ -59,6 +75,46 @@ const DeployContent: React.FC = () => {
         </p>
       </div>
       <CodeSnippet code="yarn verify --network sepolia" button={true} />
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">Success will look like the following:</p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+          <pre>
+            <code className="language-solidity">
+              {`verifying Enlist (0xaF938C165A25327D8884d85f4dd156736144c987) ...
+waiting for result...
+ => contract Enlist is now verified`}
+            </code>
+          </pre>
+        </div>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl font-bold">
+          4. Next configure the frontend to use the proper network. To do this edit the Scaffold-ETH configuration file
+          located in the packages/nextjs/scaffold.config.ts
+        </p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">
+          To make the frontend point to Sepolia, change the targetNetworks to use chains.sepolia. You will get kicked
+          out of the burner wallet and from now on any interactions with the smart contract should be done with a wallet
+          you control, such as Metamask or a Wallet Connect enabled wallet like Rainbow wallet.
+        </p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">
+          While in this configuration file you should also update your alchemy api key to do this, update the
+          alchemyApiKey configuration with your API key. You can get one for free from the
+          <span className="link">
+            {" "}
+            <a href="https://dashboard.alchemy.com/" target="_blank">
+              Alchemy
+            </a>{" "}
+          </span>{" "}
+          website.
+        </p>
+      </div>
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
           If you you were successful, go back to the top of the page and continue with the next part of the mission.

@@ -86,7 +86,7 @@ export function handleEnlisted(event: EnlistedEvent): void {
       </div>
       <CodeSnippet code="yarn local-ship" button={true} />
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">When prompted, enter the following version label:</p>
+        <p className="text-lg max-w-2xl italic">When prompted, enter the following version you want to use:</p>
       </div>
       <CodeSnippet code='Which version label to use? (e.g. "v0.0.1"):' button={false} />
       <div className="flex justify-center top mt-4 mb-4">
