@@ -99,7 +99,8 @@ waiting for result...
         <p className="text-lg max-w-2xl italic">
           To make the frontend point to Sepolia, change the targetNetworks to use chains.sepolia. You will get kicked
           out of the burner wallet and from now on any interactions with the smart contract should be done with a wallet
-          you control, such as Metamask or a Wallet Connect enabled wallet like Rainbow wallet.
+          you control, such as Metamask or a Wallet Connect enabled wallet like Rainbow wallet. You should use the same
+          one that you used to sign into The Graph Builders Basecamp portal.
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
