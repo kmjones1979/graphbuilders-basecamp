@@ -47,12 +47,12 @@ contract Enlist {
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
-          This contract allows you to enlist yourself to the smart contract. You should have done this on the main page
-          of this application. You can check your status by using the "Debug Contracts" tab in the header and checking
-          the isEnlisted mappings value for your wallet address. You can also call the enlist function on that page as
-          well.
+          This contract allows you to enlist yourself to the smart contract. You can check the current enlistment of a
+          wallet by using the "Debug Contracts" tab in the header and checking the isEnlisted mappings value for your
+          wallet address. You can also call the enlist function on that page as well.
         </p>
       </div>
+      <h1 className="flex justify-center text-2xl font-bold"> 📝 Task: Add an event to track enlistments 📝</h1>
       <div className="flex justify-center top mt-4 mb-4 ">
         <p className="text-lg font-bold max-w-2xl">
           1. To get started with the first part of this mission, open up your editor and navigate to the enlist.sol file

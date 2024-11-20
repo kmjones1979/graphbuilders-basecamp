@@ -58,6 +58,10 @@ const SubgraphContent: React.FC = () => {
           this:
         </p>
       </div>
+      <h1 className="flex justify-center text-2xl font-bold">
+        {" "}
+        📝 Task: Add logic to the handler to index enlistments 📝
+      </h1>
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
           <pre>
