@@ -60,8 +60,24 @@ const SubgraphContent: React.FC = () => {
       </div>
       <h1 className="flex justify-center text-2xl font-bold">
         {" "}
-        📝 Task: Add logic to the handler to index enlistments 📝
+        📝 Task: Add logic to the handler to index the Enlisted event data 📝
       </h1>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">
+          To do this we will need to create a new entity called Enlisted and save the event data to the database. If
+          needed you can reference the AssemblyScript API in the docs here:
+        </p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <a target="_blank" href="https://thegraph.com/docs/en/developing/graph-ts/api/">
+          🚀 AssemblyScript API
+        </a>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">
+          Here is the starting handler located in packages/subgraph/src/mapping.ts:
+        </p>
+      </div>
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
           <pre>
