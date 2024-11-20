@@ -24,3 +24,4 @@ dist
 
 # The Graph
 packages/subgraph/generated
+packages/nextjs/contracts/deployedContracts.ts

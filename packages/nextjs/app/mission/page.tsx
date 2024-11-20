@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import CodeSnippet from "./_components/CodeSnippet";
-import GetEnlisted from "./_components/GetEnlisted";
 import SolidityContent from "./_components/SolidityContent";
 import StudioContent from "./_components/StudioContent";
 import SubgraphContent from "./_components/SubgraphContent";
@@ -14,7 +12,10 @@ const Subgraph: NextPage = () => {
   return (
     <>
       <div className="flex justify-center top">
-        <h1 className="text-3xl font-bold pt-4 text-center max-w-2xl">Mission 1</h1>
+        <h1 className="text-4xl font-bold pt-4 text-center max-w-2xl">Mission 1</h1>
+      </div>
+      <div className="flex justify-center top">
+        <h3 className="text-2xl pt-4 text-center max-w-2xl">Join the Academy!</h3>
       </div>
       <div className="flex justify-center mt-4">
         <button
