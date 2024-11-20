@@ -1,5 +1,4 @@
-import { Bytes } from "@graphprotocol/graph-ts";
-import { Enlist } from "../generated/Enlist/Enlist";
+import { Enlisted as EnlistedEvent } from "../generated/Enlist/Enlist";
 import { Enlisted } from "../generated/schema";
 
-export function handleEnlisted(event: Enlisted): void {}
+export function handleEnlisted(event: EnlistedEvent): void {}

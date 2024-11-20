@@ -90,9 +90,9 @@ contract Enlist {
       </div>
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          Keep in mind this will reset the deployment of the contract, so you might need to enlist on the main page or
-          using "Debug Contracts" tab. If you you were successful, go back to the top of the page and continue with the
-          next part of the mission.
+          Since this will be a new contract that is deployed, you will need to enlist on the main page or using "Debug
+          Contracts" tab. If you you were successful with these steps, go back to the top of the page and continue with
+          the next part of the mission.
         </p>
       </div>
     </>
