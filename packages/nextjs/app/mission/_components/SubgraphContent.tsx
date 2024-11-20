@@ -30,6 +30,17 @@ const SubgraphContent: React.FC = () => {
         </p>
       </div>
       <CodeSnippet code="yarn local-create" button={true} />
+
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">
+          You can copy the ABI from the hardhat project with the following command:
+        </p>
+      </div>
+      <CodeSnippet code="yarn abi-copy" button={true} />
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">You can generate the types with the following command:</p>
+      </div>
+      <CodeSnippet code="yarn codegen" button={true} />
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg font-bold  max-w-2xl">
           3. Now you will need to complete the code for the handler to process the event data coming off the smart
