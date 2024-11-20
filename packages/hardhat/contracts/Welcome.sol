@@ -10,7 +10,7 @@ import "hardhat/console.sol";
  */
 contract Welcome {
 
-	string public welcomeMessage = "Welcome to The Graph Builders Launchpad!";
+	string public welcome = "Welcome to The Graph Builders Launchpad!";
 
 	/**
 	 * Constructor that sets the owner of the contract
