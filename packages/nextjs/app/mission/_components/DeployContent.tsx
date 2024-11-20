@@ -59,6 +59,11 @@ const DeployContent: React.FC = () => {
         </p>
       </div>
       <CodeSnippet code="yarn verify --network sepolia" button={true} />
+      <div className="flex justify-center top">
+        <p className="text-lg text-center max-w-2xl">
+          If you you were successful, go back to the top of the page and continue with the next part of the mission.
+        </p>
+      </div>
     </>
   );
 };
