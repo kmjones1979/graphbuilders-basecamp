@@ -16,10 +16,13 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - CommsEstablished
+        - OwnershipTransferred
       abis:
         - name: Comms
           file: ./abis/localhost_Comms.json
       eventHandlers:
         - event: CommsEstablished(address,bool)
           handler: handleCommsEstablished
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
       file: ./src/mapping.ts
