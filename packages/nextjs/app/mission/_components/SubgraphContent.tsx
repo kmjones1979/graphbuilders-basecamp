@@ -109,17 +109,6 @@ export function handleEnlisted(event: EnlistedEvent): void {
         </a>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
-        <div className="bg-base-200 collapse max-w-2xl">
-          <input type="checkbox" className="peer" />
-          <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-            Stuck?? No worries, click here for hints 🫣
-          </div>
-          <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-            <p>hello</p>
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg font-bold  max-w-2xl">4. Now ship your changes...</p>
       </div>
       <CodeSnippet code="yarn local-ship" button={true} />
