@@ -11,6 +11,8 @@ import "hardhat/console.sol";
 contract Enlist {
 
 	mapping(address => bool) public isEnlisted;
+	
+	// STEP 1: Add an event to track addresses which have enlisted
 
 	/**
 	 * Constructor for the Enlist contract
@@ -21,6 +23,7 @@ contract Enlist {
 	function enlist() public {
 		require(!isEnlisted[msg.sender], "You are already enlisted");
 		isEnlisted[msg.sender] = true;
+		// STEP 2: Emit the Enlisted event
 	}
 
 	/**
