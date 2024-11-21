@@ -2,24 +2,24 @@ specVersion: 1.0.0
 description: Comms
 repository: https://github.com/scaffold-eth/se-2/packages/subgraph/
 schema:
-    file: ./src/schema.graphql
+  file: ./src/schema.graphql
 dataSources:
-    - kind: ethereum/contract
-      name: Comms
-      network: localhost
-      source:
-          abi: Comms
-          address: "0x610178dA211FEF7D417bC0e6FeD39F05609AD788"
-      mapping:
-          kind: ethereum/events
-          apiVersion: 0.0.7
-          language: wasm/assemblyscript
-          entities:
-              - CommsEstablished
-          abis:
-              - name: Comms
-                file: ./abis/localhost_Comms.json
-          eventHandlers:
-              - event: CommsEstablished(address, bool)
-                handler: handleCommsEstablished
-          file: ./src/mapping.ts
+  - kind: ethereum/contract
+    name: Comms
+    network: localhost
+    source:
+      abi: Comms
+      address: "0x21dF544947ba3E8b3c32561399E88B52Dc8b2823"
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - CommsEstablished
+      abis:
+        - name: Comms
+          file: ./abis/localhost_Comms.json
+      eventHandlers:
+        - event: CommsEstablished(address,bool)
+          handler: handleCommsEstablished
+      file: ./src/mapping.ts
