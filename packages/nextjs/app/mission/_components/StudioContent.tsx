@@ -92,10 +92,10 @@ const StudioContent: React.FC = () => {
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl font-bold">
           3. Next, we need to update the deploy command for our subgraph package to use the name we configured in the
-          studio. In my case it is "mymission".
+          studio. Update the "graph deploy" command to use the name of your subgraph. In my case it is "mymission".
         </p>
       </div>
-      <CodeSnippet code='deploy": "graph deploy mymission",' button={false} />
+      <CodeSnippet code="graph deploy mymission" button={false} />
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
           You also might want to add the startBlock to the subgraph manifest. You can get this from the block explorer
@@ -149,6 +149,12 @@ dataSources:
       </div>
       <div className="flex justify-center">
         <img className="max-w-4xl" src="/studio/08.png" alt="Studio Deploy" />
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">
+          Congratulations! You have now successfully deployed your subgraph to the studio! To complete the mission
+          navigate to the Endpoints tab on your subgraph and submit your QueryURL.
+        </p>
       </div>
     </>
   );

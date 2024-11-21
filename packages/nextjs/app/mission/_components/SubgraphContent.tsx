@@ -87,16 +87,20 @@ export function handleEnlisted(event: EnlistedEvent): void {
           </pre>
         </div>
       </div>
+      <div className="flex justify-center top mt-4 mb-4 ">
+        <p className="text-lg font-bold max-w-2xl mb-4">To complete this task, follow these steps:</p>
+      </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl">
-          To add the logic, consider the following steps:
           <ol className="list-disc list-inside mb-4">
             <li>
-              Think about how to create a new entity using the <span className="highlight-code">Enlisted</span> schema.
+              Use the <span className="highlight-code">Enlisted</span> schema and the the{" "}
+              <span className="highlight-code">new</span> keyword to create an entry in the database.
             </li>
-            <li>What parameters do you need to pass to the constructor of the entity?</li>
-            <li>Identify which properties from the event data you need to set on the entity.</li>
-            <li>How will you save the entity to the database once you've set its properties?</li>
+            <li>Set the properties of the entity using event data. </li>
+            <li>
+              Save the entity to the database using the <span className="highlight-code">save()</span> method
+            </li>
           </ol>
           If needed, you can reference examples of the AssemblyScript API in the docs here:
         </p>
@@ -105,6 +109,17 @@ export function handleEnlisted(event: EnlistedEvent): void {
         <a target="_blank" href="https://thegraph.com/docs/en/developing/graph-ts/api/">
           🚀 AssemblyScript API
         </a>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <div className="bg-base-200 collapse max-w-2xl">
+          <input type="checkbox" className="peer" />
+          <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+            Stuck?? No worries, click here for hints 🫣
+          </div>
+          <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+            <p>hello</p>
+          </div>
+        </div>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg font-bold  max-w-2xl">4. Now ship your changes...</p>
