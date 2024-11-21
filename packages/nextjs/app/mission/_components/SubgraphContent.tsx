@@ -21,7 +21,7 @@ const SubgraphContent: React.FC = () => {
       <CodeSnippet code="yarn run-node" button={true} />
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
-          You will know graph-node is ready when you see the following message:
+          You will know graph-node is ready to be configured when you see the following message:
         </p>
       </div>
       <CodeSnippet code="INFO Downloading latest blocks from Ethereum, this may take a few minutes..." button={false} />
@@ -62,20 +62,11 @@ const SubgraphContent: React.FC = () => {
         {" "}
         📝 Task: Add logic to the handler to index the Enlisted event data 📝
       </h1>
+
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
-          To do this we will need to create a new entity called Enlisted and save the event data to the database. If
-          needed you can reference the AssemblyScript API in the docs here:
-        </p>
-      </div>
-      <div className="flex justify-center top mt-4 mb-4">
-        <a target="_blank" href="https://thegraph.com/docs/en/developing/graph-ts/api/">
-          🚀 AssemblyScript API
-        </a>
-      </div>
-      <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">
-          Here is the starting handler located in packages/subgraph/src/mapping.ts:
+          Here is the starting handler located in{" "}
+          <span className="highlight-code">packages/subgraph/src/mapping.ts</span>
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
@@ -85,11 +76,35 @@ const SubgraphContent: React.FC = () => {
               {`import { Enlisted as EnlistedEvent } from "../generated/Enlist/Enlist";
 import { Enlisted } from "../generated/schema";
 
-export function handleEnlisted(event: EnlistedEvent): void {}
+// Define the handleEnlisted function
+export function handleEnlisted(event: EnlistedEvent): void {
+  // TODO: Step 1: Create a new instance of the Enlisted entity
+  // TODO: Step 2: Set the properties of the entity using event data
+  // TODO: Step 3: Save the entity to the database
+}
 `}
             </code>
           </pre>
         </div>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl">
+          To add the logic, consider the following steps:
+          <ol className="list-disc list-inside mb-4">
+            <li>
+              Think about how to create a new entity using the <span className="highlight-code">Enlisted</span> schema.
+            </li>
+            <li>What parameters do you need to pass to the constructor of the entity?</li>
+            <li>Identify which properties from the event data you need to set on the entity.</li>
+            <li>How will you save the entity to the database once you've set its properties?</li>
+          </ol>
+          If needed, you can reference examples of the AssemblyScript API in the docs here:
+        </p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <a target="_blank" href="https://thegraph.com/docs/en/developing/graph-ts/api/">
+          🚀 AssemblyScript API
+        </a>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg font-bold  max-w-2xl">4. Now ship your changes...</p>
@@ -100,7 +115,7 @@ export function handleEnlisted(event: EnlistedEvent): void {}
       </div>
       <CodeSnippet code='Which version label to use? (e.g. "v0.0.1"):' button={false} />
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">Success will look like this:</p>
+        <p className="text-lg max-w-2xl italic">✅ Success will look like this: 👇🏼</p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
@@ -125,7 +140,10 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
         </a>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">Try out the following query to see if your data is being saved:</p>
+        <p className="text-lg max-w-2xl italic">
+          This is a GraphiQL explorer and allows you to test out the GraphQL queries before loading them into your
+          frontend. Try out the following query to see if your data is being saved:
+        </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
@@ -145,7 +163,7 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
         </div>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">Success will look like this:</p>
+        <p className="text-lg max-w-2xl italic">✅ Success will look like this: 👇🏼</p>
       </div>
       <div className="flex justify-center top mt-4 mb-4 ">
         <img className="rounded-lg max-w-2xl" src="/mission-0-response.png" alt="studio" />

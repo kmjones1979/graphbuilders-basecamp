@@ -53,7 +53,7 @@ const DeployContent: React.FC = () => {
       </div>
       <CodeSnippet code="yarn deploy --network sepolia" button={true} />
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">Success will look like the following:</p>
+        <p className="text-lg max-w-2xl italic">✅ Success will look like the following: 👇🏼</p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
@@ -76,7 +76,7 @@ deployed at 0xaF938C165A25327D8884d85f4dd156736144c987 with 143057 gas
       </div>
       <CodeSnippet code="yarn verify --network sepolia" button={true} />
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">Success will look like the following:</p>
+        <p className="text-lg max-w-2xl italic">✅ Success will look like the following: 👇🏼</p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
@@ -91,22 +91,25 @@ waiting for result...
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl font-bold">
-          4. Next configure the frontend to use the proper network. To do this edit the Scaffold-ETH configuration file
-          located in the packages/nextjs/scaffold.config.ts
+          4. Next configure the frontend to use the proper network. To do this edit the{" "}
+          <span className="highlight-code">scaffold.config.ts</span> configuration file which is located in the{" "}
+          <span className="highlight-code">packages/nextjs</span> folder.
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
-          To make the frontend point to Sepolia, change the targetNetworks to use chains.sepolia. You will get kicked
-          out of the burner wallet and from now on any interactions with the smart contract should be done with a wallet
-          you control, such as Metamask or a Wallet Connect enabled wallet like Rainbow wallet. You should use the same
-          one that you used to sign into The Graph Builders Basecamp portal.
+          To make the frontend point to Sepolia, change the targetNetworks to use{" "}
+          <span className="highlight-code">chains.sepolia</span>. You will get kicked out of the burner wallet and from
+          now on any interactions with the smart contract should be done with a wallet you control, such as Metamask or
+          a Wallet Connect enabled wallet like Rainbow wallet. You should use the same one that you used to sign into
+          The Graph Builders Basecamp portal.
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
           While in this configuration file you should also update your alchemy api key to do this, update the
-          alchemyApiKey configuration with your API key. You can get one for free from the
+          <span className="highlight-code">alchemyApiKey</span> configuration with your API key. You can get one for
+          free from the
           <span className="link">
             {" "}
             <a href="https://dashboard.alchemy.com/" target="_blank">

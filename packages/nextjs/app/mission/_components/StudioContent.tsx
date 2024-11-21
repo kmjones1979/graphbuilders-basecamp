@@ -7,27 +7,25 @@ const StudioContent: React.FC = () => {
       {/* Part 4 */}
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          In this next part of the mission you will deploy your subgraph to The Graph Subgraph Studio.
+          In this next part of the mission you will deploy your subgraph to The Graph Subgraph Studio. The studio is a
+          place where you can create, test, and deploy subgraphs before you publish them to the decentralized network.
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4 ">
         <p className="text-lg font-bold max-w-2xl">
-          1. Create a subgraph in the studio by visiting the following url:
-          <span className="italic">
-            {" "}
-            <a href="https://thegraph.com/studio/" target="_blank" rel="noreferrer">
-              Supgraph Studio
-            </a>
-          </span>
+          1. First, create a subgraph in the studio by visiting the following url:
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">
-          You will need to connect your wallet to the studio to create a subgraph.
-        </p>
+        <a target="_blank" href="https://thegraph.com/studio/">
+          🚀 https://thegraph.com/studio/
+        </a>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xlitalic">Click the "Connect" button on the top right of the screen.</p>
+        <p className="text-lg max-w-2xlitalic">
+          You will need to connect your wallet to the studio to create a subgraph. Click the "Connect" button on the top
+          right of the screen.
+        </p>
       </div>
       <div className="flex justify-center">
         <img className="max-h-96" src="/studio/01.png" alt="Studio Connect" />
@@ -63,9 +61,10 @@ const StudioContent: React.FC = () => {
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl font-bold">
-          2. Now that we have a subgraph in the studio available to deploy to, we want to update our subgraph networks
-          configuration file to reference our newly deployed contract to Sepolia in the previous section of the mission.
-          This file is located in packages/subgraph/networks.json
+          2. Now that we have a subgraph in the studio available to deploy to, we want to update our{" "}
+          <span className="highlight-code">networks.json</span> configuration file to reference our newly deployed
+          contract to Sepolia in the previous section of the mission. This file is located in the{" "}
+          <span className="highlight-code">packages/subgraph</span> folder.
         </p>
       </div>
 
@@ -142,6 +141,15 @@ dataSources:
         <p className="text-lg max-w-2xl italic">Deploy your subgraph to the studio by running the following command:</p>
       </div>
       <CodeSnippet code="yarn studio-ship" button={true} />
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">
+          If you did this part correctly, you should see your subgraph syncing or potentially already synced in the
+          studio.
+        </p>
+      </div>
+      <div className="flex justify-center">
+        <img className="max-w-4xl" src="/studio/08.png" alt="Studio Deploy" />
+      </div>
     </>
   );
 };

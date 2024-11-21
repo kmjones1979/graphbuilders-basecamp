@@ -38,7 +38,7 @@
         "run-node": "yarn workspace @se-2/subgraph run-node",
         "start": "yarn workspace @se-2/nextjs dev",
         "stop-node": "yarn workspace @se-2/subgraph stop-node",
-        "studio-ship": "yarn workspace @se-2/subgraph deploy",
+        "studio-ship": "yarn workspace @se-2/subgraph studio-ship",
         "subgraph:test": "yarn workspace @se-2/subgraph test",
         "test": "yarn hardhat:test",
         "vercel": "yarn workspace @se-2/nextjs vercel",

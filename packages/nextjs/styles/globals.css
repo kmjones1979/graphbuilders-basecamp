@@ -34,7 +34,7 @@ p {
 /* styles/globals.css or YourComponent.module.css */
 .highlight-code {
   font-family: "Courier New", Courier, monospace; /* Use Courier New font */
-  background-color: lightslategray; /* Light gray background */
+  background-color: grey; /* Light gray background */
   padding: 0 4px;
   border-radius: 8px; /* Rounded corners */
   display: inline-block; /* Ensures the background only covers the text */

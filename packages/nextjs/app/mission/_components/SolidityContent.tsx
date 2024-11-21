@@ -22,25 +22,16 @@ const SolidityContent: React.FC = () => {
         <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
           <pre>
             <code className="language-solidity">
-              {`//SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0 <0.9.0;
-
-import "hardhat/console.sol";
-
-contract Enlist {
+              {`contract Enlist {
 
     mapping(address => bool) public isEnlisted;
-
-   constructor() {}
 
     function enlist() public {
         require(!isEnlisted[msg.sender], "You are already enlisted");
         isEnlisted[msg.sender] = true;
     }
 
-    receive() external payable {}
-}
-`}
+}`}
             </code>
           </pre>
         </div>
@@ -48,18 +39,33 @@ contract Enlist {
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
           This basic contract allows a wallet to enlist themselves. You can check the current enlistment of a wallet by
-          using the "Debug Contracts" tab in the header and checking the isEnlisted mappings value for your wallet
-          address. You can also call the enlist function on that page as well.
+          using the "Debug Contracts" tab in the header and checking the{" "}
+          <span className="highlight-code">isEnlisted</span> mappings value for your wallet address. You can also call
+          the <span className="highlight-code">enlist()</span> function on that page as well.
         </p>
       </div>
-      <h1 className="flex justify-center text-2xl font-bold"> 📝 Task: Add an event to track enlistments 📝</h1>
+      <h1 className="flex justify-center text-2xl font-bold">
+        {" "}
+        📝 Task 1: Add an event to track addresses which have enlisted 📝
+      </h1>
       <div className="flex justify-center top mt-4 mb-4 ">
-        <p className="text-lg font-bold max-w-2xl">
-          To get started, open your editor and navigate to{" "}
-          <span className="highlight-code">packages/hardhat/contracts</span> and open
-          <span className="highlight-code">enlist.sol</span>. Your task is to add an event called
-          <span className="highlight-code">"Enlisted"</span> and an emit statement for that event.
-        </p>
+        <p className="text-lg font-bold max-w-2xl mb-4">To complete this task, follow these steps:</p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <ul className="list-disc list-inside mb-4">
+          <li>
+            Navigate to <span className="highlight-code">packages/hardhat/contracts</span> and open the file{" "}
+            <span className="highlight-code">Enlist.sol</span>
+          </li>
+          <li>
+            Add an event called <span className="highlight-code">Enlisted</span> that will emit an{" "}
+            <span className="highlight-code">address</span>
+          </li>
+          <li>
+            Use the event by calling the <span className="highlight-code">emit</span> keyword inside the
+            <span className="highlight-code">enlist()</span> function
+          </li>
+        </ul>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <ul>
@@ -76,7 +82,7 @@ contract Enlist {
       </div>
       <CodeSnippet code="yarn deploy --reset" button={true} />
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">Success will look like this:</p>
+        <p className="text-lg max-w-2xl italic">✅ Success will look like this: 👇🏼</p>
       </div>
 
       <div className="flex justify-center top mt-4 mb-4">
