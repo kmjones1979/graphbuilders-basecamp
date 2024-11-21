@@ -103,41 +103,6 @@ const StudioContent: React.FC = () => {
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
-        <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
-          <pre>
-            <code className="language-solidity">
-              {`specVersion: 0.0.4
-description: Enlisted
-repository: https://github.com/scaffold-eth/se-2/packages/subgraph/
-schema:
-  file: ./src/schema.graphql
-dataSources:
-  - kind: ethereum/contract
-    name: Enlist
-    network: sepolia
-    source:
-      abi: Enlist
-      address: "0xeF938C265A15327D8884d83f4dd154736144c987"
-      startBlock: 7117347
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      entities:
-        - Enlisted
-      abis:
-        - name: Enlist
-          file: ./abis/localhost_Enlist.json
-      eventHandlers:
-        - event: Enlisted(indexed address)
-          handler: handleEnlisted
-      file: ./src/mapping.ts
-`}
-            </code>
-          </pre>
-        </div>
-      </div>
-      <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">Deploy your subgraph to the studio by running the following command:</p>
       </div>
       <CodeSnippet code="yarn studio-ship" button={true} />

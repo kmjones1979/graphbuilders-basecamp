@@ -7,12 +7,8 @@ const SolidityContent: React.FC = () => {
       {/* Part 1 */}
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          You have arrived at The Graph Builders Academy, adventure awaits you in the skies above! In order to travel to
-          the outer limits of the galaxy you will first need to enlist the Academy and prove your worth with a basic
-          deployment of a subgraph. In this first mission you will, edit a basic smart contract, create a basic
-          AssemblyScript handler to process event data and then publish that subgraph to your local machine as well as
-          the Subgraph Studio. Once you have completed this mission you will be able to move on to the next mission and
-          travel to the stars!
+          Now that you have successfully enlisted, you will need to establish communications with The Graph Builders
+          Basecamp on the lunar surface.
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
@@ -22,57 +18,62 @@ const SolidityContent: React.FC = () => {
         <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
           <pre>
             <code className="language-solidity">
-              {`contract Enlist {
+              {`//SPDX-License-Identifier: MIT
+pragma solidity >=0.8.0 <0.9.0;
 
-    mapping(address => bool) public isEnlisted;
+import "hardhat/console.sol";
 
-    function enlist() public {
-        require(!isEnlisted[msg.sender], "You are already enlisted");
-        isEnlisted[msg.sender] = true;
-    }
+contract Comms {
 
-}`}
+	uint8 public secret;
+	uint8 public attempt;
+	bool public isCommsEstablished = false;
+
+	event CommsEstablished(address indexed _address, bool isCommsEstablished);
+
+	constructor() {
+		secret = uint8(block.prevrandao % 6) + 1;
+	}
+	
+	function establishComms() public {
+		require(!isCommsEstablished, "Comms already established");
+
+		attempt = uint8(block.prevrandao % 6) + 1;
+		console.log("Attempt: %s", attempt);
+		require(attempt == secret, "Attempt failed: Invalid secret");
+
+		isCommsEstablished = true;
+		emit CommsEstablished(msg.sender, isCommsEstablished);
+	}
+}
+`}
             </code>
           </pre>
         </div>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">
-          This basic contract allows a wallet to enlist themselves. You can check the current enlistment of a wallet by
-          using the "Debug Contracts" tab in the header and checking the{" "}
-          <span className="highlight-code">isEnlisted</span> mappings value for your wallet address. You can also call
-          the <span className="highlight-code">enlist()</span> function on that page as well.
-        </p>
+        <p className="text-lg max-w-2xl italic">Placeholder</p>
       </div>
       <h1 className="flex justify-center text-2xl font-bold">
         {" "}
-        📝 Task 1: Add an event to track addresses which have enlisted 📝
+        📝 Task 1: Take ownership of the contract with OpenZeppelin Ownable 📝
       </h1>
       <div className="flex justify-center top mt-4 mb-4 ">
         <p className="text-lg font-bold max-w-2xl mb-4">To complete this task, follow these steps:</p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <ul className="list-disc list-inside mb-4">
-          <li>
-            Navigate to <span className="highlight-code">packages/hardhat/contracts</span> and open the file{" "}
-            <span className="highlight-code">Enlist.sol</span>
-          </li>
-          <li>
-            Add an event called <span className="highlight-code">Enlisted</span> that will emit an{" "}
-            <span className="highlight-code">address</span>
-          </li>
-          <li>
-            Use the event by calling the <span className="highlight-code">emit</span> keyword inside the
-            <span className="highlight-code">enlist()</span> function
-          </li>
+          <li>One</li>
+          <li>Two</li>
+          <li>Three</li>
         </ul>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <ul>
           <li>
-            <a target="_blank" href="https://solidity-by-example.org/events/">
+            <a target="_blank" href="https://docs.openzeppelin.com/contracts/2.x/access-control">
               {" "}
-              👉🏼 Look at this page if you get lost... Solidity-by-Example (Events) 🔎
+              👉🏼 Look at this page if you get lost... OpenZeppelin (Access Control) 🔎
             </a>
           </li>
         </ul>
@@ -89,16 +90,16 @@ const SolidityContent: React.FC = () => {
         <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
           <pre>
             <code className="language-solidity">
-              {`deployed at 0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6 with 283218 gas`}
+              {`deployed at 0x0165878A594ca255338adfa4d48449f69242Eb8F with 378023 gas`}
             </code>
           </pre>
         </div>
       </div>
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          Since this will be a new contract that is deployed, you will need to enlist on the main page or using "Debug
-          Contracts" tab. If you you were successful with these steps, go back to the top of the page and continue with
-          the next part of the mission.
+          Once you deploy your changes navigate to the "Debug Contracts" tab and call the establishComms function to
+          test the functionality. You will need to attempt to call the function multiple times until the secret matches
+          your attempt.
         </p>
       </div>
     </>
