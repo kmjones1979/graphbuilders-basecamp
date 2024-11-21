@@ -9,7 +9,8 @@ const SolidityContent: React.FC = () => {
         <p className="text-lg text-center max-w-2xl">
           Welcome to the Academy! Your first job as a junior cadet is to establish communications with the lunar base.
           To do this you will need to establish ownership of a special comms smart contract and then establish a
-          connection with the base by randomly generating the proper communication code.
+          connection with the base by randomly generating the proper communication code. After that task is complete you
+          will index all of the data into The Graph for the basecamp to see.
         </p>
       </div>
       <div className="flex justify-center top">

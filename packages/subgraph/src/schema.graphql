@@ -1,6 +1,7 @@
-type Enlisted @entity {
+type CommsEstablished @entity {
     id: Bytes!
     account: Bytes!
+    isCommsEstablished: Boolean!
     blockNumber: BigInt!
     blockTimestamp: BigInt!
     transactionHash: Bytes!

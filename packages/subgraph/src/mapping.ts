@@ -1,4 +1,4 @@
-import { Enlisted as EnlistedEvent } from "../generated/Enlist/Enlist";
-import { Enlisted } from "../generated/schema";
+import { CommsEstablished as CommsEstablishedEvent } from "../generated/CommsEstablished/CommsEstablished";
+import { CommsEstablished } from "../generated/schema";
 
-export function handleEnlisted(event: EnlistedEvent): void {}
+export function handleCommsEstablished(event: CommsEstablishedEvent): void {}
