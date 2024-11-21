@@ -37,9 +37,9 @@ To get started with the first challenge...
 1. Checkout the project...
 
 ```
-git clone https://github.com/kmjones1979/launchpad-v2.git mission-1-comms
-cd mission-1-comms
-git checkout mission-1-comms
+git clone https://github.com/kmjones1979/graphbuilders-basecamp.git mission-2-comms
+cd mission-2-comms
+git checkout mission-2-comms
 ```
 
 Then install all the dependencies
