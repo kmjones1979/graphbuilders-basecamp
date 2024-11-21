@@ -78,9 +78,7 @@ import { Enlisted } from "../generated/schema";
 
 // Define the handleEnlisted function
 export function handleEnlisted(event: EnlistedEvent): void {
-  // TODO: Step 1: Create a new instance of the Enlisted entity
-  // TODO: Step 2: Set the properties of the entity using event data
-  // TODO: Step 3: Save the entity to the database
+    // Add logic here
 }
 `}
             </code>
