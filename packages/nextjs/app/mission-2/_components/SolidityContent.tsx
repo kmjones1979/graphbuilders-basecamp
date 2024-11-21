@@ -7,9 +7,32 @@ const SolidityContent: React.FC = () => {
       {/* Part 1 */}
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          Now that you have successfully enlisted, you will need to establish communications with The Graph Builders
-          Basecamp on the lunar surface.
+          Welcome to the Academy! Your first job as a junior cadet is to establish communications with the lunar base.
+          To do this you will need to establish ownership of a special comms smart contract and then establish a
+          connection with the base by randomly generating the proper communication code.
         </p>
+      </div>
+      <div className="flex justify-center top">
+        <h3 className="text-2xl pt-4 text-center max-w-2xl">Environment Setup</h3>
+      </div>
+      <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Before you begin, make sure you are in the proper branch.</p>
+      </div>
+      <CodeSnippet code="git checkout mission-2-comms" button={true} />
+      <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Then be sure to install the dependencies.</p>
+      </div>
+      <CodeSnippet code="yarn install" button={true} />
+      <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Start your local blockchain.</p>
+      </div>
+      <CodeSnippet code="yarn chain" button={true} />
+      <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Then start your frontend, in a new terminal.</p>
+      </div>
+      <CodeSnippet code="yarn start" button={true} />
+      <div className="flex justify-center top">
+        <h3 className="text-2xl pt-4 text-center max-w-2xl">Mission Steps:</h3>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">The starting smart contract code for this mission is as follows:</p>

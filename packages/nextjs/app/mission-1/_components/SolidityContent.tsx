@@ -15,6 +15,28 @@ const SolidityContent: React.FC = () => {
           travel to the stars!
         </p>
       </div>
+      <div className="flex justify-center top">
+        <h3 className="text-2xl pt-4 text-center max-w-2xl">Environment Setup</h3>
+      </div>
+      <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Before you begin, make sure you are in the proper branch.</p>
+      </div>
+      <CodeSnippet code="git checkout mission-1-enlist" button={true} />
+      <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Then be sure to install the dependencies.</p>
+      </div>
+      <CodeSnippet code="yarn install" button={true} />
+      <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Start your local blockchain.</p>
+      </div>
+      <CodeSnippet code="yarn chain" button={true} />
+      <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Then start your frontend, in a new terminal.</p>
+      </div>
+      <CodeSnippet code="yarn start" button={true} />
+      <div className="flex justify-center top">
+        <h3 className="text-2xl pt-4 text-center max-w-2xl">Mission Steps:</h3>
+      </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">The starting smart contract code for this mission is as follows:</p>
       </div>
