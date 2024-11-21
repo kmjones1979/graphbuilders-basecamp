@@ -37,9 +37,9 @@ To get started with the first challenge...
 1. Checkout the project...
 
 ```
-git clone https://github.com/kmjones1979/launchpad-v2.git mission-0-enlist
-cd mission-0-enlist
-git checkout mission-0-enlist
+git clone https://github.com/kmjones1979/launchpad-v2.git mission-1-comms
+cd mission-1-comms
+git checkout mission-1-comms
 ```
 
 Then install all the dependencies
