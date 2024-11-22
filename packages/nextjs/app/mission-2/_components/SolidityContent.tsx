@@ -34,9 +34,12 @@ const SolidityContent: React.FC = () => {
       </div>
       <CodeSnippet code="yarn start" button={true} />
       <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Now that our environment is setup, let's begin the mission.</p>
+      </div>
+      <div className="flex justify-center top">
         <h3 className="text-2xl pt-4 text-center max-w-2xl">Mission Steps:</h3>
       </div>
-      <div className="flex justify-center top mt-4 mb-4">
+      <div className="flex justify-center mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">The starting smart contract code for this mission is as follows:</p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
@@ -126,7 +129,8 @@ const SolidityContent: React.FC = () => {
           Once you deploy your changes navigate to the "Debug Contracts" tab and call the{" "}
           <span className="highlight-code">establishComms</span> function to test the functionality. You will need to
           attempt to call the function multiple times until the secret matches your attempt. When testing on your local
-          network you can use the Faucet button to simulate a new block.
+          network you can use the Faucet button to simulate a new block. You will know you are successful when the
+          <span className="highlight-code">isCommsEstablished</span> variable is set to true.
         </p>
       </div>
     </>
