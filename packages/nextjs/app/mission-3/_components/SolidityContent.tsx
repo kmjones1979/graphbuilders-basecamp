@@ -42,20 +42,38 @@ const SolidityContent: React.FC = () => {
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
           <pre>
-            <code className="language-solidity">{``}</code>
+            <code className="language-solidity">{`contract Moon is Ownable{
+
+    address public burner = 0x0000000000000000000000000000000000000000;
+
+    constructor() Ownable(burner) {}
+
+    receive() external payable {}
+}
+`}</code>
           </pre>
         </div>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">Explain the ERC-20 standard and how it works under the hood.</p>
+        <p className="text-lg max-w-2xl italic">
+          Next, we will be updating the smart contract to inherit the ERC-20 standard. The ERC-20 standard is the most
+          popular standard for creating a token on Ethereum. It defines a set of functions that a token contract must
+          implement.
+        </p>
       </div>
-      <h1 className="flex justify-center text-2xl font-bold"> 📝 Task 1: TBD</h1>
+      <h1 className="flex justify-center text-2xl font-bold">
+        {" "}
+        📝 Task 1: Add the ERC-20 Standard to the Moon Contract
+      </h1>
       <div className="flex justify-center top mt-4 mb-4 ">
         <p className="text-lg font-bold max-w-2xl mb-4">To complete this task, follow these steps:</p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <ul className="list-disc list-inside mb-4">
-          <li>TBD</li>
+          <li>Import the ERC-20 contract from OpenZeppelin.</li>
+          <li>Inherit the ERC-20 contract from OpenZeppelin.</li>
+          <li>Initialize the ERC-20 contract with the name and symbol.</li>
+          <li>Mint the initial supply to your wallet.</li>
         </ul>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
@@ -80,13 +98,15 @@ const SolidityContent: React.FC = () => {
         <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
           <pre>
             <code className="language-solidity">
-              {`deployed at 0x0165878A594ca255338adfa4d48449f69242Eb8F with 378023 gas`}
+              {`deployed at 0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9 with 747494 gas`}
             </code>
           </pre>
         </div>
       </div>
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">Details coming soon...</p>
+        <p className="text-lg text-center max-w-2xl">
+          Now that your contract is deployed, let's create an extended subgraph.
+        </p>
       </div>
     </>
   );

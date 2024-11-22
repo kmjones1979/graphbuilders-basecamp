@@ -1,19 +1,18 @@
-import {
-    CommsEstablished as CommsEstablishedEvent,
-    OwnershipTransferred as OwnershipTransferredEvent,
-} from "../generated/Comms/Comms";
-import { CommsEstablished, OwnershipTransferred } from "../generated/schema";
-
-export function handleCommsEstablished(event: CommsEstablishedEvent): void {
-    // STEP 1: Create a new CommsEstablished entity
-    // STEP 2: Set the properties of the entity using event data
-    // STEP 3: Save the entity to the database using the save() method
-}
+import { OwnershipTransferred as OwnershipTransferredEvent } from "../generated/Moon/Moon";
+import { OwnershipTransferred } from "../generated/schema";
 
 export function handleOwnershipTransferred(
     event: OwnershipTransferredEvent
 ): void {
-    // STEP 1: Create a new OwnershipTransferred entity
-    // STEP 2: Set the properties of the entity using event data
-    // STEP 3: Save the entity to the database using the save() method
+    let entity = new OwnershipTransferred(
+        event.transaction.hash.concatI32(event.logIndex.toI32())
+    );
+    entity.previousOwner = event.params.previousOwner;
+    entity.newOwner = event.params.newOwner;
+
+    entity.blockNumber = event.block.number;
+    entity.blockTimestamp = event.block.timestamp;
+    entity.transactionHash = event.transaction.hash;
+
+    entity.save();
 }

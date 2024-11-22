@@ -30,7 +30,7 @@ const Home: NextPage = () => {
               </p>
               <div className="flex items-center justify-center">
                 {connectedAddress ? (
-                  <button className="btn btn-success" onClick={() => router.push("/mission-2")}>
+                  <button className="btn btn-success" onClick={() => router.push("/mission-3")}>
                     Begin
                   </button>
                 ) : (

@@ -57,14 +57,25 @@ const SubgraphContent: React.FC = () => {
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
           <pre>
-            <code className="language-graphql">{``}</code>
+            <code className="language-graphql">{`type OwnershipTransferred @entity(immutable: true) {
+    id: Bytes!
+    previousOwner: Bytes! # address
+    newOwner: Bytes! # address
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}`}</code>
           </pre>
         </div>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">In our case ...</p>
+        <p className="text-lg max-w-2xl italic">
+          You already have the entity to store the <span className="highlight-code">OwnershipTransferred</span> events
+          but since we have inherited the ERC-20 standard, we will need to add the events for that standard to the
+          subgraph configuration.
+        </p>
       </div>
-      <h1 className="flex justify-center text-2xl font-bold"> 📝 Task: Task here 📝</h1>
+      <h1 className="flex justify-center text-2xl font-bold"> 📝 Task: Add the ERC-20 Events to the Subgraph 📝</h1>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
           Here is the starting handler located in{" "}
@@ -74,7 +85,24 @@ const SubgraphContent: React.FC = () => {
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
           <pre>
-            <code className="language-typescript">{``}</code>
+            <code className="language-typescript">{`import { OwnershipTransferred as OwnershipTransferredEvent } from "../generated/Moon/Moon";
+import { OwnershipTransferred } from "../generated/schema";
+
+export function handleOwnershipTransferred(
+    event: OwnershipTransferredEvent
+): void {
+    let entity = new OwnershipTransferred(
+        event.transaction.hash.concatI32(event.logIndex.toI32())
+    );
+    entity.previousOwner = event.params.previousOwner;
+    entity.newOwner = event.params.newOwner;
+
+    entity.blockNumber = event.block.number;
+    entity.blockTimestamp = event.block.timestamp;
+    entity.transactionHash = event.transaction.hash;
+
+    entity.save();
+}`}</code>
           </pre>
         </div>
       </div>
