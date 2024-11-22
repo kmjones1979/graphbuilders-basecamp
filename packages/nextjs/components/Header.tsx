@@ -67,13 +67,13 @@ export const MissionDropdown = () => {
       </summary>
       <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-64 p-2 shadow">
         <li>
-          <a href="/mission-1">Mission 1 - Enlist to the Academy</a>
+          <a href="/mission-1">Mission 1</a>
         </li>
         <li>
-          <a href="/mission-2">Mission 2 - Establish Communications with the Lunar Base</a>
+          <a href="/mission-2">Mission 2</a>
         </li>
         <li>
-          <a href="/mission-3">Mission 3 - Create the Lunar Economy</a>
+          <a href="/mission-3">Mission 3</a>
         </li>
       </ul>
     </details>

@@ -114,9 +114,9 @@ export function handleOwnershipTransferred(
         <p className="text-lg max-w-2xl">
           <ol className="list-disc list-inside mb-4">
             <li>
-              Use the <span className="highlight-code">yarn scaffold</span> command to generate a subgraph configuration
-              that you can use as a reference to modify for your own subgraph. This will be generated in the subgraph
-              directory.
+              Use the <span className="highlight-code">yarn scaffold</span> command to generate a subgraph
+              configuration. This will be generated in the <span className="highlight-code">packages/subgraph</span>{" "}
+              directory. Then you can use that as a reference to modify the existing subgraph.
             </li>
             <li>
               Add the needed entities to the <span className="highlight-code">schema.graphql</span> file.
@@ -151,7 +151,7 @@ export function handleOwnershipTransferred(
         <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
           <pre>
             <code className="language-typescript">
-              {`Build completed: QmSPR7AmLy1FHX4aPdSKNn7GHXy5xGxz6xR6YuD6UMcfAc
+              {`Build completed: QmWmmvVp1eV1uYWCNE1poKHvYYa8UJxfdtCzAX1hs9gvxD
 
 Deployed to http://localhost:8000/subgraphs/name/scaffold-eth/your-contract/graphql
 
@@ -178,7 +178,17 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
           <pre>
-            <code className="language-graphql">{``}</code>
+            <code className="language-graphql">{`query MyQuery {
+  approvals(first: 10) {
+    owner
+  }
+  ownershipTransferreds(first: 10) {
+    newOwner
+  }
+  transfers(first: 10) {
+    from
+  }
+}`}</code>
           </pre>
         </div>
       </div>
@@ -186,7 +196,7 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
         <p className="text-lg max-w-2xl italic">✅ Success will look like this: 👇🏼</p>
       </div>
       <div className="flex justify-center top mt-4 mb-4 ">
-        <img className="rounded-lg max-w-2xl" src="/mission-2-response.png" alt="studio" />
+        <img className="rounded-lg max-w-2xl" src="/mission-3-response.png" alt="studio" />
       </div>
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
