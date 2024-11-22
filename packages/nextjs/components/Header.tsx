@@ -65,12 +65,15 @@ export const MissionDropdown = () => {
         <RocketLaunchIcon className="h-4 w-4" />
         Missions
       </summary>
-      <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+      <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-64 p-2 shadow">
         <li>
-          <a href="/mission-1">Mission 1</a>
+          <a href="/mission-1">Mission 1 - Enlist to the Academy</a>
         </li>
         <li>
-          <a href="/mission-2">Mission 2</a>
+          <a href="/mission-2">Mission 2 - Establish Communications with the Lunar Base</a>
+        </li>
+        <li>
+          <a href="/mission-3">Mission 3 - Create the Lunar Economy</a>
         </li>
       </ul>
     </details>
