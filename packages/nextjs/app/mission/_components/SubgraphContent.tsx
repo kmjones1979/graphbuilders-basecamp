@@ -109,6 +109,11 @@ export function handleEnlisted(event: EnlistedEvent): void {
         </a>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
+        <a target="_blank" href="https://github.com/graphprotocol/graph-tooling/tree/main/packages/ts">
+          Graph Typescript Library
+        </a>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg font-bold  max-w-2xl">4. Now ship your changes...</p>
       </div>
       <CodeSnippet code="yarn local-ship" button={true} />
