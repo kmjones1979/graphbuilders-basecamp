@@ -1,3 +1,4 @@
+# OwnershipTransferred event
 type OwnershipTransferred @entity(immutable: true) {
     id: Bytes!
     previousOwner: Bytes! # address
@@ -6,3 +7,6 @@ type OwnershipTransferred @entity(immutable: true) {
     blockTimestamp: BigInt!
     transactionHash: Bytes!
 }
+
+# STEP 1: Add the Approval event
+# STEP 2: Add the Transfer event

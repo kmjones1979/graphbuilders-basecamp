@@ -9,18 +9,21 @@ dataSources:
       network: localhost
       source:
           abi: Moon
-          address: "0x21dF544947ba3E8b3c32561399E88B52Dc8b2823"
+          address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9"
       mapping:
           kind: ethereum/events
           apiVersion: 0.0.7
           language: wasm/assemblyscript
           entities:
-              - Moon
               - OwnershipTransferred
+              # STEP 1: Add the Approval event
+              # STEP 2: Add the Transfer event
           abis:
               - name: Moon
                 file: ./abis/localhost_Moon.json
           eventHandlers:
               - event: OwnershipTransferred(indexed address,indexed address)
                 handler: handleOwnershipTransferred
+              # STEP 3: Add the Approval event
+              # STEP 4: Add the Transfer event
           file: ./src/mapping.ts

@@ -5,7 +5,9 @@ import {
 } from "../generated/Moon/Moon";
 import { Approval, OwnershipTransferred, Transfer } from "../generated/schema";
 
-export function handleApproval(event: ApprovalEvent): void {}
+export function handleApproval(event: ApprovalEvent): void {
+    // STEP 1: Implement the Approval event
+}
 
 export function handleOwnershipTransferred(
     event: OwnershipTransferredEvent
@@ -23,4 +25,6 @@ export function handleOwnershipTransferred(
     entity.save();
 }
 
-export function handleTransfer(event: TransferEvent): void {}
+export function handleTransfer(event: TransferEvent): void {
+    // STEP 2: Implement the Transfer event
+}
