@@ -57,40 +57,14 @@ const SubgraphContent: React.FC = () => {
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
           <pre>
-            <code className="language-graphql">{`type CommsEstablished @entity {
-    id: Bytes!
-    account: Bytes!
-    isCommsEstablished: Boolean!
-    blockNumber: BigInt!
-    blockTimestamp: BigInt!
-    transactionHash: Bytes!
-}
-
-type OwnershipTransferred @entity(immutable: true) {
-    id: Bytes!
-    previousOwner: Bytes! # address
-    newOwner: Bytes! # address
-    blockNumber: BigInt!
-    blockTimestamp: BigInt!
-    transactionHash: Bytes!
-}
-`}</code>
+            <code className="language-graphql">{``}</code>
           </pre>
         </div>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">
-          In our case we have two events to handle in this subgraph. The first coming from the{" "}
-          <span className="highlight-code">CommsEstablished</span> event and the second coming from the{" "}
-          <span className="highlight-code">OwnershipTransferred</span> event from the Ownership contract. Since our
-          schema is already created for us so we just need to add the logic to handle the events.
-        </p>
+        <p className="text-lg max-w-2xl italic">In our case ...</p>
       </div>
-      <h1 className="flex justify-center text-2xl font-bold">
-        {" "}
-        📝 Task: Add logic to the handler to index the CommsEstablished and OwnershipTransferred events 📝
-      </h1>
-
+      <h1 className="flex justify-center text-2xl font-bold"> 📝 Task: Task here 📝</h1>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
           Here is the starting handler located in{" "}
@@ -100,23 +74,7 @@ type OwnershipTransferred @entity(immutable: true) {
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
           <pre>
-            <code className="language-typescript">
-              {`import {
-    CommsEstablished as CommsEstablishedEvent,
-    OwnershipTransferred as OwnershipTransferredEvent,
-} from "../generated/Comms/Comms";
-import { CommsEstablished, OwnershipTransferred } from "../generated/schema";
-
-export function handleCommsEstablished(event: CommsEstablishedEvent): void {
-    // LOGIC GOES HERE
-}
-
-export function handleOwnershipTransferred(
-    event: OwnershipTransferredEvent
-): void {
-    // LOGIC GOES HERE
-}`}
-            </code>
+            <code className="language-typescript">{``}</code>
           </pre>
         </div>
       </div>
@@ -127,11 +85,7 @@ export function handleOwnershipTransferred(
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl">
           <ol className="list-disc list-inside mb-4">
-            <li>For each handler, create a new entity.</li>
-            <li>Set the properties of the entity using event and block data.</li>
-            <li>
-              Save the entity to the database using the <span className="highlight-code">save()</span> method.
-            </li>
+            <li>TBD</li>
           </ol>
           If needed, you can reference examples of the AssemblyScript API in the docs here:
         </p>
@@ -183,24 +137,7 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
           <pre>
-            <code className="language-graphql">{`query MyQuery {
-  commsEstablisheds(first: 10) {
-    account
-    blockNumber
-    blockTimestamp
-    id
-    isCommsEstablished
-    transactionHash
-  }
-  ownershipTransferreds(first: 10) {
-    blockTimestamp
-    blockNumber
-    id
-    newOwner
-    previousOwner
-    transactionHash
-  }
-}`}</code>
+            <code className="language-graphql">{``}</code>
           </pre>
         </div>
       </div>

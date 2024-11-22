@@ -61,9 +61,9 @@ const SolidityContent: React.FC = () => {
       <div className="flex justify-center top mt-4 mb-4">
         <ul>
           <li>
-            <a target="_blank" href="https://docs.openzeppelin.com/contracts/2.x/access-control">
+            <a target="_blank" href="https://docs.openzeppelin.com/contracts/4.x/erc20">
               {" "}
-              👉🏼 Look at this page if you get lost... OpenZeppelin (Access Control) 🔎
+              👉🏼 Look at this page if you get lost... OpenZeppelin (ERC-20) 🔎
             </a>
           </li>
         </ul>
@@ -86,13 +86,7 @@ const SolidityContent: React.FC = () => {
         </div>
       </div>
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">
-          Once you deploy your changes navigate to the "Debug Contracts" tab and call the{" "}
-          <span className="highlight-code">establishComms</span> function to test the functionality. You will need to
-          attempt to call the function multiple times until the secret matches your attempt. When testing on your local
-          network you can use the Faucet button to simulate a new block. You will know you are successful when the
-          <span className="highlight-code">isCommsEstablished</span> variable is set to true.
-        </p>
+        <p className="text-lg text-center max-w-2xl">Details coming soon...</p>
       </div>
     </>
   );
