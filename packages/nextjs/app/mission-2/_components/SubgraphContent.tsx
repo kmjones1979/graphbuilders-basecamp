@@ -107,11 +107,15 @@ type OwnershipTransferred @entity(immutable: true) {
 } from "../generated/Comms/Comms";
 import { CommsEstablished, OwnershipTransferred } from "../generated/schema";
 
-export function handleCommsEstablished(event: CommsEstablishedEvent): void {}
+export function handleCommsEstablished(event: CommsEstablishedEvent): void {
+    // LOGIC GOES HERE
+}
 
 export function handleOwnershipTransferred(
     event: OwnershipTransferredEvent
-): void {}`}
+): void {
+    // LOGIC GOES HERE
+}`}
             </code>
           </pre>
         </div>
