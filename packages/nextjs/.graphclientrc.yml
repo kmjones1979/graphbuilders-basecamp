@@ -1,8 +1,8 @@
 # .graphclientrc.yml
 sources:
-  - name: Enlisted
+  - name: Example
     handler:
       graphql:
         endpoint: http://localhost:8000/subgraphs/name/scaffold-eth/your-contract
 documents:
-  - ./graphql/GetEnlisted.gql
+  - ./graphql/Example.gql

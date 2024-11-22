@@ -1,9 +1,0 @@
-query GetEnlisted {
-  enlisteds(first: 25) {
-    account
-    transactionHash
-    id
-    blockTimestamp
-    blockNumber
-  }
-}
