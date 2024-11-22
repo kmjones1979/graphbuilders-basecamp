@@ -1,5 +1,11 @@
-import { OwnershipTransferred as OwnershipTransferredEvent } from "../generated/Moon/Moon";
-import { OwnershipTransferred } from "../generated/schema";
+import {
+    Approval as ApprovalEvent,
+    OwnershipTransferred as OwnershipTransferredEvent,
+    Transfer as TransferEvent,
+} from "../generated/Moon/Moon";
+import { Approval, OwnershipTransferred, Transfer } from "../generated/schema";
+
+export function handleApproval(event: ApprovalEvent): void {}
 
 export function handleOwnershipTransferred(
     event: OwnershipTransferredEvent
@@ -16,3 +22,5 @@ export function handleOwnershipTransferred(
 
     entity.save();
 }
+
+export function handleTransfer(event: TransferEvent): void {}
