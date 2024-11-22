@@ -168,7 +168,7 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
         <p className="text-lg max-w-2xl italic">✅ Success will look like this: 👇🏼</p>
       </div>
       <div className="flex justify-center top mt-4 mb-4 ">
-        <img className="rounded-lg max-w-2xl" src="/mission-0-response.png" alt="studio" />
+        <img className="rounded-lg max-w-2xl" src="/mission-1-response.png" alt="studio" />
       </div>
 
       <div className="flex justify-center top mt-4 mb-4">

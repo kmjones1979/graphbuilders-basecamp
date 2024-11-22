@@ -7,10 +7,11 @@ const SolidityContent: React.FC = () => {
       {/* Part 1 */}
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          Welcome to the Academy! Your first job as a junior cadet is to establish communications with the lunar base.
-          To do this you will need to establish ownership of a special comms smart contract and then establish a
-          connection with the base by randomly generating the proper communication code. After that task is complete you
-          will index all of the data into The Graph for the basecamp to see.
+          Congratulations on joining the Academy! Your first job as a junior cadet is to establish communications with
+          the lunar base. To do this you will need to first take ownership of a special comms smart contract. Once you
+          have done that you will need to establish a connection with the base by randomly generating the proper
+          communication code. After that task is complete you will index all of the data into The Graph for the basecamp
+          to see your success.
         </p>
       </div>
       <div className="flex justify-center top">
@@ -42,12 +43,7 @@ const SolidityContent: React.FC = () => {
         <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
           <pre>
             <code className="language-solidity">
-              {`//SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0 <0.9.0;
-
-import "hardhat/console.sol";
-
-contract Comms {
+              {`contract Comms {
 
 	uint8 public secret;
 	uint8 public attempt;
@@ -76,7 +72,12 @@ contract Comms {
         </div>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">Placeholder</p>
+        <p className="text-lg max-w-2xl italic">
+          This smart contract uses <span className="highlight-code">block.prevrandao</span> to generate a random number
+          at the time of deployment. Then by calling the <span className="highlight-code">establishComms</span> function
+          function we can attempt to generate another random number and compare it to the number generated during the
+          contract deployment. If they match we can establish communications with the base.
+        </p>
       </div>
       <h1 className="flex justify-center text-2xl font-bold">
         {" "}
@@ -87,9 +88,10 @@ contract Comms {
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <ul className="list-disc list-inside mb-4">
-          <li>One</li>
-          <li>Two</li>
-          <li>Three</li>
+          <li>Import the Ownable contract from OpenZeppelin.</li>
+          <li>Inherit the contract from Ownable.</li>
+          <li>Pass your address to the Ownable constructor.</li>
+          <li>Deploy the contract.</li>
         </ul>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
@@ -121,9 +123,10 @@ contract Comms {
       </div>
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          Once you deploy your changes navigate to the "Debug Contracts" tab and call the establishComms function to
-          test the functionality. You will need to attempt to call the function multiple times until the secret matches
-          your attempt.
+          Once you deploy your changes navigate to the "Debug Contracts" tab and call the{" "}
+          <span className="highlight-code">establishComms</span> function to test the functionality. You will need to
+          attempt to call the function multiple times until the secret matches your attempt. When testing on your local
+          network you can use the Faucet button to simulate a new block.
         </p>
       </div>
     </>
