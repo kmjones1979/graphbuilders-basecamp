@@ -52,7 +52,7 @@ const SubgraphContent: React.FC = () => {
       </div>
       <CodeSnippet code="code ." button={true} />
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">The schema for our subgraph is as follows:</p>
+        <p className="text-lg max-w-2xl italic">The schema for our starting subgraph is as follows:</p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
@@ -85,8 +85,14 @@ const SubgraphContent: React.FC = () => {
       <div className="flex justify-center top mt-4 mb-4">
         <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
           <pre>
-            <code className="language-typescript">{`import { OwnershipTransferred as OwnershipTransferredEvent } from "../generated/Moon/Moon";
-import { OwnershipTransferred } from "../generated/schema";
+            <code className="language-typescript">{`import {
+    Approval as ApprovalEvent,
+    OwnershipTransferred as OwnershipTransferredEvent,
+    Transfer as TransferEvent,
+} from "../generated/Moon/Moon";
+import { Approval, OwnershipTransferred, Transfer } from "../generated/schema";
+
+export function handleApproval(event: ApprovalEvent): void {}
 
 export function handleOwnershipTransferred(
     event: OwnershipTransferredEvent
@@ -102,7 +108,10 @@ export function handleOwnershipTransferred(
     entity.transactionHash = event.transaction.hash;
 
     entity.save();
-}`}</code>
+}
+
+export function handleTransfer(event: TransferEvent): void {}
+`}</code>
           </pre>
         </div>
       </div>
