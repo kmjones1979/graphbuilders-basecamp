@@ -14,6 +14,7 @@
         "local-remove": "graph remove --node http://localhost:8020/ scaffold-eth/your-contract",
         "local-ship": "yarn abi-copy && yarn codegen && yarn build --network localhost && yarn local-deploy",
         "run-node": "cd graph-node && docker-compose up",
+        "scaffold": "graph init --from-contract=../hardhat/contracts/Moon.sol --abi=../hardhat/artifacts/contracts/Moon.sol/Moon.json --network=localhost --protocol=ethereum --skip-git --skip-install --index-events",
         "stop-node": "cd graph-node && docker-compose down",
         "studio-ship": "yarn abi-copy && yarn codegen && yarn build && graph deploy mymission",
         "test": "graph test",

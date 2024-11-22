@@ -113,7 +113,20 @@ export function handleOwnershipTransferred(
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl">
           <ol className="list-disc list-inside mb-4">
-            <li>TBD</li>
+            <li>
+              Use the <span className="highlight-code">yarn scaffold</span> command to generate a subgraph configuration
+              that you can use as a reference to modify for your own subgraph. This will be generated in the subgraph
+              directory.
+            </li>
+            <li>
+              Add the needed entities to the <span className="highlight-code">schema.graphql</span> file.
+            </li>
+            <li>
+              Add the handlers for the events to the <span className="highlight-code">mapping.ts</span> file.
+            </li>
+            <li>
+              Add the needed events and handlers to the <code className="highlight-code">subgraph.yaml</code> file.
+            </li>
           </ol>
           If needed, you can reference examples of the AssemblyScript API in the docs here:
         </p>
