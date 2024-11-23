@@ -43,6 +43,7 @@ export const Footer = () => {
           <SwitchTheme className={`pointer-events-auto ${isLocalNetwork ? "self-end md:self-auto" : ""}`} />
         </div>
       </div>
+
       <div className="w-full">
         <ul className="menu menu-horizontal w-full">
           <div className="flex justify-center items-center gap-2 text-sm w-full">
@@ -53,9 +54,7 @@ export const Footer = () => {
             </div>
             <span>·</span>
             <div className="flex justify-center items-center gap-2">
-              <p className="m-0 text-center">
-                Built with <HeartIcon className="inline-block h-4 w-4" /> at
-              </p>
+              <p className="m-0 text-center">Built with</p>
               <a
                 className="flex justify-center items-center gap-1"
                 href="https://buidlguidl.com/"
@@ -63,7 +62,7 @@ export const Footer = () => {
                 rel="noreferrer"
               >
                 <BuidlGuidlLogo className="w-3 h-5 pb-1" />
-                <span className="link">BuidlGuidl</span>
+                <span className="link">Scaffold-ETH</span>
               </a>
             </div>
             <span>·</span>
