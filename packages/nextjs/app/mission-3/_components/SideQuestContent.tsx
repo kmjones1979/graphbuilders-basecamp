@@ -8,7 +8,7 @@ const SubgraphContent: React.FC = () => {
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
           Welcome to your side quest! The road less-traveled can be long and arduous, but the rewards are often
-          lucrativeg! In this section will you will learn about some key changes you can make to your subgraph to
+          lucrative! In this section will you will learn about some key changes you can make to your subgraph to
           optimize performance and perform off-chain calculations of your data.
         </p>
       </div>
@@ -31,7 +31,7 @@ const SubgraphContent: React.FC = () => {
         <p className="text-lg max-w-2xl italic">
           To learn more about derivedFrom, you can reference the docs{" "}
           <a
-            href="https://thegraph.com/docs/en/developer/assemblyscript-api/#derivedfrom"
+            href="https://thegraph.com/docs/en/developing/graph-ts/api/#looking-up-derived-entities"
             className="text-purple-400"
             target="_blank"
           >
@@ -79,7 +79,7 @@ const SubgraphContent: React.FC = () => {
         <p className="text-lg max-w-2xl italic">
           Now that we have accounts that hold Moon token, we can calculate the balance for each account by using the{" "}
           <span className="highlight-code">graph-ts</span> package. This package provides a set of functions that allow
-          us to perform offchain calculations which can then be stored in The Graph.
+          us to perform off-chain calculations which can then be stored in The Graph.
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4 ">
@@ -97,6 +97,62 @@ const SubgraphContent: React.FC = () => {
           </ol>
           If needed, you can reference examples of the AssemblyScript API in the docs here:
         </p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg font-bold  max-w-2xl">After you have completed the task, ship your changes...</p>
+      </div>
+      <CodeSnippet code="yarn local-ship" button={true} />
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">
+          When prompted, enter the following version you want to use. If this is your second deployment you will need to
+          increase the version.
+        </p>
+      </div>
+      <CodeSnippet code='Which version label to use? (e.g. "v0.0.2"):' button={false} />
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">
+          Now we can test to make sure our subgraph is properly indexing using the GraphiQL explorer. Head over to the
+          GraphiQL explorer page{" "}
+          <a
+            href="http://localhost:8000/subgraphs/name/scaffold-eth/your-contract/graphql"
+            target="_blank"
+            className="text-purple-400"
+          >
+            here
+          </a>{" "}
+          and execute the following query:
+        </p>
+      </div>
+
+      <div className="flex justify-center top mt-4 mb-4">
+        <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+          <pre>
+            <code className="language-graphql">
+              {`query MyQuery {
+  holders(first: 10, orderDirection: desc, orderBy: blockTimestamp) {
+    balance
+    blockNumber
+    blockTimestamp
+    id
+    transactionHash
+    transfers(first: 10) {
+      from
+      to {
+        id
+      }
+    }
+  }
+}
+`}
+            </code>
+          </pre>
+        </div>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">✅ Success will look like this: 👇🏼</p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4 ">
+        <img className="rounded-lg max-w-2xl" src="/mission-3-sq-response.png" alt="studio" />
       </div>
     </>
   );
