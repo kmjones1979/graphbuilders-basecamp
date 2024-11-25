@@ -7,13 +7,14 @@ const SubgraphContent: React.FC = () => {
       {/* Part 2 */}
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          Welcome to your side quest! The road less-traveled can be long and arduous, but the rewards are often
-          lucrative! In this section will you will learn about some key changes you can make to your subgraph to
-          optimize performance and perform off-chain calculations of your data.
+          Welcome to your first side quest! The road less-traveled can be long and arduous, but the rewards are often
+          lucrative! In this section will you will learn about some key changes you can make to get the most out of your
+          subgraph. You will learn about derivedFrom, graph-ts, and how to perform off-chain calculations in your
+          subgraph.
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">Ok let's get started testing your skills!</p>
+        <p className="text-lg max-w-2xl italic">Ready to get started testing your skills?</p>
       </div>
       <h1 className="flex justify-center text-2xl font-bold">
         {" "}
@@ -56,21 +57,16 @@ const SubgraphContent: React.FC = () => {
           <ol className="list-disc list-inside mb-4">
             <li>
               Create a new entity in <span className="highlight-code">schema.graphql</span> called{" "}
-              <span className="highlight-code">Holder</span>. This will be used to track accounts that hold the Moon
-              Token.
+              <span className="highlight-code">Holder</span>
             </li>
             <li>
-              Add a <span className="highlight-code">transfers</span> field that will hold a list of transfers that are
-              associated with the Holder.
+              Add a <span className="highlight-code">transfers</span> field to that entity
             </li>
             <li>
-              Use the <span className="highlight-code">derivedFrom</span> field to associate the Transfer entities to
-              the Holder entity.
+              Configure the transfers entity to use the <span className="highlight-code">derivedFrom</span> field to
+              associate the Transfer entities to the Holder entity
             </li>
-            <li>
-              Update the logic of your handler to create a Holder entity if it doesn't exist and update the balance for
-              the Holder entity.
-            </li>
+            <li>Update the logic of your handler to create a Holder entity as needed</li>
           </ol>
         </p>
       </div>
