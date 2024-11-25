@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import DeployContent from "./_components/DeployContent";
+import SideQuestContent from "./_components/SideQuestContent";
 import SolidityContent from "./_components/SolidityContent";
 import StudioContent from "./_components/StudioContent";
 import SubgraphContent from "./_components/SubgraphContent";
@@ -32,6 +33,12 @@ const Subgraph: NextPage = () => {
           Part 2
         </button>
         <button
+          className={`rounded-lg px-4 py-2 ${activeTab === "sidequest" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
+          onClick={() => setActiveTab("sidequest")}
+        >
+          Side Quest
+        </button>
+        <button
           className={`rounded-lg px-4 py-2 ${activeTab === "deploy" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
           onClick={() => setActiveTab("deploy")}
         >
@@ -47,6 +54,7 @@ const Subgraph: NextPage = () => {
 
       {activeTab === "solidity" && <SolidityContent />}
       {activeTab === "subgraph" && <SubgraphContent />}
+      {activeTab === "sidequest" && <SideQuestContent />}
       {activeTab === "deploy" && <DeployContent />}
       {activeTab === "studio" && <StudioContent />}
     </>

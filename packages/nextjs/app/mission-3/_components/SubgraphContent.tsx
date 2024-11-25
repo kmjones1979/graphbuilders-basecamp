@@ -74,7 +74,7 @@ const SubgraphContent: React.FC = () => {
           subgraph configuration.
         </p>
       </div>
-      <h1 className="flex justify-center text-2xl font-bold"> 📝 Task: Add the ERC-20 Events to the Subgraph 📝</h1>
+      <h1 className="flex justify-center text-2xl font-bold"> 📝 Task 1: Add the ERC-20 Events to the Subgraph 📝</h1>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
           Here is the starting handler located in{" "}
