@@ -59,7 +59,7 @@ const DeployContent: React.FC = () => {
         <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
           <pre>
             <code className="language-solidity">
-              {`deploying "Enlist" (tx: 0x2dea4c89a5f26850d3049c864c8151983b938568bef6668a950375ce97ee3d57)...
+              {`deploying "Comms" (tx: 0x2dea4c89a5f26850d3049c864c8151983b938568bef6668a950375ce97ee3d57)...
 deployed at 0xaF938C165A25327D8884d85f4dd156736144c987 with 143057 gas
 📝 Updated TypeScript contract definition file on ../nextjs/contracts/deployedContracts.ts
 `}
@@ -82,9 +82,9 @@ deployed at 0xaF938C165A25327D8884d85f4dd156736144c987 with 143057 gas
         <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
           <pre>
             <code className="language-solidity">
-              {`verifying Enlist (0xaF938C165A25327D8884d85f4dd156736144c987) ...
+              {`verifying Comms (0xaF938C165A25327D8884d85f4dd156736144c987) ...
 waiting for result...
- => contract Enlist is now verified`}
+ => contract Comms is now verified`}
             </code>
           </pre>
         </div>
