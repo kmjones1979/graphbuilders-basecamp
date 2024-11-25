@@ -7,7 +7,7 @@ const SubgraphContent: React.FC = () => {
       {/* Part 2 */}
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          In this next part of the mission you will need to index the data from the comms smart contract into The Graph.
+          In this next part of the mission you will need to index the data from the Moon smart contract into The Graph.
         </p>
       </div>
 
