@@ -8,9 +8,12 @@ const SubgraphContent: React.FC = () => {
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
           Welcome to your side quest! The road less-traveled can be long and arduous, but the rewards are often
-          lucrative! In this section will you will learn about some key changes you can make to your subgraph to
+          lucrativeg! In this section will you will learn about some key changes you can make to your subgraph to
           optimize performance and perform off-chain calculations of your data.
         </p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">Ok let's get started testing your skills!</p>
       </div>
       <h1 className="flex justify-center text-2xl font-bold">
         {" "}
@@ -23,21 +26,53 @@ const SubgraphContent: React.FC = () => {
           relationships between entities and can be used to optimize the performance of your subgraph.
         </p>
       </div>
+
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">
+          To learn more about derivedFrom, you can reference the docs{" "}
+          <a
+            href="https://thegraph.com/docs/en/developer/assemblyscript-api/#derivedfrom"
+            className="text-purple-400"
+            target="_blank"
+          >
+            here
+          </a>{" "}
+          or reference the blog post{" "}
+          <a
+            href="https://thegraph.com/blog/improve-subgraph-performance-avoiding-large-arrays/"
+            className="text-purple-400"
+            target="_blank"
+          >
+            here
+          </a>
+          .
+        </p>
+      </div>
       <div className="flex justify-center top mt-4 mb-4 ">
         <p className="text-lg font-bold max-w-2xl mb-4">To complete this task, follow these steps:</p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl">
           <ol className="list-disc list-inside mb-4">
-            <li>Create a new entity called "Holder" that will track accounts that hold the Moon Token.</li>
-            <li>Add a transfers field that will hold a list of transfers.</li>
             <li>
-              Use the <span className="highlight-code">derivedFrom</span> field to connect the transfers to the Holder
-              entity.
+              Create a new entity in <span className="highlight-code">schema.graphql</span> called{" "}
+              <span className="highlight-code">Holder</span>. This will be used to track accounts that hold the Moon
+              Token.
+            </li>
+            <li>
+              Add a <span className="highlight-code">transfers</span> field that will hold a list of transfers that are
+              associated with the Holder.
+            </li>
+            <li>
+              Use the <span className="highlight-code">derivedFrom</span> field to associate the Transfer entities to
+              the Holder entity.
             </li>
           </ol>
           If needed, you can reference examples of the AssemblyScript API in the docs here:
         </p>
+      </div>
+      <div className="flex justify-center top">
+        <p className="text-lg text-center max-w-2xl italic">Ready for the next task?</p>
       </div>
       <h1 className="flex justify-center text-2xl font-bold"> 📝 Task 2: Calculate balances for each account 📝</h1>
       <div className="flex justify-center top mt-4 mb-4">
@@ -55,8 +90,8 @@ const SubgraphContent: React.FC = () => {
           <ol className="list-disc list-inside mb-4">
             <li>Add a balance field to the Holder entity.</li>
             <li>
-              Use the <span className="highlight-code">graph-ts</span> package to calculate the balance for each
-              account.
+              Use the <span className="highlight-code">graph-ts</span> package to calculate the balance for each account
+              as transfers are created.
             </li>
           </ol>
           If needed, you can reference examples of the AssemblyScript API in the docs here:

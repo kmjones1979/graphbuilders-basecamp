@@ -38,14 +38,18 @@ const DeployContent: React.FC = () => {
           If you need some Sepolia ETH, you can get some from the following faucets:{" "}
           <span className="link">
             {" "}
-            <a href="https://cloud.google.com/application/web3/faucet/ethereum/sepolia" target="_blank">
+            <a
+              href="https://cloud.google.com/application/web3/faucet/ethereum/sepolia"
+              target="_blank"
+              className="text-purple-400"
+            >
               Google Cloud Sepolia Faucet
             </a>{" "}
           </span>
           or
           <span className="link">
             {" "}
-            <a href="https://www.infura.io/faucet/sepolia" target="_blank">
+            <a href="https://www.infura.io/faucet/sepolia" target="_blank" className="text-purple-400">
               Infura Sepolia Faucet
             </a>
           </span>
@@ -59,7 +63,7 @@ const DeployContent: React.FC = () => {
         <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
           <pre>
             <code className="language-solidity">
-              {`deploying "Enlist" (tx: 0x2dea4c89a5f26850d3049c864c8151983b938568bef6668a950375ce97ee3d57)...
+              {`deploying "Moon" (tx: 0x2dea4c89a5f26850d3049c864c8151983b938568bef6668a950375ce97ee3d57)...
 deployed at 0xaF938C165A25327D8884d85f4dd156736144c987 with 143057 gas
 📝 Updated TypeScript contract definition file on ../nextjs/contracts/deployedContracts.ts
 `}
@@ -82,9 +86,9 @@ deployed at 0xaF938C165A25327D8884d85f4dd156736144c987 with 143057 gas
         <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
           <pre>
             <code className="language-solidity">
-              {`verifying Enlist (0xaF938C165A25327D8884d85f4dd156736144c987) ...
+              {`verifying Moon (0xaF938C165A25327D8884d85f4dd156736144c987) ...
 waiting for result...
- => contract Enlist is now verified`}
+ => contract Moon is now verified`}
             </code>
           </pre>
         </div>
