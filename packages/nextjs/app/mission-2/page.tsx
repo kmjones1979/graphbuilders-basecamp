@@ -16,7 +16,7 @@ const Subgraph: NextPage = () => {
         <h1 className="text-4xl font-bold pt-4 text-center max-w-2xl">Mission 2</h1>
       </div>
       <div className="flex justify-center top">
-        <h3 className="text-2xl pt-4 text-center max-w-2xl">Establish communications with the lunar base</h3>
+        <h3 className="text-2xl pt-4 text-center max-w-2xl">Establish Comms with the Lunar Base</h3>
       </div>
       <div className="flex justify-center mt-4">
         <button
