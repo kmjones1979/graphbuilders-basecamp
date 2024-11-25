@@ -67,8 +67,11 @@ const SubgraphContent: React.FC = () => {
               Use the <span className="highlight-code">derivedFrom</span> field to associate the Transfer entities to
               the Holder entity.
             </li>
+            <li>
+              Update the logic of your handler to create a Holder entity if it doesn't exist and update the balance for
+              the Holder entity.
+            </li>
           </ol>
-          If needed, you can reference examples of the AssemblyScript API in the docs here:
         </p>
       </div>
       <div className="flex justify-center top">
@@ -80,6 +83,18 @@ const SubgraphContent: React.FC = () => {
           Now that we have accounts that hold Moon token, we can calculate the balance for each account by using the{" "}
           <span className="highlight-code">graph-ts</span> package. This package provides a set of functions that allow
           us to perform off-chain calculations which can then be stored in The Graph.
+        </p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">
+          To learn more about graph-ts, you can reference the graph-tooling github repo{" "}
+          <a
+            href="https://github.com/graphprotocol/graph-tooling/tree/main/packages/ts"
+            className="text-purple-400"
+            target="_blank"
+          >
+            here
+          </a>
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4 ">
