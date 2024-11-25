@@ -103,6 +103,13 @@ const SolidityContent: React.FC = () => {
           </pre>
         </div>
       </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">
+          You can then navigate to the "Debug Contracts" tab in Scaffold-ETH and perform some transactions with your
+          token. You should test the <span className="highlight-code">approve</span> function as well as the{" "}
+          <span className="highlight-code">transfer</span> function.
+        </p>
+      </div>
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
           Now that your contract is deployed, let's create an extended subgraph.

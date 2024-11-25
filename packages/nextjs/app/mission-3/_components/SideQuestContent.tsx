@@ -90,8 +90,9 @@ const SubgraphContent: React.FC = () => {
           <ol className="list-disc list-inside mb-4">
             <li>Add a balance field to the Holder entity.</li>
             <li>
-              Use the <span className="highlight-code">graph-ts</span> package to calculate the balance for each account
-              as transfers are created.
+              Use the <span className="highlight-code">graph-ts</span> package and modify the{" "}
+              <span className="highlight-code">handleTransfer</span> function to calculate and store the balance for
+              each account as transfers are created.
             </li>
           </ol>
           If needed, you can reference examples of the AssemblyScript API in the docs here:
