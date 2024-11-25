@@ -17,15 +17,6 @@ type HeaderMenuLink = {
 
 export const menuLinks: HeaderMenuLink[] = [
   {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Mission",
-    href: "/mission",
-    icon: <RocketLaunchIcon className="h-4 w-4" />,
-  },
-  {
     label: "Debug Contracts",
     href: "/debug",
     icon: <BugAntIcon className="h-4 w-4" />,
@@ -55,6 +46,31 @@ export const HeaderMenuLinks = () => {
         );
       })}
     </>
+  );
+};
+
+export const DebugContractsLink = () => {
+  return (
+    <Link href="/debug" passHref className="ml-1 btn btn-ghost">
+      <BugAntIcon className="h-4 w-4" />
+      Debug Contracts
+    </Link>
+  );
+};
+
+export const MissionDropdown = () => {
+  return (
+    <details className="dropdown">
+      <summary className="ml-1 btn btn-ghost">
+        <RocketLaunchIcon className="h-4 w-4" />
+        Missions
+      </summary>
+      <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-64 p-2 shadow">
+        <li>
+          <a href="/mission-1">1: Join the Academy</a>
+        </li>
+      </ul>
+    </details>
   );
 };
 
@@ -104,7 +120,8 @@ export const Header = () => {
           </div>
         </Link>
         <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
-          <HeaderMenuLinks />
+          <MissionDropdown />
+          <DebugContractsLink />
         </ul>
       </div>
       <div className="navbar-end flex-grow mr-4">

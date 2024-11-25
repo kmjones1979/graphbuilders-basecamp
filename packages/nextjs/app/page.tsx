@@ -57,7 +57,7 @@ const Home: NextPage = () => {
               <div className="flex items-center justify-center">
                 {connectedAddress ? (
                   isEnlisted ? (
-                    <button className="btn btn-success" onClick={() => router.push("/mission")}>
+                    <button className="btn btn-success" onClick={() => router.push("/mission-1")}>
                       Begin
                     </button>
                   ) : (
