@@ -7,8 +7,8 @@ const DeployContent: React.FC = () => {
       {/* Part 3 */}
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          Up to this point we have been doing local first development. In this next part of the mission you will deploy
-          your smart contract to a public network. This way we can index the data on The Graph's decentralized network.
+          In this next part of the mission you will deploy your smart contract to a public network. This way we can
+          index the data on The Graph's decentralized network.
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
@@ -18,7 +18,12 @@ const DeployContent: React.FC = () => {
         </p>
       </div>
       <CodeSnippet code="yarn run generate" button={true} />
-
+      <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Success will look like the following: 👇🏼</p>
+      </div>
+      <div className="flex justify-center top">
+        <img className="max-w-2xl items-center" src="/orientation/4.png" alt="yarn chain" />
+      </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
           We will need to fund our deployer account with some testnet funds. Quick tip, use the following command to
@@ -26,6 +31,12 @@ const DeployContent: React.FC = () => {
         </p>
       </div>
       <CodeSnippet code="yarn account" button={true} />
+      <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Success will look like the following: 👇🏼</p>
+      </div>
+      <div className="flex justify-center top">
+        <img className="max-w-2xl items-center" src="/orientation/5.png" alt="yarn chain" />
+      </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl font-bold">
           2. Next you will need to deploy your smart contract to the network. In our case we will deploy to Sepolia. You
@@ -59,10 +70,9 @@ const DeployContent: React.FC = () => {
         <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
           <pre>
             <code className="language-solidity">
-              {`deploying "Enlist" (tx: 0x2dea4c89a5f26850d3049c864c8151983b938568bef6668a950375ce97ee3d57)...
-deployed at 0xaF938C165A25327D8884d85f4dd156736144c987 with 143057 gas
-📝 Updated TypeScript contract definition file on ../nextjs/contracts/deployedContracts.ts
-`}
+              {`deploying "Welcome" (tx: 0x1e0f9c6d9ae147ff475169b240d226529874d921c86371cecaef8acf6c09e728)...: 
+deployed at 0xeAa2c3ae9a2Ee1dD3df0374A71C52E7335D552ac with 221179 gas
+📝 Updated TypeScript contract definition file on ../nextjs/contracts/deployedContracts.ts`}
             </code>
           </pre>
         </div>
@@ -82,12 +92,15 @@ deployed at 0xaF938C165A25327D8884d85f4dd156736144c987 with 143057 gas
         <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
           <pre>
             <code className="language-solidity">
-              {`verifying Enlist (0xaF938C165A25327D8884d85f4dd156736144c987) ...
+              {`verifying Welcome (0xeAa2c3ae9a2Ee1dD3df0374A71C52E7335D552ac) ...
 waiting for result...
- => contract Enlist is now verified`}
+ => contract Welcome is now verified`}
             </code>
           </pre>
         </div>
+      </div>
+      <div className="flex justify-center top">
+        <img className="max-w-2xl items-center" src="/orientation/6.png" alt="yarn chain" />
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl font-bold">
