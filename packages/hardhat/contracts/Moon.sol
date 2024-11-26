@@ -15,7 +15,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract Moon is Ownable {
 
 	// STEP 3: Add your burner wallet where you will mint tokens to
-	address public burner = 0x0000000000000000000000000000000000000000;
+	address public burner = 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045;
 	
 	// STEP 4: Add your initial supply
 
