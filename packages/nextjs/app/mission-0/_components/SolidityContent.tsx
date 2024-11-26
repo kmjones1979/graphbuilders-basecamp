@@ -53,7 +53,7 @@ contract Welcome {
         <p className="text-lg text-center max-w-2xl italic">Let's get started!</p>
       </div>
       <div className="flex justify-center top">
-        <h3 className="text-3xl pt-4 text-center max-w-2xl font-bold">Environment Setup</h3>
+        <h3 className="text-2xl pt-4 text-center max-w-2xl">Environment Setup</h3>
       </div>
       <div className="flex justify-center top">
         <p className="text-lg text-center italic">Before you begin, make sure you are in the proper branch.</p>
@@ -62,6 +62,13 @@ contract Welcome {
         code="git clone https://github.com/kmjones1979/graphbuilders-basecamp mission-0-orientation"
         button={true}
       />
+      <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Navigate into the project directory.</p>
+      </div>
+      <CodeSnippet code="cd mission-0-orientation" button={true} />
+      <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Checkout the branch.</p>
+      </div>
       <CodeSnippet code="git checkout mission-0-orientation" button={true} />
       <div className="flex justify-center top">
         <p className="text-lg text-center italic">Then be sure to install the dependencies.</p>
