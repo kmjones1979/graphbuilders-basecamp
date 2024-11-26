@@ -4,29 +4,10 @@ import { useRouter } from "next/navigation";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
-import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
   const router = useRouter();
-
-  const { data: isEnlisted } = useScaffoldReadContract({
-    contractName: "Enlist",
-    functionName: "isEnlisted",
-    args: [connectedAddress],
-  });
-
-  const { writeContractAsync: writeContractAsync } = useScaffoldWriteContract("Enlist");
-
-  const handleEnlist = async () => {
-    try {
-      await writeContractAsync({
-        functionName: "enlist",
-      });
-    } catch (e) {
-      console.error("Error enlisting:", e);
-    }
-  };
 
   return (
     <>
@@ -45,29 +26,12 @@ const Home: NextPage = () => {
               <h1 className="mb-5 text-5xl font-bold text-white">The Graph Builders Basecamp</h1>
               <p className="mb-5 text-white">
                 A series of missions where you will test your ability to write smart contracts and develop subgraphs on
-                The Graph protocol. To get started enlist in the program.
+                The Graph protocol. To get started click begin!
               </p>
               <div className="flex items-center justify-center">
-                {isEnlisted ? (
-                  <p className="text-green-300">You are enlisted!</p>
-                ) : (
-                  <p className="text-red-300">You are NOT Enlisted</p>
-                )}
-              </div>
-              <div className="flex items-center justify-center">
-                {connectedAddress ? (
-                  isEnlisted ? (
-                    <button className="btn btn-success" onClick={() => router.push("/mission-0")}>
-                      Begin
-                    </button>
-                  ) : (
-                    <button className="btn btn-primary" onClick={handleEnlist}>
-                      Enlist
-                    </button>
-                  )
-                ) : (
-                  <RainbowKitCustomConnectButton />
-                )}
+                <button className="btn btn-success" onClick={() => router.push("/mission-0")}>
+                  Begin
+                </button>
               </div>
             </div>
           </div>
