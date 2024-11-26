@@ -99,6 +99,9 @@ waiting for result...
           </pre>
         </div>
       </div>
+      <div className="flex justify-center top">
+        <img className="max-w-2xl items-center" src="/orientation/6.png" alt="yarn chain" />
+      </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl font-bold">
           4. Next configure the frontend to use the proper network. To do this edit the{" "}
