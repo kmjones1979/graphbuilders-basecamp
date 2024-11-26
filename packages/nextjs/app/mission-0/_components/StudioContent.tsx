@@ -26,7 +26,7 @@ const StudioContent: React.FC = () => {
         </a>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xlitalic">
+        <p className="text-lg max-w-2xl italic">
           You will need to connect your wallet to the studio to create a subgraph. Click the "Connect" button on the top
           right of the screen.
         </p>
