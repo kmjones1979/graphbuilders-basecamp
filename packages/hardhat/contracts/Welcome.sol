@@ -10,11 +10,13 @@ import "hardhat/console.sol";
  */
 contract Welcome {
 
-	string public welcomeMessage = "Welcome to The Graph Builders Basecamp!";
+	string public welcomeMessage;
 
-	/**
-	 * Constructor for the Enlist contract
-	 */
-	constructor() {}
+	event WelcomeMessageChanged(string newMessage);
+
+	constructor() {
+		welcomeMessage = "Welcome to The Graph Builders Basecamp!";
+		emit WelcomeMessageChanged(welcomeMessage);
+	}
 
 }
