@@ -1,22 +1,36 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.27;
 
-import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {FunctionsClient} from "./@chainlink/contracts/src/v0.8/functions/dev/1_0_0/FunctionsClient.sol";
 import {FunctionsRequest} from "./@chainlink/contracts/src/v0.8/functions/dev/1_0_0/libraries/FunctionsRequest.sol";
+import {Basecamp} from "./Basecamp.sol";
 
-contract Validator is FunctionsClient, ERC721, Ownable {
+contract ValidatorM0 is FunctionsClient, Ownable {
   using FunctionsRequest for FunctionsRequest.Request;
 
+  Basecamp public basecamp;
+
+  // ERC115 NFT to Mint
+  uint8 public nftIndex;
+
+  // Functions Router Address
   address public functionsRouterAddress;
+
+  // DON ID
   bytes32 public donId;
-  uint256 public tokenId;
+
+  // Requests in progress
   mapping(bytes32 => address) public requestsInProgress;
+
+  // Account minted
   mapping(address => bool) public accountMinted;
 
-  constructor(address _owner) ERC721("Credentials", "CRED") Ownable(_owner) FunctionsClient(0xb83E47C2bC239B3bf370bc41e1459A34b41238D0) {
+  constructor(address _owner, address _basecampAddress, uint8 _nftIndex ) Ownable(_owner) FunctionsClient(0xb83E47C2bC239B3bf370bc41e1459A34b41238D0) {
+    basecamp = Basecamp(payable(_basecampAddress));
+    nftIndex = _nftIndex;
+
     functionsRouterAddress = 0xb83E47C2bC239B3bf370bc41e1459A34b41238D0;
     donId = 0x66756e2d657468657265756d2d7365706f6c69612d3100000000000000000000;
   }
@@ -65,12 +79,23 @@ contract Validator is FunctionsClient, ERC721, Ownable {
 
     uint256 isAccountEnlisted = abi.decode(response, (uint256));
     if (isAccountEnlisted == 1) {
-      tokenId++;
       address account = requestsInProgress[requestId];
-      _safeMint(account, tokenId);
+      basecamp.mint(account, nftIndex);
       accountMinted[account] = true;
     } else {
       revert("Account not enlisted");
     }
   }
+
+	/**
+	 * Function that allows the owner to withdraw ETH from the contract
+	 */
+	function withdraw() public onlyOwner {
+		payable(owner()).transfer(address(this).balance);
+	}
+
+  /**
+	 * Function that allows the contract to receive ETH
+	 */
+	receive() external payable {}
 }

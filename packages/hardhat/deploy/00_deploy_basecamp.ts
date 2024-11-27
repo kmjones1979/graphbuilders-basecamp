@@ -13,16 +13,21 @@ const deployBasecamp: DeployFunction = async function (hre: HardhatRuntimeEnviro
   const { deploy } = hre.deployments;
 
   const owner = "0x007e483cf6df009db5ec571270b454764d954d95";
+  const minter = "0x417E6D64F28bd6FA5D00D757976c9bCF87D0cC3E"; // Chainlink ->"0x27D9D879A919C06d18d3B63031F4DE45da0C12A8";
 
   await deploy("Basecamp", {
     from: deployer,
-    args: [owner],
+    args: [owner, minter],
     log: true,
     autoMine: true,
   });
 
   // Get the deployed contract to interact with it after deploying.
-  //const Basecamp = await hre.ethers.getContract<Contract>("Basecamp", deployer);
+  const Basecamp = await hre.ethers.getContract<Contract>("Basecamp", deployer);
+  // await Basecamp.addCredential(0, "https://example.com/Mission0");
+  // await Basecamp.addCredential(1, "https://example.com/Mission1");
+  // await Basecamp.addCredential(2, "https://example.com/Mission2");
+  // await Basecamp.addCredential(3, "https://example.com/Mission3");
 };
 
 export default deployBasecamp;

@@ -3,17 +3,96 @@ pragma solidity >=0.8.0 <0.9.0;
 
 import "hardhat/console.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts/access/AccessControl.sol";
+import "@openzeppelin/contracts/access/extensions/AccessControlDefaultAdminRules.sol";
 /**
  * A smart contract for the The Graph Builders Basecamp challenges
  * @author Kevin Jones
  */
-contract Basecamp is Ownable {
+contract Basecamp is Ownable, ERC1155, AccessControl {
 
-	constructor(address _owner) Ownable(_owner) {}
+	string public name = "Basecamp Credentials";
+    string public symbol = "CRED";
+
+	// Credential struct
+	struct Credential {
+		bool enabled;
+		string name;
+		string uri;
+	}
+
+	// Mapping of credentials
+	mapping(uint8 => Credential) public credentials;
+
+	// Role for the minter
+	bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+	bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
+
+	event Withdraw(uint256 amount);
+	event CredentialAdded(uint8 id, string name, string uri);
+	event CredentialStatusChanged(uint8 id, bool enabled);
+	event CredentialUpdated(uint8 id, string name, string uri);
+	event CredentialMinted(address to, uint8 id);
+
+	constructor(address _owner, address _minter ) 
+		Ownable(_owner) 
+		ERC1155("http://example.com/") 
+		AccessControl() {
+		_setRoleAdmin(MINTER_ROLE, ADMIN_ROLE);
+		_grantRole(ADMIN_ROLE, _owner);
+		_grantRole(MINTER_ROLE, _minter);
+	}
+
+	function addCredential(bool _enabled, uint8 _id, string memory _name, string memory _uri) public onlyOwner {
+		credentials[_id] = Credential(_enabled, _name, _uri);
+		emit CredentialAdded(_id, _name, _uri);
+	}
+
+	function updateCredential(uint8 _id, string memory _name, string memory _uri) public onlyOwner {
+		credentials[_id].name = _name;
+		credentials[_id].uri = _uri;
+		emit CredentialUpdated(_id, _name, _uri);
+	}
+
+	function toggleCredentialEnabled(bool _enabled, uint8 _id) public onlyOwner {
+		credentials[_id].enabled = _enabled;
+		emit CredentialStatusChanged(_id, _enabled);
+	}
+
+	function mint(address to, uint8 id) public onlyRole(MINTER_ROLE) {
+		require(credentials[id].enabled, "Credential not found");
+		_mint(to, id, 1, bytes(credentials[id].uri));
+		emit CredentialMinted(to, id);
+	}
+
+	function addMinter(address _minter) public onlyRole(ADMIN_ROLE) {
+		_grantRole(MINTER_ROLE, _minter);
+	}
+
+	function addAdmin(address _admin) public onlyRole(ADMIN_ROLE) {
+		_grantRole(ADMIN_ROLE, _admin);
+	}
+
+	/**
+	 * Function that allows the owner to withdraw ETH from the contract
+	 */
+	function withdraw() public onlyOwner {
+		uint256 balance = address(this).balance;
+		(bool success, ) = payable(owner()).call{value: balance}("");
+		require(success, "Transfer failed");
+		emit Withdraw(balance);
+	}
 
 	/**
 	 * Function that allows the contract to receive ETH
 	 */
 	receive() external payable {}
+
+	/**
+	 * Override supportsInterface to resolve conflict from base contracts
+	 */
+	function supportsInterface(bytes4 interfaceId) public view virtual override(ERC1155, AccessControl) returns (bool) {
+		return super.supportsInterface(interfaceId);
+	}
 }
