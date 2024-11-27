@@ -17,6 +17,17 @@ const SolidityContent: React.FC = () => {
       <div className="flex justify-center top">
         <p className="text-lg text-center italic">Before you begin, make sure you are in the proper branch.</p>
       </div>
+      <CodeSnippet
+        code="git clone https://github.com/kmjones1979/graphbuilders-basecamp mission-3-moon"
+        button={true}
+      />
+      <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Navigate into the project directory.</p>
+      </div>
+      <CodeSnippet code="cd mission-3-moon" button={true} />
+      <div className="flex justify-center top">
+        <p className="text-lg text-center italic">Checkout the branch.</p>
+      </div>
       <CodeSnippet code="git checkout mission-3-moon" button={true} />
       <div className="flex justify-center top">
         <p className="text-lg text-center italic">Then be sure to install the dependencies.</p>
