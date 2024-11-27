@@ -1,11 +1,11 @@
-//SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
 import "hardhat/console.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
-import "@openzeppelin/contracts/access/extensions/AccessControlDefaultAdminRules.sol";
+
 /**
  * A smart contract for the The Graph Builders Basecamp challenges
  * @author Kevin Jones
@@ -15,7 +15,7 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	string public name = "Basecamp";
     string public symbol = "CRED";
 
-	// Credential struct
+	// Credentials
 	struct Credential {
 		bool enabled;
 		string name;
@@ -28,11 +28,16 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 	bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
 
-	event Withdraw(uint256 amount);
+
 	event CredentialAdded(uint8 id, string name);
 	event CredentialStatusChanged(uint8 id, bool enabled);
 	event CredentialUpdated(uint8 id, string name);
 	event CredentialMinted(address to, uint8 id);
+	event AdminAdded(address admin);
+	event MinterAdded(address minter);
+	event AdminRemoved(address admin);
+	event MinterRemoved(address minter);
+	event Withdraw(uint256 amount);
 
 	constructor(address _owner, address _minter ) 
 		Ownable(_owner) 
@@ -43,33 +48,82 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 		_grantRole(MINTER_ROLE, _minter);
 	}
 
+	/**
+	 * Add a credential
+	 * @param _enabled Whether the credential is enabled
+	 * @param _id The ID of the credential
+	 * @param _name The name of the credential
+	 */
 	function addCredential(bool _enabled, uint8 _id, string memory _name) public onlyOwner {
 		credentials[_id] = Credential(_enabled, _name);
 		emit CredentialAdded(_id, _name);
 	}
 
+	/**
+	 * Update a credential
+	 * @param _id The ID of the credential
+	 * @param _name The name of the credential
+	 */
 	function updateCredential(uint8 _id, string memory _name) public onlyOwner {
 		credentials[_id].name = _name;
 		emit CredentialUpdated(_id, _name);
 	}
 
-	function toggleCredentialEnabled(bool _enabled, uint8 _id) public onlyOwner {
+	/**
+	 * Toggle a credential enabled
+	 * @param _id The ID of the credential
+	 * @param _enabled Whether the credential is enabled
+	 */
+	function toggleCredentialEnabled( uint8 _id, bool _enabled) public onlyOwner {
 		credentials[_id].enabled = _enabled;
 		emit CredentialStatusChanged(_id, _enabled);
 	}
 
-	function mint(address to, uint8 id) public onlyRole(MINTER_ROLE) {
+	/**
+	 * Mint a credential
+	 * @param id The ID of the credential
+	 * @param _account The account to mint the credential to
+	 */
+	function mint( uint8 id,address _account) public onlyRole(MINTER_ROLE) {
 		require(credentials[id].enabled, "credential not enabled");
-		_mint(to, id, 1, "0x00");
-		emit CredentialMinted(to, id);
+		_mint(_account, id, 1, "0x00");
+		emit CredentialMinted(_account, id);
 	}
 
-	function addMinter(address _minter) public onlyRole(ADMIN_ROLE) {
-		_grantRole(MINTER_ROLE, _minter);
+	/**
+	 * Add a minter
+	 * @param _account The account to add as a minter
+	 */
+	function addMinter(address _account) public onlyRole(ADMIN_ROLE) {
+		_grantRole(MINTER_ROLE, _account);
+		emit MinterAdded(_account);
 	}
 
-	function addAdmin(address _admin) public onlyRole(ADMIN_ROLE) {
-		_grantRole(ADMIN_ROLE, _admin);
+	/**
+	 * Add an admin
+	 * @param _account The account to add as an admin
+	 */
+	function addAdmin(address _account) public onlyRole(ADMIN_ROLE) {
+		_grantRole(ADMIN_ROLE, _account);
+		emit AdminAdded(_account);
+	}
+
+	/**
+	 * Remove an admin
+	 * @param _account The account to remove as an admin
+	 */
+	function removeAdmin(address _account) public onlyRole(ADMIN_ROLE) {
+		_revokeRole(ADMIN_ROLE, _account);
+		emit AdminRemoved(_account);
+	}
+
+	/**
+	 * Remove a minter
+	 * @param _account The account to remove as a minter
+	 */
+	function removeMinter(address _account) public onlyRole(ADMIN_ROLE) {
+		_revokeRole(MINTER_ROLE, _account);
+		emit MinterRemoved(_account);
 	}
 
 	/**
@@ -94,7 +148,10 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 		return super.supportsInterface(interfaceId);
 	}
 
+	/**
+	 * Override safeTransferFrom to revert
+	 */
 	function safeTransferFrom(address from, address to, uint256 id, uint256 amount, bytes memory data) public override(ERC1155) {
-		revert("Tokens are soulbound and cannot be transferred");
+		revert("Token soulbound!");
 	}
 }

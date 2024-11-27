@@ -80,7 +80,7 @@ contract ValidatorM0 is FunctionsClient, Ownable {
     uint256 isAccountEnlisted = abi.decode(response, (uint256));
     if (isAccountEnlisted == 1) {
       address account = requestsInProgress[requestId];
-      basecamp.mint(account, nftIndex);
+      basecamp.mint(nftIndex, account);
       accountMinted[account] = true;
     } else {
       revert("Account not enlisted");
