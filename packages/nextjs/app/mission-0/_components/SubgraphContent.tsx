@@ -7,7 +7,7 @@ const SubgraphContent: React.FC = () => {
     <>
       {/* Part 2 */}{" "}
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">TBD</p>
+        <p className="text-lg text-left max-w-2xl">TBD</p>
       </div>
     </>
   );
