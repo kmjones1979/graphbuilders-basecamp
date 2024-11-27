@@ -6,14 +6,14 @@ const StudioContent: React.FC = () => {
     <>
       {/* Part 4 */}
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">
+        <p className="text-lg text-left max-w-2xl">
           In this next part of the mission you will scaffold out and deploy your subgraph to The Graph Subgraph Studio.
           The studio is a place where you can create, test, and deploy subgraphs before you publish them to the
           decentralized network.
         </p>
       </div>
       <div className="flex justify-center top pt-4">
-        <h1 className="text-3xl pt-4 text-center max-w-2xl italic font-bold">Subgraph Studio</h1>
+        <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Subgraph Studio</h1>
       </div>
       <div className="flex justify-center top mt-4 mb-4 ">
         <p className="text-lg font-bold max-w-2xl">
@@ -69,7 +69,7 @@ const StudioContent: React.FC = () => {
         </p>
       </div>
       <div className="flex justify-center top pt-4">
-        <h1 className="text-3xl pt-4 text-center max-w-2xl italic font-bold">The Graph CLI</h1>
+        <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">The Graph CLI</h1>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl font-bold">2. Install The Graph CLI either using npm or yarn.</p>
