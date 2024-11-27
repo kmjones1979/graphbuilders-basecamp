@@ -6,7 +6,7 @@ const StudioContent: React.FC = () => {
     <>
       {/* Part 4 */}
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">
+        <p className="text-lg text-left max-w-2xl">
           In this next part of the mission you will deploy your subgraph to The Graph Subgraph Studio. The studio is a
           place where you can create, test, and deploy subgraphs before you publish them to the decentralized network.
         </p>

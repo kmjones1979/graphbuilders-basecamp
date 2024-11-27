@@ -7,7 +7,7 @@ const SubgraphContent: React.FC = () => {
     <>
       {/* Part 2 */}
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">
+        <p className="text-lg text-left max-w-2xl">
           In this next part of the mission you will need to set up your local development environment so that you can
           index the data from the smart contract.
         </p>
@@ -187,7 +187,7 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
       </div>
       <GetEnlisted />
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">
+        <p className="text-lg text-left max-w-2xl">
           If you you were successful, go back to the top of the page and continue with the next part of the mission.
         </p>
       </div>
