@@ -3,12 +3,12 @@ import { DeployFunction } from "hardhat-deploy/types";
 import { Contract } from "ethers";
 
 /**
- * Deploys a contract named "Moon" using the deployer account and
+ * Deploys a contract named "Basecamp" using the deployer account and
  * constructor arguments set to the deployer address
  *
  * @param hre HardhatRuntimeEnvironment object.
  */
-const deployMoon: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+const deployBasecamp: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   /*
     On localhost, the deployer account is the one that comes with Hardhat, which is already funded.
 
@@ -22,7 +22,7 @@ const deployMoon: DeployFunction = async function (hre: HardhatRuntimeEnvironmen
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  await deploy("Moon", {
+  await deploy("Basecamp", {
     from: deployer,
     // Contract constructor arguments
     // STEP 5: Add your address here
@@ -34,11 +34,11 @@ const deployMoon: DeployFunction = async function (hre: HardhatRuntimeEnvironmen
   });
 
   // Get the deployed contract to interact with it after deploying.
-  //const Moon = await hre.ethers.getContract<Contract>("Moon", deployer);
+  //const Basecamp = await hre.ethers.getContract<Contract>("Basecamp", deployer);
 };
 
-export default deployMoon;
+export default deployBasecamp;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
-// e.g. yarn deploy --tags Moon
-deployMoon.tags = ["Moon"];
+// e.g. yarn deploy --tags Basecamp
+deployBasecamp.tags = ["Basecamp"];
