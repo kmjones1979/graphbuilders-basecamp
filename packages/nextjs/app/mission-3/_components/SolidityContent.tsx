@@ -6,46 +6,46 @@ const SolidityContent: React.FC = () => {
     <>
       {/* Part 1 */}
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">
+        <p className="text-lg text-left max-w-2xl">
           In this mission you will be creating a token that will be used to establish a lunar economy. In this mission
           you will learn how to use the ERC-20 standard and create an extended subgraph to index the token's data.
         </p>
       </div>
       <div className="flex justify-center top">
-        <h3 className="text-2xl pt-4 text-center max-w-2xl">Environment Setup</h3>
+        <h3 className="text-2xl pt-4 text-left max-w-2xl">Environment Setup</h3>
       </div>
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Before you begin, make sure you are in the proper branch.</p>
+        <p className="text-lg text-left italic">Before you begin, make sure you are in the proper branch.</p>
       </div>
       <CodeSnippet
         code="git clone https://github.com/kmjones1979/graphbuilders-basecamp mission-3-moon"
         button={true}
       />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Navigate into the project directory.</p>
+        <p className="text-lg text-left italic">Navigate into the project directory.</p>
       </div>
       <CodeSnippet code="cd mission-3-moon" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Checkout the branch.</p>
+        <p className="text-lg text-left italic">Checkout the branch.</p>
       </div>
       <CodeSnippet code="git checkout mission-3-moon" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Then be sure to install the dependencies.</p>
+        <p className="text-lg text-left italic">Then be sure to install the dependencies.</p>
       </div>
       <CodeSnippet code="yarn install" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Start your local blockchain.</p>
+        <p className="text-lg text-left italic">Start your local blockchain.</p>
       </div>
       <CodeSnippet code="yarn chain" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Then start your frontend, in a new terminal.</p>
+        <p className="text-lg text-left italic">Then start your frontend, in a new terminal.</p>
       </div>
       <CodeSnippet code="yarn start" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Now that our environment is setup, let's begin the mission.</p>
+        <p className="text-lg text-left italic">Now that our environment is setup, let's begin the mission.</p>
       </div>
       <div className="flex justify-center top">
-        <h3 className="text-2xl pt-4 text-center max-w-2xl">Mission Steps:</h3>
+        <h3 className="text-2xl pt-4 text-left max-w-2xl">Mission Steps:</h3>
       </div>
       <div className="flex justify-center mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">The starting smart contract code for this mission is as follows:</p>
@@ -66,7 +66,7 @@ const SolidityContent: React.FC = () => {
         </div>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
-        <p className="text-lg max-w-2xl italic">
+        <p className="text-lg max-w-2xl italic text-left">
           Next, we will be updating the smart contract to inherit the ERC-20 standard. The ERC-20 standard is the most
           popular standard for creating a token on Ethereum. It defines a set of functions that a token contract must
           implement.
@@ -122,7 +122,7 @@ const SolidityContent: React.FC = () => {
         </p>
       </div>
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">
+        <p className="text-lg text-left max-w-2xl">
           Now that your contract is deployed, let's create an extended subgraph.
         </p>
       </div>

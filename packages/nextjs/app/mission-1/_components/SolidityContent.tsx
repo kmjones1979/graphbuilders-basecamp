@@ -6,7 +6,7 @@ const SolidityContent: React.FC = () => {
     <>
       {/* Part 1 */}
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">
+        <p className="text-lg text-left max-w-2xl">
           You have arrived at The Graph Builders Academy, adventure awaits you in the skies above! In order to travel to
           the outer limits of the galaxy you will first need to enlist the Academy and prove your worth with a basic
           deployment of a subgraph. In this first mission you will, edit a basic smart contract, create a basic
@@ -16,37 +16,37 @@ const SolidityContent: React.FC = () => {
         </p>
       </div>
       <div className="flex justify-center top">
-        <h3 className="text-2xl pt-4 text-center max-w-2xl">Environment Setup</h3>
+        <h3 className="text-2xl pt-4 text-left max-w-2xl">Environment Setup</h3>
       </div>
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Before you begin, make sure you are in the proper branch.</p>
+        <p className="text-lg text-left italic">Before you begin, make sure you are in the proper branch.</p>
       </div>
       <CodeSnippet
         code="git clone https://github.com/kmjones1979/graphbuilders-basecamp mission-1-enlist"
         button={true}
       />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Navigate into the project directory.</p>
+        <p className="text-lg text-left italic">Navigate into the project directory.</p>
       </div>
       <CodeSnippet code="cd mission-1-enlist" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Checkout the branch.</p>
+        <p className="text-lg text-left italic">Checkout the branch.</p>
       </div>
       <CodeSnippet code="git checkout mission-1-enlist" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Then be sure to install the dependencies.</p>
+        <p className="text-lg text-left italic">Then be sure to install the dependencies.</p>
       </div>
       <CodeSnippet code="yarn install" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Start your local blockchain.</p>
+        <p className="text-lg text-left italic">Start your local blockchain.</p>
       </div>
       <CodeSnippet code="yarn chain" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Then start your frontend, in a new terminal.</p>
+        <p className="text-lg text-left italic">Then start your frontend, in a new terminal.</p>
       </div>
       <CodeSnippet code="yarn start" button={true} />
       <div className="flex justify-center top">
-        <h3 className="text-2xl pt-4 text-center max-w-2xl">Mission Steps:</h3>
+        <h3 className="text-2xl pt-4 text-left max-w-2xl">Mission Steps:</h3>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">The starting smart contract code for this mission is as follows:</p>
@@ -128,7 +128,7 @@ const SolidityContent: React.FC = () => {
         </div>
       </div>
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">
+        <p className="text-lg text-left max-w-2xl">
           Since this will be a new contract that is deployed, you will need to enlist on the main page or using "Debug
           Contracts" tab. If you you were successful with these steps, go back to the top of the page and continue with
           the next part of the mission.

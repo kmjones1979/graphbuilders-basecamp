@@ -12,7 +12,7 @@ import "@openzeppelin/contracts/access/extensions/AccessControlDefaultAdminRules
  */
 contract Basecamp is Ownable, ERC1155, AccessControl {
 
-	string public name = "Basecamp Credentials";
+	string public name = "Basecamp";
     string public symbol = "CRED";
 
 	// Credential struct

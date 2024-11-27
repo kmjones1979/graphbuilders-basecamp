@@ -6,7 +6,7 @@ const DeployContent: React.FC = () => {
     <>
       {/* Part 3 */}
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">
+        <p className="text-lg text-left max-w-2xl">
           In this next part of the mission you will deploy your smart contract to a public network. This way we can
           index the data on The Graph's decentralized network.
         </p>
@@ -19,7 +19,7 @@ const DeployContent: React.FC = () => {
       </div>
       <CodeSnippet code="yarn run generate" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Success will look like the following: 👇🏼</p>
+        <p className="text-lg text-left italic">Success will look like the following: 👇🏼</p>
       </div>
       <div className="flex justify-center top">
         <img className="max-w-2xl items-center" src="/orientation/4.png" alt="yarn chain" />
@@ -32,7 +32,7 @@ const DeployContent: React.FC = () => {
       </div>
       <CodeSnippet code="yarn account" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Success will look like the following: 👇🏼</p>
+        <p className="text-lg text-left italic">Success will look like the following: 👇🏼</p>
       </div>
       <div className="flex justify-center top">
         <img className="max-w-2xl items-center" src="/orientation/5.png" alt="yarn chain" />
@@ -133,7 +133,7 @@ waiting for result...
         </p>
       </div>
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">
+        <p className="text-lg text-left max-w-2xl">
           If you you were successful, go back to the top of the page and continue with the next part of the mission.
         </p>
       </div>
