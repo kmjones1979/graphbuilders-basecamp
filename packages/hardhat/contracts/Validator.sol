@@ -7,7 +7,7 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {FunctionsClient} from "./@chainlink/contracts/src/v0.8/functions/dev/1_0_0/FunctionsClient.sol";
 import {FunctionsRequest} from "./@chainlink/contracts/src/v0.8/functions/dev/1_0_0/libraries/FunctionsRequest.sol";
 
-contract FunctionsConsumer is FunctionsClient, ERC721, Ownable {
+contract Validator is FunctionsClient, ERC721, Ownable {
   using FunctionsRequest for FunctionsRequest.Request;
 
   address public functionsRouterAddress;
@@ -16,7 +16,7 @@ contract FunctionsConsumer is FunctionsClient, ERC721, Ownable {
   mapping(bytes32 => address) public requestsInProgress;
   mapping(address => bool) public accountMinted;
 
-  constructor() ERC721("Credentials", "CRED") Ownable(msg.sender) FunctionsClient(0xb83E47C2bC239B3bf370bc41e1459A34b41238D0) {
+  constructor(address _owner) ERC721("Credentials", "CRED") Ownable(_owner) FunctionsClient(0xb83E47C2bC239B3bf370bc41e1459A34b41238D0) {
     functionsRouterAddress = 0xb83E47C2bC239B3bf370bc41e1459A34b41238D0;
     donId = 0x66756e2d657468657265756d2d7365706f6c69612d3100000000000000000000;
   }
