@@ -19,7 +19,6 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	struct Credential {
 		bool enabled;
 		string name;
-		string uri;
 	}
 
 	// Mapping of credentials
@@ -30,9 +29,9 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
 
 	event Withdraw(uint256 amount);
-	event CredentialAdded(uint8 id, string name, string uri);
+	event CredentialAdded(uint8 id, string name);
 	event CredentialStatusChanged(uint8 id, bool enabled);
-	event CredentialUpdated(uint8 id, string name, string uri);
+	event CredentialUpdated(uint8 id, string name);
 	event CredentialMinted(address to, uint8 id);
 
 	constructor(address _owner, address _minter ) 
@@ -44,15 +43,14 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 		_grantRole(MINTER_ROLE, _minter);
 	}
 
-	function addCredential(bool _enabled, uint8 _id, string memory _name, string memory _uri) public onlyOwner {
-		credentials[_id] = Credential(_enabled, _name, _uri);
-		emit CredentialAdded(_id, _name, _uri);
+	function addCredential(bool _enabled, uint8 _id, string memory _name) public onlyOwner {
+		credentials[_id] = Credential(_enabled, _name);
+		emit CredentialAdded(_id, _name);
 	}
 
-	function updateCredential(uint8 _id, string memory _name, string memory _uri) public onlyOwner {
+	function updateCredential(uint8 _id, string memory _name) public onlyOwner {
 		credentials[_id].name = _name;
-		credentials[_id].uri = _uri;
-		emit CredentialUpdated(_id, _name, _uri);
+		emit CredentialUpdated(_id, _name);
 	}
 
 	function toggleCredentialEnabled(bool _enabled, uint8 _id) public onlyOwner {
@@ -61,8 +59,8 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	}
 
 	function mint(address to, uint8 id) public onlyRole(MINTER_ROLE) {
-		require(credentials[id].enabled, "Credential not found");
-		_mint(to, id, 1, bytes(credentials[id].uri));
+		require(credentials[id].enabled, "credential not enabled");
+		_mint(to, id, 1, "0x00");
 		emit CredentialMinted(to, id);
 	}
 
@@ -94,5 +92,9 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	 */
 	function supportsInterface(bytes4 interfaceId) public view virtual override(ERC1155, AccessControl) returns (bool) {
 		return super.supportsInterface(interfaceId);
+	}
+
+	function safeTransferFrom(address from, address to, uint256 id, uint256 amount, bytes memory data) public override(ERC1155) {
+		revert("Tokens are soulbound and cannot be transferred");
 	}
 }

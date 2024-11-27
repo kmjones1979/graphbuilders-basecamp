@@ -12,7 +12,7 @@ const deployBasecamp: DeployFunction = async function (hre: HardhatRuntimeEnviro
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  const owner = "0x007e483cf6df009db5ec571270b454764d954d95";
+  const owner = "0x417E6D64F28bd6FA5D00D757976c9bCF87D0cC3E";
   const minter = "0x417E6D64F28bd6FA5D00D757976c9bCF87D0cC3E"; // Chainlink ->"0x27D9D879A919C06d18d3B63031F4DE45da0C12A8";
 
   await deploy("Basecamp", {
