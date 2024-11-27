@@ -6,7 +6,7 @@ const SubgraphContent: React.FC = () => {
     <>
       {/* Part 2 */}
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">
+        <p className="text-lg text-left max-w-2xl">
           Welcome to your first side quest! The road less-traveled can be long and arduous, but the rewards are often
           lucrative! In this section will you will learn about some key changes you can make to get the most out of your
           subgraph. You will learn about derivedFrom, graph-ts, and how to perform off-chain calculations in your
@@ -71,7 +71,7 @@ const SubgraphContent: React.FC = () => {
         </p>
       </div>
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl italic">Ready for the next task?</p>
+        <p className="text-lg text-left max-w-2xl italic">Ready for the next task?</p>
       </div>
       <h1 className="flex justify-center text-2xl font-bold"> 📝 Task 2: Calculate balances for each account 📝</h1>
       <div className="flex justify-center top mt-4 mb-4">

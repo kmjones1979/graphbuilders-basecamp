@@ -6,7 +6,7 @@ const SolidityContent: React.FC = () => {
     <>
       {/* Part 1 */}
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">
+        <p className="text-lg text-left max-w-2xl">
           Congratulations on joining the Academy! Your first job as a junior cadet is to establish communications with
           the lunar base. To do this you will need to first take ownership of a special comms smart contract. Once you
           have done that you will need to establish a connection with the base by randomly generating the proper
@@ -15,40 +15,40 @@ const SolidityContent: React.FC = () => {
         </p>
       </div>
       <div className="flex justify-center top">
-        <h3 className="text-2xl pt-4 text-center max-w-2xl">Environment Setup</h3>
+        <h3 className="text-2xl pt-4 text-left max-w-2xl">Environment Setup</h3>
       </div>
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Before you begin, make sure you are in the proper branch.</p>
+        <p className="text-lg text-left italic">Before you begin, make sure you are in the proper branch.</p>
       </div>
       <CodeSnippet
         code="git clone https://github.com/kmjones1979/graphbuilders-basecamp mission-2-comms"
         button={true}
       />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Navigate into the project directory.</p>
+        <p className="text-lg text-left italic">Navigate into the project directory.</p>
       </div>
       <CodeSnippet code="cd mission-2-comms" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Checkout the branch.</p>
+        <p className="text-lg text-left italic">Checkout the branch.</p>
       </div>
       <CodeSnippet code="git checkout mission-2-comms" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Then be sure to install the dependencies.</p>
+        <p className="text-lg text-left italic">Then be sure to install the dependencies.</p>
       </div>
       <CodeSnippet code="yarn install" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Start your local blockchain.</p>
+        <p className="text-lg text-left italic">Start your local blockchain.</p>
       </div>
       <CodeSnippet code="yarn chain" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Then start your frontend, in a new terminal.</p>
+        <p className="text-lg text-left italic">Then start your frontend, in a new terminal.</p>
       </div>
       <CodeSnippet code="yarn start" button={true} />
       <div className="flex justify-center top">
-        <p className="text-lg text-center italic">Now that our environment is setup, let's begin the mission.</p>
+        <p className="text-lg text-left italic">Now that our environment is setup, let's begin the mission.</p>
       </div>
       <div className="flex justify-center top">
-        <h3 className="text-2xl pt-4 text-center max-w-2xl">Mission Steps:</h3>
+        <h3 className="text-2xl pt-4 text-left max-w-2xl">Mission Steps:</h3>
       </div>
       <div className="flex justify-center mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">The starting smart contract code for this mission is as follows:</p>
@@ -136,7 +136,7 @@ const SolidityContent: React.FC = () => {
         </div>
       </div>
       <div className="flex justify-center top">
-        <p className="text-lg text-center max-w-2xl">
+        <p className="text-lg text-left max-w-2xl">
           Once you deploy your changes navigate to the "Debug Contracts" tab and call the{" "}
           <span className="highlight-code">establishComms</span> function to test the functionality. You will need to
           attempt to call the function multiple times until the secret matches your attempt. When testing on your local
