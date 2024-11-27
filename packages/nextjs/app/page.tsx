@@ -26,16 +26,12 @@ const Home: NextPage = () => {
               <h1 className="mb-5 text-5xl font-bold text-white">The Graph Builders Basecamp</h1>
               <p className="mb-5 text-white">
                 A series of missions where you will test your ability to write smart contracts and develop subgraphs on
-                The Graph protocol. To get started enlist in the program.
+                The Graph protocol. To get started click the button below.
               </p>
               <div className="flex items-center justify-center">
-                {connectedAddress ? (
-                  <button className="btn btn-success" onClick={() => router.push("/mission-3")}>
-                    Begin
-                  </button>
-                ) : (
-                  <RainbowKitCustomConnectButton />
-                )}
+                <button className="btn btn-success" onClick={() => router.push("/mission-3")}>
+                  Begin
+                </button>
               </div>
             </div>
           </div>
