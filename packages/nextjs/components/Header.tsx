@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
-import { RocketLaunchIcon } from "@heroicons/react/24/outline";
+import { ChartBarIcon, RocketLaunchIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
@@ -46,6 +46,15 @@ export const HeaderMenuLinks = () => {
         );
       })}
     </>
+  );
+};
+
+export const LeaderboardLink = () => {
+  return (
+    <Link href="/leaderboard" passHref className="ml-1 btn btn-ghost">
+      <ChartBarIcon className="h-4 w-4" />
+      Leaderboard
+    </Link>
   );
 };
 
@@ -130,6 +139,7 @@ export const Header = () => {
         </Link>
         <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
           <MissionDropdown />
+          <LeaderboardLink />
           <DebugContractsLink />
         </ul>
       </div>
