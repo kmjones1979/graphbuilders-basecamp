@@ -84,7 +84,7 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	 * @param id The ID of the credential
 	 * @param _account The account to mint the credential to
 	 */
-	function mint( uint8 id,address _account) public onlyRole(MINTER_ROLE) {
+	function mint( uint8 id, address _account) public onlyRole(MINTER_ROLE) {
 		require(credentials[id].enabled, "credential not enabled");
 		_mint(_account, id, 1, "0x00");
 		emit CredentialMinted(_account, id);

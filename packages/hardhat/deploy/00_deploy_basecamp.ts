@@ -12,9 +12,10 @@ const deployBasecamp: DeployFunction = async function (hre: HardhatRuntimeEnviro
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  const owner = "0x417E6D64F28bd6FA5D00D757976c9bCF87D0cC3E";
-  const minter = "0x417E6D64F28bd6FA5D00D757976c9bCF87D0cC3E"; // Chainlink ->"0x27D9D879A919C06d18d3B63031F4DE45da0C12A8";
+  const owner = "0x007E483Cf6Df009Db5Ec571270b454764d954d95";
+  const minter = "0x007E483Cf6Df009Db5Ec571270b454764d954d95";
 
+  console.log("Deploying Basecamp...");
   await deploy("Basecamp", {
     from: deployer,
     args: [owner, minter],
@@ -22,12 +23,14 @@ const deployBasecamp: DeployFunction = async function (hre: HardhatRuntimeEnviro
     autoMine: true,
   });
 
-  // Get the deployed contract to interact with it after deploying.
   const Basecamp = await hre.ethers.getContract<Contract>("Basecamp", deployer);
-  // await Basecamp.addCredential(0, "https://example.com/Mission0");
-  // await Basecamp.addCredential(1, "https://example.com/Mission1");
-  // await Basecamp.addCredential(2, "https://example.com/Mission2");
-  // await Basecamp.addCredential(3, "https://example.com/Mission3");
+  console.log("Basecamp deployed at", await Basecamp.getAddress());
+
+  // console.log("Adding credentials...");
+  // await Basecamp.addCredential(true, 0, "ORIENTATION");
+  // await Basecamp.addCredential(true, 1, "ENLIST");
+  // await Basecamp.addCredential(true, 2, "COMMS");
+  // await Basecamp.addCredential(true, 3, "MOON");
 };
 
 export default deployBasecamp;

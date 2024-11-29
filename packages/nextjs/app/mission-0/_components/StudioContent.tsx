@@ -1,7 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
 import CodeSnippet from "./CodeSnippet";
+import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 const StudioContent: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [queryURL, setQueryURL] = useState("");
+
+  const javaScriptSourceCode = `
+const account = args[0].toLowerCase()
+const query_url = args[1]
+
+const graphRequest = Functions.makeHttpRequest({
+  url: \`\${query_url}\`,
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+
+  data: {
+    query: \`
+      {
+        welcomeMessageChangeds(first: 1) {
+          id
+          newMessage
+          blockNumber
+          blockTimestamp
+          transactionHash
+        }
+      }
+    \`,
+  },
+})
+
+const check = "Welcome to The Graph Builders Basecamp!"
+
+const [graphResponse] = await Promise.all([graphRequest])
+let newMessage = []
+if (!graphResponse.error) {
+  for (let i = 0; i < 1; i++) {
+    newMessage.push(graphResponse.data.data.welcomeMessageChangeds[i].newMessage)
+    console.log(i)
+  }
+} else {
+  console.log("graphResponse Error, ", graphResponse)
+}
+
+if (newMessage[0] === check) {
+  console.log(newMessage[0])
+  return Functions.encodeUint256(1)
+} else {
+  console.log(newMessage[0])
+  return Functions.encodeUint256(0)
+}`;
+
+  const subscriptionId = 4023;
+  const gasLimit = 100_000;
+
+  const handleSubmit = async () => {
+    try {
+      await writeValidatorM0Async({
+        functionName: "validateMission",
+        args: [javaScriptSourceCode, BigInt(subscriptionId), gasLimit, queryURL],
+      });
+      setIsModalOpen(false);
+    } catch (e) {
+      console.error("Error submitting URL:", e);
+    }
+  };
+
+  const { writeContractAsync: writeValidatorM0Async } = useScaffoldWriteContract("ValidatorM0");
+
   return (
     <>
       {/* Part 4 */}
@@ -99,7 +167,8 @@ const StudioContent: React.FC = () => {
 ✔ ABI file (path) · /Users/user/mission-0-orientation/packages/hardhat/deployments/sepolia/Welcome.json
 ✔ Start Block · 7159204
 ✔ Contract Name · Welcome
-✔ Index contract events as entities (Y/n) · true
+✔ Index contract   const encryptedSecretsRef = "0xa266736c6f744964006776657273696f6e1a65540efa";
+s as entities (Y/n) · true
   Generate subgraph
   Write subgraph to directory
 ✔ Create subgraph scaffold
@@ -150,6 +219,48 @@ const StudioContent: React.FC = () => {
           navigate to the Endpoints tab on your subgraph and submit your QueryURL.
         </p>
       </div>
+      <div className="flex justify-center top">
+        <button className="bg-purple-500 text-white px-4 py-2 rounded-lg" onClick={() => setIsModalOpen(true)}>
+          Submit Mission
+        </button>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">
+          If you have any issues submitting your results, please reach out to us on the official Telegram channel for
+          the Scaffold-ETH Subgraph Extension.
+        </p>
+      </div>
+      <div className="flex justify-center top">
+        {" "}
+        <a target="_blank" href="https://t.me/+fafK-afX2aM0ZWZh">
+          👉 👩‍🚀 🏗 Scaffold-ETH Subgraph Extension Support
+        </a>
+      </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="modal modal-open">
+          <div className="modal-box">
+            <h2 className="font-bold text-lg">Please enter your subgraph Query URL</h2>
+            <p>This can be found in the Endpoints tab of your subgraph in the Subgraph Studio.</p>
+            <input
+              type="text"
+              placeholder="Enter URL"
+              className="input input-bordered w-full mt-2"
+              value={queryURL}
+              onChange={e => setQueryURL(e.target.value)}
+            />
+            <div className="modal-action">
+              <button className="btn" onClick={handleSubmit}>
+                Submit
+              </button>
+              <button className="btn" onClick={() => setIsModalOpen(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

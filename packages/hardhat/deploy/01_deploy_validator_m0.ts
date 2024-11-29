@@ -17,6 +17,7 @@ const deployValidatorM0: DeployFunction = async function (hre: HardhatRuntimeEnv
 
   const owner = "0x007e483cf6df009db5ec571270b454764d954d95";
 
+  console.log("Deploying ValidatorM0...");
   await deploy("ValidatorM0", {
     from: deployer,
     args: [owner, basecampAddress, 0],
@@ -25,7 +26,12 @@ const deployValidatorM0: DeployFunction = async function (hre: HardhatRuntimeEnv
   });
 
   // Get the deployed contract to interact with it after deploying.
-  //const ValidatorM0 = await hre.ethers.getContract<Contract>("ValidatorM0", deployer);
+  const ValidatorM0 = await hre.ethers.getContract<Contract>("ValidatorM0", deployer);
+  const validatorAddress = await ValidatorM0.getAddress();
+  console.log("ValidatorM0 deployed at", validatorAddress);
+
+  // console.log("Adding ValidatorM0 as minter on Basecamp...");
+  // await basecamp.addMinter(validatorAddress);
 };
 
 export default deployValidatorM0;
