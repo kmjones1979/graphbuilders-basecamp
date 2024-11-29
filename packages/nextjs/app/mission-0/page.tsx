@@ -13,9 +13,9 @@ const Subgraph: NextPage = () => {
   const [activeTab, setActiveTab] = useState("solidity");
   const { address } = useAccount();
   const { data: accountMinted } = useScaffoldReadContract({
-    contractName: "ValidatorM0",
+    contractName: "Validator",
     functionName: "accountMinted",
-    args: [address],
+    args: [0, address],
   });
 
   return (

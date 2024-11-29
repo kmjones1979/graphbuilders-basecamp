@@ -54,12 +54,12 @@ if (newMessage[0] === check) {
   return Functions.encodeUint256(0)
 }`;
 
-  const subscriptionId = 4023;
+  const subscriptionId = 4025;
   const gasLimit = 100_000;
 
   const handleSubmit = async () => {
     try {
-      await writeValidatorM0Async({
+      await writeValidatorAsync({
         functionName: "validateMission",
         args: [javaScriptSourceCode, BigInt(subscriptionId), gasLimit, queryURL],
       });
@@ -69,13 +69,13 @@ if (newMessage[0] === check) {
     }
   };
 
-  const { writeContractAsync: writeValidatorM0Async } = useScaffoldWriteContract("ValidatorM0");
+  const { writeContractAsync: writeValidatorAsync } = useScaffoldWriteContract("Validator");
 
   const { address } = useAccount();
   const { data: accountMinted } = useScaffoldReadContract({
-    contractName: "ValidatorM0",
+    contractName: "Validator",
     functionName: "accountMinted",
-    args: [address],
+    args: [0, address],
   });
 
   return (
