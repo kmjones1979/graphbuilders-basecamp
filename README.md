@@ -2,34 +2,6 @@
 
 A series of missions where you will test your ability to write smart contracts and develop subgraphs on The Graph protocol.
 
-### What is The Graph?
-
-[The Graph](https://thegraph.com/) is a protocol for building decentralized applications (dApps) quickly on Ethereum and IPFS using GraphQL.
-
-Graph Node is an open source Rust implementation that event sources the Ethereum blockchain to deterministically update a data store that can be queried via the GraphQL endpoint.
-
-For detailed instructions and more context, check out the [Getting Started Guide](docs/getting-started.md).
-
-### What is Scaffold-ETH?
-
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
-
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
-
--   ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
--   🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
--   🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
--   🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
--   🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
-
-### Requirements
-
-Before you begin, you need to install the following tools:
-
--   [Node (>= v18.18)](https://nodejs.org/en/download/)
--   Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
--   [Git](https://git-scm.com/downloads)
-
 ### Quickstart
 
 To get started with the first challenge...
@@ -37,9 +9,13 @@ To get started with the first challenge...
 1. Checkout the project...
 
 ```
-git clone https://github.com/kmjones1979/graphbuilders-basecamp.git mission-3-moon
-cd mission-3-moon
-git checkout mission-3-moon
+git clone https://github.com/kmjones1979/graphbuilders-basecamp.git
+```
+
+Navigate to the directory
+
+```
+cd graphbuilders-basecamp
 ```
 
 Then install all the dependencies
@@ -56,15 +32,33 @@ yarn chain
 
 This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/hardhat/hardhat.config.ts`.
 
-3. On a second terminal, deploy the test contract:
+3. Generate a deployer account
 
 ```
-yarn deploy
+yarn run generate
+```
+
+...and fund the deployer account.
+
+```
+yarn account
+```
+
+4. On a second terminal, deploy the test contract:
+
+```
+yarn deploy --network sepolia
 ```
 
 This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
 
-4. On a third terminal, start your NextJS app:
+...then verify the contracts.
+
+```
+yarn verify --network sepolia
+```
+
+5. On a third terminal, start your NextJS app:
 
 ```
 yarn start
@@ -72,11 +66,31 @@ yarn start
 
 Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
 
-Run smart contract test with `yarn hardhat:test`
+6. Create a Chainlink function subscription
 
--   Edit your smart contracts in `packages/hardhat/contracts`
--   Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
--   Edit your deployment scripts in `packages/hardhat/deploy`
+[Chainlink Functions](https://functions.chain.link/sepolia)
+
+> To see an example look at [Subscription 4207](https://functions.chain.link/sepolia/4027)
+
+You will need to:
+
+1. Create a Subscription
+2. Add the consumer you deployed (Validator.sol)
+3. Fund the subscription
+
+This can be automated using the [Chainlink Functions toolkit](https://github.com/smartcontractkit/functions-toolkit).
+
+7. Add the proper credentials
+
+Call `.addCredential` and passing the following arguments will create a credential.
+
+1. `_enabled`: `bool`
+2. `_id`: `uint8`
+3. `_name`: `string`
+
+4. Add the Validator.sol as a minter on Basecamp.sol
+
+Call `.addMinter` and passing `_account` as an `address`
 
 ## 🚀 Setup The Graph Integration
 
