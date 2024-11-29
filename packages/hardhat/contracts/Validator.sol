@@ -12,9 +12,6 @@ contract Validator is FunctionsClient, Ownable {
 
   Basecamp public basecamp;
 
-  // ERC115 NFT to Mint
-  uint8 public nftIndex;
-
   // Functions Router Address
   address public functionsRouterAddress;
 
@@ -23,15 +20,15 @@ contract Validator is FunctionsClient, Ownable {
 
   // Requests in progress
   mapping(bytes32 => address) public requestsInProgress;
+  mapping(bytes32 => uint8) public missionIndexSubmitted;
 
   // Account minted
   mapping(uint8 => mapping(address => bool)) public accountMinted;
 
   event Withdraw(uint256 amount);
 
-  constructor(address _owner, address _basecampAddress, uint8 _nftIndex ) Ownable(_owner) FunctionsClient(0xb83E47C2bC239B3bf370bc41e1459A34b41238D0) {
+  constructor(address _owner, address _basecampAddress ) Ownable(_owner) FunctionsClient(0xb83E47C2bC239B3bf370bc41e1459A34b41238D0) {
     basecamp = Basecamp(payable(_basecampAddress));
-    nftIndex = _nftIndex;
 
     functionsRouterAddress = 0xb83E47C2bC239B3bf370bc41e1459A34b41238D0;
     donId = 0x66756e2d657468657265756d2d7365706f6c69612d3100000000000000000000;
@@ -54,12 +51,13 @@ contract Validator is FunctionsClient, Ownable {
   }
 
   function validateMission(
+    uint8 missionIndex,
     string memory javaScriptSourceCode,
     uint64 subscriptionId,
     uint32 gasLimit,
     string memory queryUrl
   ) external returns (bytes32 requestId) {
-    require(!accountMinted[nftIndex][msg.sender], "Account already minted");
+    require(!accountMinted[missionIndex][msg.sender], "Account already minted");
     
     FunctionsRequest.Request memory req;
     req.initializeRequestForInlineJavaScript(javaScriptSourceCode);
@@ -72,6 +70,7 @@ contract Validator is FunctionsClient, Ownable {
 
     requestId = _sendRequest(req.encodeCBOR(), subscriptionId, gasLimit, donId);
     requestsInProgress[requestId] = msg.sender;
+    missionIndexSubmitted[requestId] = missionIndex;
   }
 
   function fulfillRequest(bytes32 requestId, bytes memory response, bytes memory err) internal override {
@@ -82,8 +81,9 @@ contract Validator is FunctionsClient, Ownable {
     uint256 isValid = abi.decode(response, (uint256));
     if (isValid == 1) {
       address account = requestsInProgress[requestId];
-      basecamp.mint(nftIndex, account);
-      accountMinted[nftIndex][account] = true;
+      uint8 missionIndex = missionIndexSubmitted[requestId];
+      basecamp.mint(missionIndex, account);
+      accountMinted[missionIndex][account] = true;
     } else {
       revert("Account not enlisted");
     }

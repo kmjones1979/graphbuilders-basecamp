@@ -30,7 +30,7 @@ const Subgraph: NextPage = () => {
         {accountMinted ? (
           <div className="bg-slate-700 text-green-400 rounded-lg badge">Mission Complete</div>
         ) : (
-          <div className="bg-yellow-700 text-white rounded-lg badge">Mission Incomplete</div>
+          <button className="bg-yellow-700 text-white rounded-lg badge">Mission Incomplete</button>
         )}
       </div>
       <div className="flex justify-center mt-4">

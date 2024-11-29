@@ -20,7 +20,7 @@ const deployValidator: DeployFunction = async function (hre: HardhatRuntimeEnvir
   console.log("Deploying Validator...");
   await deploy("Validator", {
     from: deployer,
-    args: [owner, basecampAddress, 0],
+    args: [owner, basecampAddress],
     log: true,
     autoMine: true,
   });

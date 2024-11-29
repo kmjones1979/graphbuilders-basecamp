@@ -1,7 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 import CodeSnippet from "./CodeSnippet";
+import { useAccount } from "wagmi";
+import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 const StudioContent: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [queryURL, setQueryURL] = useState("");
+
+  const javaScriptSourceCode = `
+const account = args[0].toLowerCase()
+const query_url = args[1]
+
+const graphRequest = Functions.makeHttpRequest({
+  url: \`\${query_url}\`,
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+
+  data: {
+    query: \`
+      {
+        enlisteds(
+          first: 1
+          orderBy: blockTimestamp
+          orderDirection: desc
+          where: { account: "\${account}" }
+        ) {
+          id
+          account
+          blockNumber
+          blockTimestamp
+          transactionHash
+        }
+      }
+    \`,
+  },
+})
+
+const [graphResponse] = await Promise.all([graphRequest])
+let id = []
+if (!graphResponse.error) {
+  for (let i = 0; i < 1; i++) {
+    id.push(graphResponse.data.data.enlisteds[i].id.toLowerCase())
+  }
+} else {
+  console.log("graphResponse Error, ", graphResponse)
+}
+
+if (id[0] === account) {
+  return Functions.encodeUint256(1)
+} else {
+  return Functions.encodeUint256(0)
+}
+`;
+
+  const subscriptionId = 4027;
+  const gasLimit = 100_000;
+
+  const handleSubmit = async () => {
+    try {
+      await writeValidatorAsync({
+        functionName: "validateMission",
+        args: [1, javaScriptSourceCode, BigInt(subscriptionId), gasLimit, queryURL],
+      });
+      setIsModalOpen(false);
+    } catch (e) {
+      console.error("Error submitting URL:", e);
+    }
+  };
+
+  const { writeContractAsync: writeValidatorAsync } = useScaffoldWriteContract("Validator");
+
+  const { address } = useAccount();
+  const { data: accountMinted } = useScaffoldReadContract({
+    contractName: "Validator",
+    functionName: "accountMinted",
+    args: [1, address],
+  });
+
   return (
     <>
       {/* Part 4 */}
@@ -156,6 +233,53 @@ dataSources:
           navigate to the Endpoints tab on your subgraph and submit your QueryURL.
         </p>
       </div>
+
+      <div className="flex justify-center top">
+        {accountMinted ? (
+          <div className="bg-slate-700 text-green-400 px-4 py-2 rounded-lg">Mission Complete</div>
+        ) : (
+          <button className="bg-purple-500 text-white px-4 py-2 rounded-lg" onClick={() => setIsModalOpen(true)}>
+            Submit Mission
+          </button>
+        )}
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">
+          If you have any issues submitting your results, please reach out to us on the official Telegram channel for
+          the Scaffold-ETH Subgraph Extension.
+        </p>
+      </div>
+      <div className="flex justify-center top">
+        {" "}
+        <a target="_blank" href="https://t.me/+fafK-afX2aM0ZWZh">
+          👉 👩‍🚀 🏗 Scaffold-ETH Subgraph Extension Support
+        </a>
+      </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="modal modal-open">
+          <div className="modal-box">
+            <h2 className="font-bold text-lg">Please enter your subgraph Query URL</h2>
+            <p>This can be found in the Endpoints tab of your subgraph in the Subgraph Studio.</p>
+            <input
+              type="text"
+              placeholder="Enter URL"
+              className="input input-bordered w-full mt-2"
+              value={queryURL}
+              onChange={e => setQueryURL(e.target.value)}
+            />
+            <div className="modal-action">
+              <button className="btn" onClick={handleSubmit}>
+                Submit
+              </button>
+              <button className="btn" onClick={() => setIsModalOpen(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
