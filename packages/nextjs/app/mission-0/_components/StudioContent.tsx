@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CodeSnippet from "./CodeSnippet";
-import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+import { useAccount } from "wagmi";
+import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 const StudioContent: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -69,6 +70,13 @@ if (newMessage[0] === check) {
   };
 
   const { writeContractAsync: writeValidatorM0Async } = useScaffoldWriteContract("ValidatorM0");
+
+  const { address } = useAccount();
+  const { data: accountMinted } = useScaffoldReadContract({
+    contractName: "ValidatorM0",
+    functionName: "accountMinted",
+    args: [address],
+  });
 
   return (
     <>
@@ -220,9 +228,13 @@ s as entities (Y/n) · true
         </p>
       </div>
       <div className="flex justify-center top">
-        <button className="bg-purple-500 text-white px-4 py-2 rounded-lg" onClick={() => setIsModalOpen(true)}>
-          Submit Mission
-        </button>
+        {accountMinted ? (
+          <div className="bg-slate-700 text-green-400 px-4 py-2 rounded-lg">Mission Complete</div>
+        ) : (
+          <button className="bg-purple-500 text-white px-4 py-2 rounded-lg" onClick={() => setIsModalOpen(true)}>
+            Submit Mission
+          </button>
+        )}
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">

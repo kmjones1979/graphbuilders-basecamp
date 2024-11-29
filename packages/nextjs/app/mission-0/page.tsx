@@ -6,9 +6,17 @@ import SolidityContent from "./_components/SolidityContent";
 import StudioContent from "./_components/StudioContent";
 // import SubgraphContent from "./_components/SubgraphContent";
 import type { NextPage } from "next";
+import { useAccount } from "wagmi";
+import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 
 const Subgraph: NextPage = () => {
   const [activeTab, setActiveTab] = useState("solidity");
+  const { address } = useAccount();
+  const { data: accountMinted } = useScaffoldReadContract({
+    contractName: "ValidatorM0",
+    functionName: "accountMinted",
+    args: [address],
+  });
 
   return (
     <>
@@ -17,6 +25,13 @@ const Subgraph: NextPage = () => {
       </div>
       <div className="flex justify-center top">
         <h3 className="text-2xl pt-4 text-center max-w-2xl">Orientation</h3>
+      </div>
+      <div className="flex justify-center top p-5">
+        {accountMinted ? (
+          <div className="bg-slate-700 text-green-400 rounded-lg badge">Mission Complete</div>
+        ) : (
+          <div className="bg-yellow-700 text-white rounded-lg badge">Mission Incomplete</div>
+        )}
       </div>
       <div className="flex justify-center mt-4">
         <button
