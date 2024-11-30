@@ -29,7 +29,7 @@ const Home: NextPage = () => {
                 The Graph protocol. To get started click the button below.
               </p>
               <div className="flex items-center justify-center">
-                <button className="btn btn-success" onClick={() => router.push("/mission-3")}>
+                <button className="btn btn-success" onClick={() => router.push("/mission-0")}>
                   Begin
                 </button>
               </div>
