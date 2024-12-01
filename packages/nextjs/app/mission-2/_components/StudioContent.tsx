@@ -54,7 +54,7 @@ if (newMessage[0] === check) {
   return Functions.encodeUint256(0)
 }`;
 
-  const subscriptionId = 4027;
+  const subscriptionId = 4048;
   const gasLimit = 100_000;
 
   const handleSubmit = async () => {
