@@ -74,9 +74,9 @@ Visit your app on: `http://localhost:3000`. You can interact with your smart con
 
 You will need to:
 
-1. Create a Subscription
-2. Add the consumer you deployed (Validator.sol)
-3. Fund the subscription
+-   Create a Subscription
+-   Add the consumer you deployed (Validator.sol)
+-   Fund the subscription
 
 This can be automated using the [Chainlink Functions toolkit](https://github.com/smartcontractkit/functions-toolkit).
 
@@ -84,13 +84,17 @@ This can be automated using the [Chainlink Functions toolkit](https://github.com
 
 Call `.addCredential` and passing the following arguments will create a credential.
 
-1. `_enabled`: `bool`
-2. `_id`: `uint8`
-3. `_name`: `string`
+-   `_enabled`: `bool`
+-   `_id`: `uint8`
+-   `_name`: `string`
 
-4. Add the Validator.sol as a minter on Basecamp.sol
+7. Add the Validator.sol as a minter on Basecamp.sol
 
 Call `.addMinter` and passing `_account` as an `address`
+
+8. At the moment the subscription for chainlink is hardcoded in each studio page and used for the submission function call.
+
+-   Edit `const subscriptionId = 4048;` to match your subscription ID.
 
 ## 🚀 Setup The Graph Integration
 
