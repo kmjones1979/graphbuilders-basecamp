@@ -29,9 +29,7 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
 
 
-	event CredentialAdded(uint8 id, string name);
-	event CredentialStatusChanged(uint8 id, bool enabled);
-	event CredentialUpdated(uint8 id, string name);
+	event CredentialSet(bool enabled, uint8 id, string name);
 	event CredentialMinted(address to, uint8 id);
 	event AdminAdded(address admin);
 	event MinterAdded(address minter);
@@ -54,29 +52,9 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	 * @param _id The ID of the credential
 	 * @param _name The name of the credential
 	 */
-	function addCredential(bool _enabled, uint8 _id, string memory _name) public onlyOwner {
+	function setCredential(bool _enabled, uint8 _id, string memory _name) public onlyOwner {
 		credentials[_id] = Credential(_enabled, _name);
-		emit CredentialAdded(_id, _name);
-	}
-
-	/**
-	 * Update a credential
-	 * @param _id The ID of the credential
-	 * @param _name The name of the credential
-	 */
-	function updateCredential(uint8 _id, string memory _name) public onlyOwner {
-		credentials[_id].name = _name;
-		emit CredentialUpdated(_id, _name);
-	}
-
-	/**
-	 * Toggle a credential enabled
-	 * @param _id The ID of the credential
-	 * @param _enabled Whether the credential is enabled
-	 */
-	function toggleCredentialEnabled( uint8 _id, bool _enabled) public onlyOwner {
-		credentials[_id].enabled = _enabled;
-		emit CredentialStatusChanged(_id, _enabled);
+		emit CredentialSet(_enabled, _id, _name);
 	}
 
 	/**

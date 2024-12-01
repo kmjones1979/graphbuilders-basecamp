@@ -25,29 +25,47 @@ contract Validator is FunctionsClient, Ownable {
   // Account minted
   mapping(uint8 => mapping(address => bool)) public accountMinted;
 
+  event BasecampAddressSet(address newBasecampAddress);
+  event FunctionsRouterAddressSet(address newFunctionsRouterAddress);
+  event DonIdSet(bytes32 newDonId); 
+  event MissionSubmitted(bytes32 requestId, uint8 missionIndex, string queryUrl, address account);
+  event MissionValidated(bytes32 requestId, uint8 missionIndex, uint256 isValid, bool success, address account);
   event Withdraw(uint256 amount);
 
   constructor(address _owner, address _basecampAddress ) Ownable(_owner) FunctionsClient(0xb83E47C2bC239B3bf370bc41e1459A34b41238D0) {
     basecamp = Basecamp(payable(_basecampAddress));
-
     functionsRouterAddress = 0xb83E47C2bC239B3bf370bc41e1459A34b41238D0;
     donId = 0x66756e2d657468657265756d2d7365706f6c69612d3100000000000000000000;
+    emit BasecampAddressSet(_basecampAddress);
+    emit FunctionsRouterAddressSet(functionsRouterAddress);
+    emit DonIdSet(donId);
+  }
+
+  /**
+   * @notice Set the Basecamp address
+   * @param _basecampAddress New Basecamp address
+   */
+  function setBasecampAddress(address _basecampAddress) external onlyOwner {
+    basecamp = Basecamp(payable(_basecampAddress));
+    emit BasecampAddressSet(_basecampAddress);
   }
 
   /**
    * @notice Set the Functions Router address
-   * @param newFunctionsRouterAddress New Functions Router address
+   * @param _functionsRouterAddress New Functions Router address
    */
-  function setFunctionsRouterAddress(address newFunctionsRouterAddress) external onlyOwner {
-    functionsRouterAddress = newFunctionsRouterAddress;
+  function setFunctionsRouterAddress(address _functionsRouterAddress) external onlyOwner {
+    functionsRouterAddress = _functionsRouterAddress;
+    emit FunctionsRouterAddressSet(_functionsRouterAddress);
   }
 
     /**
    * @notice Set the DON ID
-   * @param newDonId New DON ID
+   * @param _donId New DON ID
    */
-  function setDonId(bytes32 newDonId) external onlyOwner {
-    donId = newDonId;
+  function setDonId(bytes32 _donId) external onlyOwner {
+    donId = _donId;
+    emit DonIdSet(_donId);
   }
 
   function validateMission(
@@ -71,6 +89,7 @@ contract Validator is FunctionsClient, Ownable {
     requestId = _sendRequest(req.encodeCBOR(), subscriptionId, gasLimit, donId);
     requestsInProgress[requestId] = msg.sender;
     missionIndexSubmitted[requestId] = missionIndex;
+    emit MissionSubmitted(requestId, missionIndex, queryUrl, msg.sender);
   }
 
   function fulfillRequest(bytes32 requestId, bytes memory response, bytes memory err) internal override {
@@ -84,8 +103,12 @@ contract Validator is FunctionsClient, Ownable {
       uint8 missionIndex = missionIndexSubmitted[requestId];
       basecamp.mint(missionIndex, account);
       accountMinted[missionIndex][account] = true;
+      emit MissionValidated(requestId, missionIndex, isValid, true, account);
     } else {
-      revert("Account not enlisted");
+      address account = requestsInProgress[requestId];
+      uint8 missionIndex = missionIndexSubmitted[requestId];
+      emit MissionValidated(requestId, missionIndex, isValid, false, account);
+      revert("Validation failed");
     }
   }
 
