@@ -1,29 +1,112 @@
 specVersion: 1.0.0
-description: Moon
-repository: https://github.com/scaffold-eth/se-2/packages/subgraph/
+indexerHints:
+    prune: auto
 schema:
     file: ./src/schema.graphql
 dataSources:
-    - kind: ethereum/contract
-      name: Moon
-      network: localhost
+    - kind: ethereum
+      name: Basecamp
+      network: sepolia
       source:
-          abi: Moon
-          address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9"
+          address: "0xFD6bb55396aEe5E41642dC3EA117c6E1C89696f2"
+          abi: Basecamp
+          startBlock: 7191320
       mapping:
           kind: ethereum/events
           apiVersion: 0.0.7
           language: wasm/assemblyscript
           entities:
+              - AdminAdded
+              - AdminRemoved
+              - ApprovalForAll
+              - CredentialMinted
+              - CredentialSet
+              - MinterAdded
+              - MinterRemoved
               - OwnershipTransferred
-              # STEP 1: Add the Approval event
-              # STEP 2: Add the Transfer event
+              - RoleAdminChanged
+              - RoleGranted
+              - RoleRevoked
+              - TransferBatch
+              - TransferSingle
+              - URI
+              - Withdraw
           abis:
-              - name: Moon
-                file: ./abis/localhost_Moon.json
+              - name: Basecamp
+                file: ./abis/Basecamp.json
           eventHandlers:
+              - event: AdminAdded(address)
+                handler: handleAdminAdded
+              - event: AdminRemoved(address)
+                handler: handleAdminRemoved
+              - event: ApprovalForAll(indexed address,indexed address,bool)
+                handler: handleApprovalForAll
+              - event: CredentialMinted(address,uint8)
+                handler: handleCredentialMinted
+              - event: CredentialSet(bool,uint8,string)
+                handler: handleCredentialSet
+              - event: MinterAdded(address)
+                handler: handleMinterAdded
+              - event: MinterRemoved(address)
+                handler: handleMinterRemoved
               - event: OwnershipTransferred(indexed address,indexed address)
                 handler: handleOwnershipTransferred
-              # STEP 3: Add the Approval event
-              # STEP 4: Add the Transfer event
-          file: ./src/mapping.ts
+              - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+                handler: handleRoleAdminChanged
+              - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+                handler: handleRoleGranted
+              - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+                handler: handleRoleRevoked
+              - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+                handler: handleTransferBatch
+              - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+                handler: handleTransferSingle
+              - event: URI(string,indexed uint256)
+                handler: handleURI
+              - event: Withdraw(uint256)
+                handler: handleWithdraw
+          file: ./src/basecamp.ts
+    - kind: ethereum
+      name: Validator
+      network: sepolia
+      source:
+          address: "0xd3eA07CfcDC4651b9494aD4B7e53122eDa80A0cB"
+          abi: Validator
+          startBlock: 7191321
+      mapping:
+          kind: ethereum/events
+          apiVersion: 0.0.7
+          language: wasm/assemblyscript
+          entities:
+              - BasecampAddressSet
+              - DonIdSet
+              - FunctionsRouterAddressSet
+              - MissionSubmitted
+              - MissionValidated
+              - ValidatorOwnershipTransferred
+              - RequestFulfilled
+              - RequestSent
+              - ValidatorWithdraw
+          abis:
+              - name: Validator
+                file: ./abis/Validator.json
+          eventHandlers:
+              - event: BasecampAddressSet(address)
+                handler: handleBasecampAddressSet
+              - event: DonIdSet(bytes32)
+                handler: handleDonIdSet
+              - event: FunctionsRouterAddressSet(address)
+                handler: handleFunctionsRouterAddressSet
+              - event: MissionSubmitted(bytes32,uint8,string,address)
+                handler: handleMissionSubmitted
+              - event: MissionValidated(bytes32,uint8,uint256,bool,address)
+                handler: handleMissionValidated
+              - event: OwnershipTransferred(indexed address,indexed address)
+                handler: handleOwnershipTransferred
+              - event: RequestFulfilled(indexed bytes32)
+                handler: handleRequestFulfilled
+              - event: RequestSent(indexed bytes32)
+                handler: handleRequestSent
+              - event: Withdraw(uint256)
+                handler: handleWithdraw
+          file: ./src/validator.ts

@@ -1,4 +1,64 @@
-# OwnershipTransferred event
+type AdminAdded @entity(immutable: true) {
+    id: Bytes!
+    admin: Bytes! # address
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type AdminRemoved @entity(immutable: true) {
+    id: Bytes!
+    admin: Bytes! # address
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type ApprovalForAll @entity(immutable: true) {
+    id: Bytes!
+    account: Bytes! # address
+    operator: Bytes! # address
+    approved: Boolean! # bool
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type CredentialMinted @entity(immutable: true) {
+    id: Bytes!
+    to: Bytes! # address
+    Basecamp_id: Int! # uint8
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type CredentialSet @entity(immutable: true) {
+    id: Bytes!
+    enabled: Boolean! # bool
+    Basecamp_id: Int! # uint8
+    name: String! # string
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type MinterAdded @entity(immutable: true) {
+    id: Bytes!
+    minter: Bytes! # address
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type MinterRemoved @entity(immutable: true) {
+    id: Bytes!
+    minter: Bytes! # address
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
 type OwnershipTransferred @entity(immutable: true) {
     id: Bytes!
     previousOwner: Bytes! # address
@@ -8,5 +68,152 @@ type OwnershipTransferred @entity(immutable: true) {
     transactionHash: Bytes!
 }
 
-# STEP 1: Add the Approval event
-# STEP 2: Add the Transfer event
+type RoleAdminChanged @entity(immutable: true) {
+    id: Bytes!
+    role: Bytes! # bytes32
+    previousAdminRole: Bytes! # bytes32
+    newAdminRole: Bytes! # bytes32
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type RoleGranted @entity(immutable: true) {
+    id: Bytes!
+    role: Bytes! # bytes32
+    account: Bytes! # address
+    sender: Bytes! # address
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type RoleRevoked @entity(immutable: true) {
+    id: Bytes!
+    role: Bytes! # bytes32
+    account: Bytes! # address
+    sender: Bytes! # address
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type TransferBatch @entity(immutable: true) {
+    id: Bytes!
+    operator: Bytes! # address
+    from: Bytes! # address
+    to: Bytes! # address
+    ids: [BigInt!]! # uint256[]
+    values: [BigInt!]! # uint256[]
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type TransferSingle @entity(immutable: true) {
+    id: Bytes!
+    operator: Bytes! # address
+    from: Bytes! # address
+    to: Bytes! # address
+    Basecamp_id: BigInt! # uint256
+    value: BigInt! # uint256
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type URI @entity(immutable: true) {
+    id: Bytes!
+    value: String! # string
+    Basecamp_id: BigInt! # uint256
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type Withdraw @entity(immutable: true) {
+    id: Bytes!
+    amount: BigInt! # uint256
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+type BasecampAddressSet @entity(immutable: true) {
+    id: Bytes!
+    newBasecampAddress: Bytes! # address
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type DonIdSet @entity(immutable: true) {
+    id: Bytes!
+    newDonId: Bytes! # bytes32
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type FunctionsRouterAddressSet @entity(immutable: true) {
+    id: Bytes!
+    newFunctionsRouterAddress: Bytes! # address
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type MissionSubmitted @entity(immutable: true) {
+    id: Bytes!
+    requestId: Bytes! # bytes32
+    missionIndex: Int! # uint8
+    queryUrl: String! # string
+    account: Bytes! # address
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type MissionValidated @entity(immutable: true) {
+    id: Bytes!
+    requestId: Bytes! # bytes32
+    missionIndex: Int! # uint8
+    isValid: BigInt! # uint256
+    success: Boolean! # bool
+    account: Bytes! # address
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type ValidatorOwnershipTransferred @entity(immutable: true) {
+    id: Bytes!
+    previousOwner: Bytes! # address
+    newOwner: Bytes! # address
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type RequestFulfilled @entity(immutable: true) {
+    id: Bytes!
+    Validator_id: Bytes! # bytes32
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type RequestSent @entity(immutable: true) {
+    id: Bytes!
+    Validator_id: Bytes! # bytes32
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type ValidatorWithdraw @entity(immutable: true) {
+    id: Bytes!
+    amount: BigInt! # uint256
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
