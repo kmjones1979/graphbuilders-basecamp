@@ -1,0 +1,10 @@
+query GetUsers {
+  users(first: 50, orderBy: rank, orderDirection: desc) {
+    address
+    rank
+    blockTimestamp
+    credentials {
+      Basecamp_id
+    }
+  }
+}

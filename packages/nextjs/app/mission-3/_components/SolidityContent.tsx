@@ -126,6 +126,14 @@ const SolidityContent: React.FC = () => {
           Now that your contract is deployed, let's create an extended subgraph.
         </p>
       </div>
+      <div className="flex justify-center top pt-10">
+        <div className="flex justify-center top">Stuck? Join the telegram channel for this mission... </div>
+        <div className="">
+          <a href="https://t.me/+DEv6MCFMGx85MTU5" target="_blank" rel="noopener noreferrer">
+            🌙 Mission 3: $MOON 🚀
+          </a>
+        </div>
+      </div>
     </>
   );
 };

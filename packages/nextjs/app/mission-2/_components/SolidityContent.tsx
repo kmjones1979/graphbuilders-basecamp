@@ -144,6 +144,14 @@ const SolidityContent: React.FC = () => {
           <span className="highlight-code">isCommsEstablished</span> variable is set to true.
         </p>
       </div>
+      <div className="flex justify-center top pt-10">
+        <div className="flex justify-center top">Stuck? Join the telegram channel for this mission... </div>
+        <div className="">
+          <a href="https://t.me/+-INXFlFQJyBiYTIx" target="_blank" rel="noopener noreferrer">
+            🔊 Mission 2: Comms 🚀
+          </a>
+        </div>
+      </div>
     </>
   );
 };

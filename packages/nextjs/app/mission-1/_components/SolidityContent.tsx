@@ -134,6 +134,14 @@ const SolidityContent: React.FC = () => {
           the next part of the mission.
         </p>
       </div>
+      <div className="flex justify-center top pt-10">
+        <div className="flex justify-center top">Stuck? Join the telegram channel for this mission... </div>
+        <div className="">
+          <a href="https://t.me/+ZZIgax5l1dI1YjQx" target="_blank" rel="noopener noreferrer">
+            🗒 Mission 1: Enlist 🚀
+          </a>
+        </div>
+      </div>
     </>
   );
 };

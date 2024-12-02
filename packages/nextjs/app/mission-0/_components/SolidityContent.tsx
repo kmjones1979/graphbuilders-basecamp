@@ -147,6 +147,14 @@ contract Welcome {
           indexing logic for your subgraph.
         </h3>
       </div>
+      <div className="flex justify-center top pt-10">
+        <div className="flex justify-center top">Stuck? Join the telegram channel for this mission... </div>
+        <div className="">
+          <a href="https://t.me/+vbvAPzHXj08wMGUx" target="_blank" rel="noopener noreferrer">
+            🏫 Mission 0: Orientation 🚀
+          </a>
+        </div>
+      </div>
       <div className="flex justify-center top">
         <p className="text-lg text-left max-w-2xl italic">Ready to move on?</p>
       </div>
