@@ -446,6 +446,7 @@ export type CredentialMinted_orderBy =
   | 'to__id'
   | 'to__address'
   | 'to__rank'
+  | 'to__lastCredentialMinted'
   | 'to__blockNumber'
   | 'to__blockTimestamp'
   | 'to__transactionHash'
@@ -2963,6 +2964,7 @@ export type User = {
   address: Scalars['Bytes']['output'];
   credentials?: Maybe<Array<CredentialMinted>>;
   rank: Scalars['BigInt']['output'];
+  lastCredentialMinted: Scalars['BigInt']['output'];
   blockNumber?: Maybe<Scalars['BigInt']['output']>;
   blockTimestamp?: Maybe<Scalars['BigInt']['output']>;
   transactionHash?: Maybe<Scalars['Bytes']['output']>;
@@ -3007,6 +3009,14 @@ export type User_filter = {
   rank_lte?: InputMaybe<Scalars['BigInt']['input']>;
   rank_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
   rank_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  lastCredentialMinted?: InputMaybe<Scalars['BigInt']['input']>;
+  lastCredentialMinted_not?: InputMaybe<Scalars['BigInt']['input']>;
+  lastCredentialMinted_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  lastCredentialMinted_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  lastCredentialMinted_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  lastCredentialMinted_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  lastCredentialMinted_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  lastCredentialMinted_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
   blockNumber?: InputMaybe<Scalars['BigInt']['input']>;
   blockNumber_not?: InputMaybe<Scalars['BigInt']['input']>;
   blockNumber_gt?: InputMaybe<Scalars['BigInt']['input']>;
@@ -3044,6 +3054,7 @@ export type User_orderBy =
   | 'address'
   | 'credentials'
   | 'rank'
+  | 'lastCredentialMinted'
   | 'blockNumber'
   | 'blockTimestamp'
   | 'transactionHash';
@@ -3928,6 +3939,7 @@ export type UserResolvers<ContextType = MeshContext, ParentType extends Resolver
   address?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
   credentials?: Resolver<Maybe<Array<ResolversTypes['CredentialMinted']>>, ParentType, ContextType, RequireFields<UsercredentialsArgs, 'skip' | 'first'>>;
   rank?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  lastCredentialMinted?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
   blockNumber?: Resolver<Maybe<ResolversTypes['BigInt']>, ParentType, ContextType>;
   blockTimestamp?: Resolver<Maybe<ResolversTypes['BigInt']>, ParentType, ContextType>;
   transactionHash?: Resolver<Maybe<ResolversTypes['Bytes']>, ParentType, ContextType>;
@@ -4088,7 +4100,7 @@ const merger = new(BareMerger as any)({
         store: rootStore.child('bareMerger')
       })
 const documentHashMap = {
-        "d8091383230df644bdc38472004392b0c564a5709e256fb19d3d9702c1df16e2": GetUsersDocument
+        "c76090f27849fce4dafe003a2347c7b77124d057168ab72bf800d5658225027f": GetUsersDocument
       }
 additionalEnvelopPlugins.push(usePersistedOperations({
         getPersistedOperation(key) {
@@ -4115,7 +4127,7 @@ additionalEnvelopPlugins.push(usePersistedOperations({
           return printWithCache(GetUsersDocument);
         },
         location: 'GetUsersDocument.graphql',
-        sha256Hash: 'd8091383230df644bdc38472004392b0c564a5709e256fb19d3d9702c1df16e2'
+        sha256Hash: 'c76090f27849fce4dafe003a2347c7b77124d057168ab72bf800d5658225027f'
       }
     ];
     },
@@ -4174,7 +4186,7 @@ export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetUsersQuery = { users: Array<(
-    Pick<User, 'address' | 'rank' | 'blockTimestamp'>
+    Pick<User, 'address' | 'rank' | 'blockTimestamp' | 'lastCredentialMinted'>
     & { credentials?: Maybe<Array<Pick<CredentialMinted, 'Basecamp_id'>>> }
   )> };
 
@@ -4185,9 +4197,10 @@ export const GetUsersDocument = gql`
     address
     rank
     blockTimestamp
-    credentials {
+    credentials(orderBy: Basecamp_id) {
       Basecamp_id
     }
+    lastCredentialMinted
   }
 }
     ` as unknown as DocumentNode<GetUsersQuery, GetUsersQueryVariables>;

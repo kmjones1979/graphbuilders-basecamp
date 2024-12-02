@@ -425,6 +425,7 @@ enum CredentialMinted_orderBy {
   to__id
   to__address
   to__rank
+  to__lastCredentialMinted
   to__blockNumber
   to__blockTimestamp
   to__transactionHash
@@ -3275,6 +3276,7 @@ type User {
   address: Bytes!
   credentials(skip: Int = 0, first: Int = 100, orderBy: CredentialMinted_orderBy, orderDirection: OrderDirection, where: CredentialMinted_filter): [CredentialMinted!]
   rank: BigInt!
+  lastCredentialMinted: BigInt!
   blockNumber: BigInt
   blockTimestamp: BigInt
   transactionHash: Bytes
@@ -3310,6 +3312,14 @@ input User_filter {
   rank_lte: BigInt
   rank_in: [BigInt!]
   rank_not_in: [BigInt!]
+  lastCredentialMinted: BigInt
+  lastCredentialMinted_not: BigInt
+  lastCredentialMinted_gt: BigInt
+  lastCredentialMinted_lt: BigInt
+  lastCredentialMinted_gte: BigInt
+  lastCredentialMinted_lte: BigInt
+  lastCredentialMinted_in: [BigInt!]
+  lastCredentialMinted_not_in: [BigInt!]
   blockNumber: BigInt
   blockNumber_not: BigInt
   blockNumber_gt: BigInt
@@ -3347,6 +3357,7 @@ enum User_orderBy {
   address
   credentials
   rank
+  lastCredentialMinted
   blockNumber
   blockTimestamp
   transactionHash

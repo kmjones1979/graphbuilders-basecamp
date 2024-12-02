@@ -7,6 +7,8 @@ import { Address } from "~~/components/scaffold-eth";
 const LeaderboardTable = () => {
   const [usersData, setUsersData] = useState<any>(null);
   const [error, setError] = useState<any>(null);
+  const [sortKey, setSortKey] = useState<string | null>(null);
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +28,25 @@ const LeaderboardTable = () => {
     fetchData();
   }, []);
 
+  // Function to handle sorting
+  const handleSort = (key: string) => {
+    const order = sortKey === key && sortOrder === "asc" ? "desc" : "asc";
+    setSortKey(key);
+    setSortOrder(order);
+  };
+
+  // Function to sort users data
+  const sortedUsersData = () => {
+    if (!usersData) return [];
+    return [...usersData.users].sort((a, b) => {
+      const aValue = a[sortKey as keyof typeof a];
+      const bValue = b[sortKey as keyof typeof b];
+      if (aValue < bValue) return sortOrder === "asc" ? -1 : 1;
+      if (aValue > bValue) return sortOrder === "asc" ? 1 : -1;
+      return 0;
+    });
+  };
+
   if (error) {
     return null;
   }
@@ -37,13 +58,22 @@ const LeaderboardTable = () => {
           <thead>
             <tr className="rounded-xl">
               <th className="bg-primary"></th>
-              <th className="bg-primary">User</th>
-              <th className="bg-primary">Rank</th>
-              <th className="bg-primary">Joined</th>
+              <th className="bg-primary" onClick={() => handleSort("address")}>
+                User
+              </th>
+              <th className="bg-primary" onClick={() => handleSort("rank")}>
+                Rank
+              </th>
+              <th className="bg-primary" onClick={() => handleSort("blockTimestamp")}>
+                Joined
+              </th>
+              <th className="bg-primary" onClick={() => handleSort("lastCredentialMinted")}>
+                Last Active
+              </th>
             </tr>
           </thead>
           <tbody>
-            {usersData?.users?.map((user: any, index: number) => (
+            {sortedUsersData().map((user: any, index: number) => (
               <tr key={user.address}>
                 <th>{index + 1}</th>
                 <td>
@@ -51,6 +81,7 @@ const LeaderboardTable = () => {
                 </td>
                 <td>{user?.rank}</td>
                 <td>{new Date(user?.blockTimestamp * 1000).toLocaleString()}</td>
+                <td>{new Date(user?.lastCredentialMinted * 1000).toLocaleString()}</td>
               </tr>
             ))}
           </tbody>

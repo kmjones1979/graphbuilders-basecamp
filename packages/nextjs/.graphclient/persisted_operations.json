@@ -1,3 +1,3 @@
 {
-  "d8091383230df644bdc38472004392b0c564a5709e256fb19d3d9702c1df16e2": "query GetUsers {\n  users(first: 50, orderBy: rank, orderDirection: desc) {\n    address\n    rank\n    blockTimestamp\n    credentials {\n      Basecamp_id\n    }\n  }\n}"
+  "c76090f27849fce4dafe003a2347c7b77124d057168ab72bf800d5658225027f": "query GetUsers {\n  users(first: 50, orderBy: rank, orderDirection: desc) {\n    address\n    rank\n    blockTimestamp\n    credentials(orderBy: Basecamp_id) {\n      Basecamp_id\n    }\n    lastCredentialMinted\n  }\n}"
 }

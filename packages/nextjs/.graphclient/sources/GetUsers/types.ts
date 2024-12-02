@@ -423,6 +423,7 @@ export type CredentialMinted_orderBy =
   | 'to__id'
   | 'to__address'
   | 'to__rank'
+  | 'to__lastCredentialMinted'
   | 'to__blockNumber'
   | 'to__blockTimestamp'
   | 'to__transactionHash'
@@ -2940,6 +2941,7 @@ export type User = {
   address: Scalars['Bytes']['output'];
   credentials?: Maybe<Array<CredentialMinted>>;
   rank: Scalars['BigInt']['output'];
+  lastCredentialMinted: Scalars['BigInt']['output'];
   blockNumber?: Maybe<Scalars['BigInt']['output']>;
   blockTimestamp?: Maybe<Scalars['BigInt']['output']>;
   transactionHash?: Maybe<Scalars['Bytes']['output']>;
@@ -2984,6 +2986,14 @@ export type User_filter = {
   rank_lte?: InputMaybe<Scalars['BigInt']['input']>;
   rank_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
   rank_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  lastCredentialMinted?: InputMaybe<Scalars['BigInt']['input']>;
+  lastCredentialMinted_not?: InputMaybe<Scalars['BigInt']['input']>;
+  lastCredentialMinted_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  lastCredentialMinted_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  lastCredentialMinted_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  lastCredentialMinted_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  lastCredentialMinted_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  lastCredentialMinted_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
   blockNumber?: InputMaybe<Scalars['BigInt']['input']>;
   blockNumber_not?: InputMaybe<Scalars['BigInt']['input']>;
   blockNumber_gt?: InputMaybe<Scalars['BigInt']['input']>;
@@ -3021,6 +3031,7 @@ export type User_orderBy =
   | 'address'
   | 'credentials'
   | 'rank'
+  | 'lastCredentialMinted'
   | 'blockNumber'
   | 'blockTimestamp'
   | 'transactionHash';

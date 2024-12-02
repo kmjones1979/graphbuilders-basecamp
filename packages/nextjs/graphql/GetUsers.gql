@@ -3,8 +3,9 @@ query GetUsers {
     address
     rank
     blockTimestamp
-    credentials {
+    credentials(orderBy: Basecamp_id) {
       Basecamp_id
     }
+    lastCredentialMinted
   }
 }
