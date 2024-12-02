@@ -175,8 +175,9 @@ if (id[0] === account) {
       <CodeSnippet code="graph deploy mymission" button={false} />
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
-          You also might want to add the startBlock to the subgraph manifest. You can get this from the block explorer
-          and look at the contract creation transaction.
+          You will need to update your <span className="highlight-code">subgraph.yaml</span> file to include the proper
+          network. e.g. sepolia. You also might want to add the startBlock to the subgraph manifest. You can get this
+          from the block explorer and look at the contract creation transaction.
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">

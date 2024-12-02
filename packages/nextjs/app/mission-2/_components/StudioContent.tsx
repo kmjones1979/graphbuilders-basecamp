@@ -21,11 +21,12 @@ const graphRequest = Functions.makeHttpRequest({
   data: {
     query: \`
       {
-        welcomeMessageChangeds(first: 1) {
-          id
-          newMessage
+        commsEstablisheds(first: 1) {
+          account
           blockNumber
           blockTimestamp
+          id
+          isCommsEstablished
           transactionHash
         }
       }
@@ -33,24 +34,20 @@ const graphRequest = Functions.makeHttpRequest({
   },
 })
 
-const check = "Welcome to The Graph Builders Basecamp!"
-
 const [graphResponse] = await Promise.all([graphRequest])
-let newMessage = []
+let subgraphData = []
 if (!graphResponse.error) {
   for (let i = 0; i < 1; i++) {
-    newMessage.push(graphResponse.data.data.welcomeMessageChangeds[i].newMessage)
+    subgraphData.push(graphResponse.data.data.commsEstablisheds[i].account)
     console.log(i)
   }
 } else {
   console.log("graphResponse Error, ", graphResponse)
 }
 
-if (newMessage[0] === check) {
-  console.log(newMessage[0])
+if (subgraphData[0] === account) {
   return Functions.encodeUint256(1)
 } else {
-  console.log(newMessage[0])
   return Functions.encodeUint256(0)
 }`;
 
@@ -174,8 +171,9 @@ if (newMessage[0] === check) {
       <CodeSnippet code="graph deploy mymission" button={false} />
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
-          You also might want to add the startBlock to the subgraph manifest. You can get this from the block explorer
-          and look at the contract creation transaction.
+          You will need to update your <span className="highlight-code">subgraph.yaml</span> file to include the proper
+          network. e.g. sepolia. You also might want to add the startBlock to the subgraph manifest. You can get this
+          from the block explorer and look at the contract creation transaction.
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4">
