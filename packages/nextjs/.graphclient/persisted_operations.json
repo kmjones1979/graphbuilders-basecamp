@@ -1,3 +1,3 @@
 {
-  "7712a1b009aa3ba3eeb7bfe69cc6cbb6c865b6bdb0af10b32b21b22becf2b0d9": "query GetEnlisted {\n  enlisteds(first: 25) {\n    account\n    transactionHash\n    id\n    blockTimestamp\n    blockNumber\n  }\n}"
+  "d8091383230df644bdc38472004392b0c564a5709e256fb19d3d9702c1df16e2": "query GetUsers {\n  users(first: 50, orderBy: rank, orderDirection: desc) {\n    address\n    rank\n    blockTimestamp\n    credentials {\n      Basecamp_id\n    }\n  }\n}"
 }

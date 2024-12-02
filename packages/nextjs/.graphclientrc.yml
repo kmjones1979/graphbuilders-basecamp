@@ -1,8 +1,8 @@
 # .graphclientrc.yml
 sources:
-  - name: Example
+  - name: GetUsers
     handler:
       graphql:
-        endpoint: http://localhost:8000/subgraphs/name/scaffold-eth/your-contract
+        endpoint: https://api.studio.thegraph.com/query/37762/basecamp-sepolia/version/latest
 documents:
-  - ./graphql/Example.gql
+  - ./graphql/GetUsers.gql

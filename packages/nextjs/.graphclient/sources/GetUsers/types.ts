@@ -1,39 +1,16 @@
 // @ts-nocheck
-import { GraphQLResolveInfo, SelectionSetNode, FieldNode, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
-import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
-import { gql } from '@graphql-mesh/utils';
 
-import type { GetMeshOptions } from '@graphql-mesh/runtime';
-import type { YamlConfig } from '@graphql-mesh/types';
-import { PubSub } from '@graphql-mesh/utils';
-import { DefaultLogger } from '@graphql-mesh/utils';
-import MeshCache from "@graphql-mesh/cache-localforage";
-import { fetch as fetchFn } from '@whatwg-node/fetch';
+import { InContextSdkMethod } from '@graphql-mesh/types';
+import { MeshContext } from '@graphql-mesh/runtime';
 
-import { MeshResolvedSource } from '@graphql-mesh/runtime';
-import { MeshTransform, MeshPlugin } from '@graphql-mesh/types';
-import GraphqlHandler from "@graphql-mesh/graphql"
-import BareMerger from "@graphql-mesh/merger-bare";
-import { printWithCache } from '@graphql-mesh/utils';
-import { usePersistedOperations } from '@graphql-yoga/plugin-persisted-operations';
-import { createMeshHTTPHandler, MeshHTTPHandler } from '@graphql-mesh/http';
-import { getMesh, ExecuteMeshFn, SubscribeMeshFn, MeshContext as BaseMeshContext, MeshInstance } from '@graphql-mesh/runtime';
-import { MeshStore, FsStoreStorageAdapter } from '@graphql-mesh/store';
-import { path as pathModule } from '@graphql-mesh/cross-helpers';
-import { ImportFn } from '@graphql-mesh/types';
-import type { GetUsersTypes } from './sources/GetUsers/types';
-import * as importedModule$0 from "./sources/GetUsers/introspectionSchema";
-export type Maybe<T> = T | null;
+export namespace GetUsersTypes {
+  export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
-export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
-
-
-
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -3293,912 +3270,230 @@ export type _SubgraphErrorPolicy_ =
   /** If the subgraph has indexing errors, data will be omitted. The default. */
   | 'deny';
 
-export type WithIndex<TObject> = TObject & Record<string, any>;
-export type ResolversObject<TObject> = WithIndex<TObject>;
-
-export type ResolverTypeWrapper<T> = Promise<T> | T;
-
-
-export type ResolverWithResolve<TResult, TParent, TContext, TArgs> = {
-  resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
-};
-
-export type LegacyStitchingResolver<TResult, TParent, TContext, TArgs> = {
-  fragment: string;
-  resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
-};
-
-export type NewStitchingResolver<TResult, TParent, TContext, TArgs> = {
-  selectionSet: string | ((fieldNode: FieldNode) => SelectionSetNode);
-  resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
-};
-export type StitchingResolver<TResult, TParent, TContext, TArgs> = LegacyStitchingResolver<TResult, TParent, TContext, TArgs> | NewStitchingResolver<TResult, TParent, TContext, TArgs>;
-export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> =
-  | ResolverFn<TResult, TParent, TContext, TArgs>
-  | ResolverWithResolve<TResult, TParent, TContext, TArgs>
-  | StitchingResolver<TResult, TParent, TContext, TArgs>;
-
-export type ResolverFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => Promise<TResult> | TResult;
-
-export type SubscriptionSubscribeFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => AsyncIterable<TResult> | Promise<AsyncIterable<TResult>>;
-
-export type SubscriptionResolveFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => TResult | Promise<TResult>;
-
-export interface SubscriptionSubscriberObject<TResult, TKey extends string, TParent, TContext, TArgs> {
-  subscribe: SubscriptionSubscribeFn<{ [key in TKey]: TResult }, TParent, TContext, TArgs>;
-  resolve?: SubscriptionResolveFn<TResult, { [key in TKey]: TResult }, TContext, TArgs>;
-}
-
-export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
-  subscribe: SubscriptionSubscribeFn<any, TParent, TContext, TArgs>;
-  resolve: SubscriptionResolveFn<TResult, any, TContext, TArgs>;
-}
-
-export type SubscriptionObject<TResult, TKey extends string, TParent, TContext, TArgs> =
-  | SubscriptionSubscriberObject<TResult, TKey, TParent, TContext, TArgs>
-  | SubscriptionResolverObject<TResult, TParent, TContext, TArgs>;
-
-export type SubscriptionResolver<TResult, TKey extends string, TParent = {}, TContext = {}, TArgs = {}> =
-  | ((...args: any[]) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
-  | SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>;
-
-export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
-  parent: TParent,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
-
-export type IsTypeOfResolverFn<T = {}, TContext = {}> = (obj: T, context: TContext, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
-
-export type NextResolverFn<T> = () => Promise<T>;
-
-export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs = {}> = (
-  next: NextResolverFn<TResult>,
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => TResult | Promise<TResult>;
-
-
-
-/** Mapping between all available schema types and the resolvers types */
-export type ResolversTypes = ResolversObject<{
-  AdminAdded: ResolverTypeWrapper<AdminAdded>;
-  AdminAdded_filter: AdminAdded_filter;
-  AdminAdded_orderBy: AdminAdded_orderBy;
-  AdminRemoved: ResolverTypeWrapper<AdminRemoved>;
-  AdminRemoved_filter: AdminRemoved_filter;
-  AdminRemoved_orderBy: AdminRemoved_orderBy;
-  Aggregation_interval: Aggregation_interval;
-  ApprovalForAll: ResolverTypeWrapper<ApprovalForAll>;
-  ApprovalForAll_filter: ApprovalForAll_filter;
-  ApprovalForAll_orderBy: ApprovalForAll_orderBy;
-  BasecampAddressSet: ResolverTypeWrapper<BasecampAddressSet>;
-  BasecampAddressSet_filter: BasecampAddressSet_filter;
-  BasecampAddressSet_orderBy: BasecampAddressSet_orderBy;
-  BigDecimal: ResolverTypeWrapper<Scalars['BigDecimal']['output']>;
-  BigInt: ResolverTypeWrapper<Scalars['BigInt']['output']>;
-  BlockChangedFilter: BlockChangedFilter;
-  Block_height: Block_height;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
-  Bytes: ResolverTypeWrapper<Scalars['Bytes']['output']>;
-  Credential: ResolverTypeWrapper<Credential>;
-  CredentialMinted: ResolverTypeWrapper<CredentialMinted>;
-  CredentialMinted_filter: CredentialMinted_filter;
-  CredentialMinted_orderBy: CredentialMinted_orderBy;
-  CredentialSet: ResolverTypeWrapper<CredentialSet>;
-  CredentialSet_filter: CredentialSet_filter;
-  CredentialSet_orderBy: CredentialSet_orderBy;
-  Credential_filter: Credential_filter;
-  Credential_orderBy: Credential_orderBy;
-  DonIdSet: ResolverTypeWrapper<DonIdSet>;
-  DonIdSet_filter: DonIdSet_filter;
-  DonIdSet_orderBy: DonIdSet_orderBy;
-  Float: ResolverTypeWrapper<Scalars['Float']['output']>;
-  FunctionsRouterAddressSet: ResolverTypeWrapper<FunctionsRouterAddressSet>;
-  FunctionsRouterAddressSet_filter: FunctionsRouterAddressSet_filter;
-  FunctionsRouterAddressSet_orderBy: FunctionsRouterAddressSet_orderBy;
-  ID: ResolverTypeWrapper<Scalars['ID']['output']>;
-  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
-  Int8: ResolverTypeWrapper<Scalars['Int8']['output']>;
-  MinterAdded: ResolverTypeWrapper<MinterAdded>;
-  MinterAdded_filter: MinterAdded_filter;
-  MinterAdded_orderBy: MinterAdded_orderBy;
-  MinterRemoved: ResolverTypeWrapper<MinterRemoved>;
-  MinterRemoved_filter: MinterRemoved_filter;
-  MinterRemoved_orderBy: MinterRemoved_orderBy;
-  MissionSubmitted: ResolverTypeWrapper<MissionSubmitted>;
-  MissionSubmitted_filter: MissionSubmitted_filter;
-  MissionSubmitted_orderBy: MissionSubmitted_orderBy;
-  MissionValidated: ResolverTypeWrapper<MissionValidated>;
-  MissionValidated_filter: MissionValidated_filter;
-  MissionValidated_orderBy: MissionValidated_orderBy;
-  OrderDirection: OrderDirection;
-  OwnershipTransferred: ResolverTypeWrapper<OwnershipTransferred>;
-  OwnershipTransferred_filter: OwnershipTransferred_filter;
-  OwnershipTransferred_orderBy: OwnershipTransferred_orderBy;
-  Query: ResolverTypeWrapper<{}>;
-  RequestFulfilled: ResolverTypeWrapper<RequestFulfilled>;
-  RequestFulfilled_filter: RequestFulfilled_filter;
-  RequestFulfilled_orderBy: RequestFulfilled_orderBy;
-  RequestSent: ResolverTypeWrapper<RequestSent>;
-  RequestSent_filter: RequestSent_filter;
-  RequestSent_orderBy: RequestSent_orderBy;
-  RoleAdminChanged: ResolverTypeWrapper<RoleAdminChanged>;
-  RoleAdminChanged_filter: RoleAdminChanged_filter;
-  RoleAdminChanged_orderBy: RoleAdminChanged_orderBy;
-  RoleGranted: ResolverTypeWrapper<RoleGranted>;
-  RoleGranted_filter: RoleGranted_filter;
-  RoleGranted_orderBy: RoleGranted_orderBy;
-  RoleRevoked: ResolverTypeWrapper<RoleRevoked>;
-  RoleRevoked_filter: RoleRevoked_filter;
-  RoleRevoked_orderBy: RoleRevoked_orderBy;
-  String: ResolverTypeWrapper<Scalars['String']['output']>;
-  Subscription: ResolverTypeWrapper<{}>;
-  Timestamp: ResolverTypeWrapper<Scalars['Timestamp']['output']>;
-  TransferBatch: ResolverTypeWrapper<TransferBatch>;
-  TransferBatch_filter: TransferBatch_filter;
-  TransferBatch_orderBy: TransferBatch_orderBy;
-  TransferSingle: ResolverTypeWrapper<TransferSingle>;
-  TransferSingle_filter: TransferSingle_filter;
-  TransferSingle_orderBy: TransferSingle_orderBy;
-  URI: ResolverTypeWrapper<URI>;
-  URI_filter: URI_filter;
-  URI_orderBy: URI_orderBy;
-  User: ResolverTypeWrapper<User>;
-  User_filter: User_filter;
-  User_orderBy: User_orderBy;
-  ValidatorOwnershipTransferred: ResolverTypeWrapper<ValidatorOwnershipTransferred>;
-  ValidatorOwnershipTransferred_filter: ValidatorOwnershipTransferred_filter;
-  ValidatorOwnershipTransferred_orderBy: ValidatorOwnershipTransferred_orderBy;
-  ValidatorWithdraw: ResolverTypeWrapper<ValidatorWithdraw>;
-  ValidatorWithdraw_filter: ValidatorWithdraw_filter;
-  ValidatorWithdraw_orderBy: ValidatorWithdraw_orderBy;
-  Withdraw: ResolverTypeWrapper<Withdraw>;
-  Withdraw_filter: Withdraw_filter;
-  Withdraw_orderBy: Withdraw_orderBy;
-  _Block_: ResolverTypeWrapper<_Block_>;
-  _Meta_: ResolverTypeWrapper<_Meta_>;
-  _SubgraphErrorPolicy_: _SubgraphErrorPolicy_;
-}>;
-
-/** Mapping between all available schema types and the resolvers parents */
-export type ResolversParentTypes = ResolversObject<{
-  AdminAdded: AdminAdded;
-  AdminAdded_filter: AdminAdded_filter;
-  AdminRemoved: AdminRemoved;
-  AdminRemoved_filter: AdminRemoved_filter;
-  ApprovalForAll: ApprovalForAll;
-  ApprovalForAll_filter: ApprovalForAll_filter;
-  BasecampAddressSet: BasecampAddressSet;
-  BasecampAddressSet_filter: BasecampAddressSet_filter;
-  BigDecimal: Scalars['BigDecimal']['output'];
-  BigInt: Scalars['BigInt']['output'];
-  BlockChangedFilter: BlockChangedFilter;
-  Block_height: Block_height;
-  Boolean: Scalars['Boolean']['output'];
-  Bytes: Scalars['Bytes']['output'];
-  Credential: Credential;
-  CredentialMinted: CredentialMinted;
-  CredentialMinted_filter: CredentialMinted_filter;
-  CredentialSet: CredentialSet;
-  CredentialSet_filter: CredentialSet_filter;
-  Credential_filter: Credential_filter;
-  DonIdSet: DonIdSet;
-  DonIdSet_filter: DonIdSet_filter;
-  Float: Scalars['Float']['output'];
-  FunctionsRouterAddressSet: FunctionsRouterAddressSet;
-  FunctionsRouterAddressSet_filter: FunctionsRouterAddressSet_filter;
-  ID: Scalars['ID']['output'];
-  Int: Scalars['Int']['output'];
-  Int8: Scalars['Int8']['output'];
-  MinterAdded: MinterAdded;
-  MinterAdded_filter: MinterAdded_filter;
-  MinterRemoved: MinterRemoved;
-  MinterRemoved_filter: MinterRemoved_filter;
-  MissionSubmitted: MissionSubmitted;
-  MissionSubmitted_filter: MissionSubmitted_filter;
-  MissionValidated: MissionValidated;
-  MissionValidated_filter: MissionValidated_filter;
-  OwnershipTransferred: OwnershipTransferred;
-  OwnershipTransferred_filter: OwnershipTransferred_filter;
-  Query: {};
-  RequestFulfilled: RequestFulfilled;
-  RequestFulfilled_filter: RequestFulfilled_filter;
-  RequestSent: RequestSent;
-  RequestSent_filter: RequestSent_filter;
-  RoleAdminChanged: RoleAdminChanged;
-  RoleAdminChanged_filter: RoleAdminChanged_filter;
-  RoleGranted: RoleGranted;
-  RoleGranted_filter: RoleGranted_filter;
-  RoleRevoked: RoleRevoked;
-  RoleRevoked_filter: RoleRevoked_filter;
-  String: Scalars['String']['output'];
-  Subscription: {};
-  Timestamp: Scalars['Timestamp']['output'];
-  TransferBatch: TransferBatch;
-  TransferBatch_filter: TransferBatch_filter;
-  TransferSingle: TransferSingle;
-  TransferSingle_filter: TransferSingle_filter;
-  URI: URI;
-  URI_filter: URI_filter;
-  User: User;
-  User_filter: User_filter;
-  ValidatorOwnershipTransferred: ValidatorOwnershipTransferred;
-  ValidatorOwnershipTransferred_filter: ValidatorOwnershipTransferred_filter;
-  ValidatorWithdraw: ValidatorWithdraw;
-  ValidatorWithdraw_filter: ValidatorWithdraw_filter;
-  Withdraw: Withdraw;
-  Withdraw_filter: Withdraw_filter;
-  _Block_: _Block_;
-  _Meta_: _Meta_;
-}>;
-
-export type entityDirectiveArgs = { };
-
-export type entityDirectiveResolver<Result, Parent, ContextType = MeshContext, Args = entityDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type subgraphIdDirectiveArgs = {
-  id: Scalars['String']['input'];
-};
-
-export type subgraphIdDirectiveResolver<Result, Parent, ContextType = MeshContext, Args = subgraphIdDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type derivedFromDirectiveArgs = {
-  field: Scalars['String']['input'];
-};
-
-export type derivedFromDirectiveResolver<Result, Parent, ContextType = MeshContext, Args = derivedFromDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type AdminAddedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['AdminAdded'] = ResolversParentTypes['AdminAdded']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  admin?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type AdminRemovedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['AdminRemoved'] = ResolversParentTypes['AdminRemoved']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  admin?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type ApprovalForAllResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['ApprovalForAll'] = ResolversParentTypes['ApprovalForAll']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  account?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  operator?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  approved?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type BasecampAddressSetResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['BasecampAddressSet'] = ResolversParentTypes['BasecampAddressSet']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  newBasecampAddress?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export interface BigDecimalScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['BigDecimal'], any> {
-  name: 'BigDecimal';
-}
-
-export interface BigIntScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['BigInt'], any> {
-  name: 'BigInt';
-}
-
-export interface BytesScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Bytes'], any> {
-  name: 'Bytes';
-}
-
-export type CredentialResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Credential'] = ResolversParentTypes['Credential']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  enabled?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  Basecamp_id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type CredentialMintedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['CredentialMinted'] = ResolversParentTypes['CredentialMinted']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  to?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
-  Basecamp_id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type CredentialSetResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['CredentialSet'] = ResolversParentTypes['CredentialSet']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  enabled?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  Basecamp_id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type DonIdSetResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['DonIdSet'] = ResolversParentTypes['DonIdSet']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  newDonId?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type FunctionsRouterAddressSetResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['FunctionsRouterAddressSet'] = ResolversParentTypes['FunctionsRouterAddressSet']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  newFunctionsRouterAddress?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export interface Int8ScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Int8'], any> {
-  name: 'Int8';
-}
-
-export type MinterAddedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['MinterAdded'] = ResolversParentTypes['MinterAdded']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  minter?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type MinterRemovedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['MinterRemoved'] = ResolversParentTypes['MinterRemoved']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  minter?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type MissionSubmittedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['MissionSubmitted'] = ResolversParentTypes['MissionSubmitted']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  requestId?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  missionIndex?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  queryUrl?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  account?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type MissionValidatedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['MissionValidated'] = ResolversParentTypes['MissionValidated']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  requestId?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  missionIndex?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  isValid?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  success?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  account?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type OwnershipTransferredResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['OwnershipTransferred'] = ResolversParentTypes['OwnershipTransferred']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  previousOwner?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  newOwner?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type QueryResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
-  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryuserArgs, 'id' | 'subgraphError'>>;
-  users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryusersArgs, 'skip' | 'first' | 'subgraphError'>>;
-  credential?: Resolver<Maybe<ResolversTypes['Credential']>, ParentType, ContextType, RequireFields<QuerycredentialArgs, 'id' | 'subgraphError'>>;
-  credentials?: Resolver<Array<ResolversTypes['Credential']>, ParentType, ContextType, RequireFields<QuerycredentialsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  adminAdded?: Resolver<Maybe<ResolversTypes['AdminAdded']>, ParentType, ContextType, RequireFields<QueryadminAddedArgs, 'id' | 'subgraphError'>>;
-  adminAddeds?: Resolver<Array<ResolversTypes['AdminAdded']>, ParentType, ContextType, RequireFields<QueryadminAddedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  adminRemoved?: Resolver<Maybe<ResolversTypes['AdminRemoved']>, ParentType, ContextType, RequireFields<QueryadminRemovedArgs, 'id' | 'subgraphError'>>;
-  adminRemoveds?: Resolver<Array<ResolversTypes['AdminRemoved']>, ParentType, ContextType, RequireFields<QueryadminRemovedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  approvalForAll?: Resolver<Maybe<ResolversTypes['ApprovalForAll']>, ParentType, ContextType, RequireFields<QueryapprovalForAllArgs, 'id' | 'subgraphError'>>;
-  approvalForAlls?: Resolver<Array<ResolversTypes['ApprovalForAll']>, ParentType, ContextType, RequireFields<QueryapprovalForAllsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  credentialMinted?: Resolver<Maybe<ResolversTypes['CredentialMinted']>, ParentType, ContextType, RequireFields<QuerycredentialMintedArgs, 'id' | 'subgraphError'>>;
-  credentialMinteds?: Resolver<Array<ResolversTypes['CredentialMinted']>, ParentType, ContextType, RequireFields<QuerycredentialMintedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  credentialSet?: Resolver<Maybe<ResolversTypes['CredentialSet']>, ParentType, ContextType, RequireFields<QuerycredentialSetArgs, 'id' | 'subgraphError'>>;
-  credentialSets?: Resolver<Array<ResolversTypes['CredentialSet']>, ParentType, ContextType, RequireFields<QuerycredentialSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  minterAdded?: Resolver<Maybe<ResolversTypes['MinterAdded']>, ParentType, ContextType, RequireFields<QueryminterAddedArgs, 'id' | 'subgraphError'>>;
-  minterAddeds?: Resolver<Array<ResolversTypes['MinterAdded']>, ParentType, ContextType, RequireFields<QueryminterAddedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  minterRemoved?: Resolver<Maybe<ResolversTypes['MinterRemoved']>, ParentType, ContextType, RequireFields<QueryminterRemovedArgs, 'id' | 'subgraphError'>>;
-  minterRemoveds?: Resolver<Array<ResolversTypes['MinterRemoved']>, ParentType, ContextType, RequireFields<QueryminterRemovedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  ownershipTransferred?: Resolver<Maybe<ResolversTypes['OwnershipTransferred']>, ParentType, ContextType, RequireFields<QueryownershipTransferredArgs, 'id' | 'subgraphError'>>;
-  ownershipTransferreds?: Resolver<Array<ResolversTypes['OwnershipTransferred']>, ParentType, ContextType, RequireFields<QueryownershipTransferredsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  roleAdminChanged?: Resolver<Maybe<ResolversTypes['RoleAdminChanged']>, ParentType, ContextType, RequireFields<QueryroleAdminChangedArgs, 'id' | 'subgraphError'>>;
-  roleAdminChangeds?: Resolver<Array<ResolversTypes['RoleAdminChanged']>, ParentType, ContextType, RequireFields<QueryroleAdminChangedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  roleGranted?: Resolver<Maybe<ResolversTypes['RoleGranted']>, ParentType, ContextType, RequireFields<QueryroleGrantedArgs, 'id' | 'subgraphError'>>;
-  roleGranteds?: Resolver<Array<ResolversTypes['RoleGranted']>, ParentType, ContextType, RequireFields<QueryroleGrantedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  roleRevoked?: Resolver<Maybe<ResolversTypes['RoleRevoked']>, ParentType, ContextType, RequireFields<QueryroleRevokedArgs, 'id' | 'subgraphError'>>;
-  roleRevokeds?: Resolver<Array<ResolversTypes['RoleRevoked']>, ParentType, ContextType, RequireFields<QueryroleRevokedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  transferBatch?: Resolver<Maybe<ResolversTypes['TransferBatch']>, ParentType, ContextType, RequireFields<QuerytransferBatchArgs, 'id' | 'subgraphError'>>;
-  transferBatches?: Resolver<Array<ResolversTypes['TransferBatch']>, ParentType, ContextType, RequireFields<QuerytransferBatchesArgs, 'skip' | 'first' | 'subgraphError'>>;
-  transferSingle?: Resolver<Maybe<ResolversTypes['TransferSingle']>, ParentType, ContextType, RequireFields<QuerytransferSingleArgs, 'id' | 'subgraphError'>>;
-  transferSingles?: Resolver<Array<ResolversTypes['TransferSingle']>, ParentType, ContextType, RequireFields<QuerytransferSinglesArgs, 'skip' | 'first' | 'subgraphError'>>;
-  uri?: Resolver<Maybe<ResolversTypes['URI']>, ParentType, ContextType, RequireFields<QueryuriArgs, 'id' | 'subgraphError'>>;
-  uris?: Resolver<Array<ResolversTypes['URI']>, ParentType, ContextType, RequireFields<QueryurisArgs, 'skip' | 'first' | 'subgraphError'>>;
-  withdraw?: Resolver<Maybe<ResolversTypes['Withdraw']>, ParentType, ContextType, RequireFields<QuerywithdrawArgs, 'id' | 'subgraphError'>>;
-  withdraws?: Resolver<Array<ResolversTypes['Withdraw']>, ParentType, ContextType, RequireFields<QuerywithdrawsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  basecampAddressSet?: Resolver<Maybe<ResolversTypes['BasecampAddressSet']>, ParentType, ContextType, RequireFields<QuerybasecampAddressSetArgs, 'id' | 'subgraphError'>>;
-  basecampAddressSets?: Resolver<Array<ResolversTypes['BasecampAddressSet']>, ParentType, ContextType, RequireFields<QuerybasecampAddressSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  donIdSet?: Resolver<Maybe<ResolversTypes['DonIdSet']>, ParentType, ContextType, RequireFields<QuerydonIdSetArgs, 'id' | 'subgraphError'>>;
-  donIdSets?: Resolver<Array<ResolversTypes['DonIdSet']>, ParentType, ContextType, RequireFields<QuerydonIdSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  functionsRouterAddressSet?: Resolver<Maybe<ResolversTypes['FunctionsRouterAddressSet']>, ParentType, ContextType, RequireFields<QueryfunctionsRouterAddressSetArgs, 'id' | 'subgraphError'>>;
-  functionsRouterAddressSets?: Resolver<Array<ResolversTypes['FunctionsRouterAddressSet']>, ParentType, ContextType, RequireFields<QueryfunctionsRouterAddressSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  missionSubmitted?: Resolver<Maybe<ResolversTypes['MissionSubmitted']>, ParentType, ContextType, RequireFields<QuerymissionSubmittedArgs, 'id' | 'subgraphError'>>;
-  missionSubmitteds?: Resolver<Array<ResolversTypes['MissionSubmitted']>, ParentType, ContextType, RequireFields<QuerymissionSubmittedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  missionValidated?: Resolver<Maybe<ResolversTypes['MissionValidated']>, ParentType, ContextType, RequireFields<QuerymissionValidatedArgs, 'id' | 'subgraphError'>>;
-  missionValidateds?: Resolver<Array<ResolversTypes['MissionValidated']>, ParentType, ContextType, RequireFields<QuerymissionValidatedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  validatorOwnershipTransferred?: Resolver<Maybe<ResolversTypes['ValidatorOwnershipTransferred']>, ParentType, ContextType, RequireFields<QueryvalidatorOwnershipTransferredArgs, 'id' | 'subgraphError'>>;
-  validatorOwnershipTransferreds?: Resolver<Array<ResolversTypes['ValidatorOwnershipTransferred']>, ParentType, ContextType, RequireFields<QueryvalidatorOwnershipTransferredsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  requestFulfilled?: Resolver<Maybe<ResolversTypes['RequestFulfilled']>, ParentType, ContextType, RequireFields<QueryrequestFulfilledArgs, 'id' | 'subgraphError'>>;
-  requestFulfilleds?: Resolver<Array<ResolversTypes['RequestFulfilled']>, ParentType, ContextType, RequireFields<QueryrequestFulfilledsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  requestSent?: Resolver<Maybe<ResolversTypes['RequestSent']>, ParentType, ContextType, RequireFields<QueryrequestSentArgs, 'id' | 'subgraphError'>>;
-  requestSents?: Resolver<Array<ResolversTypes['RequestSent']>, ParentType, ContextType, RequireFields<QueryrequestSentsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  validatorWithdraw?: Resolver<Maybe<ResolversTypes['ValidatorWithdraw']>, ParentType, ContextType, RequireFields<QueryvalidatorWithdrawArgs, 'id' | 'subgraphError'>>;
-  validatorWithdraws?: Resolver<Array<ResolversTypes['ValidatorWithdraw']>, ParentType, ContextType, RequireFields<QueryvalidatorWithdrawsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  _meta?: Resolver<Maybe<ResolversTypes['_Meta_']>, ParentType, ContextType, Partial<Query_metaArgs>>;
-}>;
-
-export type RequestFulfilledResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['RequestFulfilled'] = ResolversParentTypes['RequestFulfilled']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  Validator_id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type RequestSentResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['RequestSent'] = ResolversParentTypes['RequestSent']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  Validator_id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type RoleAdminChangedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['RoleAdminChanged'] = ResolversParentTypes['RoleAdminChanged']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  role?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  previousAdminRole?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  newAdminRole?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type RoleGrantedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['RoleGranted'] = ResolversParentTypes['RoleGranted']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  role?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  account?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  sender?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type RoleRevokedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['RoleRevoked'] = ResolversParentTypes['RoleRevoked']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  role?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  account?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  sender?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type SubscriptionResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Subscription'] = ResolversParentTypes['Subscription']> = ResolversObject<{
-  user?: SubscriptionResolver<Maybe<ResolversTypes['User']>, "user", ParentType, ContextType, RequireFields<SubscriptionuserArgs, 'id' | 'subgraphError'>>;
-  users?: SubscriptionResolver<Array<ResolversTypes['User']>, "users", ParentType, ContextType, RequireFields<SubscriptionusersArgs, 'skip' | 'first' | 'subgraphError'>>;
-  credential?: SubscriptionResolver<Maybe<ResolversTypes['Credential']>, "credential", ParentType, ContextType, RequireFields<SubscriptioncredentialArgs, 'id' | 'subgraphError'>>;
-  credentials?: SubscriptionResolver<Array<ResolversTypes['Credential']>, "credentials", ParentType, ContextType, RequireFields<SubscriptioncredentialsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  adminAdded?: SubscriptionResolver<Maybe<ResolversTypes['AdminAdded']>, "adminAdded", ParentType, ContextType, RequireFields<SubscriptionadminAddedArgs, 'id' | 'subgraphError'>>;
-  adminAddeds?: SubscriptionResolver<Array<ResolversTypes['AdminAdded']>, "adminAddeds", ParentType, ContextType, RequireFields<SubscriptionadminAddedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  adminRemoved?: SubscriptionResolver<Maybe<ResolversTypes['AdminRemoved']>, "adminRemoved", ParentType, ContextType, RequireFields<SubscriptionadminRemovedArgs, 'id' | 'subgraphError'>>;
-  adminRemoveds?: SubscriptionResolver<Array<ResolversTypes['AdminRemoved']>, "adminRemoveds", ParentType, ContextType, RequireFields<SubscriptionadminRemovedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  approvalForAll?: SubscriptionResolver<Maybe<ResolversTypes['ApprovalForAll']>, "approvalForAll", ParentType, ContextType, RequireFields<SubscriptionapprovalForAllArgs, 'id' | 'subgraphError'>>;
-  approvalForAlls?: SubscriptionResolver<Array<ResolversTypes['ApprovalForAll']>, "approvalForAlls", ParentType, ContextType, RequireFields<SubscriptionapprovalForAllsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  credentialMinted?: SubscriptionResolver<Maybe<ResolversTypes['CredentialMinted']>, "credentialMinted", ParentType, ContextType, RequireFields<SubscriptioncredentialMintedArgs, 'id' | 'subgraphError'>>;
-  credentialMinteds?: SubscriptionResolver<Array<ResolversTypes['CredentialMinted']>, "credentialMinteds", ParentType, ContextType, RequireFields<SubscriptioncredentialMintedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  credentialSet?: SubscriptionResolver<Maybe<ResolversTypes['CredentialSet']>, "credentialSet", ParentType, ContextType, RequireFields<SubscriptioncredentialSetArgs, 'id' | 'subgraphError'>>;
-  credentialSets?: SubscriptionResolver<Array<ResolversTypes['CredentialSet']>, "credentialSets", ParentType, ContextType, RequireFields<SubscriptioncredentialSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  minterAdded?: SubscriptionResolver<Maybe<ResolversTypes['MinterAdded']>, "minterAdded", ParentType, ContextType, RequireFields<SubscriptionminterAddedArgs, 'id' | 'subgraphError'>>;
-  minterAddeds?: SubscriptionResolver<Array<ResolversTypes['MinterAdded']>, "minterAddeds", ParentType, ContextType, RequireFields<SubscriptionminterAddedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  minterRemoved?: SubscriptionResolver<Maybe<ResolversTypes['MinterRemoved']>, "minterRemoved", ParentType, ContextType, RequireFields<SubscriptionminterRemovedArgs, 'id' | 'subgraphError'>>;
-  minterRemoveds?: SubscriptionResolver<Array<ResolversTypes['MinterRemoved']>, "minterRemoveds", ParentType, ContextType, RequireFields<SubscriptionminterRemovedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  ownershipTransferred?: SubscriptionResolver<Maybe<ResolversTypes['OwnershipTransferred']>, "ownershipTransferred", ParentType, ContextType, RequireFields<SubscriptionownershipTransferredArgs, 'id' | 'subgraphError'>>;
-  ownershipTransferreds?: SubscriptionResolver<Array<ResolversTypes['OwnershipTransferred']>, "ownershipTransferreds", ParentType, ContextType, RequireFields<SubscriptionownershipTransferredsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  roleAdminChanged?: SubscriptionResolver<Maybe<ResolversTypes['RoleAdminChanged']>, "roleAdminChanged", ParentType, ContextType, RequireFields<SubscriptionroleAdminChangedArgs, 'id' | 'subgraphError'>>;
-  roleAdminChangeds?: SubscriptionResolver<Array<ResolversTypes['RoleAdminChanged']>, "roleAdminChangeds", ParentType, ContextType, RequireFields<SubscriptionroleAdminChangedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  roleGranted?: SubscriptionResolver<Maybe<ResolversTypes['RoleGranted']>, "roleGranted", ParentType, ContextType, RequireFields<SubscriptionroleGrantedArgs, 'id' | 'subgraphError'>>;
-  roleGranteds?: SubscriptionResolver<Array<ResolversTypes['RoleGranted']>, "roleGranteds", ParentType, ContextType, RequireFields<SubscriptionroleGrantedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  roleRevoked?: SubscriptionResolver<Maybe<ResolversTypes['RoleRevoked']>, "roleRevoked", ParentType, ContextType, RequireFields<SubscriptionroleRevokedArgs, 'id' | 'subgraphError'>>;
-  roleRevokeds?: SubscriptionResolver<Array<ResolversTypes['RoleRevoked']>, "roleRevokeds", ParentType, ContextType, RequireFields<SubscriptionroleRevokedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  transferBatch?: SubscriptionResolver<Maybe<ResolversTypes['TransferBatch']>, "transferBatch", ParentType, ContextType, RequireFields<SubscriptiontransferBatchArgs, 'id' | 'subgraphError'>>;
-  transferBatches?: SubscriptionResolver<Array<ResolversTypes['TransferBatch']>, "transferBatches", ParentType, ContextType, RequireFields<SubscriptiontransferBatchesArgs, 'skip' | 'first' | 'subgraphError'>>;
-  transferSingle?: SubscriptionResolver<Maybe<ResolversTypes['TransferSingle']>, "transferSingle", ParentType, ContextType, RequireFields<SubscriptiontransferSingleArgs, 'id' | 'subgraphError'>>;
-  transferSingles?: SubscriptionResolver<Array<ResolversTypes['TransferSingle']>, "transferSingles", ParentType, ContextType, RequireFields<SubscriptiontransferSinglesArgs, 'skip' | 'first' | 'subgraphError'>>;
-  uri?: SubscriptionResolver<Maybe<ResolversTypes['URI']>, "uri", ParentType, ContextType, RequireFields<SubscriptionuriArgs, 'id' | 'subgraphError'>>;
-  uris?: SubscriptionResolver<Array<ResolversTypes['URI']>, "uris", ParentType, ContextType, RequireFields<SubscriptionurisArgs, 'skip' | 'first' | 'subgraphError'>>;
-  withdraw?: SubscriptionResolver<Maybe<ResolversTypes['Withdraw']>, "withdraw", ParentType, ContextType, RequireFields<SubscriptionwithdrawArgs, 'id' | 'subgraphError'>>;
-  withdraws?: SubscriptionResolver<Array<ResolversTypes['Withdraw']>, "withdraws", ParentType, ContextType, RequireFields<SubscriptionwithdrawsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  basecampAddressSet?: SubscriptionResolver<Maybe<ResolversTypes['BasecampAddressSet']>, "basecampAddressSet", ParentType, ContextType, RequireFields<SubscriptionbasecampAddressSetArgs, 'id' | 'subgraphError'>>;
-  basecampAddressSets?: SubscriptionResolver<Array<ResolversTypes['BasecampAddressSet']>, "basecampAddressSets", ParentType, ContextType, RequireFields<SubscriptionbasecampAddressSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  donIdSet?: SubscriptionResolver<Maybe<ResolversTypes['DonIdSet']>, "donIdSet", ParentType, ContextType, RequireFields<SubscriptiondonIdSetArgs, 'id' | 'subgraphError'>>;
-  donIdSets?: SubscriptionResolver<Array<ResolversTypes['DonIdSet']>, "donIdSets", ParentType, ContextType, RequireFields<SubscriptiondonIdSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  functionsRouterAddressSet?: SubscriptionResolver<Maybe<ResolversTypes['FunctionsRouterAddressSet']>, "functionsRouterAddressSet", ParentType, ContextType, RequireFields<SubscriptionfunctionsRouterAddressSetArgs, 'id' | 'subgraphError'>>;
-  functionsRouterAddressSets?: SubscriptionResolver<Array<ResolversTypes['FunctionsRouterAddressSet']>, "functionsRouterAddressSets", ParentType, ContextType, RequireFields<SubscriptionfunctionsRouterAddressSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  missionSubmitted?: SubscriptionResolver<Maybe<ResolversTypes['MissionSubmitted']>, "missionSubmitted", ParentType, ContextType, RequireFields<SubscriptionmissionSubmittedArgs, 'id' | 'subgraphError'>>;
-  missionSubmitteds?: SubscriptionResolver<Array<ResolversTypes['MissionSubmitted']>, "missionSubmitteds", ParentType, ContextType, RequireFields<SubscriptionmissionSubmittedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  missionValidated?: SubscriptionResolver<Maybe<ResolversTypes['MissionValidated']>, "missionValidated", ParentType, ContextType, RequireFields<SubscriptionmissionValidatedArgs, 'id' | 'subgraphError'>>;
-  missionValidateds?: SubscriptionResolver<Array<ResolversTypes['MissionValidated']>, "missionValidateds", ParentType, ContextType, RequireFields<SubscriptionmissionValidatedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  validatorOwnershipTransferred?: SubscriptionResolver<Maybe<ResolversTypes['ValidatorOwnershipTransferred']>, "validatorOwnershipTransferred", ParentType, ContextType, RequireFields<SubscriptionvalidatorOwnershipTransferredArgs, 'id' | 'subgraphError'>>;
-  validatorOwnershipTransferreds?: SubscriptionResolver<Array<ResolversTypes['ValidatorOwnershipTransferred']>, "validatorOwnershipTransferreds", ParentType, ContextType, RequireFields<SubscriptionvalidatorOwnershipTransferredsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  requestFulfilled?: SubscriptionResolver<Maybe<ResolversTypes['RequestFulfilled']>, "requestFulfilled", ParentType, ContextType, RequireFields<SubscriptionrequestFulfilledArgs, 'id' | 'subgraphError'>>;
-  requestFulfilleds?: SubscriptionResolver<Array<ResolversTypes['RequestFulfilled']>, "requestFulfilleds", ParentType, ContextType, RequireFields<SubscriptionrequestFulfilledsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  requestSent?: SubscriptionResolver<Maybe<ResolversTypes['RequestSent']>, "requestSent", ParentType, ContextType, RequireFields<SubscriptionrequestSentArgs, 'id' | 'subgraphError'>>;
-  requestSents?: SubscriptionResolver<Array<ResolversTypes['RequestSent']>, "requestSents", ParentType, ContextType, RequireFields<SubscriptionrequestSentsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  validatorWithdraw?: SubscriptionResolver<Maybe<ResolversTypes['ValidatorWithdraw']>, "validatorWithdraw", ParentType, ContextType, RequireFields<SubscriptionvalidatorWithdrawArgs, 'id' | 'subgraphError'>>;
-  validatorWithdraws?: SubscriptionResolver<Array<ResolversTypes['ValidatorWithdraw']>, "validatorWithdraws", ParentType, ContextType, RequireFields<SubscriptionvalidatorWithdrawsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  _meta?: SubscriptionResolver<Maybe<ResolversTypes['_Meta_']>, "_meta", ParentType, ContextType, Partial<Subscription_metaArgs>>;
-}>;
-
-export interface TimestampScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Timestamp'], any> {
-  name: 'Timestamp';
-}
-
-export type TransferBatchResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['TransferBatch'] = ResolversParentTypes['TransferBatch']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  operator?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  from?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  to?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  ids?: Resolver<Array<ResolversTypes['BigInt']>, ParentType, ContextType>;
-  values?: Resolver<Array<ResolversTypes['BigInt']>, ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type TransferSingleResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['TransferSingle'] = ResolversParentTypes['TransferSingle']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  operator?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  from?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  to?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  Basecamp_id?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  value?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type URIResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['URI'] = ResolversParentTypes['URI']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  value?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  Basecamp_id?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type UserResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  address?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  credentials?: Resolver<Maybe<Array<ResolversTypes['CredentialMinted']>>, ParentType, ContextType, RequireFields<UsercredentialsArgs, 'skip' | 'first'>>;
-  rank?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockNumber?: Resolver<Maybe<ResolversTypes['BigInt']>, ParentType, ContextType>;
-  blockTimestamp?: Resolver<Maybe<ResolversTypes['BigInt']>, ParentType, ContextType>;
-  transactionHash?: Resolver<Maybe<ResolversTypes['Bytes']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type ValidatorOwnershipTransferredResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['ValidatorOwnershipTransferred'] = ResolversParentTypes['ValidatorOwnershipTransferred']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  previousOwner?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  newOwner?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type ValidatorWithdrawResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['ValidatorWithdraw'] = ResolversParentTypes['ValidatorWithdraw']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  amount?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type WithdrawResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Withdraw'] = ResolversParentTypes['Withdraw']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  amount?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type _Block_Resolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['_Block_'] = ResolversParentTypes['_Block_']> = ResolversObject<{
-  hash?: Resolver<Maybe<ResolversTypes['Bytes']>, ParentType, ContextType>;
-  number?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  timestamp?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  parentHash?: Resolver<Maybe<ResolversTypes['Bytes']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type _Meta_Resolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['_Meta_'] = ResolversParentTypes['_Meta_']> = ResolversObject<{
-  block?: Resolver<ResolversTypes['_Block_'], ParentType, ContextType>;
-  deployment?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  hasIndexingErrors?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type Resolvers<ContextType = MeshContext> = ResolversObject<{
-  AdminAdded?: AdminAddedResolvers<ContextType>;
-  AdminRemoved?: AdminRemovedResolvers<ContextType>;
-  ApprovalForAll?: ApprovalForAllResolvers<ContextType>;
-  BasecampAddressSet?: BasecampAddressSetResolvers<ContextType>;
-  BigDecimal?: GraphQLScalarType;
-  BigInt?: GraphQLScalarType;
-  Bytes?: GraphQLScalarType;
-  Credential?: CredentialResolvers<ContextType>;
-  CredentialMinted?: CredentialMintedResolvers<ContextType>;
-  CredentialSet?: CredentialSetResolvers<ContextType>;
-  DonIdSet?: DonIdSetResolvers<ContextType>;
-  FunctionsRouterAddressSet?: FunctionsRouterAddressSetResolvers<ContextType>;
-  Int8?: GraphQLScalarType;
-  MinterAdded?: MinterAddedResolvers<ContextType>;
-  MinterRemoved?: MinterRemovedResolvers<ContextType>;
-  MissionSubmitted?: MissionSubmittedResolvers<ContextType>;
-  MissionValidated?: MissionValidatedResolvers<ContextType>;
-  OwnershipTransferred?: OwnershipTransferredResolvers<ContextType>;
-  Query?: QueryResolvers<ContextType>;
-  RequestFulfilled?: RequestFulfilledResolvers<ContextType>;
-  RequestSent?: RequestSentResolvers<ContextType>;
-  RoleAdminChanged?: RoleAdminChangedResolvers<ContextType>;
-  RoleGranted?: RoleGrantedResolvers<ContextType>;
-  RoleRevoked?: RoleRevokedResolvers<ContextType>;
-  Subscription?: SubscriptionResolvers<ContextType>;
-  Timestamp?: GraphQLScalarType;
-  TransferBatch?: TransferBatchResolvers<ContextType>;
-  TransferSingle?: TransferSingleResolvers<ContextType>;
-  URI?: URIResolvers<ContextType>;
-  User?: UserResolvers<ContextType>;
-  ValidatorOwnershipTransferred?: ValidatorOwnershipTransferredResolvers<ContextType>;
-  ValidatorWithdraw?: ValidatorWithdrawResolvers<ContextType>;
-  Withdraw?: WithdrawResolvers<ContextType>;
-  _Block_?: _Block_Resolvers<ContextType>;
-  _Meta_?: _Meta_Resolvers<ContextType>;
-}>;
-
-export type DirectiveResolvers<ContextType = MeshContext> = ResolversObject<{
-  entity?: entityDirectiveResolver<any, any, ContextType>;
-  subgraphId?: subgraphIdDirectiveResolver<any, any, ContextType>;
-  derivedFrom?: derivedFromDirectiveResolver<any, any, ContextType>;
-}>;
-
-export type MeshContext = GetUsersTypes.Context & BaseMeshContext;
-
-
-import { fileURLToPath } from '@graphql-mesh/utils';
-const baseDir = pathModule.join(pathModule.dirname(fileURLToPath(import.meta.url)), '..');
-
-const importFn: ImportFn = <T>(moduleId: string) => {
-  const relativeModuleId = (pathModule.isAbsolute(moduleId) ? pathModule.relative(baseDir, moduleId) : moduleId).split('\\').join('/').replace(baseDir + '/', '');
-  switch(relativeModuleId) {
-    case ".graphclient/sources/GetUsers/introspectionSchema":
-      return Promise.resolve(importedModule$0) as T;
+  export type QuerySdk = {
+      /** null **/
+  user: InContextSdkMethod<Query['user'], QueryuserArgs, MeshContext>,
+  /** null **/
+  users: InContextSdkMethod<Query['users'], QueryusersArgs, MeshContext>,
+  /** null **/
+  credential: InContextSdkMethod<Query['credential'], QuerycredentialArgs, MeshContext>,
+  /** null **/
+  credentials: InContextSdkMethod<Query['credentials'], QuerycredentialsArgs, MeshContext>,
+  /** null **/
+  adminAdded: InContextSdkMethod<Query['adminAdded'], QueryadminAddedArgs, MeshContext>,
+  /** null **/
+  adminAddeds: InContextSdkMethod<Query['adminAddeds'], QueryadminAddedsArgs, MeshContext>,
+  /** null **/
+  adminRemoved: InContextSdkMethod<Query['adminRemoved'], QueryadminRemovedArgs, MeshContext>,
+  /** null **/
+  adminRemoveds: InContextSdkMethod<Query['adminRemoveds'], QueryadminRemovedsArgs, MeshContext>,
+  /** null **/
+  approvalForAll: InContextSdkMethod<Query['approvalForAll'], QueryapprovalForAllArgs, MeshContext>,
+  /** null **/
+  approvalForAlls: InContextSdkMethod<Query['approvalForAlls'], QueryapprovalForAllsArgs, MeshContext>,
+  /** null **/
+  credentialMinted: InContextSdkMethod<Query['credentialMinted'], QuerycredentialMintedArgs, MeshContext>,
+  /** null **/
+  credentialMinteds: InContextSdkMethod<Query['credentialMinteds'], QuerycredentialMintedsArgs, MeshContext>,
+  /** null **/
+  credentialSet: InContextSdkMethod<Query['credentialSet'], QuerycredentialSetArgs, MeshContext>,
+  /** null **/
+  credentialSets: InContextSdkMethod<Query['credentialSets'], QuerycredentialSetsArgs, MeshContext>,
+  /** null **/
+  minterAdded: InContextSdkMethod<Query['minterAdded'], QueryminterAddedArgs, MeshContext>,
+  /** null **/
+  minterAddeds: InContextSdkMethod<Query['minterAddeds'], QueryminterAddedsArgs, MeshContext>,
+  /** null **/
+  minterRemoved: InContextSdkMethod<Query['minterRemoved'], QueryminterRemovedArgs, MeshContext>,
+  /** null **/
+  minterRemoveds: InContextSdkMethod<Query['minterRemoveds'], QueryminterRemovedsArgs, MeshContext>,
+  /** null **/
+  ownershipTransferred: InContextSdkMethod<Query['ownershipTransferred'], QueryownershipTransferredArgs, MeshContext>,
+  /** null **/
+  ownershipTransferreds: InContextSdkMethod<Query['ownershipTransferreds'], QueryownershipTransferredsArgs, MeshContext>,
+  /** null **/
+  roleAdminChanged: InContextSdkMethod<Query['roleAdminChanged'], QueryroleAdminChangedArgs, MeshContext>,
+  /** null **/
+  roleAdminChangeds: InContextSdkMethod<Query['roleAdminChangeds'], QueryroleAdminChangedsArgs, MeshContext>,
+  /** null **/
+  roleGranted: InContextSdkMethod<Query['roleGranted'], QueryroleGrantedArgs, MeshContext>,
+  /** null **/
+  roleGranteds: InContextSdkMethod<Query['roleGranteds'], QueryroleGrantedsArgs, MeshContext>,
+  /** null **/
+  roleRevoked: InContextSdkMethod<Query['roleRevoked'], QueryroleRevokedArgs, MeshContext>,
+  /** null **/
+  roleRevokeds: InContextSdkMethod<Query['roleRevokeds'], QueryroleRevokedsArgs, MeshContext>,
+  /** null **/
+  transferBatch: InContextSdkMethod<Query['transferBatch'], QuerytransferBatchArgs, MeshContext>,
+  /** null **/
+  transferBatches: InContextSdkMethod<Query['transferBatches'], QuerytransferBatchesArgs, MeshContext>,
+  /** null **/
+  transferSingle: InContextSdkMethod<Query['transferSingle'], QuerytransferSingleArgs, MeshContext>,
+  /** null **/
+  transferSingles: InContextSdkMethod<Query['transferSingles'], QuerytransferSinglesArgs, MeshContext>,
+  /** null **/
+  uri: InContextSdkMethod<Query['uri'], QueryuriArgs, MeshContext>,
+  /** null **/
+  uris: InContextSdkMethod<Query['uris'], QueryurisArgs, MeshContext>,
+  /** null **/
+  withdraw: InContextSdkMethod<Query['withdraw'], QuerywithdrawArgs, MeshContext>,
+  /** null **/
+  withdraws: InContextSdkMethod<Query['withdraws'], QuerywithdrawsArgs, MeshContext>,
+  /** null **/
+  basecampAddressSet: InContextSdkMethod<Query['basecampAddressSet'], QuerybasecampAddressSetArgs, MeshContext>,
+  /** null **/
+  basecampAddressSets: InContextSdkMethod<Query['basecampAddressSets'], QuerybasecampAddressSetsArgs, MeshContext>,
+  /** null **/
+  donIdSet: InContextSdkMethod<Query['donIdSet'], QuerydonIdSetArgs, MeshContext>,
+  /** null **/
+  donIdSets: InContextSdkMethod<Query['donIdSets'], QuerydonIdSetsArgs, MeshContext>,
+  /** null **/
+  functionsRouterAddressSet: InContextSdkMethod<Query['functionsRouterAddressSet'], QueryfunctionsRouterAddressSetArgs, MeshContext>,
+  /** null **/
+  functionsRouterAddressSets: InContextSdkMethod<Query['functionsRouterAddressSets'], QueryfunctionsRouterAddressSetsArgs, MeshContext>,
+  /** null **/
+  missionSubmitted: InContextSdkMethod<Query['missionSubmitted'], QuerymissionSubmittedArgs, MeshContext>,
+  /** null **/
+  missionSubmitteds: InContextSdkMethod<Query['missionSubmitteds'], QuerymissionSubmittedsArgs, MeshContext>,
+  /** null **/
+  missionValidated: InContextSdkMethod<Query['missionValidated'], QuerymissionValidatedArgs, MeshContext>,
+  /** null **/
+  missionValidateds: InContextSdkMethod<Query['missionValidateds'], QuerymissionValidatedsArgs, MeshContext>,
+  /** null **/
+  validatorOwnershipTransferred: InContextSdkMethod<Query['validatorOwnershipTransferred'], QueryvalidatorOwnershipTransferredArgs, MeshContext>,
+  /** null **/
+  validatorOwnershipTransferreds: InContextSdkMethod<Query['validatorOwnershipTransferreds'], QueryvalidatorOwnershipTransferredsArgs, MeshContext>,
+  /** null **/
+  requestFulfilled: InContextSdkMethod<Query['requestFulfilled'], QueryrequestFulfilledArgs, MeshContext>,
+  /** null **/
+  requestFulfilleds: InContextSdkMethod<Query['requestFulfilleds'], QueryrequestFulfilledsArgs, MeshContext>,
+  /** null **/
+  requestSent: InContextSdkMethod<Query['requestSent'], QueryrequestSentArgs, MeshContext>,
+  /** null **/
+  requestSents: InContextSdkMethod<Query['requestSents'], QueryrequestSentsArgs, MeshContext>,
+  /** null **/
+  validatorWithdraw: InContextSdkMethod<Query['validatorWithdraw'], QueryvalidatorWithdrawArgs, MeshContext>,
+  /** null **/
+  validatorWithdraws: InContextSdkMethod<Query['validatorWithdraws'], QueryvalidatorWithdrawsArgs, MeshContext>,
+  /** Access to subgraph metadata **/
+  _meta: InContextSdkMethod<Query['_meta'], Query_metaArgs, MeshContext>
+  };
+
+  export type MutationSdk = {
     
-    default:
-      return Promise.reject(new Error(`Cannot find module '${relativeModuleId}'.`));
-  }
-};
-
-const rootStore = new MeshStore('.graphclient', new FsStoreStorageAdapter({
-  cwd: baseDir,
-  importFn,
-  fileType: "ts",
-}), {
-  readonly: true,
-  validate: false
-});
-
-export const rawServeConfig: YamlConfig.Config['serve'] = undefined as any
-export async function getMeshOptions(): Promise<GetMeshOptions> {
-const pubsub = new PubSub();
-const sourcesStore = rootStore.child('sources');
-const logger = new DefaultLogger("GraphClient");
-const cache = new (MeshCache as any)({
-      ...({} as any),
-      importFn,
-      store: rootStore.child('cache'),
-      pubsub,
-      logger,
-    } as any)
-
-const sources: MeshResolvedSource[] = [];
-const transforms: MeshTransform[] = [];
-const additionalEnvelopPlugins: MeshPlugin<any>[] = [];
-const getUsersTransforms = [];
-const additionalTypeDefs = [] as any[];
-const getUsersHandler = new GraphqlHandler({
-              name: "GetUsers",
-              config: {"endpoint":"https://api.studio.thegraph.com/query/37762/basecamp-sepolia/version/latest"},
-              baseDir,
-              cache,
-              pubsub,
-              store: sourcesStore.child("GetUsers"),
-              logger: logger.child("GetUsers"),
-              importFn,
-            });
-sources[0] = {
-          name: 'GetUsers',
-          handler: getUsersHandler,
-          transforms: getUsersTransforms
-        }
-const additionalResolvers = [] as any[]
-const merger = new(BareMerger as any)({
-        cache,
-        pubsub,
-        logger: logger.child('bareMerger'),
-        store: rootStore.child('bareMerger')
-      })
-const documentHashMap = {
-        "d8091383230df644bdc38472004392b0c564a5709e256fb19d3d9702c1df16e2": GetUsersDocument
-      }
-additionalEnvelopPlugins.push(usePersistedOperations({
-        getPersistedOperation(key) {
-          return documentHashMap[key];
-        },
-        ...{}
-      }))
-
-  return {
-    sources,
-    transforms,
-    additionalTypeDefs,
-    additionalResolvers,
-    cache,
-    pubsub,
-    merger,
-    logger,
-    additionalEnvelopPlugins,
-    get documents() {
-      return [
-      {
-        document: GetUsersDocument,
-        get rawSDL() {
-          return printWithCache(GetUsersDocument);
-        },
-        location: 'GetUsersDocument.graphql',
-        sha256Hash: 'd8091383230df644bdc38472004392b0c564a5709e256fb19d3d9702c1df16e2'
-      }
-    ];
-    },
-    fetchFn,
   };
-}
 
-export function createBuiltMeshHTTPHandler<TServerContext = {}>(): MeshHTTPHandler<TServerContext> {
-  return createMeshHTTPHandler<TServerContext>({
-    baseDir,
-    getBuiltMesh: getBuiltGraphClient,
-    rawServeConfig: undefined,
-  })
-}
-
-
-let meshInstance$: Promise<MeshInstance> | undefined;
-
-export const pollingInterval = null;
-
-export function getBuiltGraphClient(): Promise<MeshInstance> {
-  if (meshInstance$ == null) {
-    if (pollingInterval) {
-      setInterval(() => {
-        getMeshOptions()
-        .then(meshOptions => getMesh(meshOptions))
-        .then(newMesh =>
-          meshInstance$.then(oldMesh => {
-            oldMesh.destroy()
-            meshInstance$ = Promise.resolve(newMesh)
-          })
-        ).catch(err => {
-          console.error("Mesh polling failed so the existing version will be used:", err);
-        });
-      }, pollingInterval)
-    }
-    meshInstance$ = getMeshOptions().then(meshOptions => getMesh(meshOptions)).then(mesh => {
-      const id = mesh.pubsub.subscribe('destroy', () => {
-        meshInstance$ = undefined;
-        mesh.pubsub.unsubscribe(id);
-      });
-      return mesh;
-    });
-  }
-  return meshInstance$;
-}
-
-export const execute: ExecuteMeshFn = (...args) => getBuiltGraphClient().then(({ execute }) => execute(...args));
-
-export const subscribe: SubscribeMeshFn = (...args) => getBuiltGraphClient().then(({ subscribe }) => subscribe(...args));
-export function getBuiltGraphSDK<TGlobalContext = any, TOperationContext = any>(globalContext?: TGlobalContext) {
-  const sdkRequester$ = getBuiltGraphClient().then(({ sdkRequesterFactory }) => sdkRequesterFactory(globalContext));
-  return getSdk<TOperationContext, TGlobalContext>((...args) => sdkRequester$.then(sdkRequester => sdkRequester(...args)));
-}
-export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetUsersQuery = { users: Array<(
-    Pick<User, 'address' | 'rank' | 'blockTimestamp'>
-    & { credentials?: Maybe<Array<Pick<CredentialMinted, 'Basecamp_id'>>> }
-  )> };
-
-
-export const GetUsersDocument = gql`
-    query GetUsers {
-  users(first: 50, orderBy: rank, orderDirection: desc) {
-    address
-    rank
-    blockTimestamp
-    credentials {
-      Basecamp_id
-    }
-  }
-}
-    ` as unknown as DocumentNode<GetUsersQuery, GetUsersQueryVariables>;
-
-
-export type Requester<C = {}, E = unknown> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
-export function getSdk<C, E>(requester: Requester<C, E>) {
-  return {
-    GetUsers(variables?: GetUsersQueryVariables, options?: C): Promise<GetUsersQuery> {
-      return requester<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, variables, options) as Promise<GetUsersQuery>;
-    }
+  export type SubscriptionSdk = {
+      /** null **/
+  user: InContextSdkMethod<Subscription['user'], SubscriptionuserArgs, MeshContext>,
+  /** null **/
+  users: InContextSdkMethod<Subscription['users'], SubscriptionusersArgs, MeshContext>,
+  /** null **/
+  credential: InContextSdkMethod<Subscription['credential'], SubscriptioncredentialArgs, MeshContext>,
+  /** null **/
+  credentials: InContextSdkMethod<Subscription['credentials'], SubscriptioncredentialsArgs, MeshContext>,
+  /** null **/
+  adminAdded: InContextSdkMethod<Subscription['adminAdded'], SubscriptionadminAddedArgs, MeshContext>,
+  /** null **/
+  adminAddeds: InContextSdkMethod<Subscription['adminAddeds'], SubscriptionadminAddedsArgs, MeshContext>,
+  /** null **/
+  adminRemoved: InContextSdkMethod<Subscription['adminRemoved'], SubscriptionadminRemovedArgs, MeshContext>,
+  /** null **/
+  adminRemoveds: InContextSdkMethod<Subscription['adminRemoveds'], SubscriptionadminRemovedsArgs, MeshContext>,
+  /** null **/
+  approvalForAll: InContextSdkMethod<Subscription['approvalForAll'], SubscriptionapprovalForAllArgs, MeshContext>,
+  /** null **/
+  approvalForAlls: InContextSdkMethod<Subscription['approvalForAlls'], SubscriptionapprovalForAllsArgs, MeshContext>,
+  /** null **/
+  credentialMinted: InContextSdkMethod<Subscription['credentialMinted'], SubscriptioncredentialMintedArgs, MeshContext>,
+  /** null **/
+  credentialMinteds: InContextSdkMethod<Subscription['credentialMinteds'], SubscriptioncredentialMintedsArgs, MeshContext>,
+  /** null **/
+  credentialSet: InContextSdkMethod<Subscription['credentialSet'], SubscriptioncredentialSetArgs, MeshContext>,
+  /** null **/
+  credentialSets: InContextSdkMethod<Subscription['credentialSets'], SubscriptioncredentialSetsArgs, MeshContext>,
+  /** null **/
+  minterAdded: InContextSdkMethod<Subscription['minterAdded'], SubscriptionminterAddedArgs, MeshContext>,
+  /** null **/
+  minterAddeds: InContextSdkMethod<Subscription['minterAddeds'], SubscriptionminterAddedsArgs, MeshContext>,
+  /** null **/
+  minterRemoved: InContextSdkMethod<Subscription['minterRemoved'], SubscriptionminterRemovedArgs, MeshContext>,
+  /** null **/
+  minterRemoveds: InContextSdkMethod<Subscription['minterRemoveds'], SubscriptionminterRemovedsArgs, MeshContext>,
+  /** null **/
+  ownershipTransferred: InContextSdkMethod<Subscription['ownershipTransferred'], SubscriptionownershipTransferredArgs, MeshContext>,
+  /** null **/
+  ownershipTransferreds: InContextSdkMethod<Subscription['ownershipTransferreds'], SubscriptionownershipTransferredsArgs, MeshContext>,
+  /** null **/
+  roleAdminChanged: InContextSdkMethod<Subscription['roleAdminChanged'], SubscriptionroleAdminChangedArgs, MeshContext>,
+  /** null **/
+  roleAdminChangeds: InContextSdkMethod<Subscription['roleAdminChangeds'], SubscriptionroleAdminChangedsArgs, MeshContext>,
+  /** null **/
+  roleGranted: InContextSdkMethod<Subscription['roleGranted'], SubscriptionroleGrantedArgs, MeshContext>,
+  /** null **/
+  roleGranteds: InContextSdkMethod<Subscription['roleGranteds'], SubscriptionroleGrantedsArgs, MeshContext>,
+  /** null **/
+  roleRevoked: InContextSdkMethod<Subscription['roleRevoked'], SubscriptionroleRevokedArgs, MeshContext>,
+  /** null **/
+  roleRevokeds: InContextSdkMethod<Subscription['roleRevokeds'], SubscriptionroleRevokedsArgs, MeshContext>,
+  /** null **/
+  transferBatch: InContextSdkMethod<Subscription['transferBatch'], SubscriptiontransferBatchArgs, MeshContext>,
+  /** null **/
+  transferBatches: InContextSdkMethod<Subscription['transferBatches'], SubscriptiontransferBatchesArgs, MeshContext>,
+  /** null **/
+  transferSingle: InContextSdkMethod<Subscription['transferSingle'], SubscriptiontransferSingleArgs, MeshContext>,
+  /** null **/
+  transferSingles: InContextSdkMethod<Subscription['transferSingles'], SubscriptiontransferSinglesArgs, MeshContext>,
+  /** null **/
+  uri: InContextSdkMethod<Subscription['uri'], SubscriptionuriArgs, MeshContext>,
+  /** null **/
+  uris: InContextSdkMethod<Subscription['uris'], SubscriptionurisArgs, MeshContext>,
+  /** null **/
+  withdraw: InContextSdkMethod<Subscription['withdraw'], SubscriptionwithdrawArgs, MeshContext>,
+  /** null **/
+  withdraws: InContextSdkMethod<Subscription['withdraws'], SubscriptionwithdrawsArgs, MeshContext>,
+  /** null **/
+  basecampAddressSet: InContextSdkMethod<Subscription['basecampAddressSet'], SubscriptionbasecampAddressSetArgs, MeshContext>,
+  /** null **/
+  basecampAddressSets: InContextSdkMethod<Subscription['basecampAddressSets'], SubscriptionbasecampAddressSetsArgs, MeshContext>,
+  /** null **/
+  donIdSet: InContextSdkMethod<Subscription['donIdSet'], SubscriptiondonIdSetArgs, MeshContext>,
+  /** null **/
+  donIdSets: InContextSdkMethod<Subscription['donIdSets'], SubscriptiondonIdSetsArgs, MeshContext>,
+  /** null **/
+  functionsRouterAddressSet: InContextSdkMethod<Subscription['functionsRouterAddressSet'], SubscriptionfunctionsRouterAddressSetArgs, MeshContext>,
+  /** null **/
+  functionsRouterAddressSets: InContextSdkMethod<Subscription['functionsRouterAddressSets'], SubscriptionfunctionsRouterAddressSetsArgs, MeshContext>,
+  /** null **/
+  missionSubmitted: InContextSdkMethod<Subscription['missionSubmitted'], SubscriptionmissionSubmittedArgs, MeshContext>,
+  /** null **/
+  missionSubmitteds: InContextSdkMethod<Subscription['missionSubmitteds'], SubscriptionmissionSubmittedsArgs, MeshContext>,
+  /** null **/
+  missionValidated: InContextSdkMethod<Subscription['missionValidated'], SubscriptionmissionValidatedArgs, MeshContext>,
+  /** null **/
+  missionValidateds: InContextSdkMethod<Subscription['missionValidateds'], SubscriptionmissionValidatedsArgs, MeshContext>,
+  /** null **/
+  validatorOwnershipTransferred: InContextSdkMethod<Subscription['validatorOwnershipTransferred'], SubscriptionvalidatorOwnershipTransferredArgs, MeshContext>,
+  /** null **/
+  validatorOwnershipTransferreds: InContextSdkMethod<Subscription['validatorOwnershipTransferreds'], SubscriptionvalidatorOwnershipTransferredsArgs, MeshContext>,
+  /** null **/
+  requestFulfilled: InContextSdkMethod<Subscription['requestFulfilled'], SubscriptionrequestFulfilledArgs, MeshContext>,
+  /** null **/
+  requestFulfilleds: InContextSdkMethod<Subscription['requestFulfilleds'], SubscriptionrequestFulfilledsArgs, MeshContext>,
+  /** null **/
+  requestSent: InContextSdkMethod<Subscription['requestSent'], SubscriptionrequestSentArgs, MeshContext>,
+  /** null **/
+  requestSents: InContextSdkMethod<Subscription['requestSents'], SubscriptionrequestSentsArgs, MeshContext>,
+  /** null **/
+  validatorWithdraw: InContextSdkMethod<Subscription['validatorWithdraw'], SubscriptionvalidatorWithdrawArgs, MeshContext>,
+  /** null **/
+  validatorWithdraws: InContextSdkMethod<Subscription['validatorWithdraws'], SubscriptionvalidatorWithdrawsArgs, MeshContext>,
+  /** Access to subgraph metadata **/
+  _meta: InContextSdkMethod<Subscription['_meta'], Subscription_metaArgs, MeshContext>
   };
+
+  export type Context = {
+      ["GetUsers"]: { Query: QuerySdk, Mutation: MutationSdk, Subscription: SubscriptionSdk },
+      
+    };
 }
-export type Sdk = ReturnType<typeof getSdk>;

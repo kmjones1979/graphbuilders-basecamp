@@ -1,7 +1,0 @@
-query Example {
-  example(first: 25) {
-    id
-    blockTimestamp
-    blockNumber
-  }
-}
