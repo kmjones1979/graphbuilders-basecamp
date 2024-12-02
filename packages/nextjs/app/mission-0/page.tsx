@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DeployContent from "./_components/DeployContent";
 import SolidityContent from "./_components/SolidityContent";
 import StudioContent from "./_components/StudioContent";
@@ -17,6 +17,23 @@ const Subgraph: NextPage = () => {
     functionName: "accountMinted",
     args: [0, address],
   });
+  const [isChatVisible, setChatVisible] = useState(false);
+  const [isSecondChatVisible, setSecondChatVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setChatVisible(true);
+    }, 1000);
+
+    const secondTimer = setTimeout(() => {
+      setSecondChatVisible(true);
+    }, 4000);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(secondTimer);
+    };
+  }, []);
 
   return (
     <>
@@ -64,6 +81,63 @@ const Subgraph: NextPage = () => {
       {/* {/* {activeTab === "subgraph" && <SubgraphContent />} */}
       {activeTab === "deploy" && <DeployContent />}
       {activeTab === "studio" && <StudioContent />}
+
+      {/* Chat Bubble Container */}
+      {isChatVisible && (
+        <div className="fixed top-20 right-2 max-w-lg">
+          <div className="rounded-lg p-4 w-full max-w-lg">
+            <div className="chat-bubble max-w-lg text-white border-solid border-2 border-slate-700">
+              <div className="chat chat-start">
+                <div className="chat-image avatar">
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="Tailwind CSS chat bubble component"
+                      src="https://imgcdn.stablediffusionweb.com/2024/5/1/11583918-7338-4165-9052-a7cd8aaec83d.jpg"
+                    />
+                  </div>
+                </div>
+                <div className="chat-header">
+                  Ghost0764
+                  <time className="text-xs opacity-50 pl-2">1 minute ago</time>
+                </div>
+                <div className="chat-bubble">Yo, how is it going? You look new here!</div>
+                <div className="chat-footer opacity-50">Seen</div>
+              </div>
+              {isSecondChatVisible && (
+                <div className="chat chat-start">
+                  <div className="chat-header">
+                    Ghost0764
+                    <time className="text-xs opacity-50 pl-2">1 minute ago</time>
+                  </div>
+                  <div className="chat-image avatar">
+                    <div className="w-10 rounded-full">
+                      <img
+                        alt="Tailwind CSS chat bubble component"
+                        src="https://imgcdn.stablediffusionweb.com/2024/5/1/11583918-7338-4165-9052-a7cd8aaec83d.jpg"
+                      />
+                    </div>
+                  </div>
+                  <div className="chat-bubble">
+                    Having trouble? Join the telegram channel for this mission 👇🏼
+                    <div className="">
+                      <a href="https://t.me/+vbvAPzHXj08wMGUx" target="_blank" rel="noopener noreferrer">
+                        🏫 Mission 0: Orientation 🚀
+                      </a>
+                    </div>
+                  </div>
+                  <div className="chat-footer opacity-50">Seen</div>
+                </div>
+              )}
+              <button
+                className="btn btn-sm btn-circle absolute top-2 right-2 bg-slate-700 text-white hover:bg-slate-600"
+                onClick={() => setChatVisible(false)}
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
