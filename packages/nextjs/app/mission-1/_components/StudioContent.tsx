@@ -234,14 +234,47 @@ dataSources:
           navigate to the Endpoints tab on your subgraph and submit your QueryURL.
         </p>
       </div>
-
+      <div className="flex justify-center top pt-4">
+        <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Validation</h1>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl">
+          <span className="font-bold">Important:</span> In order for your mission to be properly validated, the value of{" "}
+          <span className="highlight-code">id</span> will need to successfully return the address of the account you
+          submit it from.
+        </p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+          <pre>
+            <code className="language-graphql">
+              {`{
+  enlisteds(
+    first: 1
+    orderBy: blockTimestamp
+    orderDirection: desc
+    where: { account: "YOUR_ADDRESS" }
+  ) {
+    id
+    account
+    blockNumber
+    blockTimestamp
+    transactionHash
+  }
+}`}
+            </code>
+          </pre>
+        </div>
+      </div>
       <div className="flex justify-center top">
         {accountMinted ? (
           <div className="bg-slate-700 text-green-400 px-4 py-2 rounded-lg">Mission Complete</div>
         ) : (
-          <button className="bg-purple-500 text-white px-4 py-2 rounded-lg" onClick={() => setIsModalOpen(true)}>
-            Submit Mission
-          </button>
+          <div className="flex justify-center top mt-4 mb-4">
+            <button className="bg-purple-500 text-white px-4 py-2 rounded-lg" onClick={() => setIsModalOpen(true)}>
+              Submit Mission
+            </button>
+          </div>
         )}
       </div>
       <div className="flex justify-center top mt-4 mb-4">

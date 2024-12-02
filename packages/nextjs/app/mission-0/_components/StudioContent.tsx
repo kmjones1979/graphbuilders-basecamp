@@ -227,6 +227,33 @@ s as entities (Y/n) · true
           navigate to the Endpoints tab on your subgraph and submit your QueryURL.
         </p>
       </div>
+      <div className="flex justify-center top pt-4">
+        <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Validation</h1>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl">
+          <span className="font-bold">Important:</span> In order for your mission to be properly validated, the
+          following value for <span className="highlight-code">newMessage</span> will need to successfully return the
+          string <span className="italic">Welcome to The Graph Builders Basecamp!</span>
+        </p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+          <pre>
+            <code className="language-graphql">
+              {`{
+            welcomeMessageChangeds(first: 1) {
+              id
+              newMessage
+              blockNumber
+              blockTimestamp
+              transactionHash
+            }
+          }`}
+            </code>
+          </pre>
+        </div>
+      </div>
       <div className="flex justify-center top">
         {accountMinted ? (
           <div className="bg-slate-700 text-green-400 px-4 py-2 rounded-lg">Mission Complete</div>

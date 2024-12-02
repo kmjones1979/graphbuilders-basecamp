@@ -195,7 +195,37 @@ if (subgraphData[0] === account) {
           navigate to the Endpoints tab on your subgraph and submit your QueryURL.
         </p>
       </div>
-
+      <div className="flex justify-center top pt-4">
+        <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Validation</h1>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl">
+          <span className="font-bold">Important:</span> In order for your mission to be properly validated, the value of{" "}
+          <span className="highlight-code">id</span> will need to successfully return the address of the account you
+          submit it from.
+        </p>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+          <pre>
+            <code className="language-graphql">
+              {`{
+  commsEstablisheds(first: 1) {
+    account
+    blockNumber
+    blockTimestamp
+    id
+    isCommsEstablished
+    transactionHash
+  }
+}`}
+            </code>
+          </pre>
+        </div>
+      </div>
+      <div className="flex justify-center top mt-4 mb-4">
+        <p className="text-lg max-w-2xl italic">Ready to submit?</p>
+      </div>
       <div className="flex justify-center top">
         {accountMinted ? (
           <div className="bg-slate-700 text-green-400 px-4 py-2 rounded-lg">Mission Complete</div>
