@@ -20,37 +20,39 @@ const graphRequest = Functions.makeHttpRequest({
 
   data: {
     query: \`
-      {
-        welcomeMessageChangeds(first: 1) {
-          id
-          newMessage
-          blockNumber
-          blockTimestamp
-          transactionHash
+    {
+      holders(first: 1, orderDirection: desc, orderBy: blockTimestamp) {
+        balance
+        blockNumber
+        blockTimestamp
+        id
+        transactionHash
+        transfers(first: 1) {
+          from
+          to {
+            id
+          }
         }
       }
+    }
     \`,
   },
 })
 
-const check = "Welcome to The Graph Builders Basecamp!"
-
 const [graphResponse] = await Promise.all([graphRequest])
-let newMessage = []
+let subgraphData = []
 if (!graphResponse.error) {
   for (let i = 0; i < 1; i++) {
-    newMessage.push(graphResponse.data.data.welcomeMessageChangeds[i].newMessage)
+    subgraphData.push(graphResponse.data.data.holders[i].transfers[0].to.id)
     console.log(i)
   }
 } else {
   console.log("graphResponse Error, ", graphResponse)
 }
 
-if (newMessage[0] === check) {
-  console.log(newMessage[0])
+if (subgraphData[0] === account) {
   return Functions.encodeUint256(1)
 } else {
-  console.log(newMessage[0])
   return Functions.encodeUint256(0)
 }`;
 
