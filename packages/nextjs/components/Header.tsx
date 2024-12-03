@@ -4,8 +4,20 @@ import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
+import {
+  BanknotesIcon,
+  Bars3Icon,
+  BeakerIcon,
+  BugAntIcon,
+  DocumentCurrencyBangladeshiIcon,
+  FlagIcon,
+  HomeIcon,
+  MoonIcon,
+  WifiIcon,
+} from "@heroicons/react/24/outline";
 import { ChartBarIcon, RocketLaunchIcon } from "@heroicons/react/24/outline";
+import { BookOpenIcon } from "@heroicons/react/24/outline";
+import Home from "~~/app/page";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
@@ -67,6 +79,55 @@ export const DebugContractsLink = () => {
   );
 };
 
+export const Missions = () => {
+  return (
+    <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-64 p-2 shadow">
+      <li>
+        <a href="/mission-0">
+          <BookOpenIcon className="h-4 w-4" />
+          0: Orientation
+        </a>
+      </li>
+      <li>
+        <a href="/mission-1">
+          <FlagIcon className="h-4 w-4" />
+          1: Join the Academy
+        </a>
+      </li>
+      <li>
+        <a href="/mission-2">
+          <WifiIcon className="h-4 w-4" />
+          2: Establish Comms
+        </a>
+      </li>
+      <li>
+        <a href="/mission-3">
+          <MoonIcon className="h-4 w-4" />
+          3: Lunar Economy
+        </a>
+      </li>
+      <li>
+        <a href="/mission-4">
+          <BeakerIcon className="h-4 w-4" />
+          4: Crystalic Fusion (Coming Soon)
+        </a>
+      </li>
+      <li>
+        <a href="/mission-5">
+          <BanknotesIcon className="h-4 w-4" />
+          5: Interstellar Trade (Coming Soon)
+        </a>
+      </li>
+      <li>
+        <a href="/mission-6">
+          <DocumentCurrencyBangladeshiIcon className="h-4 w-4" />
+          6: Galactic Governance (Coming Soon)
+        </a>
+      </li>
+    </ul>
+  );
+};
+
 export const MissionDropdown = () => {
   return (
     <details className="dropdown">
@@ -74,30 +135,16 @@ export const MissionDropdown = () => {
         <RocketLaunchIcon className="h-4 w-4" />
         Missions
       </summary>
-      <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-64 p-2 shadow">
-        <li>
-          <a href="/mission-0">0: Orientation</a>
-        </li>
-        <li>
-          <a href="/mission-1">1: Join the Academy</a>
-        </li>
-        <li>
-          <a href="/mission-2">2: Establish Comms</a>
-        </li>
-        <li>
-          <a href="/mission-3">3: Lunar Economy</a>
-        </li>
-        <li>
-          <a>4: Crystalic Fusion (Coming Soon)</a>
-        </li>
-        <li>
-          <a>5: Interstellar Trade (Coming Soon)</a>
-        </li>
-        <li>
-          <a>6: Galactic Governance (Coming Soon)</a>
-        </li>
-      </ul>
+      <Missions />
     </details>
+  );
+};
+
+export const MissionsStaticLinks = () => {
+  return (
+    <>
+      <Missions />
+    </>
   );
 };
 
@@ -133,7 +180,7 @@ export const Header = () => {
                 setIsDrawerOpen(false);
               }}
             >
-              <HeaderMenuLinks />
+              <MissionsStaticLinks />
             </ul>
           )}
         </div>
