@@ -282,6 +282,9 @@ s as entities (Y/n) · true
           <div className="modal-box">
             <h2 className="font-bold text-lg">Please enter your subgraph Query URL</h2>
             <p>This can be found in the Endpoints tab of your subgraph in the Subgraph Studio.</p>
+            <p className="text-red-400">
+              Note: The validation will take a few minutes to complete. Please be patient and only submit once.
+            </p>
             <input
               type="text"
               placeholder="Enter URL"

@@ -192,7 +192,7 @@ if (subgraphData[0] === account) {
         </p>
       </div>
       <div className="flex justify-center">
-        <img className="max-w-4xl" src="/studio/08.png" alt="Studio Deploy" />
+        <img className="max-w-3xl" src="/studio/08-3.png" alt="Studio Deploy" />
       </div>
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl italic">
@@ -261,6 +261,9 @@ if (subgraphData[0] === account) {
           <div className="modal-box">
             <h2 className="font-bold text-lg">Please enter your subgraph Query URL</h2>
             <p>This can be found in the Endpoints tab of your subgraph in the Subgraph Studio.</p>
+            <p className="text-red-400">
+              Note: The validation will take a few minutes to complete. Please be patient and only submit once.
+            </p>
             <input
               type="text"
               placeholder="Enter URL"
