@@ -21,8 +21,8 @@ import { getMesh, ExecuteMeshFn, SubscribeMeshFn, MeshContext as BaseMeshContext
 import { MeshStore, FsStoreStorageAdapter } from '@graphql-mesh/store';
 import { path as pathModule } from '@graphql-mesh/cross-helpers';
 import { ImportFn } from '@graphql-mesh/types';
-import type { GetUsersTypes } from './sources/GetUsers/types';
-import * as importedModule$0 from "./sources/GetUsers/introspectionSchema";
+import type { BasecampSepoliaTypes } from './sources/BasecampSepolia/types';
+import * as importedModule$0 from "./sources/BasecampSepolia/introspectionSchema";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -4033,7 +4033,7 @@ export type DirectiveResolvers<ContextType = MeshContext> = ResolversObject<{
   derivedFrom?: derivedFromDirectiveResolver<any, any, ContextType>;
 }>;
 
-export type MeshContext = GetUsersTypes.Context & BaseMeshContext;
+export type MeshContext = BasecampSepoliaTypes.Context & BaseMeshContext;
 
 
 import { fileURLToPath } from '@graphql-mesh/utils';
@@ -4042,7 +4042,7 @@ const baseDir = pathModule.join(pathModule.dirname(fileURLToPath(import.meta.url
 const importFn: ImportFn = <T>(moduleId: string) => {
   const relativeModuleId = (pathModule.isAbsolute(moduleId) ? pathModule.relative(baseDir, moduleId) : moduleId).split('\\').join('/').replace(baseDir + '/', '');
   switch(relativeModuleId) {
-    case ".graphclient/sources/GetUsers/introspectionSchema":
+    case ".graphclient/sources/BasecampSepolia/introspectionSchema":
       return Promise.resolve(importedModule$0) as T;
     
     default:
@@ -4075,22 +4075,22 @@ const cache = new (MeshCache as any)({
 const sources: MeshResolvedSource[] = [];
 const transforms: MeshTransform[] = [];
 const additionalEnvelopPlugins: MeshPlugin<any>[] = [];
-const getUsersTransforms = [];
+const basecampSepoliaTransforms = [];
 const additionalTypeDefs = [] as any[];
-const getUsersHandler = new GraphqlHandler({
-              name: "GetUsers",
+const basecampSepoliaHandler = new GraphqlHandler({
+              name: "BasecampSepolia",
               config: {"endpoint":"https://api.studio.thegraph.com/query/37762/basecamp-sepolia/version/latest"},
               baseDir,
               cache,
               pubsub,
-              store: sourcesStore.child("GetUsers"),
-              logger: logger.child("GetUsers"),
+              store: sourcesStore.child("BasecampSepolia"),
+              logger: logger.child("BasecampSepolia"),
               importFn,
             });
 sources[0] = {
-          name: 'GetUsers',
-          handler: getUsersHandler,
-          transforms: getUsersTransforms
+          name: 'BasecampSepolia',
+          handler: basecampSepoliaHandler,
+          transforms: basecampSepoliaTransforms
         }
 const additionalResolvers = [] as any[]
 const merger = new(BareMerger as any)({
@@ -4100,7 +4100,8 @@ const merger = new(BareMerger as any)({
         store: rootStore.child('bareMerger')
       })
 const documentHashMap = {
-        "c76090f27849fce4dafe003a2347c7b77124d057168ab72bf800d5658225027f": GetUsersDocument
+        "8cd6befa3b47a0edf4bd6e35bc396d4b67ada9de37e919364ed2b0371a64a6e0": GetUserCredentialsDocument,
+"c76090f27849fce4dafe003a2347c7b77124d057168ab72bf800d5658225027f": GetUsersDocument
       }
 additionalEnvelopPlugins.push(usePersistedOperations({
         getPersistedOperation(key) {
@@ -4122,6 +4123,13 @@ additionalEnvelopPlugins.push(usePersistedOperations({
     get documents() {
       return [
       {
+        document: GetUserCredentialsDocument,
+        get rawSDL() {
+          return printWithCache(GetUserCredentialsDocument);
+        },
+        location: 'GetUserCredentialsDocument.graphql',
+        sha256Hash: '8cd6befa3b47a0edf4bd6e35bc396d4b67ada9de37e919364ed2b0371a64a6e0'
+      },{
         document: GetUsersDocument,
         get rawSDL() {
           return printWithCache(GetUsersDocument);
@@ -4182,6 +4190,16 @@ export function getBuiltGraphSDK<TGlobalContext = any, TOperationContext = any>(
   const sdkRequester$ = getBuiltGraphClient().then(({ sdkRequesterFactory }) => sdkRequesterFactory(globalContext));
   return getSdk<TOperationContext, TGlobalContext>((...args) => sdkRequester$.then(sdkRequester => sdkRequester(...args)));
 }
+export type GetUserCredentialsQueryVariables = Exact<{
+  address: Scalars['Bytes']['input'];
+}>;
+
+
+export type GetUserCredentialsQuery = { users: Array<(
+    Pick<User, 'rank'>
+    & { credentials?: Maybe<Array<Pick<CredentialMinted, 'Basecamp_id'>>> }
+  )> };
+
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4191,6 +4209,16 @@ export type GetUsersQuery = { users: Array<(
   )> };
 
 
+export const GetUserCredentialsDocument = gql`
+    query GetUserCredentials($address: Bytes!) {
+  users(where: {address: $address}) {
+    credentials(orderBy: Basecamp_id) {
+      Basecamp_id
+    }
+    rank
+  }
+}
+    ` as unknown as DocumentNode<GetUserCredentialsQuery, GetUserCredentialsQueryVariables>;
 export const GetUsersDocument = gql`
     query GetUsers {
   users(first: 50, orderBy: rank, orderDirection: desc) {
@@ -4206,9 +4234,13 @@ export const GetUsersDocument = gql`
     ` as unknown as DocumentNode<GetUsersQuery, GetUsersQueryVariables>;
 
 
+
 export type Requester<C = {}, E = unknown> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C, E>(requester: Requester<C, E>) {
   return {
+    GetUserCredentials(variables: GetUserCredentialsQueryVariables, options?: C): Promise<GetUserCredentialsQuery> {
+      return requester<GetUserCredentialsQuery, GetUserCredentialsQueryVariables>(GetUserCredentialsDocument, variables, options) as Promise<GetUserCredentialsQuery>;
+    },
     GetUsers(variables?: GetUsersQueryVariables, options?: C): Promise<GetUsersQuery> {
       return requester<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, variables, options) as Promise<GetUsersQuery>;
     }

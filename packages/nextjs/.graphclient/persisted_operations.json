@@ -1,3 +1,4 @@
 {
+  "8cd6befa3b47a0edf4bd6e35bc396d4b67ada9de37e919364ed2b0371a64a6e0": "query GetUserCredentials($address: Bytes!) {\n  users(where: {address: $address}) {\n    credentials(orderBy: Basecamp_id) {\n      Basecamp_id\n    }\n    rank\n  }\n}",
   "c76090f27849fce4dafe003a2347c7b77124d057168ab72bf800d5658225027f": "query GetUsers {\n  users(first: 50, orderBy: rank, orderDirection: desc) {\n    address\n    rank\n    blockTimestamp\n    credentials(orderBy: Basecamp_id) {\n      Basecamp_id\n    }\n    lastCredentialMinted\n  }\n}"
 }
