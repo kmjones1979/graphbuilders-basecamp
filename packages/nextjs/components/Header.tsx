@@ -87,6 +87,15 @@ export const MissionDropdown = () => {
         <li>
           <a href="/mission-3">3: Lunar Economy</a>
         </li>
+        <li>
+          <a>4: Crystalic Fusion (Coming Soon)</a>
+        </li>
+        <li>
+          <a>5: Interstellar Trade (Coming Soon)</a>
+        </li>
+        <li>
+          <a>6: Galactic Governance (Coming Soon)</a>
+        </li>
       </ul>
     </details>
   );
