@@ -1,17 +1,20 @@
 "use client";
 
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAccount } from "wagmi";
 import {
   BanknotesIcon,
   Bars3Icon,
   BeakerIcon,
   BugAntIcon,
+  CheckCircleIcon,
   DocumentCurrencyBangladeshiIcon,
   FlagIcon,
   HomeIcon,
+  LockClosedIcon,
   MoonIcon,
   WifiIcon,
 } from "@heroicons/react/24/outline";
@@ -19,7 +22,7 @@ import { ChartBarIcon, RocketLaunchIcon } from "@heroicons/react/24/outline";
 import { BookOpenIcon } from "@heroicons/react/24/outline";
 import Home from "~~/app/page";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
-import { useOutsideClick } from "~~/hooks/scaffold-eth";
+import { useOutsideClick, useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 
 type HeaderMenuLink = {
   label: string;
@@ -79,49 +82,81 @@ export const DebugContractsLink = () => {
   );
 };
 
-export const Missions = () => {
+const Ready = () => {
+  return <button className="btn btn-ghost btn-xs text-green-400">Ready</button>;
+};
+
+const Complete = () => {
   return (
-    <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-64 p-2 shadow">
+    <button className="btn btn-ghost btn-xs text-green-400">
+      <CheckCircleIcon className="h-4 w-4" /> Complete
+    </button>
+  );
+};
+
+const Locked = () => {
+  return (
+    <button className="btn btn-ghost btn-xs text-red-400">
+      <LockClosedIcon className="h-4 w-4" /> Locked
+    </button>
+  );
+};
+
+export const Missions = () => {
+  const { address } = useAccount();
+
+  const userCredentials = Array.from({ length: 4 }, (_, index) =>
+    useScaffoldReadContract({
+      contractName: "Basecamp",
+      functionName: "balanceOf",
+      args: [address ? address : "", BigInt(index)],
+    }),
+  );
+
+  const [userCredential0, userCredential1, userCredential2, userCredential3] = userCredentials;
+
+  return (
+    <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-80 p-2 shadow">
       <li>
         <a href="/mission-0">
           <BookOpenIcon className="h-4 w-4" />
-          0: Orientation
+          0: Orientation {userCredential0?.data ? <Complete /> : <Ready />}
         </a>
       </li>
       <li>
         <a href="/mission-1">
           <FlagIcon className="h-4 w-4" />
-          1: Join the Academy
+          1: Join the Academy {userCredential1?.data ? <Complete /> : <Ready />}
         </a>
       </li>
       <li>
         <a href="/mission-2">
           <WifiIcon className="h-4 w-4" />
-          2: Establish Comms
+          2: Establish Comms {userCredential2?.data ? <Complete /> : <Ready />}
         </a>
       </li>
       <li>
         <a href="/mission-3">
           <MoonIcon className="h-4 w-4" />
-          3: Lunar Economy
+          3: Lunar Economy {userCredential3?.data ? <Complete /> : <Ready />}
         </a>
       </li>
       <li>
         <a href="/mission-4">
           <BeakerIcon className="h-4 w-4" />
-          4: Crystalic Fusion (Coming Soon)
+          4: Crystalic Fusion <Locked />
         </a>
       </li>
       <li>
         <a href="/mission-5">
           <BanknotesIcon className="h-4 w-4" />
-          5: Interstellar Trade (Coming Soon)
+          5: Interstellar Trade <Locked />
         </a>
       </li>
       <li>
         <a href="/mission-6">
           <DocumentCurrencyBangladeshiIcon className="h-4 w-4" />
-          6: Galactic Governance (Coming Soon)
+          6: Galactic Governance <Locked />
         </a>
       </li>
     </ul>
