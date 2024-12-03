@@ -5,6 +5,9 @@ const DeployContent: React.FC = () => {
   return (
     <>
       {/* Part 3 */}
+      <div className="flex justify-center top pt-4">
+        <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Smart Contract Deployment</h1>
+      </div>
       <div className="flex justify-center top">
         <p className="text-lg text-left max-w-2xl">
           In this next part of the mission you will deploy your smart contract to a public network. This way we can

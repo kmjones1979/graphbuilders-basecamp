@@ -5,6 +5,9 @@ const SolidityContent: React.FC = () => {
   return (
     <>
       {/* Part 1 */}
+      <div className="flex justify-center top pt-4">
+        <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Solidity</h1>
+      </div>
       <div className="flex justify-center top">
         <p className="text-lg text-left max-w-2xl">
           In each of these missions, you will be given a basic smart contract and a working deploy script for hardhat.
@@ -13,9 +16,6 @@ const SolidityContent: React.FC = () => {
           your smart contract and subgraph to a public network. The results from your subgraph will then be checked to
           ensure you completed the tasks successfully.
         </p>
-      </div>
-      <div className="flex justify-center top pt-4">
-        <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Solidity</h1>
       </div>
       <div className="flex justify-center top">
         <h3 className="text-large pt-4 text-left max-w-2xl italic">
@@ -117,13 +117,14 @@ contract Welcome {
         </p>
       </div>
       <div className="flex justify-center top pt-4">
-        <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Subgraph</h1>
+        <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Subgraph Configurations</h1>
       </div>
       <div className="flex justify-center top">
         <p className="text-lg text-left max-w-2xl">
-          The subgraph for each missions is located in the <span className="highlight-code">packages/subgraph</span>{" "}
-          folder. In this mission you will need to generate your own subgraph using The Graph CLI. Steps for this will
-          be outlined in the final section. However for future missions the subgraph files and locations are as follows:
+          The subgraph configuration files for future missions are located in the{" "}
+          <span className="highlight-code">packages/subgraph</span> folder. In this mission you will need to generate
+          your own subgraph using The Graph CLI. Steps for this will be outlined in the final section. However for
+          future missions the subgraph files and locations are as follows:
         </p>
       </div>
       <div className="flex justify-center top">

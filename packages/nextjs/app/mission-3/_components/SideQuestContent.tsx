@@ -5,6 +5,9 @@ const SubgraphContent: React.FC = () => {
   return (
     <>
       {/* Part 2 */}
+      <div className="flex justify-center top pt-4">
+        <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Side Quest</h1>
+      </div>
       <div className="flex justify-center top">
         <p className="text-lg text-left max-w-2xl">
           Welcome to your first side quest! The road less-traveled can be long and arduous, but the rewards are often

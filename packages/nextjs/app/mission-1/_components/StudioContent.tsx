@@ -82,6 +82,9 @@ if (id[0] === account) {
   return (
     <>
       {/* Part 4 */}
+      <div className="flex justify-center top pt-4">
+        <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Subgraph Studio</h1>
+      </div>
       <div className="flex justify-center top">
         <p className="text-lg text-left max-w-2xl">
           In this next part of the mission you will deploy your subgraph to The Graph Subgraph Studio. The studio is a
