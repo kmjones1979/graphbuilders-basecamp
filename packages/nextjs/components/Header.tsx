@@ -138,7 +138,7 @@ export const Missions = () => {
       <li>
         <a href="/mission-3">
           <MoonIcon className="h-4 w-4" />
-          3: Lunar Economy {userCredential3 ? <Complete /> : <Ready />}
+          3: Lunar Economy {userCredential3?.data ? <Complete /> : <Ready />}
         </a>
       </li>
       <li>
