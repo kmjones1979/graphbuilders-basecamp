@@ -138,23 +138,23 @@ export const Missions = () => {
       <li>
         <a href="/mission-3">
           <MoonIcon className="h-4 w-4" />
-          3: Lunar Economy {userCredential3?.data ? <Complete /> : <Ready />}
+          3: Lunar Economy {userCredential3 ? <Complete /> : <Ready />}
         </a>
       </li>
       <li>
-        <a href="/mission-4">
+        <a>
           <BeakerIcon className="h-4 w-4" />
           4: Crystalic Fusion <Locked />
         </a>
       </li>
       <li>
-        <a href="/mission-5">
+        <a>
           <BanknotesIcon className="h-4 w-4" />
           5: Interstellar Trade <Locked />
         </a>
       </li>
       <li>
-        <a href="/mission-6">
+        <a>
           <DocumentCurrencyBangladeshiIcon className="h-4 w-4" />
           6: Galactic Governance <Locked />
         </a>
