@@ -10,7 +10,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="justify-center p-1">
+      <div className="justify-center p-1 bg-base-100">
         <div
           className="hero min-h-screen"
           style={{

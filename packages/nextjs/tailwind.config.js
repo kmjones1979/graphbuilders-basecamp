@@ -49,7 +49,7 @@ module.exports = {
           "accent-content": "#0A0A0A", // Black for contrast
           neutral: "#0A0A0A", // Deep black neutral
           "neutral-content": "#E0D7FF", // Subtle purple-tinted text
-          "base-100": "#121212", // Very dark gray background
+          "base-100": "#0E0521", // Set your custom dark mode background color here
           "base-200": "#1A1A1A", // Slightly lighter dark gray
           "base-300": "#2A2A2A", // Medium dark gray
           "base-content": "#E0D7FF", // Subtle purple-tinted text
