@@ -43,3 +43,50 @@ p {
   margin-top: 1px; /* Add margin to create space outside the span */
   margin-bottom: 1px; /* Add margin to create space outside the span */
 }
+
+@font-face {
+  font-family: "Sportypo-Regular";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url("../public/fonts/Sportypo/Sportypo-Reguler.ttf") format("truetype");
+}
+
+/* Importing the fonts */
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins/Poppins-Regular.ttf") format("truetype"); /* Adjust the path and format as needed */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins/Poppins-Bold.ttf") format("truetype"); /* Adjust the path and format as needed */
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Add other font imports similarly */
+@font-face {
+  font-family: "Euclid";
+  src: url("/fonts/Euclid/Euclid-Regular.ttf") format("truetype"); /* Adjust the path and format as needed */
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Example for italic or other styles */
+@font-face {
+  font-family: "Euclid";
+  src: url("/fonts/Euclid/Euclid-Italic.ttf") format("truetype"); /* Adjust the path and format as needed */
+  font-weight: normal;
+  font-style: italic;
+}
+
+.welcome-text {
+  font-family: "Sportypo-Regular", sans-serif;
+}
+
+.the-graph-text {
+  font-family: "Poppins", sans-serif;
+}
