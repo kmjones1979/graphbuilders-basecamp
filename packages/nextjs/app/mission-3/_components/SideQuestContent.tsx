@@ -168,7 +168,7 @@ const SubgraphContent: React.FC = () => {
             <p className="text-lg max-w-2xl italic">✅ Success will look like this: 👇🏼</p>
           </div>
           <div className="flex justify-center top mt-4 mb-4 ">
-            <img className="rounded-lg max-w-2xl" src="/mission-3-sq-response.png" alt="studio" />
+            <img className="w-full h-auto rounded-lg" src="/mission-3-sq-response.png" alt="studio" />
           </div>
         </div>
       </div>

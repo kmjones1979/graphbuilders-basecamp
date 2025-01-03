@@ -107,25 +107,25 @@ if (subgraphData[0] === account) {
             </p>
           </div>
           <div className="flex justify-center">
-            <img className="max-h-96" src="/studio/01.png" alt="Studio Connect" />
+            <img className="max-h-96 w-full h-auto rounded-lg" src="/studio/01.png" alt="Studio Connect" />
           </div>
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">Choose the wallet type you would like to connect.</p>
           </div>
           <div className="flex justify-center">
-            <img className="max-w-80" src="/studio/02.png" alt="Studio Connect" />
+            <img className="max-w-80 w-full h-auto rounded-lg" src="/studio/02.png" alt="Studio Connect" />
           </div>
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">Confirm the connection in your wallet.</p>
           </div>
           <div className="flex justify-center">
-            <img className="max-w-80" src="/studio/03.png" alt="Studio Connect" />
+            <img className="max-w-80 w-full h-auto rounded-lg" src="/studio/03.png" alt="Studio Connect" />
           </div>
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">Sign the message to connect your wallet.</p>
           </div>
           <div className="flex justify-center">
-            <img className="max-w-4xl" src="/studio/04.png" alt="Studio Connect" />
+            <img className="max-w-4xl w-full h-auto rounded-lg" src="/studio/04.png" alt="Studio Connect" />
           </div>
           <div className="flex justify-center top mt-4 mb-4 ">
             <p className="text-lg max-w-2xl italic">
@@ -133,7 +133,7 @@ if (subgraphData[0] === account) {
             </p>
           </div>
           <div className="flex justify-center">
-            <img className="max-w-80" src="/studio/05.png" alt="Studio Connect" />
+            <img className="max-w-80 w-full h-auto rounded-lg" src="/studio/05.png" alt="Studio Connect" />
           </div>
           <div className="flex justify-center top mt-4 mb-4 ">
             <p className="text-lg max-w-2xl italic">Name your subgraph and click "Create Subgraph".</p>
@@ -196,7 +196,7 @@ if (subgraphData[0] === account) {
             </p>
           </div>
           <div className="flex justify-center">
-            <img className="max-w-3xl" src="/studio/08-2.png" alt="Studio Deploy" />
+            <img className="max-w-3xl w-full h-auto rounded-lg" src="/studio/08-2.png" alt="Studio Deploy" />
           </div>
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">
