@@ -36,6 +36,10 @@ const Subgraph: NextPage = () => {
     };
   }, []);
 
+  const toggleChat = () => {
+    setChatVisible(!isChatVisible);
+  };
+
   return (
     <>
       <div className="bg-base-100">
@@ -158,6 +162,21 @@ const Subgraph: NextPage = () => {
                 </button>
               </div>
             </div>
+          </div>
+        )}
+        {/* Chat Avatar Button when chat is closed */}
+        {!isChatVisible && (
+          <div className="pt-5 fixed top-20 right-4">
+            <button
+              className="flex items-center justify-center w-12 h-12 bg-slate-500 rounded-full shadow-lg hover:bg-purple-500 transition"
+              onClick={toggleChat}
+            >
+              <img
+                src="https://imgcdn.stablediffusionweb.com/2024/5/1/11583918-7338-4165-9052-a7cd8aaec83d.jpg" // Replace with your avatar image URL
+                alt="Chat Avatar"
+                className="w-10 h-10 rounded-full"
+              />
+            </button>
           </div>
         )}
       </div>
