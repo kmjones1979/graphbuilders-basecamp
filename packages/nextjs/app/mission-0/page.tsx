@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import DeployContent from "./_components/DeployContent";
 import SolidityContent from "./_components/SolidityContent";
 import StudioContent from "./_components/StudioContent";
-// import SubgraphContent from "./_components/SubgraphContent";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
@@ -35,11 +34,15 @@ const Subgraph: NextPage = () => {
     };
   }, []);
 
+  const toggleChat = () => {
+    setChatVisible(!isChatVisible);
+  };
+
   return (
     <>
       <div className="bg-base-100">
         <div className="flex justify-center top">
-          <h1 className="text-4xl font-bold pt-4 text-center max-w-2xl">Welcome to The Graph Builders Basecamp!</h1>
+          <h1 className="text-4xl font-bold pt-4 text-center max-w-2xl sm:max-w-xl">Mission 0</h1>
         </div>
         <div className="flex justify-center top">
           <h3 className="text-2xl pt-4 text-center max-w-2xl">Orientation</h3>
@@ -53,25 +56,19 @@ const Subgraph: NextPage = () => {
         </div>
         <div className="flex justify-center mt-4">
           <button
-            className={`rounded-lg px-4 py-2 ${activeTab === "solidity" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
+            className={`rounded-lg px-4 py-2 ${activeTab === "solidity" ? "bg-purple-500" : "text-purple-500"}`}
             onClick={() => setActiveTab("solidity")}
           >
             Part 1
           </button>
-          {/* <button
-          className={`rounded-lg px-4 py-2 ${activeTab === "subgraph" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
-          onClick={() => setActiveTab("subgraph")}
-        >
-          Part 2
-        </button> */}
           <button
-            className={`rounded-lg px-4 py-2 ${activeTab === "deploy" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
+            className={`rounded-lg px-4 py-2 ${activeTab === "deploy" ? "bg-purple-500" : "text-purple-500"}`}
             onClick={() => setActiveTab("deploy")}
           >
             Part 2
           </button>
           <button
-            className={`rounded-lg px-4 py-2 ${activeTab === "studio" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
+            className={`rounded-lg px-4 py-2 ${activeTab === "studio" ? "bg-purple-500" : "text-purple-500"}`}
             onClick={() => setActiveTab("studio")}
           >
             Part 3
@@ -79,7 +76,6 @@ const Subgraph: NextPage = () => {
         </div>
 
         {activeTab === "solidity" && <SolidityContent />}
-        {/* {/* {activeTab === "subgraph" && <SubgraphContent />} */}
         {activeTab === "deploy" && <DeployContent />}
         {activeTab === "studio" && <StudioContent />}
 
@@ -158,6 +154,22 @@ const Subgraph: NextPage = () => {
                 </button>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* Chat Avatar Button when chat is closed */}
+        {!isChatVisible && (
+          <div className="pt-5 fixed top-20 right-4">
+            <button
+              className="flex items-center justify-center w-12 h-12 bg-blue-500 rounded-full shadow-lg hover:bg-blue-600 transition"
+              onClick={toggleChat}
+            >
+              <img
+                src="https://imgcdn.stablediffusionweb.com/2024/5/1/11583918-7338-4165-9052-a7cd8aaec83d.jpg" // Replace with your avatar image URL
+                alt="Chat Avatar"
+                className="w-10 h-10 rounded-full"
+              />
+            </button>
           </div>
         )}
       </div>

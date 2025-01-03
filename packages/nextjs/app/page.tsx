@@ -20,11 +20,11 @@ const Home: NextPage = () => {
           <div className="hero-overlay bg-opacity-20"></div>
           <div className="hero-content text-neutral-content flex flex-col items-center justify-center w-full h-screen px-4 sm:px-8">
             <div className="max-w-1xl text-center">
-              <h2 className="mb-7 font-bold text-2xl text-white">Welcome to</h2>
-              <h1 className="mb-4 text-4xl sm:text-6xl text-white welcome-text">The Graph</h1>
-              <h1 className="mb-3 text-4xl sm:text-6xl text-white welcome-text">Builders Basecamp</h1>
+              <p className="mb-7 text-lg sm:text-xl text-violet-300 the-graph-text">Welcome to</p>
+              <h1 className="mb-7 text-3xl sm:text-5xl text-white the-graph-text font-bold">The Graph</h1>
+              <h1 className="mb-5 text-3xl sm:text-5xl text-white builders-basecamp-text">Builders Basecamp</h1>
               <div className="flex flex-col items-center">
-                <p className="mb-10 max-w-lg text-center text-white text-sm sm:text-xl">
+                <p className="mb-10 max-w-lg text-center text-sm sm:text-xl text-violet-300 the-graph-text">
                   A series of missions where you will test your ability to write smart contracts and develop subgraphs
                   on The Graph protocol. To get started click the button below.
                 </p>

@@ -9,6 +9,7 @@
 
 body {
   min-height: 100vh;
+  font-family: "Poppins", sans-serif;
 }
 
 h1,
@@ -17,18 +18,22 @@ h3,
 h4 {
   margin-bottom: 0.5rem;
   line-height: 1;
+  font-family: "Poppins", sans-serif;
 }
 
 p {
   margin: 1rem 0;
+  font-family: "Poppins", sans-serif;
 }
 
 .btn {
   @apply shadow-md;
+  font-family: "Poppins", sans-serif;
 }
 
 .btn.btn-ghost {
   @apply shadow-none;
+  font-family: "Poppins", sans-serif;
 }
 
 /* styles/globals.css or YourComponent.module.css */
@@ -83,7 +88,7 @@ p {
   font-style: italic;
 }
 
-.welcome-text {
+.builders-basecamp-text {
   font-family: "Sportypo-Regular", sans-serif;
 }
 
