@@ -161,7 +161,7 @@ const Subgraph: NextPage = () => {
         {!isChatVisible && (
           <div className="pt-5 fixed top-20 right-4">
             <button
-              className="flex items-center justify-center w-12 h-12 bg-blue-500 rounded-full shadow-lg hover:bg-blue-600 transition"
+              className="flex items-center justify-center w-12 h-12 bg-slate-500 rounded-full shadow-lg hover:bg-purple-500 transition"
               onClick={toggleChat}
             >
               <img

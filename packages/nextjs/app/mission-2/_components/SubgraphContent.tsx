@@ -63,7 +63,7 @@ const SubgraphContent: React.FC = () => {
             <p className="text-lg max-w-2xl italic">The schema for our subgraph is as follows:</p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-graphql">{`type CommsEstablished @entity {
     id: Bytes!
@@ -106,7 +106,7 @@ type OwnershipTransferred @entity(immutable: true) {
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-typescript">
                   {`import {
@@ -166,7 +166,7 @@ export function handleOwnershipTransferred(
             <p className="text-lg max-w-2xl italic">✅ Success will look like this: 👇🏼</p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-typescript">
                   {`Build completed: QmSPR7AmLy1FHX4aPdSKNn7GHXy5xGxz6xR6YuD6UMcfAc
@@ -194,7 +194,7 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-graphql">{`query MyQuery {
   commsEstablisheds(first: 10) {

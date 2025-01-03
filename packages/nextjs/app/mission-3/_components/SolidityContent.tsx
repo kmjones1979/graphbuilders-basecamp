@@ -57,7 +57,7 @@ const SolidityContent: React.FC = () => {
             <p className="text-lg max-w-2xl italic">The starting smart contract code for this mission is as follows:</p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-solidity">{`contract Moon is Ownable{
 
@@ -112,7 +112,7 @@ const SolidityContent: React.FC = () => {
           </div>
 
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-solidity">
                   {`deployed at 0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9 with 747494 gas`}

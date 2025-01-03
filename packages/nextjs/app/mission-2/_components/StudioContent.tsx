@@ -148,7 +148,7 @@ if (subgraphData[0] === account) {
           </div>
 
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-solidity">
                   {`{
@@ -215,7 +215,7 @@ if (subgraphData[0] === account) {
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-graphql">
                   {`{

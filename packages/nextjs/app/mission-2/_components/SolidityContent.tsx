@@ -59,7 +59,7 @@ const SolidityContent: React.FC = () => {
             <p className="text-lg max-w-2xl italic">The starting smart contract code for this mission is as follows:</p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-solidity">
                   {`contract Comms {
@@ -133,7 +133,7 @@ const SolidityContent: React.FC = () => {
           </div>
 
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-solidity">
                   {`deployed at 0x0165878A594ca255338adfa4d48449f69242Eb8F with 378023 gas`}

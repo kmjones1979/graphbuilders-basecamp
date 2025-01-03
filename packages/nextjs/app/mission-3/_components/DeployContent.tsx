@@ -66,7 +66,7 @@ const DeployContent: React.FC = () => {
             <p className="text-lg max-w-2xl italic">✅ Success will look like the following: 👇🏼</p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-solidity">
                   {`deploying "Moon" (tx: 0x2dea4c89a5f26850d3049c864c8151983b938568bef6668a950375ce97ee3d57)...
@@ -89,7 +89,7 @@ deployed at 0xaF938C165A25327D8884d85f4dd156736144c987 with 143057 gas
             <p className="text-lg max-w-2xl italic">✅ Success will look like the following: 👇🏼</p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-6xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-solidity">
                   {`verifying Moon (0xaF938C165A25327D8884d85f4dd156736144c987) ...

@@ -78,7 +78,7 @@ const SubgraphContent: React.FC = () => {
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-typescript">
                   {`import { Enlisted as EnlistedEvent } from "../generated/Enlist/Enlist";
@@ -133,7 +133,7 @@ export function handleEnlisted(event: EnlistedEvent): void {
             <p className="text-lg max-w-2xl italic">✅ Success will look like this: 👇🏼</p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-typescript">
                   {`Build completed: QmSPR7AmLy1FHX4aPdSKNn7GHXy5xGxz6xR6YuD6UMcfAc
@@ -161,7 +161,7 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-black p-4 rounded max-w-4xl flex justify-center">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-typescript">
                   {`query MyQuery {
