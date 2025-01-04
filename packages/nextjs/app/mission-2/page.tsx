@@ -58,25 +58,25 @@ const Subgraph: NextPage = () => {
         </div>
         <div className="flex justify-center mt-4">
           <button
-            className={`rounded-lg px-4 py-2 ${activeTab === "solidity" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
+            className={`rounded-lg px-4 py-2 ${activeTab === "solidity" ? "bg-purple-500" : "text-purple-500"}`}
             onClick={() => setActiveTab("solidity")}
           >
             Part 1
           </button>
           <button
-            className={`rounded-lg px-4 py-2 ${activeTab === "subgraph" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
+            className={`rounded-lg px-4 py-2 ${activeTab === "subgraph" ? "bg-purple-500" : "text-purple-500 "}`}
             onClick={() => setActiveTab("subgraph")}
           >
             Part 2
           </button>
           <button
-            className={`rounded-lg px-4 py-2 ${activeTab === "deploy" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
+            className={`rounded-lg px-4 py-2 ${activeTab === "deploy" ? "bg-purple-500" : "text-purple-500 "}`}
             onClick={() => setActiveTab("deploy")}
           >
             Part 3
           </button>
           <button
-            className={`rounded-lg px-4 py-2 ${activeTab === "studio" ? "bg-purple-500" : "text-purple-500 text-purple-300"}`}
+            className={`rounded-lg px-4 py-2 ${activeTab === "studio" ? "bg-purple-500" : "text-purple-500 "}`}
             onClick={() => setActiveTab("studio")}
           >
             Part 4

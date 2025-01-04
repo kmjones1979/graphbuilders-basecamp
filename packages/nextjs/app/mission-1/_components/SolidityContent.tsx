@@ -20,12 +20,10 @@ const SolidityContent: React.FC = () => {
           </div>
           <div className="flex justify-center top">
             <p className="text-lg text-left max-w-2xl">
-              Congratulations on joining The Graph Builders Academy, adventure awaits you in the stars above! Now that
-              you have gone thru orientation, your next step is to enlist for Project Alpha Centauri. In this first
+              Congratulations on your progress thus far, your next step is to enlist for Project Alpha Centauri. In this
               mission you will, edit a basic smart contract, create a basic AssemblyScript handler to process event data
               and then publish that subgraph to your local machine as well as the Subgraph Studio. Once you have
-              completed this mission you will be able to move on to the next mission well as the Subgraph Studio. Once
-              you have completed this mission you will be able to move on to the next mission and travel to the stars!
+              completed this mission you will be able to move on.
             </p>
           </div>
           <div className="flex justify-center top">
