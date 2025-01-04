@@ -7,17 +7,25 @@ const SolidityContent: React.FC = () => {
       {/* Part 1 */}
       <div className="flex justify-center">
         <div className="max-w-sm sm:max-w-2xl w-full p-4">
+          <div className="flex justify-center top">
+            <p className="text-lg text-left max-w-2xl italic">
+              You pause for a moment, breathing in the crisp, recycled air of the space academy. A sense of pride stirs
+              within you, paired with the eagerness to move on to the next mission. Your eyes wander to a poster hanging
+              on the hallway wall nearby: it depicts a massive space station orbiting a ringed planet, with three moons
+              gleaming in the distance. Bold text beneath the image reads: "Enlist for Project Alpha Centauri today!"
+            </p>
+          </div>
           <div className="flex justify-center top pt-4">
             <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Solidity</h1>
           </div>
           <div className="flex justify-center top">
             <p className="text-lg text-left max-w-2xl">
-              You have arrived at The Graph Builders Academy, adventure awaits you in the skies above! In order to
-              travel to the outer limits of the galaxy you will need to enlist the Academy and prove your worth with a
-              basic deployment of a subgraph. In this first mission you will, edit a basic smart contract, create a
-              basic AssemblyScript handler to process event data and then publish that subgraph to your local machine as
-              well as the Subgraph Studio. Once you have completed this mission you will be able to move on to the next
-              mission and travel to the stars!
+              Congratulations on joining The Graph Builders Academy, adventure awaits you in the stars above! Now that
+              you have gone thru orientation, your next step is to enlist for Project Alpha Centauri. In this first
+              mission you will, edit a basic smart contract, create a basic AssemblyScript handler to process event data
+              and then publish that subgraph to your local machine as well as the Subgraph Studio. Once you have
+              completed this mission you will be able to move on to the next mission well as the Subgraph Studio. Once
+              you have completed this mission you will be able to move on to the next mission and travel to the stars!
             </p>
           </div>
           <div className="flex justify-center top">
@@ -143,7 +151,7 @@ const SolidityContent: React.FC = () => {
             <div className="flex justify-center top">Stuck? Join the telegram channel for this mission... </div>
             <div className="">
               <a href="https://t.me/+ZZIgax5l1dI1YjQx" target="_blank" rel="noopener noreferrer">
-                🗒 Mission 1: Enlist 🚀
+                🗒 Mission 1: Alpha Centauri 🚀
               </a>
             </div>
           </div>

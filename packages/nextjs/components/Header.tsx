@@ -125,7 +125,7 @@ export const Missions = () => {
       <li>
         <a href="/mission-1">
           <FlagIcon className="h-4 w-4" />
-          1: Join the Academy {userCredential1?.data ? <Complete /> : <Ready />}
+          1: Alpha Centauri {userCredential1?.data ? <Complete /> : <Ready />}
         </a>
       </li>
       <li>

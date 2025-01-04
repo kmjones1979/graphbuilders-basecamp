@@ -47,7 +47,7 @@ const Subgraph: NextPage = () => {
           <h1 className="text-4xl font-bold pt-4 text-center max-w-2xl">Mission 1</h1>
         </div>
         <div className="flex justify-center top">
-          <h3 className="text-2xl pt-4 text-center max-w-2xl">Join the Academy!</h3>
+          <h3 className="text-2xl pt-4 text-center max-w-2xl">Enlist for project Alpha Centauri!</h3>
         </div>
         <div className="flex justify-center top p-5">
           {accountMinted ? (
@@ -149,7 +149,7 @@ const Subgraph: NextPage = () => {
                       You probably don't need it but if you get stuck... Join the telegram channel for this mission 👇🏼
                       <div className="">
                         <a href="https://t.me/+ZZIgax5l1dI1YjQx" target="_blank" rel="noopener noreferrer">
-                          🗒 Mission 1: Enlist 🚀
+                          🗒 Mission 1: Alpha Centauri 🚀
                         </a>
                       </div>
                     </div>
