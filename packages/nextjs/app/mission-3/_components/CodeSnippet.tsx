@@ -24,16 +24,19 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({ code, button }) => {
   return (
     <div className="max-w-3xl mx-auto mt-2">
       <div className="flex flex-col items-center">
-        <div className="mockup-code w-full">
+        <div className="mockup-code w-full relative">
           <pre>
             <code>{code}</code>
           </pre>
+          {button && (
+            <button
+              className="btn btn-secondary btn-xs btn-outline absolute right-3 top-3"
+              onClick={() => copyToClipboard(code)}
+            >
+              {buttonText}
+            </button>
+          )}
         </div>
-        {button && (
-          <button className="btn btn-secondary btn-xs btn-outline mt-2" onClick={() => copyToClipboard(code)}>
-            {buttonText}
-          </button>
-        )}
       </div>
     </div>
   );
