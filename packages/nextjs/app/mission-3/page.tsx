@@ -91,10 +91,78 @@ const Subgraph: NextPage = () => {
           </button>
         </div>
 
-        {activeTab === "solidity" && <SolidityContent />}
-        {activeTab === "subgraph" && <SubgraphContent />}
-        {activeTab === "sidequest" && <SideQuestContent />}
-        {activeTab === "deploy" && <DeployContent />}
+        {activeTab === "solidity" && (
+          <div className="justify-center top">
+            <div className="flex justify-center top">
+              <SolidityContent />
+            </div>
+            <div className="flex justify-center top">
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  setActiveTab("subgraph");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                Part 2
+              </button>
+            </div>
+          </div>
+        )}
+        {activeTab === "subgraph" && (
+          <div className="justify-center top">
+            <div className="flex justify-center top">
+              <SubgraphContent />
+            </div>
+            <div className="flex justify-center top">
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  setActiveTab("sidequest");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                Side Quest
+              </button>
+            </div>
+          </div>
+        )}
+        {activeTab === "sidequest" && (
+          <div className="justify-center top">
+            <div className="flex justify-center top">
+              <SideQuestContent />
+            </div>
+            <div className="flex justify-center top">
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  setActiveTab("deploy");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                Part 3
+              </button>
+            </div>
+          </div>
+        )}
+        {activeTab === "deploy" && (
+          <div className="justify-center top">
+            <div className="flex justify-center top">
+              <DeployContent />
+            </div>
+            <div className="flex justify-center top">
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  setActiveTab("studio");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                Part 4
+              </button>
+            </div>
+          </div>
+        )}
         {activeTab === "studio" && <StudioContent />}
 
         {/* Chat Bubble Container */}

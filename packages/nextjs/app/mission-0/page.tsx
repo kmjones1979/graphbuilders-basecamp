@@ -75,9 +75,47 @@ const Subgraph: NextPage = () => {
           </button>
         </div>
 
-        {activeTab === "solidity" && <SolidityContent />}
-        {activeTab === "deploy" && <DeployContent />}
-        {activeTab === "studio" && <StudioContent />}
+        {activeTab === "solidity" && (
+          <div className="justify-center top">
+            <div className="flex justify-center top">
+              <SolidityContent />
+            </div>
+            <div className="flex justify-center top">
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  setActiveTab("deploy");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                Part 2
+              </button>
+            </div>
+          </div>
+        )}
+        {activeTab === "deploy" && (
+          <div className="justify-center top">
+            <div className="flex justify-center top">
+              <DeployContent />
+            </div>
+            <div className="flex justify-center top">
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  setActiveTab("studio");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                Part 3
+              </button>
+            </div>
+          </div>
+        )}
+        {activeTab === "studio" && (
+          <div className="flex justify-center top">
+            <StudioContent />
+          </div>
+        )}
 
         {/* Chat Bubble Container */}
         {isChatVisible && (
