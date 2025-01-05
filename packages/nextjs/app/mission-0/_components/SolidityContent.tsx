@@ -12,11 +12,16 @@ const SolidityContent: React.FC = () => {
               The shuttle transporting you glides effortlessly through the vast emptiness, its engine humming softly as
               it decelerates toward the docking bay. Your pulse quickens, a mix of awe and anticipation flooding your
               senses, as the sprawling station looms ahead—an impossible city suspended in the void. The hull of the
-              shuttle vibrates under you, a gentle tremor signaling your approach. Before you stretches a dazzling array
-              of shimmering towers and crystalline domes, each one bathed in the cold, ethereal light of distant stars.
-              Far off, a massive spacecraft drifts by, its side emblazoned with the logo The Graph, a silent testament
-              to the scale of this place. You inhale deeply, your gaze fixed on the unknown. With a steadying breath,
-              you step into the hallway of the space academy. The future is waiting.
+              shuttle vibrates under you, a gentle tremor signaling your approach.
+            </p>
+          </div>
+          <div className="flex justify-center top">
+            <p className="text-lg text-left italic font-thin">
+              Before you stretches a dazzling array of shimmering towers and crystalline domes, each one bathed in the
+              cold, ethereal light of distant stars. Far off, a massive spacecraft drifts by, its side emblazoned with
+              the logo The Graph, a silent testament to the scale of this place. The shuttle screeches as it arrives at
+              the academy. You inhale deeply, your gaze fixed on the unknown. With a steadying breath, you step off the
+              shuttle and into the hallway of the space academy. The future is waiting.
             </p>
           </div>
           <div className="flex justify-center top pt-4">

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CheckIcon, ClipboardIcon } from "@heroicons/react/24/outline";
 
 interface CodeSnippetProps {
   code: string;
@@ -6,13 +7,13 @@ interface CodeSnippetProps {
 }
 
 const CodeSnippet: React.FC<CodeSnippetProps> = ({ code, button }) => {
-  const [buttonText, setButtonText] = useState("Copy to Clipboard");
+  const [buttonText, setButtonText] = useState(<ClipboardIcon className="h-4 w-4" />);
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(
       () => {
-        setButtonText("Copied!");
-        setTimeout(() => setButtonText("Copy to Clipboard"), 2000);
+        setButtonText(<CheckIcon className="h-4 w-4" />);
+        setTimeout(() => setButtonText(<ClipboardIcon className="h-4 w-4" />), 3000);
       },
       err => {
         console.error("Could not copy text: ", err);

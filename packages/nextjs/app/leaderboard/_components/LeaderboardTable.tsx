@@ -52,42 +52,40 @@ const LeaderboardTable = () => {
   }
 
   return (
-    <div className="bg-base-100">
-      <div className="flex justify-center items-center mt-10">
-        <div className="overflow-x-auto shadow-2xl rounded-xl">
-          <table className="table bg-base-100 table-zebra">
-            <thead>
-              <tr className="rounded-xl">
-                <th className="bg-primary"></th>
-                <th className="bg-primary" onClick={() => handleSort("address")}>
-                  User
-                </th>
-                <th className="bg-primary" onClick={() => handleSort("rank")}>
-                  Rank
-                </th>
-                <th className="bg-primary" onClick={() => handleSort("blockTimestamp")}>
-                  Joined
-                </th>
-                <th className="bg-primary" onClick={() => handleSort("lastCredentialMinted")}>
-                  Last Active
-                </th>
+    <div className="flex justify-center items-center mt-10">
+      <div className="overflow-x-auto shadow-2xl rounded-xl">
+        <table className="table bg-base-100 table-zebra">
+          <thead>
+            <tr className="rounded-xl">
+              <th className="bg-primary"></th>
+              <th className="bg-primary" onClick={() => handleSort("address")}>
+                User
+              </th>
+              <th className="bg-primary" onClick={() => handleSort("rank")}>
+                Rank
+              </th>
+              <th className="bg-primary" onClick={() => handleSort("blockTimestamp")}>
+                Joined
+              </th>
+              <th className="bg-primary" onClick={() => handleSort("lastCredentialMinted")}>
+                Last Active
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {sortedUsersData().map((user: any, index: number) => (
+              <tr key={user.address}>
+                <th>{index + 1}</th>
+                <td>
+                  <Address address={user?.address} />
+                </td>
+                <td>{user?.rank}</td>
+                <td>{new Date(user?.blockTimestamp * 1000).toLocaleString()}</td>
+                <td>{new Date(user?.lastCredentialMinted * 1000).toLocaleString()}</td>
               </tr>
-            </thead>
-            <tbody>
-              {sortedUsersData().map((user: any, index: number) => (
-                <tr key={user.address}>
-                  <th>{index + 1}</th>
-                  <td>
-                    <Address address={user?.address} />
-                  </td>
-                  <td>{user?.rank}</td>
-                  <td>{new Date(user?.blockTimestamp * 1000).toLocaleString()}</td>
-                  <td>{new Date(user?.lastCredentialMinted * 1000).toLocaleString()}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

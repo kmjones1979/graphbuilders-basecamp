@@ -1,12 +1,19 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { NextPage } from "next";
+import { useTheme } from "next-themes";
+import { resolve } from "path";
 import { useAccount } from "wagmi";
 
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
   const router = useRouter();
+
+  const { resolvedTheme } = useTheme();
+
+  useEffect(() => {}, [resolvedTheme]);
 
   return (
     <>
@@ -14,7 +21,7 @@ const Home: NextPage = () => {
         <div
           className="hero min-h-screen"
           style={{
-            backgroundImage: "url(/bg-v5.png)",
+            backgroundImage: resolvedTheme === "light" ? "url(/bg-light.png)" : "url(/bg-dark.png)",
           }}
         >
           <div className="hero-overlay bg-opacity-20"></div>
