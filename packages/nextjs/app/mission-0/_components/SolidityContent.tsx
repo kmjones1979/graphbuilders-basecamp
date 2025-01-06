@@ -108,20 +108,6 @@ contract Welcome {
             />
           </div>
           <div className="flex justify-center top">
-            <p className="text-lg text-left italic">Then start your frontend, in a new terminal.</p>
-          </div>
-          <CodeSnippet code="yarn start" button={true} />
-          <div className="flex justify-center top">
-            <p className="text-lg text-left italic">Success will look like the following: 👇🏼</p>
-          </div>
-          <div className="flex justify-center top">
-            <img
-              className="max-w-2xl items-center w-full h-auto rounded-lg"
-              src="/orientation/2.png"
-              alt="yarn chain"
-            />
-          </div>
-          <div className="flex justify-center top">
             <p className="text-lg text-left italic">Then deploy your contract, in a new terminal.</p>
           </div>
           <CodeSnippet code="yarn deploy" button={true} />
@@ -132,6 +118,20 @@ contract Welcome {
             <img
               className="max-w-2xl items-center w-full h-auto rounded-lg"
               src="/orientation/3.png"
+              alt="yarn chain"
+            />
+          </div>
+          <div className="flex justify-center top">
+            <p className="text-lg text-left italic">Then start your frontend, in a new terminal.</p>
+          </div>
+          <CodeSnippet code="yarn start" button={true} />
+          <div className="flex justify-center top">
+            <p className="text-lg text-left italic">Success will look like the following: 👇🏼</p>
+          </div>
+          <div className="flex justify-center top">
+            <img
+              className="max-w-2xl items-center w-full h-auto rounded-lg"
+              src="/orientation/2.png"
               alt="yarn chain"
             />
           </div>
@@ -161,7 +161,7 @@ contract Welcome {
           <div className="flex justify-center top">
             <h3 className="text-large pt-4 text-left max-w-2xl italic">
               The schema for this mission is located in{" "}
-              <span className="highlight-code">packages/subgraph/schema.graphql</span>. This file contains the
+              <span className="highlight-code">packages/subgraph/src/schema.graphql</span>. This file contains the
               definitions for the data you will index from your smart contract.
             </h3>
           </div>
