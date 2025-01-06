@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
@@ -37,12 +36,6 @@ export const queryClient = new QueryClient({
   },
 });
 
-const subgraphUri = "http://localhost:8000/subgraphs/name/scaffold-eth/your-contract";
-const apolloClient = new ApolloClient({
-  uri: subgraphUri,
-  cache: new InMemoryCache(),
-});
-
 export const ScaffoldEthAppWithProviders = ({ children }: { children: React.ReactNode }) => {
   const { resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === "dark";
@@ -60,9 +53,7 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
           avatar={BlockieAvatar}
           theme={mounted ? (isDarkMode ? darkTheme() : lightTheme()) : lightTheme()}
         >
-          <ApolloProvider client={apolloClient}>
-            <ScaffoldEthApp>{children}</ScaffoldEthApp>
-          </ApolloProvider>
+          <ScaffoldEthApp>{children}</ScaffoldEthApp>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
