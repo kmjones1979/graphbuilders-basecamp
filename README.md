@@ -88,11 +88,11 @@ Call `.addCredential` and passing the following arguments will create a credenti
 -   `_id`: `uint8`
 -   `_name`: `string`
 
-7. Add the Validator.sol as a minter on Basecamp.sol
+8. Add the Validator.sol as a minter on Basecamp.sol
 
 Call `.addMinter` and passing `_account` as an `address`
 
-8. At the moment the subscription for chainlink is hardcoded in each studio page and used for the submission function call.
+9. At the moment the subscription for chainlink is hardcoded in each studio page and used for the submission function call.
 
 -   Edit `const subscriptionId = 4048;` to match your subscription ID.
 
