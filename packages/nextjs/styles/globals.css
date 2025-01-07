@@ -67,7 +67,7 @@ p {
 
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins/Poppins-Bold.ttf") format("truetype"); /* Adjust the path and format as needed */
+  src: url("/fonts/Poppins/Poppins-SemiBold.ttf") format("truetype"); /* Adjust the path and format as needed */
   font-weight: bold;
   font-style: normal;
 }
