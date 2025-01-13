@@ -157,13 +157,25 @@ if (newMessage[0] === check) {
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl font-bold">3. Run the following command to initialize your subgraph.</p>
           </div>
+          <div className="flex justify-center top mt-4 mb-4">
+            <p className="text-lg max-w-2xl font-italic italic">
+              Note: Since this is a new project. You will want to run this command outside of the current project so it
+              does not conflict with the current project.
+            </p>
+          </div>
           <CodeSnippet code="graph init mymission" button={true} />
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">
-              You will need to input all of the details for the contract that you want to index.
+              You will need to input all of the details for the contract that you deployed in the previous section.
             </p>
           </div>
-
+          <div className="flex justify-center top mt-4 mb-4">
+            <p className="text-lg max-w-2xl font-italic italic">
+              Note: You can get the the Start Block from the block explorer of the network you deployed to. The ABI for
+              your smart contract should be located in the folder of The Graph Builders Basecamp at{" "}
+              <span className="highlight-code">/packages/hardhat/deployments/NETWORK_NAME/CONTRACT_NAME.json</span>
+            </p>
+          </div>
           <div className="flex justify-center top mt-4 mb-4">
             <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
