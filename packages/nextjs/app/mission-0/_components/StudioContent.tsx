@@ -157,28 +157,43 @@ if (newMessage[0] === check) {
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl font-bold">3. Run the following command to initialize your subgraph.</p>
           </div>
+          <div className="flex justify-center top mt-4 mb-4">
+            <p className="text-lg max-w-2xl font-italic italic">
+              Note: Since this is a new project. You will want to run this command outside of the current project so it
+              does not conflict with the current project.
+            </p>
+          </div>
           <CodeSnippet code="graph init mymission" button={true} />
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">
-              You will need to input all of the details for the contract that you want to index.
+              You will need to input all of the details for the contract that you deployed in the previous section.
             </p>
           </div>
-
+          <div className="flex justify-center top mt-4 mb-4">
+            <p className="text-lg max-w-2xl font-italic italic">
+              Note: You can get the the Start Block from the block explorer of the network you deployed to. The ABI for
+              your smart contract should be located in the folder of The Graph Builders Basecamp at{" "}
+              <span className="highlight-code">/packages/hardhat/deployments/NETWORK_NAME/CONTRACT_NAME.json</span>
+            </p>
+          </div>
           <div className="flex justify-center top mt-4 mb-4">
             <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-solidity">
-                  {`✔ Ethereum network · sepolia
+                  {`✔ Network · Ethereum Sepolia Testnet · sepolia · https://sepolia.etherscan.io
+✔ Source · Smart Contract · ethereum
+✔ Subgraph slug · mymission
+✔ Directory to create the subgraph in · mymission
 ✔ Contract address · 0xeAa2c3ae9a2Ee0dD3df0274A71C52E7335D652ec
-✖ Failed to fetch ABI from Etherscan: ABI not found, try loading it from a local file
+✖ Failed to fetch ABI: Error: NOTOK - Contract source code not verified
 ✔ Do you want to retry? (Y/n) · false
-✖ Failed to fetch Start Block: Failed to fetch contract creation transaction hash
+✖ Failed to fetch start block: Failed to fetch deploy contract transaction for 0xeAa2c3ae9a2Ee0dD3df0274A71C52E7335D652ec
 ✔ Do you want to retry? (Y/n) · false
+✔ Fetching contract name from contract API...
 ✔ ABI file (path) · /Users/user/mission-0-orientation/packages/hardhat/deployments/sepolia/Welcome.json
-✔ Start Block · 7159204
-✔ Contract Name · Welcome
-✔ Index contract   const encryptedSecretsRef = "0xa266736c6f744964006776657273696f6e1a65540efa";
-s as entities (Y/n) · true
+✔ Start block · 7159204
+✔ Contract name · Welcome
+✔ Index contract events as entities (Y/n) · true
   Generate subgraph
   Write subgraph to directory
 ✔ Create subgraph scaffold
