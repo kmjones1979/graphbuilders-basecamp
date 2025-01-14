@@ -53,6 +53,10 @@ const SolidityContent: React.FC = () => {
           </div>
           <CodeSnippet code="yarn chain" button={true} />
           <div className="flex justify-center top">
+            <p className="text-lg text-left italic">Then deploy your contract, in a new terminal.</p>
+          </div>
+          <CodeSnippet code="yarn deploy" button={true} />
+          <div className="flex justify-center top">
             <p className="text-lg text-left italic">Then start your frontend, in a new terminal.</p>
           </div>
           <CodeSnippet code="yarn start" button={true} />
