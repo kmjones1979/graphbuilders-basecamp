@@ -4,6 +4,7 @@ import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 import { useAccount } from "wagmi";
 import {
   BanknotesIcon,
@@ -187,6 +188,7 @@ export const MissionsStaticLinks = () => {
  */
 export const Header = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { resolvedTheme } = useTheme();
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   useOutsideClick(
     burgerMenuRef,
@@ -220,7 +222,12 @@ export const Header = () => {
         </div>
         <Link href="/" passHref className="hidden lg:flex items-center gap-2 ml-4 mr-6 shrink-0">
           <div className="flex relative w-10 h-10">
-            <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo3.png" />
+            <Image
+              alt="logo"
+              className="cursor-pointer"
+              fill
+              src={resolvedTheme === "light" ? "/logo4.png" : "/logo3.png"}
+            />
           </div>
           <div className="flex flex-col">
             <span className="font-bold leading-tight">The Graph</span>
