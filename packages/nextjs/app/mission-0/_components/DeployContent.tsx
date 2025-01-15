@@ -12,7 +12,7 @@ const DeployContent: React.FC = () => {
           </div>
           <div className="flex justify-center top">
             <p className="text-lg text-left max-w-2xl">
-              In this next part of the mission you will deploy your smart contract to a public network. This way we can
+              In this part of the mission you will deploy your smart contract to a public network. This way we can
               index the data on The Graph's decentralized network.
             </p>
           </div>
@@ -151,7 +151,7 @@ waiting for result...
           </div>
           <div className="flex justify-center top">
             <p className="text-lg text-left max-w-2xl">
-              If you you were successful, go back to the top of the page and continue with the next part of the mission.
+              If you were successful, continue with the next part of the mission.
             </p>
           </div>
         </div>

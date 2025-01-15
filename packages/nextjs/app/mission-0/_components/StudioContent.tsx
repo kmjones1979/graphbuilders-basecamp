@@ -88,7 +88,7 @@ if (newMessage[0] === check) {
           </div>
           <div className="flex justify-center top">
             <p className="text-lg text-left max-w-2xl">
-              In this next part of the mission you will scaffold out and deploy your subgraph to The Graph Subgraph
+              In this part of the mission you will scaffold out and deploy your subgraph to The Graph Subgraph
               Studio. The studio is a place where you can create, test, and deploy subgraphs before you publish them to
               the decentralized network.
             </p>
@@ -209,7 +209,7 @@ if (newMessage[0] === check) {
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl font-bold">
               4. Authenticate to the Subgraph Studio from your terminal. You can find your{" "}
-              <span className="highlight-code">AUTH_KEY</span> in the Studio.
+              <span className="highlight-code">AUTH_KEY</span> in the Studio under Deploy Key section.
             </p>
           </div>
           <CodeSnippet code="graph auth <AUTH_KEY>" button={true} />
