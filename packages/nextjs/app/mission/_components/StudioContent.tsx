@@ -7,8 +7,8 @@ const StudioContent: React.FC = () => {
       {/* Part 4 */}
       <div className="flex justify-center top">
         <p className="text-lg text-center max-w-2xl">
-          In this next part of the mission you will deploy your subgraph to The Graph Subgraph Studio. The studio is a
-          place where you can create, test, and deploy subgraphs before you publish them to the decentralized network.
+          In this part of the mission you will deploy your subgraph to The Graph Subgraph Studio. The studio is a place
+          where you can create, test, and deploy subgraphs before you publish them to the decentralized network.
         </p>
       </div>
       <div className="flex justify-center top mt-4 mb-4 ">
@@ -92,7 +92,9 @@ const StudioContent: React.FC = () => {
       <div className="flex justify-center top mt-4 mb-4">
         <p className="text-lg max-w-2xl font-bold">
           3. Next, we need to update the deploy command for our subgraph package to use the name we configured in the
-          studio. Update the "graph deploy" command to use the name of your subgraph. In my case it is "mymission".
+          studio. Update the "graph deploy" command in{" "}
+          <span className="highlight-code font-normal">packages/subgraph/package.json</span>
+          to use the name of your subgraph. In my case it is "mymission".
         </p>
       </div>
       <CodeSnippet code="graph deploy mymission" button={false} />

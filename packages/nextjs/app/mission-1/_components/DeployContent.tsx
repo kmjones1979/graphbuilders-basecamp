@@ -12,7 +12,7 @@ const DeployContent: React.FC = () => {
           </div>
           <div className="flex justify-center top">
             <p className="text-lg text-left max-w-2xl">
-              Up to this point we have been doing local first development. In this next part of the mission you will
+              Up to this point we have been doing local first development. In this part of the mission you will
               deploy your smart contract to a public network. This way we can index the data on The Graph's
               decentralized network.
             </p>
