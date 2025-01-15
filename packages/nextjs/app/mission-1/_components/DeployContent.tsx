@@ -127,7 +127,7 @@ waiting for result...
           </div>
           <div className="flex justify-center top">
             <p className="text-lg text-left max-w-2xl">
-              If you you were successful, go back to the top of the page and continue with the next part of the mission.
+              If you were successful, continue with the next part of the mission.
             </p>
           </div>
         </div>
