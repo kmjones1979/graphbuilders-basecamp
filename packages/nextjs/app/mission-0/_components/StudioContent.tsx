@@ -171,7 +171,7 @@ if (newMessage[0] === check) {
           </div>
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl font-italic italic">
-              Note: You can get the the Start Block from the block explorer of the network you deployed to. The ABI for
+              Note: You can get the Start Block from the block explorer of the network you deployed to. The ABI for
               your smart contract should be located in the folder of The Graph Builders Basecamp at{" "}
               <span className="highlight-code">/packages/hardhat/deployments/NETWORK_NAME/CONTRACT_NAME.json</span>
             </p>
