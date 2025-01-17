@@ -13,8 +13,8 @@ const SubgraphContent: React.FC = () => {
           </div>
           <div className="flex justify-center top">
             <p className="text-lg text-left max-w-2xl">
-              In this next part of the mission you will need to set up your local development environment so that you
-              can index the data from the smart contract.
+              In this part of the mission you will need to set up your local development environment so that you can
+              index the data from the smart contract.
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4 ">
@@ -54,10 +54,25 @@ const SubgraphContent: React.FC = () => {
             <p className="text-lg font-bold  max-w-2xl">
               3. Now you will need to complete the code for the handler to process the event data coming off the smart
               contract. Open up your project in a text editor and navigate to the handler in
-              packages/subgraph/src/mapping.ts.
+              <span className="highlight-code font-normal">packages/subgraph/src/mapping.ts</span>
             </p>
           </div>
-          <CodeSnippet code="code ." button={true} />
+          <div className="flex justify-center top mt-4 mb-4">
+            <p className="text-lg max-w-2xl italic">The schema for our subgraph is as follows:</p>
+          </div>
+          <div className="flex justify-center top mt-4 mb-4">
+            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
+              <pre>
+                <code className="language-graphql">{`type Enlisted @entity {
+    id: Bytes!
+    account: Bytes!
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}`}</code>
+              </pre>
+            </div>
+          </div>
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">
               In our case we have an event called Enlisted that we want to process and save to the database. In our case
@@ -100,7 +115,7 @@ export function handleEnlisted(event: EnlistedEvent): void {
             <p className="text-lg max-w-2xl">
               <ol className="list-disc list-inside mb-4">
                 <li>
-                  Use the <span className="highlight-code">Enlisted</span> schema and the the{" "}
+                  Use the <span className="highlight-code">Enlisted</span> schema and the{" "}
                   <span className="highlight-code">new</span> keyword to create an entry in the database.
                 </li>
                 <li>Set the properties of the entity using event data. </li>
@@ -166,10 +181,10 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
                 <code className="language-typescript">
                   {`query MyQuery {
   enlisteds(first: 10, orderBy: blockTimestamp, orderDirection: asc) {
+    id
     account
     blockNumber
     blockTimestamp
-    id
     transactionHash
   }
 }`}
@@ -183,7 +198,6 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
           <div className="flex justify-center top mt-4 mb-4 ">
             <img className="w-full h-auto rounded-lg" src="/mission-1-response.png" alt="studio" />
           </div>
-
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg font-bold  max-w-2xl">
               6. Now you will need to build the graph client artifacts... if you did this part correctly the results
@@ -195,7 +209,7 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
           </div>
           <div className="flex justify-center top">
             <p className="text-lg text-left max-w-2xl">
-              If you you were successful, go back to the top of the page and continue with the next part of the mission.
+              If you were successful, continue with the next part of the mission.
             </p>
           </div>
         </div>

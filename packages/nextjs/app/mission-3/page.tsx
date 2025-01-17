@@ -75,19 +75,19 @@ const Subgraph: NextPage = () => {
             className={`rounded-lg px-4 py-2 ${activeTab === "sidequest" ? "bg-purple-500" : "text-purple-500"}`}
             onClick={() => setActiveTab("sidequest")}
           >
-            Side Quest
+            Part 3
           </button>
           <button
             className={`rounded-lg px-4 py-2 ${activeTab === "deploy" ? "bg-purple-500" : "text-purple-500"}`}
             onClick={() => setActiveTab("deploy")}
           >
-            Part 3
+            Part 4
           </button>
           <button
             className={`rounded-lg px-4 py-2 ${activeTab === "studio" ? "bg-purple-500" : "text-purple-500"}`}
             onClick={() => setActiveTab("studio")}
           >
-            Part 4
+            Part 5
           </button>
         </div>
 
@@ -104,7 +104,7 @@ const Subgraph: NextPage = () => {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               >
-                Part 2
+                Part 3
               </button>
             </div>
           </div>
@@ -122,7 +122,7 @@ const Subgraph: NextPage = () => {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               >
-                Side Quest
+                Part 3
               </button>
             </div>
           </div>
@@ -140,7 +140,7 @@ const Subgraph: NextPage = () => {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               >
-                Part 3
+                Part 4
               </button>
             </div>
           </div>
@@ -158,7 +158,7 @@ const Subgraph: NextPage = () => {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               >
-                Part 4
+                Part 5
               </button>
             </div>
           </div>
