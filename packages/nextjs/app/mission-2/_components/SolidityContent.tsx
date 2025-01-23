@@ -54,9 +54,6 @@ const SolidityContent: React.FC = () => {
           </div>
           <CodeSnippet code="yarn start" button={true} />
           <div className="flex justify-center top">
-            <p className="text-lg text-left italic">Now that our environment is setup, let's begin the mission.</p>
-          </div>
-          <div className="flex justify-center top">
             <h3 className="text-2xl pt-4 text-left max-w-2xl">Mission Steps:</h3>
           </div>
           <div className="flex justify-center mt-4 mb-4">
@@ -135,7 +132,6 @@ const SolidityContent: React.FC = () => {
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">✅ Success will look like this: 👇🏼</p>
           </div>
-
           <div className="flex justify-center top mt-4 mb-4">
             <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
