@@ -4079,7 +4079,7 @@ const basecampSepoliaTransforms = [];
 const additionalTypeDefs = [] as any[];
 const basecampSepoliaHandler = new GraphqlHandler({
               name: "BasecampSepolia",
-              config: {"endpoint":"https://api.studio.thegraph.com/query/37762/basecamp-sepolia/version/latest"},
+              config: {"endpoint":"https://api.studio.thegraph.com/query/37762/basecamp-basesepolia/version/latest"},
               baseDir,
               cache,
               pubsub,
