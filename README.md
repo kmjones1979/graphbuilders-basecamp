@@ -96,6 +96,16 @@ Call `.addMinter` and passing `_account` as an `address`
 
 -   Edit `const subscriptionId = 4048;` to match your subscription ID.
 
+## Potential issues
+
+Here is a list of potential issues you might see during the deployment.
+
+```
+Encoded error signature "0x80833e33" not found on ABI. Make sure you are using the correct ABI and that the error exists on it. You can look up the decoded signature here: https://openchain.xyz/signatures?query=0x80833e33. the abi is attached
+```
+
+Check the DonID is correct.
+
 ## 🚀 Setup The Graph Integration
 
 Now that we have spun up our blockchain, started our frontend application and deployed our smart contract, we can start setting up our subgraph and utilize The Graph!
