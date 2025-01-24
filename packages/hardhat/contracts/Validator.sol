@@ -7,6 +7,7 @@ import {FunctionsClient} from "./@chainlink/contracts/src/v0.8/functions/dev/1_0
 import {FunctionsRequest} from "./@chainlink/contracts/src/v0.8/functions/dev/1_0_0/libraries/FunctionsRequest.sol";
 import {Basecamp} from "./Basecamp.sol";
 
+
 contract Validator is FunctionsClient, Ownable {
   using FunctionsRequest for FunctionsRequest.Request;
 
@@ -32,10 +33,10 @@ contract Validator is FunctionsClient, Ownable {
   event MissionValidated(bytes32 requestId, uint8 missionIndex, uint256 isValid, bool success, address account);
   event Withdraw(uint256 amount);
 
-  constructor(address _owner, address _basecampAddress ) Ownable(_owner) FunctionsClient(0xb83E47C2bC239B3bf370bc41e1459A34b41238D0) {
+  constructor(address _owner, address _basecampAddress, address _functionsRouterAddress, bytes32 _donId) Ownable(_owner) FunctionsClient(_functionsRouterAddress) {
     basecamp = Basecamp(payable(_basecampAddress));
-    functionsRouterAddress = 0xb83E47C2bC239B3bf370bc41e1459A34b41238D0;
-    donId = 0x66756e2d657468657265756d2d7365706f6c69612d3100000000000000000000;
+    functionsRouterAddress = _functionsRouterAddress;
+    donId = _donId;
     emit BasecampAddressSet(_basecampAddress);
     emit FunctionsRouterAddressSet(functionsRouterAddress);
     emit DonIdSet(donId);

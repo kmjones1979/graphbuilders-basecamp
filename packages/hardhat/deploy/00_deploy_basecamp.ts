@@ -15,7 +15,6 @@ const deployBasecamp: DeployFunction = async function (hre: HardhatRuntimeEnviro
   const owner = "0x007E483Cf6Df009Db5Ec571270b454764d954d95";
   const minter = "0x007E483Cf6Df009Db5Ec571270b454764d954d95";
 
-  console.log("Deploying Basecamp...");
   await deploy("Basecamp", {
     from: deployer,
     args: [owner, minter],
@@ -24,7 +23,6 @@ const deployBasecamp: DeployFunction = async function (hre: HardhatRuntimeEnviro
   });
 
   const Basecamp = await hre.ethers.getContract<Contract>("Basecamp", deployer);
-  console.log("Basecamp deployed at", await Basecamp.getAddress());
 
   // console.log("Adding credentials...");
   // await Basecamp.addCredential(true, 0, "ORIENTATION");

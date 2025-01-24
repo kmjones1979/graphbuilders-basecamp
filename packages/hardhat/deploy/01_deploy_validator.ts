@@ -14,13 +14,14 @@ const deployValidator: DeployFunction = async function (hre: HardhatRuntimeEnvir
 
   const basecamp = await hre.ethers.getContract<Contract>("Basecamp", deployer);
   const basecampAddress = await basecamp.getAddress();
+  const functionsRouterAddress = "0xf9B8fc078197181C841c296C876945aaa425B278"; // baseSepolia functions router address
+  const donId = "0x66756e2d626173652d7365706f6c69612d310000000000000000000000000000"; // baseSepolia DON ID
 
   const owner = "0x007e483cf6df009db5ec571270b454764d954d95";
 
-  console.log("Deploying Validator...");
   await deploy("Validator", {
     from: deployer,
-    args: [owner, basecampAddress],
+    args: [owner, basecampAddress, functionsRouterAddress, donId],
     log: true,
     autoMine: true,
   });
@@ -28,7 +29,6 @@ const deployValidator: DeployFunction = async function (hre: HardhatRuntimeEnvir
   // Get the deployed contract to interact with it after deploying.
   const Validator = await hre.ethers.getContract<Contract>("Validator", deployer);
   const validatorAddress = await Validator.getAddress();
-  console.log("Validator deployed at", validatorAddress);
 
   // console.log("Adding Validator as minter on Basecamp...");
   // await basecamp.addMinter(validatorAddress);

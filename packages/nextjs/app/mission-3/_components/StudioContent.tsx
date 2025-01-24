@@ -56,7 +56,7 @@ if (subgraphData[0] === account) {
   return Functions.encodeUint256(0)
 }`;
 
-  const subscriptionId = 4048;
+  const subscriptionId = 266;
   const gasLimit = 100_000;
 
   const handleSubmit = async () => {

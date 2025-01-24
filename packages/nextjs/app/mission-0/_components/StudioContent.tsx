@@ -54,7 +54,7 @@ if (newMessage[0] === check) {
   return Functions.encodeUint256(0)
 }`;
 
-  const subscriptionId = 4048;
+  const subscriptionId = 266;
   const gasLimit = 100_000;
 
   const handleSubmit = async () => {
@@ -88,9 +88,9 @@ if (newMessage[0] === check) {
           </div>
           <div className="flex justify-center top">
             <p className="text-lg text-left max-w-2xl">
-              In this part of the mission you will scaffold out and deploy your subgraph to The Graph Subgraph
-              Studio. The studio is a place where you can create, test, and deploy subgraphs before you publish them to
-              the decentralized network.
+              In this part of the mission you will scaffold out and deploy your subgraph to The Graph Subgraph Studio.
+              The studio is a place where you can create, test, and deploy subgraphs before you publish them to the
+              decentralized network.
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4 ">
@@ -171,8 +171,8 @@ if (newMessage[0] === check) {
           </div>
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl font-italic italic">
-              Note: You can get the Start Block from the block explorer of the network you deployed to. The ABI for
-              your smart contract should be located in the folder of The Graph Builders Basecamp at{" "}
+              Note: You can get the Start Block from the block explorer of the network you deployed to. The ABI for your
+              smart contract should be located in the folder of The Graph Builders Basecamp at{" "}
               <span className="highlight-code">/packages/hardhat/deployments/NETWORK_NAME/CONTRACT_NAME.json</span>
             </p>
           </div>
