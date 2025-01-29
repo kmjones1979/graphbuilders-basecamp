@@ -12,9 +12,9 @@ const DeployContent: React.FC = () => {
           </div>
           <div className="flex justify-center top">
             <p className="text-lg text-left max-w-2xl">
-              Up to this point we have been doing local first development. In this part of the mission you will
-              deploy your smart contract to a public network. This way we can index the data on The Graph's
-              decentralized network.
+              Up to this point we have been doing local first development. In this part of the mission you will deploy
+              your smart contract to a public network. This way we can index the data on The Graph's decentralized
+              network.
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
@@ -34,30 +34,23 @@ const DeployContent: React.FC = () => {
           <CodeSnippet code="yarn account" button={true} />
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl font-bold">
-              2. Next you will need to deploy your smart contract to the network. In our case we will deploy to Sepolia.
-              You can either edit your hardhat configuration file to use the defaultNetwork as Sepolia, or you can use
-              the following command.
+              2. Next you will need to deploy your smart contract to the network. In our case we will deploy to
+              baseSepolia. You can either edit your hardhat configuration file to use the defaultNetwork as baseSepolia,
+              or you can use the following command.
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">
-              If you need some Sepolia ETH, you can get some from the following faucets:{" "}
+              If you need some baseSepolia ETH, you can get some from one of the faucets listed on this page:{" "}
               <span className="link">
                 {" "}
-                <a href="https://cloud.google.com/application/web3/faucet/ethereum/sepolia" target="_blank">
-                  Google Cloud Sepolia Faucet
+                <a href="https://docs.base.org/docs/tools/network-faucets/" target="_blank">
+                  Base Network Faucets
                 </a>{" "}
-              </span>
-              or
-              <span className="link">
-                {" "}
-                <a href="https://www.infura.io/faucet/sepolia" target="_blank">
-                  Infura Sepolia Faucet
-                </a>
               </span>
             </p>
           </div>
-          <CodeSnippet code="yarn deploy --network sepolia" button={true} />
+          <CodeSnippet code="yarn deploy --network baseSepolia" button={true} />
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">✅ Success will look like the following: 👇🏼</p>
           </div>
@@ -80,7 +73,7 @@ deployed at 0xaF938C165A25327D8884d85f4dd156736144c987 with 143057 gas
               the future.
             </p>
           </div>
-          <CodeSnippet code="yarn verify --network sepolia" button={true} />
+          <CodeSnippet code="yarn verify --network baseSepolia" button={true} />
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">✅ Success will look like the following: 👇🏼</p>
           </div>
@@ -104,9 +97,9 @@ waiting for result...
           </div>
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">
-              To make the frontend point to Sepolia, change the targetNetworks to use{" "}
-              <span className="highlight-code">chains.sepolia</span>. You will get kicked out of the burner wallet and
-              from now on any interactions with the smart contract should be done with a wallet you control, such as
+              To make the frontend point to baseSepolia, change the targetNetworks to use{" "}
+              <span className="highlight-code">chains.baseSepolia</span>. You will get kicked out of the burner wallet
+              and from now on any interactions with the smart contract should be done with a wallet you control, such as
               Metamask or a Wallet Connect enabled wallet like Rainbow wallet. You should use the same one that you used
               to sign into The Graph Builders Basecamp portal.
             </p>

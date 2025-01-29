@@ -147,7 +147,8 @@ if (subgraphData[0] === account) {
             <p className="text-lg max-w-2xl font-bold">
               2. Now that we have a subgraph in the studio available to deploy to, we want to update our{" "}
               <span className="highlight-code">networks.json</span> configuration file to reference our newly deployed
-              contract to Sepolia in the previous section of the mission. This file is located in the{" "}
+              contract to base-sepolia in the previous section of the mission. As mentioned before, The graph configures
+              this as <span className="highlight-code">base-sepolia</span>. This file is located in the{" "}
               <span className="highlight-code">packages/subgraph</span> folder.
             </p>
           </div>
@@ -162,7 +163,7 @@ if (subgraphData[0] === account) {
       "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
     }
   },
-  "sepolia": {
+  "base-sepolia": {
     "Moon": {
       "address": "0xeF938C265A15327D8884d83f4dd154736144c987"
     }
@@ -185,8 +186,8 @@ if (subgraphData[0] === account) {
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">
               You will need to update your <span className="highlight-code">subgraph.yaml</span> file to include the
-              proper network. e.g. sepolia. You also might want to add the startBlock to the subgraph manifest. You can
-              get this from the block explorer and look at the contract creation transaction.
+              proper network. e.g. base-sepolia. You also might want to add the startBlock to the subgraph manifest. You
+              can get this from the block explorer and look at the contract creation transaction.
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">

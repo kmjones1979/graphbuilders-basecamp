@@ -196,7 +196,6 @@ if (newMessage[0] === check) {
 ✔ Install dependencies with yarn
 ✔ Generate ABI and schema types with yarn codegen
 ✔ Add another contract? (y/N) · false
-
 `}
                 </code>
               </pre>
