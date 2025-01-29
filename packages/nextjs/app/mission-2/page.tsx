@@ -10,6 +10,7 @@ import { useAccount } from "wagmi";
 import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 
 const Subgraph: NextPage = () => {
+  const grixli = "/grixli.gif";
   const [activeTab, setActiveTab] = useState("solidity");
   const { address } = useAccount();
   const { data: accountMinted } = useScaffoldReadContract({
@@ -146,15 +147,12 @@ const Subgraph: NextPage = () => {
               <div className="chat-bubble max-w-lg border-solid border-2 border-slate-700">
                 <div className="chat chat-start">
                   <div className="chat-image avatar top">
-                    <div className="w-10 rounded-full">
-                      <img
-                        alt="Tailwind CSS chat bubble component"
-                        src="https://imgcdn.stablediffusionweb.com/2024/5/1/11583918-7338-4165-9052-a7cd8aaec83d.jpg"
-                      />
+                    <div className="w-20 rounded-full">
+                      <img alt="Tailwind CSS chat bubble component" src={grixli} />
                     </div>
                   </div>
                   <div className="chat-header">
-                    Ghost0764
+                    Grixl
                     <time className="text-xs opacity-50 pl-2">1 minute ago</time>
                   </div>
                   <div className="chat-bubble">Wow, you are already here! You must be a fast learner.</div>
@@ -163,15 +161,12 @@ const Subgraph: NextPage = () => {
                 {!isSecondChatVisible && (
                   <div className="chat chat-start">
                     <div className="chat-header">
-                      Ghost0764
+                      Grixl
                       <time className="text-xs opacity-50 pl-2">1 minute ago</time>
                     </div>
                     <div className="chat-image avatar">
-                      <div className="w-10 rounded-full">
-                        <img
-                          alt="Tailwind CSS chat bubble component"
-                          src="https://imgcdn.stablediffusionweb.com/2024/5/1/11583918-7338-4165-9052-a7cd8aaec83d.jpg"
-                        />
+                      <div className="w-20 rounded-full">
+                        <img alt="Tailwind CSS chat bubble component" src={grixli} />
                       </div>
                     </div>
                     <div className="chat-bubble">
@@ -183,15 +178,12 @@ const Subgraph: NextPage = () => {
                 {isSecondChatVisible && (
                   <div className="chat chat-start">
                     <div className="chat-image avatar top">
-                      <div className="w-10 rounded-full">
-                        <img
-                          alt="Tailwind CSS chat bubble component"
-                          src="https://imgcdn.stablediffusionweb.com/2024/5/1/11583918-7338-4165-9052-a7cd8aaec83d.jpg"
-                        />
+                      <div className="w-20 rounded-full">
+                        <img alt="Tailwind CSS chat bubble component" src={grixli} />
                       </div>
                     </div>
                     <div className="chat-header">
-                      Ghost0764
+                      Grixl
                       <time className="text-xs opacity-50 pl-2">1 minute ago</time>
                     </div>
                     <div className="chat-bubble">
@@ -219,14 +211,10 @@ const Subgraph: NextPage = () => {
         {!isChatVisible && (
           <div className="pt-5 fixed top-20 right-4">
             <button
-              className="flex items-center justify-center w-12 h-12 bg-slate-500 rounded-full shadow-lg hover:bg-purple-500 transition"
+              className="flex items-center justify-center w-20 h-20 bg-slate-500 rounded-full shadow-lg hover:bg-purple-500 transition"
               onClick={toggleChat}
             >
-              <img
-                src="https://imgcdn.stablediffusionweb.com/2024/5/1/11583918-7338-4165-9052-a7cd8aaec83d.jpg" // Replace with your avatar image URL
-                alt="Chat Avatar"
-                className="w-10 h-10 rounded-full"
-              />
+              <img alt="Chat Avatar" src={grixli} className="w-20 h-20 rounded-full" />
             </button>
           </div>
         )}

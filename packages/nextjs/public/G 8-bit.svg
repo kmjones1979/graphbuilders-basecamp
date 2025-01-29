@@ -1,0 +1,63 @@
+<svg width="24" height="31" viewBox="0 0 24 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="8" y="1" width="2" height="2" fill="white"/>
+<rect x="12" y="21" width="2" height="2" transform="rotate(180 12 21)" fill="white"/>
+<rect x="10" y="1" width="2" height="2" fill="white"/>
+<rect x="10" y="21" width="2" height="2" transform="rotate(180 10 21)" fill="white"/>
+<rect x="8" y="3" width="2" height="2" fill="white"/>
+<rect x="12" y="19" width="2" height="2" transform="rotate(180 12 19)" fill="white"/>
+<rect x="12" y="3" width="2" height="2" fill="white"/>
+<rect x="8" y="19" width="2" height="2" transform="rotate(180 8 19)" fill="white"/>
+<rect x="6" y="3" width="2" height="2" fill="white"/>
+<rect x="14" y="19" width="2" height="2" transform="rotate(180 14 19)" fill="white"/>
+<rect x="17" y="27" width="2" height="2" transform="rotate(180 17 27)" fill="white"/>
+<rect x="15" y="29" width="2" height="2" transform="rotate(180 15 29)" fill="white"/>
+<rect x="13" y="31" width="2" height="2" transform="rotate(180 13 31)" fill="white"/>
+<rect x="10" y="3" width="2" height="2" fill="white"/>
+<rect x="10" y="19" width="2" height="2" transform="rotate(180 10 19)" fill="white"/>
+<rect x="6" y="5" width="2" height="2" fill="white"/>
+<rect x="14" y="17" width="2" height="2" transform="rotate(180 14 17)" fill="white"/>
+<rect x="17" y="25" width="2" height="2" transform="rotate(180 17 25)" fill="white"/>
+<rect x="15" y="27" width="2" height="2" transform="rotate(180 15 27)" fill="white"/>
+<rect x="13" y="29" width="2" height="2" transform="rotate(180 13 29)" fill="white"/>
+<rect x="12" y="5" width="2" height="2" fill="white"/>
+<rect x="8" y="17" width="2" height="2" transform="rotate(180 8 17)" fill="white"/>
+<rect x="4" y="3" width="2" height="2" fill="white"/>
+<rect x="16" y="19" width="2" height="2" transform="rotate(180 16 19)" fill="white"/>
+<rect x="19" y="27" width="2" height="2" transform="rotate(180 19 27)" fill="white"/>
+<rect x="17" y="29" width="2" height="2" transform="rotate(180 17 29)" fill="white"/>
+<rect x="15" y="31" width="2" height="2" transform="rotate(180 15 31)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 16 3)" fill="white"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 4 19)" fill="white"/>
+<rect x="4" y="5" width="2" height="2" fill="white"/>
+<rect x="16" y="17" width="2" height="2" transform="rotate(180 16 17)" fill="white"/>
+<rect x="19" y="25" width="2" height="2" transform="rotate(180 19 25)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 16 5)" fill="white"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 4 17)" fill="white"/>
+<rect x="4" y="7" width="2" height="2" fill="white"/>
+<rect x="16" y="15" width="2" height="2" transform="rotate(180 16 15)" fill="white"/>
+<rect x="19" y="23" width="2" height="2" transform="rotate(180 19 23)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 16 7)" fill="white"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 4 15)" fill="white"/>
+<rect x="2" y="5" width="2" height="2" fill="white"/>
+<rect x="18" y="17" width="2" height="2" transform="rotate(180 18 17)" fill="white"/>
+<rect x="21" y="25" width="2" height="2" transform="rotate(180 21 25)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 18 5)" fill="white"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 2 17)" fill="white"/>
+<rect x="2" y="7" width="2" height="2" fill="white"/>
+<rect x="18" y="15" width="2" height="2" transform="rotate(180 18 15)" fill="white"/>
+<rect x="21" y="23" width="2" height="2" transform="rotate(180 21 23)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 18 7)" fill="white"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 2 15)" fill="white"/>
+<rect x="2" y="9" width="2" height="2" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 18 9)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 22 0)" fill="white"/>
+<rect x="2" y="11" width="2" height="2" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 18 11)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 22 2)" fill="white"/>
+<rect y="9" width="2" height="2" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 20 9)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 24 0)" fill="white"/>
+<rect y="11" width="2" height="2" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 20 11)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 24 2)" fill="white"/>
+</svg>
