@@ -29,11 +29,15 @@ const Home: NextPage = () => {
           <div className="hero-content text-neutral-content flex flex-col items-center justify-center w-full h-screen px-4 sm:px-8">
             <div className="max-w-1xl text-center">
               <p className="mb-7 text-lg sm:text-xl text-violet-300 the-graph-text">Welcome to</p>
-              <h1 className="mb-7 text-3xl sm:text-6xl text-white the-graph-text font-semibold">The Graph</h1>
+              <h1
+                className={`mb-7 text-3xl sm:text-6xl the-graph-text font-semibold ${resolvedTheme === "light" ? "text-gray-500" : "text-white"}`}
+              >
+                The Graph
+              </h1>
               <div className="flex justify-center">
                 <TerminalText
                   text="Builders Basecamp"
-                  className="mb-5 text-3xl sm:text-6xl text-white silkscreen-text text-center"
+                  className={`mb-5 text-3xl sm:text-6xl silkscreen-text text-center ${resolvedTheme === "light" ? "text-gray-500" : "text-white"}`}
                 />
               </div>
               <div className="flex flex-col items-center">

@@ -224,14 +224,15 @@ export const Header = () => {
           <div className="flex relative w-10 h-10">
             <Image
               alt="logo"
-              className="cursor-pointer"
+              // className="cursor-pointer"
               fill
-              src={resolvedTheme === "light" ? "/logo4.png" : "/logo3.png"}
+              src="/G 8-bit.svg"
+              className={resolvedTheme === "light" ? "filter invert" : ""}
             />
           </div>
           <div className="flex flex-col">
             <span className="font-bold leading-tight">The Graph</span>
-            <span className="text-xs">Builders Basecamp</span>
+            <span className="text-xs silkscreen-text">Builders Basecamp</span>
           </div>
         </Link>
         <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
