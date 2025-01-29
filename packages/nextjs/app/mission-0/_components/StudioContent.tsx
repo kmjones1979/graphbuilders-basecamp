@@ -180,18 +180,12 @@ if (newMessage[0] === check) {
             <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
               <pre>
                 <code className="language-solidity">
-                  {`✔ Network · Ethereum Sepolia Testnet · sepolia · https://sepolia.etherscan.io
+                  {`✔ Network · Base Sepolia Testnet · base-sepolia · https://sepolia.basescan.org
 ✔ Source · Smart Contract · ethereum
-✔ Subgraph slug · mymission
-✔ Directory to create the subgraph in · mymission
-✔ Contract address · 0xeAa2c3ae9a2Ee0dD3df0274A71C52E7335D652ec
-✖ Failed to fetch ABI: Error: NOTOK - Contract source code not verified
-✔ Do you want to retry? (Y/n) · false
-✖ Failed to fetch start block: Failed to fetch deploy contract transaction for 0xeAa2c3ae9a2Ee0dD3df0274A71C52E7335D652ec
-✔ Do you want to retry? (Y/n) · false
-✔ Fetching contract name from contract API...
-✔ ABI file (path) · /Users/user/mission-0-orientation/packages/hardhat/deployments/sepolia/Welcome.json
-✔ Start block · 7159204
+✔ Subgraph slug · mission0-test
+✔ Directory to create the subgraph in · mission0-test
+✔ Contract address · 0x9D8E026b45Ec6DB59C543E7C3AF731ca3B2298e5
+✔ Start block · 21199258
 ✔ Contract name · Welcome
 ✔ Index contract events as entities (Y/n) · true
   Generate subgraph
@@ -201,6 +195,8 @@ if (newMessage[0] === check) {
 ✔ Initialize subgraph repository
 ✔ Install dependencies with yarn
 ✔ Generate ABI and schema types with yarn codegen
+✔ Add another contract? (y/N) · false
+
 `}
                 </code>
               </pre>

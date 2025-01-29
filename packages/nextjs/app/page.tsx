@@ -1,16 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import TerminalText from "./components/TerminalText";
 import type { NextPage } from "next";
 import { useTheme } from "next-themes";
-import { resolve } from "path";
-import { useAccount } from "wagmi";
+
+// Adjust the import path as needed
 
 const Home: NextPage = () => {
-  const { address: connectedAddress } = useAccount();
   const router = useRouter();
-
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {}, [resolvedTheme]);
@@ -22,6 +21,8 @@ const Home: NextPage = () => {
           className="hero min-h-screen"
           style={{
             backgroundImage: resolvedTheme === "light" ? "url(/bg-light.png)" : "url(/bg-dark.png)",
+            backgroundPosition: "center top -100px",
+            backgroundSize: "cover",
           }}
         >
           <div className="hero-overlay bg-opacity-20"></div>
@@ -29,9 +30,14 @@ const Home: NextPage = () => {
             <div className="max-w-1xl text-center">
               <p className="mb-7 text-lg sm:text-xl text-violet-300 the-graph-text">Welcome to</p>
               <h1 className="mb-7 text-3xl sm:text-6xl text-white the-graph-text font-semibold">The Graph</h1>
-              <h1 className="mb-5 text-3xl sm:text-4xl text-white builders-basecamp-text">Builders Basecamp</h1>
+              <div className="flex justify-center">
+                <TerminalText
+                  text="Builders Basecamp"
+                  className="mb-5 text-3xl sm:text-6xl text-white silkscreen-text text-center"
+                />
+              </div>
               <div className="flex flex-col items-center">
-                <p className="mb-10 max-w-lg text-center text-sm sm:text-xl text-violet-300 the-graph-text">
+                <p className="p-6 mb-10 max-w-lg text-center text-sm sm:text-xl text-violet-300 the-graph-text">
                   A series of missions where you will test your ability to write smart contracts and develop subgraphs
                   on The Graph protocol. To get started click the button below.
                 </p>

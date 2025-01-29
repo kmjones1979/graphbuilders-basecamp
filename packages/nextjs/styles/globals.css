@@ -88,10 +88,24 @@ p {
   font-style: italic;
 }
 
-.builders-basecamp-text {
-  font-family: "Sportypo-Regular", sans-serif;
+@font-face {
+  font-family: "Silkscreen";
+  src: url("/fonts/Silkscreen/Silkscreen-Regular.ttf") format("truetype"); /* Adjust the path and format as needed */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Silkscreen";
+  src: url("/fonts/Silkscreen/Silkscreen-Bold.ttf") format("truetype"); /* Adjust the path and format as needed */
+  font-weight: bold;
+  font-style: normal;
 }
 
 .the-graph-text {
   font-family: "Poppins", sans-serif;
+}
+
+.silkscreen-text {
+  font-family: "Silkscreen", sans-serif;
 }
