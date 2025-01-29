@@ -132,37 +132,37 @@ const Subgraph: NextPage = () => {
                   </div>
                   <div className="chat-header">
                     Grixl
-                    <time className="text-xs opacity-50 pl-2">1 minute ago</time>
+                    {/* <time className="text-xs opacity-50 pl-2">1 minute ago</time> */}
                   </div>
                   <div className="chat-bubble">Yo, how is it going? You look new here!</div>
-                  <div className="chat-footer opacity-50">Seen</div>
+                  {/* <div className="chat-footer opacity-50">Seen</div> */}
                 </div>
                 {!isSecondChatVisible && (
                   <div className="chat chat-start">
                     <div className="chat-header">
                       Grixl
-                      <time className="text-xs opacity-50 pl-2">1 minute ago</time>
+                      {/* <time className="text-xs opacity-50 pl-2">1 minute ago</time> */}
                     </div>
                     <div className="chat-image avatar">
                       <div className="w-20 rounded-full">
-                        <img alt="Tailwind CSS chat bubble component" src={grixli} />
+                        {/* <img alt="Tailwind CSS chat bubble component" src={grixli} /> */}
                       </div>
                     </div>
                     <div className="chat-bubble">
                       <span className="loading loading-dots loading-sm"></span>
                     </div>
-                    <div className="chat-footer opacity-50">Seen</div>
+                    {/* <div className="chat-footer opacity-50">Seen</div> */}
                   </div>
                 )}
                 {isSecondChatVisible && (
                   <div className="chat chat-start">
                     <div className="chat-header">
                       Grixl
-                      <time className="text-xs opacity-50 pl-2">1 minute ago</time>
+                      {/* <time className="text-xs opacity-50 pl-2">1 minute ago</time> */}
                     </div>
                     <div className="chat-image avatar">
                       <div className="w-20 rounded-full">
-                        <img alt="Tailwind CSS chat bubble component" src={grixli} />
+                        {/* <img alt="Tailwind CSS chat bubble component" src={grixli} /> */}
                       </div>
                     </div>
                     <div className="chat-bubble">
