@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import TerminalText from "./components/TerminalText";
+import TerminalText from "../components/TerminalText";
 import type { NextPage } from "next";
 import { useTheme } from "next-themes";
 
