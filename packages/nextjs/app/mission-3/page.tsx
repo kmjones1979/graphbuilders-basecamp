@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import SideQuestContent from "./_components/Advanced";
 import DeployContent from "./_components/DeployContent";
-import SideQuestContent from "./_components/SideQuestContent";
 import SolidityContent from "./_components/SolidityContent";
 import StudioContent from "./_components/StudioContent";
 import SubgraphContent from "./_components/SubgraphContent";

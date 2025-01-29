@@ -8,14 +8,14 @@ const SubgraphContent: React.FC = () => {
       <div className="flex justify-center">
         <div className="max-w-sm sm:max-w-2xl w-full p-4">
           <div className="flex justify-center top pt-4">
-            <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Side Quest</h1>
+            <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Advanced Subgraph Techniques</h1>
           </div>
           <div className="flex justify-center top">
             <p className="text-lg text-left max-w-2xl">
-              Welcome to your first side quest! The road less-traveled can be long and arduous, but the rewards are
-              often lucrative! In this section will you will learn about some key changes you can make to get the most
-              out of your subgraph. You will learn about derivedFrom, graph-ts, and how to perform off-chain
-              calculations in your subgraph.
+              Welcome to your first advanced subgraph section! The road less-traveled can be long and arduous, but the
+              rewards are often lucrative! In this section will you will learn about some key changes you can make to
+              get the most out of your subgraph. You will learn about derivedFrom, graph-ts, and how to perform
+              off-chain calculations in your subgraph.
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
