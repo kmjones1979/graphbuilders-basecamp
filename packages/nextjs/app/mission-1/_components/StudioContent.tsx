@@ -251,9 +251,10 @@ dataSources:
           </div>
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl">
-              <span className="font-bold">Important:</span> In order for your mission to be properly validated, the
-              value of <span className="highlight-code">id</span> will need to successfully return the address of the
-              account you submit it from.
+              <span className="font-bold text-red-400">Important:</span> In order for your mission to be properly
+              validated, the value of <span className="highlight-code">account</span> will need to successfully return
+              the address of the account you submit it from. You can test this by running the following query in the
+              GraphiQL explorer.
             </p>
           </div>
           <div className="flex justify-center top mt-4 mb-4">
