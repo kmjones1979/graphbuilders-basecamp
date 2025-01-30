@@ -19,7 +19,7 @@ contract Comms {
 	uint8 public attempt;
 	bool public isCommsEstablished = false;
 
-	event CommsEstablished(address indexed _address, bool isCommsEstablished);
+	event CommsEstablished(address indexed account, bool isCommsEstablished);
 
 	// STEP 3: Call the Ownable constructor with the owner address
 	constructor() {
