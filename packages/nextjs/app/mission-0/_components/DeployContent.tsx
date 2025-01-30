@@ -68,6 +68,17 @@ const DeployContent: React.FC = () => {
               </span>
             </p>
           </div>
+          <div className="flex justify-center top mt-4 mb-4">
+            <p className="text-lg max-w-2xl italic">
+              Alternatively, you can use SUPERBRIDGE to bridge ETH from Sepolia to Base Sepolia.
+              <span className="link">
+                {" "}
+                <a href="https://superbridge.app/base" target="_blank">
+                  Base Testnet Bridge
+                </a>
+              </span>
+            </p>
+          </div>
           <CodeSnippet code="yarn deploy --network baseSepolia" button={true} />
           <div className="flex justify-center top mt-4 mb-4">
             <p className="text-lg max-w-2xl italic">✅ Success will look like the following: 👇🏼</p>
