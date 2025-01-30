@@ -42,7 +42,7 @@ const [graphResponse] = await Promise.all([graphRequest])
 let id = []
 if (!graphResponse.error) {
   for (let i = 0; i < 1; i++) {
-    id.push(graphResponse.data.data.enlisteds[i].id.toLowerCase())
+    id.push(graphResponse.data.data.enlisteds[i].account.toLowerCase())
   }
 } else {
   console.log("graphResponse Error, ", graphResponse)
