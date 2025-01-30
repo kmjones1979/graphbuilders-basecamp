@@ -65,26 +65,28 @@ const SolidityContent: React.FC = () => {
                 <code className="language-solidity">
                   {`contract Comms {
 
-	uint8 public secret;
+	uint8 public channel;
 	uint8 public attempt;
 	bool public isCommsEstablished = false;
 
 	event CommsEstablished(address indexed _address, bool isCommsEstablished);
 
 	constructor() {
-		secret = uint8(block.prevrandao % 6) + 1;
+		channel = uint8(block.prevrandao % 6) + 1;
 	}
-	
+
 	function establishComms() public {
 		require(!isCommsEstablished, "Comms already established");
 
 		attempt = uint8(block.prevrandao % 6) + 1;
 		console.log("Attempt: %s", attempt);
-		require(attempt == secret, "Attempt failed: Invalid secret");
+		require(attempt == channel, "Attempt failed: Invalid channel, try again");
 
 		isCommsEstablished = true;
 		emit CommsEstablished(msg.sender, isCommsEstablished);
 	}
+
+	receive() external payable {}
 }
 `}
                 </code>
@@ -145,9 +147,9 @@ const SolidityContent: React.FC = () => {
             <p className="text-lg text-left max-w-2xl">
               Once you deploy your changes navigate to the "Debug Contracts" tab and call the{" "}
               <span className="highlight-code">establishComms</span> function to test the functionality. You will need
-              to attempt to call the function multiple times until the secret matches your attempt. When testing on your
-              local network you can use the Faucet button to simulate a new block. You will know you are successful when
-              the
+              to attempt to call the function multiple times until the channel matches your attempt. When testing on
+              your local network you can use the Faucet button to simulate a new block. You will know you are successful
+              when the
               <span className="highlight-code">isCommsEstablished</span> variable is set to true.
             </p>
           </div>
