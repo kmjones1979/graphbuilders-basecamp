@@ -15,7 +15,7 @@ import "hardhat/console.sol";
 // STEP 2: Inherit the Ownable contract
 contract Comms {
 
-	uint8 public secret;
+	uint8 public channel;
 	uint8 public attempt;
 	bool public isCommsEstablished = false;
 
@@ -23,7 +23,7 @@ contract Comms {
 
 	// STEP 3: Call the Ownable constructor with the owner address
 	constructor() {
-		secret = uint8(block.prevrandao % 6) + 1;
+		channel = uint8(block.prevrandao % 6) + 1;
 	}
 	
 	// STEP 4: Implement the onlyOwner modifier
@@ -32,7 +32,7 @@ contract Comms {
 
 		attempt = uint8(block.prevrandao % 6) + 1;
 		console.log("Attempt: %s", attempt);
-		require(attempt == secret, "Attempt failed: Invalid secret");
+		require(attempt == channel, "Attempt failed: Invalid channel, try again");
 
 		isCommsEstablished = true;
 		emit CommsEstablished(msg.sender, isCommsEstablished);
