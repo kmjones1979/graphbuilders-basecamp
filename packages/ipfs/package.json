@@ -1,0 +1,14 @@
+{
+  "name": "ipfs",
+  "packageManager": "yarn@3.2.3",
+  "dependencies": {
+    "@pinata/sdk": "^2.1.0",
+    "@types/dotenv": "^8.2.3",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
