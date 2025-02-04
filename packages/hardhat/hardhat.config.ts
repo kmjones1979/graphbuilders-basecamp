@@ -17,8 +17,8 @@ const providerApiKey = process.env.ALCHEMY_API_KEY || "oKxs-03sij-U_N0iOlrSsZFr2
 const deployerPrivateKey =
   process.env.DEPLOYER_PRIVATE_KEY ?? "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
 // If not set, it uses ours Etherscan default API key.
-const etherscanApiKey = process.env.ETHERSCAN_API_KEY || "VSB3KZNV8C1H2J7DF6P6C1ZHQGSSVB41CX";
-const baseScanApiKey = process.env.BASESCAN_API_KEY || "YSMUEFAKMAENYWXUX7R1PVURXE36YEJEXA";
+const etherscanApiKey = process.env.ETHERSCAN_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
+const baseScanApiKey = process.env.BASESCAN_API_KEY || "ZZZEIPMT1MNJ8526VV2Y744CA7TNZR64G6";
 // forking rpc url
 const forkingURL = process.env.FORKING_URL || "";
 
