@@ -115,20 +115,6 @@ waiting for result...
               to sign into The Graph Builders Basecamp portal.
             </p>
           </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              While in this configuration file you should also update your alchemy api key to do this, update the
-              <span className="highlight-code">alchemyApiKey</span> configuration with your API key. You can get one for
-              free from the
-              <span className="link">
-                {" "}
-                <a href="https://dashboard.alchemy.com/" target="_blank">
-                  Alchemy
-                </a>{" "}
-              </span>{" "}
-              website.
-            </p>
-          </div>
           <div className="flex justify-center top">
             <p className="text-lg text-left max-w-2xl">
               If you were successful, continue with the next part of the mission.
