@@ -13,7 +13,7 @@ contract Enlist {
 	mapping(address => bool) public isEnlisted;
 	
 	// STEP 1: Add an event to track addresses which have enlisted
-
+	event Enlisted(address indexed user);
 	/**
 	 * Constructor for the Enlist contract
 	 */
@@ -24,6 +24,7 @@ contract Enlist {
 		require(!isEnlisted[msg.sender], "You are already enlisted");
 		isEnlisted[msg.sender] = true;
 		// STEP 2: Emit the Enlisted event
+		emit Enlisted(msg.sender);
 	}
 
 	/**
