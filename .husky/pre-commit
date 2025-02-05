@@ -1,1 +1,21 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Linting the code to check for style and syntax issues
+yarn lint
+
+# Running unit tests to ensure no existing functionality breaks
+yarn test
+
+# Running type checking to catch type errors (for TypeScript projects)
+yarn type-check
+
+# Formatting code according to the project's style guide
+yarn format
+
+# Additional checks can be added here
+# Example: Check for outdated dependencies
+# yarn outdated
+
+
 yarn lint-staged --verbose

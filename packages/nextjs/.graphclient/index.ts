@@ -45,7 +45,12 @@ export type Scalars = {
   BigInt: { input: any; output: any; }
   Bytes: { input: any; output: any; }
   Int8: { input: any; output: any; }
+  Timestamp: { input: any; output: any; }
 };
+
+export type Aggregation_interval =
+  | 'hour'
+  | 'day';
 
 export type BlockChangedFilter = {
   number_gte: Scalars['Int']['input'];
@@ -197,6 +202,8 @@ export type _Block_ = {
   number: Scalars['Int']['output'];
   /** Integer representation of the timestamp stored in blocks for the chain */
   timestamp?: Maybe<Scalars['Int']['output']>;
+  /** The hash of the parent block */
+  parentHash?: Maybe<Scalars['Bytes']['output']>;
 };
 
 /** The type for the top-level _meta field */
@@ -307,6 +314,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
+  Aggregation_interval: Aggregation_interval;
   BigDecimal: ResolverTypeWrapper<Scalars['BigDecimal']['output']>;
   BigInt: ResolverTypeWrapper<Scalars['BigInt']['output']>;
   BlockChangedFilter: BlockChangedFilter;
@@ -324,6 +332,7 @@ export type ResolversTypes = ResolversObject<{
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   Subscription: ResolverTypeWrapper<{}>;
+  Timestamp: ResolverTypeWrapper<Scalars['Timestamp']['output']>;
   _Block_: ResolverTypeWrapper<_Block_>;
   _Meta_: ResolverTypeWrapper<_Meta_>;
   _SubgraphErrorPolicy_: _SubgraphErrorPolicy_;
@@ -346,6 +355,7 @@ export type ResolversParentTypes = ResolversObject<{
   Query: {};
   String: Scalars['String']['output'];
   Subscription: {};
+  Timestamp: Scalars['Timestamp']['output'];
   _Block_: _Block_;
   _Meta_: _Meta_;
 }>;
@@ -403,10 +413,15 @@ export type SubscriptionResolvers<ContextType = MeshContext, ParentType extends 
   _meta?: SubscriptionResolver<Maybe<ResolversTypes['_Meta_']>, "_meta", ParentType, ContextType, Partial<Subscription_metaArgs>>;
 }>;
 
+export interface TimestampScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Timestamp'], any> {
+  name: 'Timestamp';
+}
+
 export type _Block_Resolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['_Block_'] = ResolversParentTypes['_Block_']> = ResolversObject<{
   hash?: Resolver<Maybe<ResolversTypes['Bytes']>, ParentType, ContextType>;
   number?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   timestamp?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  parentHash?: Resolver<Maybe<ResolversTypes['Bytes']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -425,6 +440,7 @@ export type Resolvers<ContextType = MeshContext> = ResolversObject<{
   Int8?: GraphQLScalarType;
   Query?: QueryResolvers<ContextType>;
   Subscription?: SubscriptionResolvers<ContextType>;
+  Timestamp?: GraphQLScalarType;
   _Block_?: _Block_Resolvers<ContextType>;
   _Meta_?: _Meta_Resolvers<ContextType>;
 }>;
