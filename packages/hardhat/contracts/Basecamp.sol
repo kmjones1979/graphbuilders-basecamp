@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0 <0.9.0;
+pragma solidity ^0.8.27;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
@@ -18,6 +18,7 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	struct Credential {
 		bool enabled;
 		string name;
+		string url;
 	}
 
 	// Mapping of credentials
@@ -28,7 +29,7 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
 
 
-	event CredentialSet(bool enabled, uint8 id, string name);
+	event CredentialSet(bool enabled, uint8 id, string name, string url);
 	event CredentialMinted(address to, uint8 id);
 	event AdminAdded(address admin);
 	event MinterAdded(address minter);
@@ -45,16 +46,22 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 		_grantRole(MINTER_ROLE, _minter);
 	}
 
-	/**
-	 * Add a credential
-	 * @param _enabled Whether the credential is enabled
-	 * @param _id The ID of the credential
-	 * @param _name The name of the credential
-	 */
-	function setCredential(bool _enabled, uint8 _id, string memory _name) public onlyOwner {
-		credentials[_id] = Credential(_enabled, _name);
-		emit CredentialSet(_enabled, _id, _name);
-	}
+    /**
+     * Add a credential with URL
+     * @param _enabled Whether the credential is enabled
+     * @param _id The ID of the credential
+     * @param _name The name of the credential
+     * @param _url The URL for the credential's metadata
+     */
+    function setCredential(
+        bool _enabled, 
+        uint8 _id, 
+        string memory _name,
+        string memory _url
+    ) public onlyOwner {
+        credentials[_id] = Credential(_enabled, _name, _url);
+        emit CredentialSet(_enabled, _id, _name, _url);
+    }
 
 	/**
 	 * Mint a credential
@@ -118,6 +125,14 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	 */
 	receive() external payable {}
 
+    /**
+     * Override the URI function to return different URLs for each token
+     * @param id The token ID
+     */
+    function uri(uint256 id) public view virtual override returns (string memory) {
+        return credentials[uint8(id)].url;
+    }
+
 	/**
 	 * Override supportsInterface to resolve conflict from base contracts
 	 */
@@ -129,6 +144,13 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	 * Override safeTransferFrom to revert
 	 */
 	function safeTransferFrom(address from, address to, uint256 id, uint256 amount, bytes memory data) public override(ERC1155) {
+		revert("Token soulbound!");
+	}
+
+	/**
+	 * Override safeBatchTransferFrom to revert
+	 */
+	function safeBatchTransferFrom(address from, address to, uint256[] memory ids, uint256[] memory amounts, bytes memory data) public override(ERC1155) {
 		revert("Token soulbound!");
 	}
 }
