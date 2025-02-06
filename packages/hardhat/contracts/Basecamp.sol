@@ -1,18 +1,20 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.27;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "@openzeppelin/contracts/access/AccessControl.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
 /**
  * A smart contract for the The Graph Builders Basecamp challenges
  * @author Kevin Jones
  */
-contract Basecamp is Ownable, ERC1155, AccessControl {
+contract Basecamp is Initializable, OwnableUpgradeable, ERC1155Upgradeable, AccessControlUpgradeable, UUPSUpgradeable {
 
-	string public name = "Basecamp";
-    string public symbol = "CRED";
+	string public name;
+	string public symbol;
 
 	struct Credential {
 		bool enabled;
@@ -34,14 +36,26 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	event MinterRemoved(address minter);
 	event Withdraw(uint256 amount);
 
-	constructor(address _owner, address _minter ) 
-		Ownable(_owner) 
-		ERC1155("http://example.com/") 
-		AccessControl() {
+	/// @custom:oz-upgrades-unsafe-allow constructor
+	constructor() {
+		_disableInitializers();
+	}
+
+	function initialize(address _owner, address _minter) public initializer {
+		__Ownable_init(_owner);
+		__ERC1155_init("http://example.com/");
+		__AccessControl_init();
+		__UUPSUpgradeable_init();
+		
+		name = "Basecamp";
+		symbol = "CRED";
+		
 		_setRoleAdmin(MINTER_ROLE, ADMIN_ROLE);
 		_grantRole(ADMIN_ROLE, _owner);
 		_grantRole(MINTER_ROLE, _minter);
 	}
+
+	function _authorizeUpgrade(address) internal override onlyRole(ADMIN_ROLE) {}
 
     /**
      * Add a credential with URL
@@ -130,24 +144,27 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
         return credentials[uint8(id)].url;
     }
 
-	/**
-	 * Override supportsInterface to resolve conflict from base contracts
-	 */
-	function supportsInterface(bytes4 interfaceId) public view virtual override(ERC1155, AccessControl) returns (bool) {
+	function supportsInterface(bytes4 interfaceId) 
+		public 
+		view 
+		virtual 
+		override(ERC1155Upgradeable, AccessControlUpgradeable) 
+		returns (bool) 
+	{
 		return super.supportsInterface(interfaceId);
 	}
 
 	/**
 	 * Override safeTransferFrom to revert
 	 */
-	function safeTransferFrom(address from, address to, uint256 id, uint256 amount, bytes memory data) public override(ERC1155) {
+	function safeTransferFrom(address from, address to, uint256 id, uint256 amount, bytes memory data) public override(ERC1155Upgradeable) {
 		revert("Token soulbound!");
 	}
 
 	/**
 	 * Override safeBatchTransferFrom to revert
 	 */
-	function safeBatchTransferFrom(address from, address to, uint256[] memory ids, uint256[] memory amounts, bytes memory data) public override(ERC1155) {
+	function safeBatchTransferFrom(address from, address to, uint256[] memory ids, uint256[] memory amounts, bytes memory data) public override(ERC1155Upgradeable) {
 		revert("Token soulbound!");
 	}
 }
