@@ -51,19 +51,20 @@ async function uploadMetadataToPinata(metadata: NFTMetadata): Promise<string> {
 }
 
 async function main() {
-    const directoryPath = path.join(__dirname, "../images"); // Adjust the path as needed
+    const directoryPath = path.join(__dirname, "../images");
 
     const filePaths = fs
         .readdirSync(directoryPath)
-        .filter((file) => /\.(png|jpg|jpeg|gif)$/.test(file)) // Filter for image files
-        .map((file) => path.join(directoryPath, file)); // Create full paths
+        .filter((file) => /\.(png|jpg|jpeg|gif)$/.test(file))
+        .map((file) => path.join(directoryPath, file));
 
     const cids = await uploadFilesToPinata(filePaths);
 
+    // https://docs.opensea.io/docs/metadata-standards
     const metadataPromises = cids.map((cid, index) => {
         const metadata = {
-            name: `NFT #${index + 1}`,
-            description: `Description for NFT #${index + 1}`,
+            name: `NFT #${index}`,
+            description: `Description for NFT #${index}`,
             image: `ipfs://${cid}`,
             attributes: [
                 {
@@ -80,6 +81,20 @@ async function main() {
 
     console.log("Uploaded and pinned files:", cids);
     console.log("Uploaded and pinned metadata:", metadataCids);
+
+    const logData = {
+        timestamp: new Date().toISOString(),
+        uploadedFiles: cids,
+        uploadedMetadata: metadataCids,
+    };
+
+    const logFileName = `upload_log_${new Date()
+        .toISOString()
+        .replace(/[:.]/g, "-")}.json`;
+    fs.writeFileSync(
+        path.join(__dirname, logFileName),
+        JSON.stringify(logData, null, 2)
+    );
 }
 
 main().catch(console.error);
