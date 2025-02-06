@@ -6,6 +6,8 @@ import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaf
 const StudioContent: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [queryURL, setQueryURL] = useState("");
+  const [isValidated, setIsValidated] = useState(false);
+  const [responseMessage, setResponseMessage] = useState("");
 
   const javaScriptSourceCode = `
 const account = args[0].toLowerCase()
@@ -69,6 +71,47 @@ if (newMessage[0] === check) {
     }
   };
 
+  const handlePrecheck = async () => {
+    try {
+      const response = await fetch(queryURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: `
+            {
+              welcomeMessageChangeds(first: 1) {
+                id
+                newMessage
+                blockNumber
+                blockTimestamp
+                transactionHash
+              }
+            }
+          `,
+        }),
+      });
+
+      const data = await response.json();
+
+      // Check the response and update validation status
+      const newMessage = data.data.welcomeMessageChangeds[0]?.newMessage;
+      if (newMessage === "Welcome to The Graph Builders Basecamp!") {
+        setIsValidated(true);
+        setResponseMessage('Success! Click "Submit" to validate your results onchain.');
+        console.log('Success! Click "Submit" to validate your results onchain.');
+      } else {
+        setIsValidated(false);
+        setResponseMessage("Failed! Please check your subgraph code and try again.");
+        console.log("Failed! Please check your subgraph code and try again.");
+      }
+    } catch (e) {
+      console.error("Error during precheck:", e);
+      setIsValidated(false);
+      setResponseMessage("Error during precheck.");
+    }
+  };
   const { writeContractAsync: writeValidatorAsync } = useScaffoldWriteContract("Validator");
 
   const { address } = useAccount();
@@ -308,8 +351,16 @@ if (newMessage[0] === check) {
                   value={queryURL}
                   onChange={e => setQueryURL(e.target.value)}
                 />
+                <p className="mt-2">{responseMessage}</p>
                 <div className="modal-action">
-                  <button className="btn" onClick={handleSubmit}>
+                  <button className="btn" onClick={handlePrecheck}>
+                    Precheck
+                  </button>
+                  <button
+                    className={`btn ${isValidated ? "bg-green-700 hover:bg-green-800" : ""}`}
+                    disabled={!isValidated}
+                    onClick={handleSubmit}
+                  >
                     Submit
                   </button>
                   <button className="btn" onClick={() => setIsModalOpen(false)}>

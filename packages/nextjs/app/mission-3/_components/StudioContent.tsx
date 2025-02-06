@@ -6,6 +6,8 @@ import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaf
 const StudioContent: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [queryURL, setQueryURL] = useState("");
+  const [isValidated, setIsValidated] = useState(false);
+  const [responseMessage, setResponseMessage] = useState("");
 
   const javaScriptSourceCode = `
 const account = args[0].toLowerCase()
@@ -68,6 +70,55 @@ if (subgraphData[0] === account) {
       setIsModalOpen(false);
     } catch (e) {
       console.error("Error submitting URL:", e);
+    }
+  };
+
+  const handlePrecheck = async () => {
+    try {
+      const account = address?.toLowerCase();
+      const response = await fetch(queryURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: `
+          {
+            holders(first: 1, orderDirection: desc, orderBy: blockTimestamp) {
+              balance
+              blockNumber
+              blockTimestamp
+              id
+              transactionHash
+              transfers(first: 1) {
+                from
+                to {
+                  id
+                }
+              }
+            }
+          }
+          `,
+        }),
+      });
+
+      const data = await response.json();
+
+      // Check the response and update validation status
+      const subgraphData = data.data.holders[0]?.transfers[0].to.id.toLowerCase();
+      if (subgraphData === account) {
+        setIsValidated(true);
+        setResponseMessage('Success! Click "Submit" to validate your results onchain.');
+        console.log('Success! Click "Submit" to validate your results onchain.');
+      } else {
+        setIsValidated(false);
+        setResponseMessage("Failed! Please check your subgraph code and try again.");
+        console.log("Failed! Please check your subgraph code and try again.");
+      }
+    } catch (e) {
+      console.error("Error during precheck:", e);
+      setIsValidated(false);
+      setResponseMessage("Error during precheck.");
     }
   };
 
@@ -283,8 +334,16 @@ if (subgraphData[0] === account) {
                   value={queryURL}
                   onChange={e => setQueryURL(e.target.value)}
                 />
+                <p className="mt-2">{responseMessage}</p>
                 <div className="modal-action">
-                  <button className="btn" onClick={handleSubmit}>
+                  <button className="btn" onClick={handlePrecheck}>
+                    Precheck
+                  </button>
+                  <button
+                    className={`btn ${isValidated ? "bg-green-700 hover:bg-green-800" : ""}`}
+                    disabled={!isValidated}
+                    onClick={handleSubmit}
+                  >
                     Submit
                   </button>
                   <button className="btn" onClick={() => setIsModalOpen(false)}>
