@@ -14,7 +14,6 @@ import {
   CheckCircleIcon,
   DocumentCurrencyBangladeshiIcon,
   FlagIcon,
-  HomeIcon,
   LockClosedIcon,
   MoonIcon,
   WifiIcon,
