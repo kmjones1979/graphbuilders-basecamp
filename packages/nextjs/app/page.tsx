@@ -50,7 +50,7 @@ const Home: NextPage = () => {
                     className="btn btn-primary text-lg sm:text-base py-2 px-4"
                     onClick={() => router.push("/mission-0")}
                   >
-                    Begin
+                    START
                   </button>
                 </div>
               </div>
