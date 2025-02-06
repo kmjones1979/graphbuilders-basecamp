@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import AdminContent from "./_components/AdminContent";
 import SideQuestContent from "./_components/Advanced";
 import DeployContent from "./_components/DeployContent";
 import SolidityContent from "./_components/SolidityContent";
@@ -23,6 +24,14 @@ const Subgraph: NextPage = () => {
 
   const [isChatVisible, setChatVisible] = useState(false);
   const [isSecondChatVisible, setSecondChatVisible] = useState(false);
+
+  const adminRole = "0xa49807205ce4d355092ef5a8a18f56e8913cf4a201fbe287825b095693c21775";
+
+  const { data: hasAdminRole } = useScaffoldReadContract({
+    contractName: "Validator",
+    functionName: "hasRole",
+    args: [adminRole, address],
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -60,6 +69,14 @@ const Subgraph: NextPage = () => {
           )}
         </div>
         <div className="flex justify-center mt-4">
+          {hasAdminRole && (
+            <button
+              className={`rounded-lg px-4 py-2 ${activeTab === "admin" ? "bg-purple-500" : "text-purple-500"}`}
+              onClick={() => setActiveTab("admin")}
+            >
+              Admin
+            </button>
+          )}
           <button
             className={`rounded-lg px-4 py-2 ${activeTab === "solidity" ? "bg-purple-500" : "text-purple-500"}`}
             onClick={() => setActiveTab("solidity")}
@@ -92,6 +109,13 @@ const Subgraph: NextPage = () => {
           </button>
         </div>
 
+        {activeTab === "admin" && (
+          <div className="justify-center top">
+            <div className="flex justify-center top">
+              <AdminContent />
+            </div>
+          </div>
+        )}
         {activeTab === "solidity" && (
           <div className="justify-center top">
             <div className="flex justify-center top">

@@ -1,30 +1,29 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.27;
 
+import "@openzeppelin/contracts/access/AccessControl.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {FunctionsClient} from "./@chainlink/contracts/src/v0.8/functions/dev/1_0_0/FunctionsClient.sol";
 import {FunctionsRequest} from "./@chainlink/contracts/src/v0.8/functions/dev/1_0_0/libraries/FunctionsRequest.sol";
 import {Basecamp} from "./Basecamp.sol";
 
-
-contract Validator is FunctionsClient, Ownable {
+contract Validator is FunctionsClient, Ownable, AccessControl {
   using FunctionsRequest for FunctionsRequest.Request;
 
   Basecamp public basecamp;
 
-  // Functions Router Address
-  address public functionsRouterAddress;
+  bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
 
-  // DON ID
+  address public functionsRouterAddress;
   bytes32 public donId;
 
-  // Requests in progress
   mapping(bytes32 => address) public requestsInProgress;
   mapping(bytes32 => uint8) public missionIndexSubmitted;
 
-  // Account minted
   mapping(uint8 => mapping(address => bool)) public accountMinted;
+
+  mapping(uint8 => bytes32) public missionCodeHashes;
 
   event BasecampAddressSet(address newBasecampAddress);
   event FunctionsRouterAddressSet(address newFunctionsRouterAddress);
@@ -33,7 +32,8 @@ contract Validator is FunctionsClient, Ownable {
   event MissionValidated(bytes32 requestId, uint8 missionIndex, uint256 isValid, bool success, address account);
   event Withdraw(uint256 amount);
 
-  constructor(address _owner, address _basecampAddress, address _functionsRouterAddress, bytes32 _donId) Ownable(_owner) FunctionsClient(_functionsRouterAddress) {
+  constructor(address _owner, address _basecampAddress, address _functionsRouterAddress, bytes32 _donId) Ownable(_owner) FunctionsClient(_functionsRouterAddress) AccessControl() {
+		_grantRole(ADMIN_ROLE, _owner);
     basecamp = Basecamp(payable(_basecampAddress));
     functionsRouterAddress = _functionsRouterAddress;
     donId = _donId;
@@ -43,10 +43,20 @@ contract Validator is FunctionsClient, Ownable {
   }
 
   /**
+   * @notice Set the JavaScript source code hash for a mission index
+   * @param missionIndex The mission index
+   * @param javaScriptSourceCode The JavaScript source code
+   */
+  function setMissionCodeHash(uint8 missionIndex, string memory javaScriptSourceCode) external onlyRole(ADMIN_ROLE) {
+      bytes32 codeHash = keccak256(abi.encodePacked(javaScriptSourceCode));
+      missionCodeHashes[missionIndex] = codeHash;
+  }
+
+  /**
    * @notice Set the Basecamp address
    * @param _basecampAddress New Basecamp address
    */
-  function setBasecampAddress(address _basecampAddress) external onlyOwner {
+  function setBasecampAddress(address _basecampAddress) external onlyRole(ADMIN_ROLE) {
     basecamp = Basecamp(payable(_basecampAddress));
     emit BasecampAddressSet(_basecampAddress);
   }
@@ -55,7 +65,7 @@ contract Validator is FunctionsClient, Ownable {
    * @notice Set the Functions Router address
    * @param _functionsRouterAddress New Functions Router address
    */
-  function setFunctionsRouterAddress(address _functionsRouterAddress) external onlyOwner {
+  function setFunctionsRouterAddress(address _functionsRouterAddress) external onlyRole(ADMIN_ROLE) {
     functionsRouterAddress = _functionsRouterAddress;
     emit FunctionsRouterAddressSet(_functionsRouterAddress);
   }
@@ -64,7 +74,7 @@ contract Validator is FunctionsClient, Ownable {
    * @notice Set the DON ID
    * @param _donId New DON ID
    */
-  function setDonId(bytes32 _donId) external onlyOwner {
+  function setDonId(bytes32 _donId) external onlyRole(ADMIN_ROLE) {
     donId = _donId;
     emit DonIdSet(_donId);
   }
@@ -77,7 +87,13 @@ contract Validator is FunctionsClient, Ownable {
     string memory queryUrl
   ) external returns (bytes32 requestId) {
     require(!accountMinted[missionIndex][msg.sender], "Account already minted");
+
+    // Hash the submitted JavaScript source code
+    bytes32 submittedCodeHash = keccak256(abi.encodePacked(javaScriptSourceCode));
     
+    // Check if the submitted code hash matches the stored hash for the mission index
+    require(submittedCodeHash == missionCodeHashes[missionIndex], "Invalid JavaScript source code");
+
     FunctionsRequest.Request memory req;
     req.initializeRequestForInlineJavaScript(javaScriptSourceCode);
 

@@ -14,17 +14,14 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	string public name = "Basecamp";
     string public symbol = "CRED";
 
-	// Credentials
 	struct Credential {
 		bool enabled;
 		string name;
 		string url;
 	}
 
-	// Mapping of credentials
 	mapping(uint8 => Credential) public credentials;
 
-	// Role for the minter
 	bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 	bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
 
@@ -58,7 +55,7 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
         uint8 _id, 
         string memory _name,
         string memory _url
-    ) public onlyOwner {
+    ) public onlyRole(ADMIN_ROLE) {
         credentials[_id] = Credential(_enabled, _name, _url);
         emit CredentialSet(_enabled, _id, _name, _url);
     }

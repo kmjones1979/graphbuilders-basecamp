@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CodeSnippet from "./CodeSnippet";
+import javaScriptSourceCode from "./JavaScriptSourceCode";
 import { useAccount } from "wagmi";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
@@ -8,53 +9,6 @@ const StudioContent: React.FC = () => {
   const [queryURL, setQueryURL] = useState("");
   const [isValidated, setIsValidated] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
-
-  const javaScriptSourceCode = `
-const account = args[0].toLowerCase()
-const query_url = args[1]
-
-const graphRequest = Functions.makeHttpRequest({
-  url: \`\${query_url}\`,
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-
-  data: {
-    query: \`
-      {
-        welcomeMessageChangeds(first: 1) {
-          id
-          newMessage
-          blockNumber
-          blockTimestamp
-          transactionHash
-        }
-      }
-    \`,
-  },
-})
-
-const check = "Welcome to The Graph Builders Basecamp!"
-
-const [graphResponse] = await Promise.all([graphRequest])
-let newMessage = []
-if (!graphResponse.error) {
-  for (let i = 0; i < 1; i++) {
-    newMessage.push(graphResponse.data.data.welcomeMessageChangeds[i].newMessage)
-    console.log(i)
-  }
-} else {
-  console.log("graphResponse Error, ", graphResponse)
-}
-
-if (newMessage[0] === check) {
-  console.log(newMessage[0])
-  return Functions.encodeUint256(1)
-} else {
-  console.log(newMessage[0])
-  return Functions.encodeUint256(0)
-}`;
 
   const subscriptionId = 266;
   const gasLimit = 100_000;
@@ -112,6 +66,7 @@ if (newMessage[0] === check) {
       setResponseMessage("Error during precheck.");
     }
   };
+
   const { writeContractAsync: writeValidatorAsync } = useScaffoldWriteContract("Validator");
 
   const { address } = useAccount();
