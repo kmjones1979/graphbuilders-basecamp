@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { AddressCopyIcon } from "./AddressCopyIcon";
 import { AddressLinkWrapper } from "./AddressLinkWrapper";
 import { Address as AddressType, getAddress, isAddress } from "viem";
@@ -144,13 +145,13 @@ export const Address = ({
 
   return (
     <div className="flex items-center flex-shrink-0">
-      <div className="flex-shrink-0">
+      <Link href={`/profile/${checkSumAddress}`} className="flex-shrink-0 hover:opacity-80">
         <BlockieAvatar
           address={checkSumAddress}
           ensImage={ensAvatar}
           size={(blockieSizeMap[blockieSize] * 24) / blockieSizeMap["base"]}
         />
-      </div>
+      </Link>
       <div className="flex flex-col">
         {showSkeleton &&
           (isEnsNameLoading ? (
