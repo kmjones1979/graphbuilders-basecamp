@@ -145,7 +145,7 @@ export const Address = ({
 
   return (
     <div className="flex items-center flex-shrink-0">
-      <Link href={`/profile/${checkSumAddress}`} className="flex-shrink-0 hover:opacity-80">
+      <Link href={`/user/${checkSumAddress}`} className="flex-shrink-0 hover:opacity-80">
         <BlockieAvatar
           address={checkSumAddress}
           ensImage={ensAvatar}

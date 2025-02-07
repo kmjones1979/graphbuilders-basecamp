@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CodeSnippet from "./CodeSnippet";
 import { useAccount } from "wagmi";
+import { gasLimit, subscriptionId } from "~~/app/config/constants";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 const StudioContent: React.FC = () => {
@@ -56,9 +57,6 @@ if (id[0] === account) {
   return Functions.encodeUint256(0)
 }
 `;
-
-  const subscriptionId = 266;
-  const gasLimit = 100_000;
 
   const handleSubmit = async () => {
     try {

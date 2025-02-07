@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CodeSnippet from "./CodeSnippet";
 import javaScriptSourceCode from "./JavaScriptSourceCode";
 import { useAccount } from "wagmi";
+import { gasLimit, subscriptionId } from "~~/app/config/constants";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 const StudioContent: React.FC = () => {
@@ -9,9 +10,6 @@ const StudioContent: React.FC = () => {
   const [queryURL, setQueryURL] = useState("");
   const [isValidated, setIsValidated] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
-
-  const subscriptionId = 266;
-  const gasLimit = 100_000;
 
   const handleSubmit = async () => {
     try {

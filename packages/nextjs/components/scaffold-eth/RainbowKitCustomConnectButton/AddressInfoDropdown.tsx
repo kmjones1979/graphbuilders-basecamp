@@ -66,7 +66,7 @@ export const AddressInfoDropdown = ({
             <div
               className="btn-sm !rounded-xl flex gap-3 py-3"
               onClick={() => {
-                window.location.href = `/profile/${address}`;
+                window.location.href = `/user/${address}`;
               }}
             >
               <UserIcon className="text-xl font-normal h-6 w-4 cursor-pointer ml-2 sm:ml-0" aria-hidden="true" />
