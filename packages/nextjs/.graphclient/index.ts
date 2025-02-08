@@ -4100,8 +4100,8 @@ const merger = new(BareMerger as any)({
         store: rootStore.child('bareMerger')
       })
 const documentHashMap = {
-        "8cd6befa3b47a0edf4bd6e35bc396d4b67ada9de37e919364ed2b0371a64a6e0": GetUserCredentialsDocument,
-"c76090f27849fce4dafe003a2347c7b77124d057168ab72bf800d5658225027f": GetUsersDocument
+        "fd3760779cd90197c41eae070b4acbc7de637da323e0b1532e16b4b273d15181": GetUserCredentialsDocument,
+"f5e0f8cecc7ddf3e10d79194fbded7de118a80385b54fa355444f493228ec53f": GetUsersDocument
       }
 additionalEnvelopPlugins.push(usePersistedOperations({
         getPersistedOperation(key) {
@@ -4128,14 +4128,14 @@ additionalEnvelopPlugins.push(usePersistedOperations({
           return printWithCache(GetUserCredentialsDocument);
         },
         location: 'GetUserCredentialsDocument.graphql',
-        sha256Hash: '8cd6befa3b47a0edf4bd6e35bc396d4b67ada9de37e919364ed2b0371a64a6e0'
+        sha256Hash: 'fd3760779cd90197c41eae070b4acbc7de637da323e0b1532e16b4b273d15181'
       },{
         document: GetUsersDocument,
         get rawSDL() {
           return printWithCache(GetUsersDocument);
         },
         location: 'GetUsersDocument.graphql',
-        sha256Hash: 'c76090f27849fce4dafe003a2347c7b77124d057168ab72bf800d5658225027f'
+        sha256Hash: 'f5e0f8cecc7ddf3e10d79194fbded7de118a80385b54fa355444f493228ec53f'
       }
     ];
     },
@@ -4196,7 +4196,7 @@ export type GetUserCredentialsQueryVariables = Exact<{
 
 
 export type GetUserCredentialsQuery = { users: Array<(
-    Pick<User, 'rank'>
+    Pick<User, 'id' | 'rank'>
     & { credentials?: Maybe<Array<Pick<CredentialMinted, 'Basecamp_id'>>> }
   )> };
 
@@ -4211,7 +4211,8 @@ export type GetUsersQuery = { users: Array<(
 
 export const GetUserCredentialsDocument = gql`
     query GetUserCredentials($address: Bytes!) {
-  users(where: {address: $address}) {
+  users(where: {id_contains: $address}) {
+    id
     credentials(orderBy: Basecamp_id) {
       Basecamp_id
     }
@@ -4221,7 +4222,7 @@ export const GetUserCredentialsDocument = gql`
     ` as unknown as DocumentNode<GetUserCredentialsQuery, GetUserCredentialsQueryVariables>;
 export const GetUsersDocument = gql`
     query GetUsers {
-  users(first: 50, orderBy: rank, orderDirection: desc) {
+  users(first: 100, orderBy: rank, orderDirection: desc) {
     address
     rank
     blockTimestamp

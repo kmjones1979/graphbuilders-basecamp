@@ -1,5 +1,5 @@
 query GetUsers {
-  users(first: 50, orderBy: rank, orderDirection: desc) {
+  users(first: 100, orderBy: rank, orderDirection: desc) {
     address
     rank
     blockTimestamp
