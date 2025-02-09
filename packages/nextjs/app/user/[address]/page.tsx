@@ -135,7 +135,7 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
                 <div>
                   <ul>
                     {userCredentials?.users[0]?.credentials.map((cred, index) => (
-                      <li key={index}>Mission {cred.Basecamp_id}</li>
+                      <li key={index}>Completed Mission {cred.Basecamp_id}!</li>
                     )) || "No achievements yet"}
                   </ul>
                 </div>
