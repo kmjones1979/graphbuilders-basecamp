@@ -17,7 +17,15 @@ const deployBasecamp: DeployFunction = async function (hre: HardhatRuntimeEnviro
 
   await deploy("Basecamp", {
     from: deployer,
-    args: [owner, minter],
+    proxy: {
+      execute: {
+        init: {
+          methodName: "initialize",
+          args: [owner, minter],
+        },
+      },
+      proxyContract: "OpenZeppelinTransparentProxy",
+    },
     log: true,
     autoMine: true,
   });
