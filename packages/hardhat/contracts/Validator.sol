@@ -1,14 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.27;
 
-import "@openzeppelin/contracts/access/AccessControl.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {FunctionsClient} from "./@chainlink/contracts/src/v0.8/functions/dev/1_0_0/FunctionsClient.sol";
 import {FunctionsRequest} from "./@chainlink/contracts/src/v0.8/functions/dev/1_0_0/libraries/FunctionsRequest.sol";
 import {Basecamp} from "./Basecamp.sol";
 
-contract Validator is FunctionsClient, Ownable, AccessControl {
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+
+contract Validator is FunctionsClient, OwnableUpgradeable, AccessControlUpgradeable {
   using FunctionsRequest for FunctionsRequest.Request;
 
   Basecamp public basecamp;
@@ -32,10 +34,17 @@ contract Validator is FunctionsClient, Ownable, AccessControl {
   event MissionValidated(bytes32 requestId, uint8 missionIndex, uint256 isValid, bool success, address account);
   event Withdraw(uint256 amount);
 
-  constructor(address _owner, address _basecampAddress, address _functionsRouterAddress, bytes32 _donId) Ownable(_owner) FunctionsClient(_functionsRouterAddress) AccessControl() {
-		_grantRole(ADMIN_ROLE, _owner);
-    basecamp = Basecamp(payable(_basecampAddress));
+  constructor(address _functionsRouterAddress) FunctionsClient(_functionsRouterAddress) {
+    _disableInitializers();
+  }
+
+  function initialize(address _owner, address _basecampAddress, address _functionsRouterAddress, bytes32 _donId) external initializer {
+    __Ownable_init(_owner);
+    __AccessControl_init();
+
+    _grantRole(ADMIN_ROLE, _owner);
     functionsRouterAddress = _functionsRouterAddress;
+    basecamp = Basecamp(payable(_basecampAddress));
     donId = _donId;
     emit BasecampAddressSet(_basecampAddress);
     emit FunctionsRouterAddressSet(functionsRouterAddress);
