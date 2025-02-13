@@ -5,14 +5,17 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
-import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
 /**
  * A smart contract for the The Graph Builders Basecamp challenges
  * @author Kevin Jones
  */
-contract Basecamp is Initializable, OwnableUpgradeable, ERC1155Upgradeable, AccessControlUpgradeable, UUPSUpgradeable {
-
+contract Basecamp is
+	Initializable,
+	OwnableUpgradeable,
+	ERC1155Upgradeable,
+	AccessControlUpgradeable
+{
 	string public name;
 	string public symbol;
 
@@ -26,7 +29,6 @@ contract Basecamp is Initializable, OwnableUpgradeable, ERC1155Upgradeable, Acce
 
 	bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 	bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
-
 
 	event CredentialSet(bool enabled, uint8 id, string name, string url);
 	event CredentialMinted(address to, uint8 id);
@@ -45,41 +47,38 @@ contract Basecamp is Initializable, OwnableUpgradeable, ERC1155Upgradeable, Acce
 		__Ownable_init(_owner);
 		__ERC1155_init("http://example.com/");
 		__AccessControl_init();
-		__UUPSUpgradeable_init();
-		
+
 		name = "Basecamp";
 		symbol = "CRED";
-		
+
 		_setRoleAdmin(MINTER_ROLE, ADMIN_ROLE);
 		_grantRole(ADMIN_ROLE, _owner);
 		_grantRole(MINTER_ROLE, _minter);
 	}
 
-	function _authorizeUpgrade(address) internal override onlyRole(ADMIN_ROLE) {}
-
-    /**
-     * Add a credential with URL
-     * @param _enabled Whether the credential is enabled
-     * @param _id The ID of the credential
-     * @param _name The name of the credential
-     * @param _url The URL for the credential's metadata
-     */
-    function setCredential(
-        bool _enabled, 
-        uint8 _id, 
-        string memory _name,
-        string memory _url
-    ) public onlyRole(ADMIN_ROLE) {
-        credentials[_id] = Credential(_enabled, _name, _url);
-        emit CredentialSet(_enabled, _id, _name, _url);
-    }
+	/**
+	 * Add a credential with URL
+	 * @param _enabled Whether the credential is enabled
+	 * @param _id The ID of the credential
+	 * @param _name The name of the credential
+	 * @param _url The URL for the credential's metadata
+	 */
+	function setCredential(
+		bool _enabled,
+		uint8 _id,
+		string memory _name,
+		string memory _url
+	) public onlyRole(ADMIN_ROLE) {
+		credentials[_id] = Credential(_enabled, _name, _url);
+		emit CredentialSet(_enabled, _id, _name, _url);
+	}
 
 	/**
 	 * Mint a credential
 	 * @param id The ID of the credential
 	 * @param _account The account to mint the credential to
 	 */
-	function mint( uint8 id, address _account) public onlyRole(MINTER_ROLE) {
+	function mint(uint8 id, address _account) public onlyRole(MINTER_ROLE) {
 		require(credentials[id].enabled, "credential not enabled");
 		_mint(_account, id, 1, "0x00");
 		emit CredentialMinted(_account, id);
@@ -126,7 +125,7 @@ contract Basecamp is Initializable, OwnableUpgradeable, ERC1155Upgradeable, Acce
 	 */
 	function withdraw() public onlyOwner {
 		uint256 balance = address(this).balance;
-		(bool success, ) = payable(owner()).call{value: balance}("");
+		(bool success, ) = payable(owner()).call{ value: balance }("");
 		require(success, "Transfer failed");
 		emit Withdraw(balance);
 	}
@@ -136,20 +135,24 @@ contract Basecamp is Initializable, OwnableUpgradeable, ERC1155Upgradeable, Acce
 	 */
 	receive() external payable {}
 
-    /**
-     * Override the URI function to return different URLs for each token
-     * @param id The token ID
-     */
-    function uri(uint256 id) public view virtual override returns (string memory) {
-        return credentials[uint8(id)].url;
-    }
+	/**
+	 * Override the URI function to return different URLs for each token
+	 * @param id The token ID
+	 */
+	function uri(
+		uint256 id
+	) public view virtual override returns (string memory) {
+		return credentials[uint8(id)].url;
+	}
 
-	function supportsInterface(bytes4 interfaceId) 
-		public 
-		view 
-		virtual 
-		override(ERC1155Upgradeable, AccessControlUpgradeable) 
-		returns (bool) 
+	function supportsInterface(
+		bytes4 interfaceId
+	)
+		public
+		view
+		virtual
+		override(ERC1155Upgradeable, AccessControlUpgradeable)
+		returns (bool)
 	{
 		return super.supportsInterface(interfaceId);
 	}
@@ -157,14 +160,26 @@ contract Basecamp is Initializable, OwnableUpgradeable, ERC1155Upgradeable, Acce
 	/**
 	 * Override safeTransferFrom to revert
 	 */
-	function safeTransferFrom(address from, address to, uint256 id, uint256 amount, bytes memory data) public override(ERC1155Upgradeable) {
+	function safeTransferFrom(
+		address from,
+		address to,
+		uint256 id,
+		uint256 amount,
+		bytes memory data
+	) public override(ERC1155Upgradeable) {
 		revert("Token soulbound!");
 	}
 
 	/**
 	 * Override safeBatchTransferFrom to revert
 	 */
-	function safeBatchTransferFrom(address from, address to, uint256[] memory ids, uint256[] memory amounts, bytes memory data) public override(ERC1155Upgradeable) {
+	function safeBatchTransferFrom(
+		address from,
+		address to,
+		uint256[] memory ids,
+		uint256[] memory amounts,
+		bytes memory data
+	) public override(ERC1155Upgradeable) {
 		revert("Token soulbound!");
 	}
 }
