@@ -38,9 +38,6 @@ const deployValidator: DeployFunction = async function (hre: HardhatRuntimeEnvir
   // Get the deployed contract to interact with it after deploying.
   const Validator = await hre.ethers.getContract<Contract>("Validator", deployer);
   const validatorAddress = await Validator.getAddress();
-
-  // console.log("Adding Validator as minter on Basecamp...");
-  // await basecamp.addMinter(validatorAddress);
 };
 
 export default deployValidator;

@@ -31,12 +31,6 @@ const deployBasecamp: DeployFunction = async function (hre: HardhatRuntimeEnviro
   });
 
   const Basecamp = await hre.ethers.getContract<Contract>("Basecamp", deployer);
-
-  // console.log("Adding credentials...");
-  // await Basecamp.addCredential(true, 0, "ORIENTATION");
-  // await Basecamp.addCredential(true, 1, "ENLIST");
-  // await Basecamp.addCredential(true, 2, "COMMS");
-  // await Basecamp.addCredential(true, 3, "MOON");
 };
 
 export default deployBasecamp;
