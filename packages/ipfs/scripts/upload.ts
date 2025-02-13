@@ -82,10 +82,15 @@ async function main() {
     console.log("Uploaded and pinned files:", cids);
     console.log("Uploaded and pinned metadata:", metadataCids);
 
+    // Create a nested log structure
     const logData = {
         timestamp: new Date().toISOString(),
-        uploadedFiles: cids,
-        uploadedMetadata: metadataCids,
+        uploads: filePaths.map((filePath, index) => ({
+            index: index,
+            file: filePath,
+            cid: cids[index],
+            metadataCid: metadataCids[index],
+        })),
     };
 
     const logFileName = `upload_log_${new Date()
