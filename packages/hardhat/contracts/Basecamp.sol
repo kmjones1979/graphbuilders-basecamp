@@ -1,18 +1,23 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.27;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "@openzeppelin/contracts/access/AccessControl.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 /**
  * A smart contract for the The Graph Builders Basecamp challenges
  * @author Kevin Jones
  */
-contract Basecamp is Ownable, ERC1155, AccessControl {
-
-	string public name = "Basecamp";
-    string public symbol = "CRED";
+contract Basecamp is
+	Initializable,
+	OwnableUpgradeable,
+	ERC1155Upgradeable,
+	AccessControlUpgradeable
+{
+	string public name;
+	string public symbol;
 
 	struct Credential {
 		bool enabled;
@@ -25,7 +30,6 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 	bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
 
-
 	event CredentialSet(bool enabled, uint8 id, string name, string url);
 	event CredentialMinted(address to, uint8 id);
 	event AdminAdded(address admin);
@@ -34,38 +38,47 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	event MinterRemoved(address minter);
 	event Withdraw(uint256 amount);
 
-	constructor(address _owner, address _minter ) 
-		Ownable(_owner) 
-		ERC1155("http://example.com/") 
-		AccessControl() {
+	/// @custom:oz-upgrades-unsafe-allow constructor
+	constructor() {
+		_disableInitializers();
+	}
+
+	function initialize(address _owner, address _minter) public initializer {
+		__Ownable_init(_owner);
+		__ERC1155_init("http://example.com/");
+		__AccessControl_init();
+
+		name = "Basecamp";
+		symbol = "CRED";
+
 		_setRoleAdmin(MINTER_ROLE, ADMIN_ROLE);
 		_grantRole(ADMIN_ROLE, _owner);
 		_grantRole(MINTER_ROLE, _minter);
 	}
 
-    /**
-     * Add a credential with URL
-     * @param _enabled Whether the credential is enabled
-     * @param _id The ID of the credential
-     * @param _name The name of the credential
-     * @param _url The URL for the credential's metadata
-     */
-    function setCredential(
-        bool _enabled, 
-        uint8 _id, 
-        string memory _name,
-        string memory _url
-    ) public onlyRole(ADMIN_ROLE) {
-        credentials[_id] = Credential(_enabled, _name, _url);
-        emit CredentialSet(_enabled, _id, _name, _url);
-    }
+	/**
+	 * Add a credential with URL
+	 * @param _enabled Whether the credential is enabled
+	 * @param _id The ID of the credential
+	 * @param _name The name of the credential
+	 * @param _url The URL for the credential's metadata
+	 */
+	function setCredential(
+		bool _enabled,
+		uint8 _id,
+		string memory _name,
+		string memory _url
+	) public onlyRole(ADMIN_ROLE) {
+		credentials[_id] = Credential(_enabled, _name, _url);
+		emit CredentialSet(_enabled, _id, _name, _url);
+	}
 
 	/**
 	 * Mint a credential
 	 * @param id The ID of the credential
 	 * @param _account The account to mint the credential to
 	 */
-	function mint( uint8 id, address _account) public onlyRole(MINTER_ROLE) {
+	function mint(uint8 id, address _account) public onlyRole(MINTER_ROLE) {
 		require(credentials[id].enabled, "credential not enabled");
 		_mint(_account, id, 1, "0x00");
 		emit CredentialMinted(_account, id);
@@ -112,7 +125,7 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	 */
 	function withdraw() public onlyOwner {
 		uint256 balance = address(this).balance;
-		(bool success, ) = payable(owner()).call{value: balance}("");
+		(bool success, ) = payable(owner()).call{ value: balance }("");
 		require(success, "Transfer failed");
 		emit Withdraw(balance);
 	}
@@ -122,32 +135,51 @@ contract Basecamp is Ownable, ERC1155, AccessControl {
 	 */
 	receive() external payable {}
 
-    /**
-     * Override the URI function to return different URLs for each token
-     * @param id The token ID
-     */
-    function uri(uint256 id) public view virtual override returns (string memory) {
-        return credentials[uint8(id)].url;
-    }
-
 	/**
-	 * Override supportsInterface to resolve conflict from base contracts
+	 * Override the URI function to return different URLs for each token
+	 * @param id The token ID
 	 */
-	function supportsInterface(bytes4 interfaceId) public view virtual override(ERC1155, AccessControl) returns (bool) {
+	function uri(
+		uint256 id
+	) public view virtual override returns (string memory) {
+		return credentials[uint8(id)].url;
+	}
+
+	function supportsInterface(
+		bytes4 interfaceId
+	)
+		public
+		view
+		virtual
+		override(ERC1155Upgradeable, AccessControlUpgradeable)
+		returns (bool)
+	{
 		return super.supportsInterface(interfaceId);
 	}
 
 	/**
 	 * Override safeTransferFrom to revert
 	 */
-	function safeTransferFrom(address from, address to, uint256 id, uint256 amount, bytes memory data) public override(ERC1155) {
+	function safeTransferFrom(
+		address from,
+		address to,
+		uint256 id,
+		uint256 amount,
+		bytes memory data
+	) public override(ERC1155Upgradeable) {
 		revert("Token soulbound!");
 	}
 
 	/**
 	 * Override safeBatchTransferFrom to revert
 	 */
-	function safeBatchTransferFrom(address from, address to, uint256[] memory ids, uint256[] memory amounts, bytes memory data) public override(ERC1155) {
+	function safeBatchTransferFrom(
+		address from,
+		address to,
+		uint256[] memory ids,
+		uint256[] memory amounts,
+		bytes memory data
+	) public override(ERC1155Upgradeable) {
 		revert("Token soulbound!");
 	}
 }

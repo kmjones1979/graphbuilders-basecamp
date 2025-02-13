@@ -21,7 +21,16 @@ const deployValidator: DeployFunction = async function (hre: HardhatRuntimeEnvir
 
   await deploy("Validator", {
     from: deployer,
-    args: [owner, basecampAddress, functionsRouterAddress, donId],
+    proxy: {
+      execute: {
+        init: {
+          methodName: "initialize",
+          args: [owner, basecampAddress, functionsRouterAddress, donId],
+        },
+      },
+      proxyContract: "OpenZeppelinTransparentProxy",
+    },
+    args: [functionsRouterAddress],
     log: true,
     autoMine: true,
   });
