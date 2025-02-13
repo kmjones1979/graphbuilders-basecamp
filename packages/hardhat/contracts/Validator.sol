@@ -17,7 +17,6 @@ contract Validator is FunctionsClient, OwnableUpgradeable, AccessControlUpgradea
 
   bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
 
-  address public functionsRouterAddress;
   bytes32 public donId;
 
   mapping(bytes32 => address) public requestsInProgress;
@@ -28,26 +27,21 @@ contract Validator is FunctionsClient, OwnableUpgradeable, AccessControlUpgradea
   mapping(uint8 => bytes32) public missionCodeHashes;
 
   event BasecampAddressSet(address newBasecampAddress);
-  event FunctionsRouterAddressSet(address newFunctionsRouterAddress);
   event DonIdSet(bytes32 newDonId); 
   event MissionSubmitted(bytes32 requestId, uint8 missionIndex, string queryUrl, address account);
   event MissionValidated(bytes32 requestId, uint8 missionIndex, uint256 isValid, bool success, address account);
   event Withdraw(uint256 amount);
 
-  constructor(address _functionsRouterAddress) FunctionsClient(_functionsRouterAddress) {
-    _disableInitializers();
-  }
+  constructor(address _functionsRouterAddress) FunctionsClient(_functionsRouterAddress) {}
 
-  function initialize(address _owner, address _basecampAddress, address _functionsRouterAddress, bytes32 _donId) external initializer {
+  function initialize(address _owner, address _basecampAddress, bytes32 _donId) external initializer {
     __Ownable_init(_owner);
     __AccessControl_init();
 
     _grantRole(ADMIN_ROLE, _owner);
-    functionsRouterAddress = _functionsRouterAddress;
     basecamp = Basecamp(payable(_basecampAddress));
     donId = _donId;
     emit BasecampAddressSet(_basecampAddress);
-    emit FunctionsRouterAddressSet(functionsRouterAddress);
     emit DonIdSet(donId);
   }
 
@@ -71,15 +65,6 @@ contract Validator is FunctionsClient, OwnableUpgradeable, AccessControlUpgradea
   }
 
   /**
-   * @notice Set the Functions Router address
-   * @param _functionsRouterAddress New Functions Router address
-   */
-  function setFunctionsRouterAddress(address _functionsRouterAddress) external onlyRole(ADMIN_ROLE) {
-    functionsRouterAddress = _functionsRouterAddress;
-    emit FunctionsRouterAddressSet(_functionsRouterAddress);
-  }
-
-    /**
    * @notice Set the DON ID
    * @param _donId New DON ID
    */
