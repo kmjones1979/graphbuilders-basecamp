@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import javaScriptSourceCode from "./JavaScriptSourceCode";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
@@ -45,6 +45,31 @@ const AdminContent: React.FC = () => {
   const [id, setId] = React.useState(0);
   const [name, setName] = React.useState("");
   const [url, setUrl] = React.useState("");
+  const [metadata, setMetadata] = React.useState<any>(null);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchMetadata = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(currentCredentials?.[2] ?? "");
+        if (!response.ok) {
+          throw new Error("Failed to fetch metadata");
+        }
+        const data = await response.json();
+        setMetadata(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An unknown error occurred");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (currentCredentials?.[2]) {
+      fetchMetadata();
+    }
+  }, [currentCredentials]);
 
   return (
     <>
@@ -56,6 +81,9 @@ const AdminContent: React.FC = () => {
             <div className="border p-4 rounded-lg mb-4">
               {currentCredentials ? (
                 <ul className="list-disc pl-5">
+                  <li className="flex justify-center p-1">
+                    <img src={metadata?.image} alt={metadata?.name} className="w-96 h-96" />
+                  </li>
                   <li>
                     <strong>Enabled:</strong> {currentCredentials[0] ? "Yes" : "No"}
                   </li>
@@ -64,6 +92,15 @@ const AdminContent: React.FC = () => {
                   </li>
                   <li>
                     <strong>URL:</strong> {currentCredentials[2]}
+                  </li>
+                  <li>
+                    <strong>Metadata:</strong> {metadata?.name}
+                  </li>
+                  <li>
+                    <strong>Description:</strong> {metadata?.description}
+                  </li>
+                  <li>
+                    <strong>Image:</strong> {metadata?.image}
                   </li>
                 </ul>
               ) : (
