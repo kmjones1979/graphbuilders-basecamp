@@ -11,185 +11,182 @@ import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol"
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 contract Validator is
-	FunctionsClient,
-	OwnableUpgradeable,
-	AccessControlUpgradeable
+    FunctionsClient,
+    OwnableUpgradeable,
+    AccessControlUpgradeable
 {
-	using FunctionsRequest for FunctionsRequest.Request;
+    using FunctionsRequest for FunctionsRequest.Request;
 
-	Basecamp public basecamp;
+    error AlreadyMinted();
+    error InvalidSourceCode();
+    error ValidationFailed();
+    error TransferFailed();
 
-	bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
+    bytes32 private immutable ADMIN_ROLE_HASH;
+    
+    struct MissionRequest {
+        address account;
+        uint8 missionIndex;
+        bool isProcessed;
+    }
+    
+    Basecamp public basecamp;
+    bytes32 public donId;
+    
+    mapping(bytes32 => MissionRequest) private requests;
+    mapping(uint8 => mapping(address => bool)) public accountMinted;
+    mapping(uint8 => bytes32) public missionCodeHashes;
 
-	bytes32 public donId;
+    event BasecampAddressSet(address indexed newBasecampAddress);
+    event DonIdSet(bytes32 indexed newDonId);
+    event MissionSubmitted(
+        bytes32 indexed requestId,
+        uint8 indexed missionIndex,
+        string queryUrl,
+        address indexed account
+    );
+    event MissionValidated(
+        bytes32 indexed requestId,
+        uint8 indexed missionIndex,
+        uint256 isValid,
+        bool success,
+        address indexed account
+    );
+    event Withdraw(uint256 amount);
 
-	mapping(bytes32 => address) public requestsInProgress;
-	mapping(bytes32 => uint8) public missionIndexSubmitted;
+    constructor(
+        address _functionsRouterAddress
+    ) FunctionsClient(_functionsRouterAddress) {
+        ADMIN_ROLE_HASH = keccak256("ADMIN_ROLE");
+    }
 
-	mapping(uint8 => mapping(address => bool)) public accountMinted;
+    function initialize(
+        address _owner,
+        address _basecampAddress,
+        bytes32 _donId
+    ) external initializer {
+        __Ownable_init(_owner);
+        __AccessControl_init();
 
-	mapping(uint8 => bytes32) public missionCodeHashes;
+        _grantRole(ADMIN_ROLE_HASH, _owner);
+        basecamp = Basecamp(payable(_basecampAddress));
+        donId = _donId;
+        
+        emit BasecampAddressSet(_basecampAddress);
+        emit DonIdSet(donId);
+    }
 
-	event BasecampAddressSet(address newBasecampAddress);
-	event DonIdSet(bytes32 newDonId);
-	event MissionSubmitted(
-		bytes32 requestId,
-		uint8 missionIndex,
-		string queryUrl,
-		address account
-	);
-	event MissionValidated(
-		bytes32 requestId,
-		uint8 missionIndex,
-		uint256 isValid,
-		bool success,
-		address account
-	);
-	event Withdraw(uint256 amount);
+    function setMissionCodeHash(
+        uint8 missionIndex,
+        string calldata javaScriptSourceCode
+    ) external onlyRole(ADMIN_ROLE_HASH) {
+        missionCodeHashes[missionIndex] = keccak256(bytes(javaScriptSourceCode));
+    }
 
-	constructor(
-		address _functionsRouterAddress
-	) FunctionsClient(_functionsRouterAddress) {}
+    function setBasecampAddress(
+        address _basecampAddress
+    ) external onlyRole(ADMIN_ROLE_HASH) {
+        basecamp = Basecamp(payable(_basecampAddress));
+        emit BasecampAddressSet(_basecampAddress);
+    }
 
-	function initialize(
-		address _owner,
-		address _basecampAddress,
-		bytes32 _donId
-	) external initializer {
-		__Ownable_init(_owner);
-		__AccessControl_init();
+    function setDonId(bytes32 _donId) external onlyRole(ADMIN_ROLE_HASH) {
+        donId = _donId;
+        emit DonIdSet(_donId);
+    }
 
-		_grantRole(ADMIN_ROLE, _owner);
-		basecamp = Basecamp(payable(_basecampAddress));
-		donId = _donId;
-		emit BasecampAddressSet(_basecampAddress);
-		emit DonIdSet(donId);
-	}
+    function validateMission(
+        uint8 missionIndex,
+        string calldata javaScriptSourceCode,
+        uint64 subscriptionId,
+        uint32 gasLimit,
+        string calldata queryUrl
+    ) external returns (bytes32) {
+        if(accountMinted[missionIndex][msg.sender]) {
+            revert AlreadyMinted();
+        }
 
-	/**
-	 * @notice Set the JavaScript source code hash for a mission index
-	 * @param missionIndex The mission index
-	 * @param javaScriptSourceCode The JavaScript source code
-	 */
-	function setMissionCodeHash(
-		uint8 missionIndex,
-		string memory javaScriptSourceCode
-	) external onlyRole(ADMIN_ROLE) {
-		bytes32 codeHash = keccak256(abi.encodePacked(javaScriptSourceCode));
-		missionCodeHashes[missionIndex] = codeHash;
-	}
+        bytes32 submittedCodeHash = keccak256(bytes(javaScriptSourceCode));
+        if(submittedCodeHash != missionCodeHashes[missionIndex]) {
+            revert InvalidSourceCode();
+        }
 
-	/**
-	 * @notice Set the Basecamp address
-	 * @param _basecampAddress New Basecamp address
-	 */
-	function setBasecampAddress(
-		address _basecampAddress
-	) external onlyRole(ADMIN_ROLE) {
-		basecamp = Basecamp(payable(_basecampAddress));
-		emit BasecampAddressSet(_basecampAddress);
-	}
+        FunctionsRequest.Request memory req;
+        req.initializeRequestForInlineJavaScript(javaScriptSourceCode);
 
-	/**
-	 * @notice Set the DON ID
-	 * @param _donId New DON ID
-	 */
-	function setDonId(bytes32 _donId) external onlyRole(ADMIN_ROLE) {
-		donId = _donId;
-		emit DonIdSet(_donId);
-	}
+        string[] memory args = new string[](2);
+        args[0] = Strings.toHexString(msg.sender);
+        args[1] = queryUrl;
+        req.setArgs(args);
 
-	function validateMission(
-		uint8 missionIndex,
-		string memory javaScriptSourceCode,
-		uint64 subscriptionId,
-		uint32 gasLimit,
-		string memory queryUrl
-	) external returns (bytes32 requestId) {
-		require(
-			!accountMinted[missionIndex][msg.sender],
-			"Account already minted"
-		);
+        bytes32 requestId = _sendRequest(
+            req.encodeCBOR(),
+            subscriptionId,
+            gasLimit,
+            donId
+        );
 
-		// Hash the submitted JavaScript source code
-		bytes32 submittedCodeHash = keccak256(
-			abi.encodePacked(javaScriptSourceCode)
-		);
+        requests[requestId] = MissionRequest({
+            account: msg.sender,
+            missionIndex: missionIndex,
+            isProcessed: false
+        });
 
-		// Check if the submitted code hash matches the stored hash for the mission index
-		require(
-			submittedCodeHash == missionCodeHashes[missionIndex],
-			"Invalid JavaScript source code"
-		);
+        emit MissionSubmitted(requestId, missionIndex, queryUrl, msg.sender);
+        return requestId;
+    }
 
-		FunctionsRequest.Request memory req;
-		req.initializeRequestForInlineJavaScript(javaScriptSourceCode);
+    function fulfillRequest(
+        bytes32 requestId,
+        bytes memory response,
+        bytes memory err
+    ) internal override {
+        if (err.length > 0) {
+            revert(string(err));
+        }
 
-		string[] memory args = new string[](2);
-		args[0] = Strings.toHexString(msg.sender);
-		args[1] = queryUrl;
 
-		req.setArgs(args);
+        MissionRequest storage request = requests[requestId];
+        if(request.isProcessed) {
+            return;
+        }
 
-		requestId = _sendRequest(
-			req.encodeCBOR(),
-			subscriptionId,
-			gasLimit,
-			donId
-		);
-		requestsInProgress[requestId] = msg.sender;
-		missionIndexSubmitted[requestId] = missionIndex;
-		emit MissionSubmitted(requestId, missionIndex, queryUrl, msg.sender);
-	}
+        uint256 isValid = abi.decode(response, (uint256));
+        
+        unchecked {
+            if (isValid == 1) {
+                request.isProcessed = true;
+                accountMinted[request.missionIndex][request.account] = true;
+                
+                basecamp.mint(request.missionIndex, request.account);
+                
+                emit MissionValidated(
+                    requestId,
+                    request.missionIndex,
+                    1,
+                    true,
+                    request.account
+                );
+                return;
+            }
+        }
+        
+        emit MissionValidated(
+            requestId,
+            request.missionIndex,
+            0,
+            false,
+            request.account
+        );
+        revert ValidationFailed();
+    }
 
-	function fulfillRequest(
-		bytes32 requestId,
-		bytes memory response,
-		bytes memory err
-	) internal override {
-		if (err.length != 0) {
-			revert(string(err));
-		}
+    function withdraw() external onlyOwner {
+        uint256 balance = address(this).balance;
+        (bool success, ) = payable(owner()).call{value: balance}("");
+        if(!success) revert TransferFailed();
+        emit Withdraw(balance);
+    }
 
-		uint256 isValid = abi.decode(response, (uint256));
-		if (isValid == 1) {
-			address account = requestsInProgress[requestId];
-			uint8 missionIndex = missionIndexSubmitted[requestId];
-			basecamp.mint(missionIndex, account);
-			accountMinted[missionIndex][account] = true;
-			emit MissionValidated(
-				requestId,
-				missionIndex,
-				isValid,
-				true,
-				account
-			);
-		} else {
-			address account = requestsInProgress[requestId];
-			uint8 missionIndex = missionIndexSubmitted[requestId];
-			emit MissionValidated(
-				requestId,
-				missionIndex,
-				isValid,
-				false,
-				account
-			);
-			revert("Validation failed");
-		}
-	}
-
-	/**
-	 * Function that allows the owner to withdraw ETH from the contract
-	 */
-	function withdraw() public onlyOwner {
-		uint256 balance = address(this).balance;
-		(bool success, ) = payable(owner()).call{ value: balance }("");
-		require(success, "Transfer failed");
-		emit Withdraw(balance);
-	}
-
-	/**
-	 * Function that allows the contract to receive ETH
-	 */
-	receive() external payable {}
+    receive() external payable {}
 }
