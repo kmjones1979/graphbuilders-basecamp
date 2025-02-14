@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
-import { RocketLaunchIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
@@ -58,25 +57,6 @@ export const DebugContractsLink = () => {
   );
 };
 
-export const MissionDropdown = () => {
-  return (
-    <details className="dropdown">
-      <summary className="ml-1 btn btn-ghost">
-        <RocketLaunchIcon className="h-4 w-4" />
-        Missions
-      </summary>
-      <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-64 p-2 shadow">
-        <li>
-          <a href="/mission-0">0: Orientation</a>
-        </li>
-        <li>
-          <a href="/mission-1">1: Join the Academy</a>
-        </li>
-      </ul>
-    </details>
-  );
-};
-
 /**
  * Site header
  */
@@ -123,7 +103,6 @@ export const Header = () => {
           </div>
         </Link>
         <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
-          <MissionDropdown />
           <DebugContractsLink />
         </ul>
       </div>
