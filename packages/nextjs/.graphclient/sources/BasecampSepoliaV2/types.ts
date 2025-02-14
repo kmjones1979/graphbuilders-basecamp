@@ -3,7 +3,7 @@
 import { InContextSdkMethod } from '@graphql-mesh/types';
 import { MeshContext } from '@graphql-mesh/runtime';
 
-export namespace BasecampSepoliaTypes {
+export namespace BasecampSepoliaV2Types {
   export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -334,6 +334,7 @@ export type Credential = {
   enabled: Scalars['Boolean']['output'];
   Basecamp_id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
+  url: Scalars['String']['output'];
 };
 
 export type CredentialMinted = {
@@ -437,6 +438,7 @@ export type CredentialSet = {
   enabled: Scalars['Boolean']['output'];
   Basecamp_id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
+  url: Scalars['String']['output'];
   blockNumber: Scalars['BigInt']['output'];
   blockTimestamp: Scalars['BigInt']['output'];
   transactionHash: Scalars['Bytes']['output'];
@@ -485,6 +487,26 @@ export type CredentialSet_filter = {
   name_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
   name_not_ends_with?: InputMaybe<Scalars['String']['input']>;
   name_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+  url_not?: InputMaybe<Scalars['String']['input']>;
+  url_gt?: InputMaybe<Scalars['String']['input']>;
+  url_lt?: InputMaybe<Scalars['String']['input']>;
+  url_gte?: InputMaybe<Scalars['String']['input']>;
+  url_lte?: InputMaybe<Scalars['String']['input']>;
+  url_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  url_not_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  url_contains?: InputMaybe<Scalars['String']['input']>;
+  url_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_not_contains?: InputMaybe<Scalars['String']['input']>;
+  url_not_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_starts_with?: InputMaybe<Scalars['String']['input']>;
+  url_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  url_not_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_ends_with?: InputMaybe<Scalars['String']['input']>;
+  url_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  url_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
   blockNumber?: InputMaybe<Scalars['BigInt']['input']>;
   blockNumber_not?: InputMaybe<Scalars['BigInt']['input']>;
   blockNumber_gt?: InputMaybe<Scalars['BigInt']['input']>;
@@ -522,6 +544,7 @@ export type CredentialSet_orderBy =
   | 'enabled'
   | 'Basecamp_id'
   | 'name'
+  | 'url'
   | 'blockNumber'
   | 'blockTimestamp'
   | 'transactionHash';
@@ -569,6 +592,26 @@ export type Credential_filter = {
   name_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
   name_not_ends_with?: InputMaybe<Scalars['String']['input']>;
   name_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+  url_not?: InputMaybe<Scalars['String']['input']>;
+  url_gt?: InputMaybe<Scalars['String']['input']>;
+  url_lt?: InputMaybe<Scalars['String']['input']>;
+  url_gte?: InputMaybe<Scalars['String']['input']>;
+  url_lte?: InputMaybe<Scalars['String']['input']>;
+  url_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  url_not_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  url_contains?: InputMaybe<Scalars['String']['input']>;
+  url_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_not_contains?: InputMaybe<Scalars['String']['input']>;
+  url_not_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_starts_with?: InputMaybe<Scalars['String']['input']>;
+  url_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  url_not_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_ends_with?: InputMaybe<Scalars['String']['input']>;
+  url_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  url_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
   and?: InputMaybe<Array<InputMaybe<Credential_filter>>>;
@@ -579,7 +622,8 @@ export type Credential_orderBy =
   | 'id'
   | 'enabled'
   | 'Basecamp_id'
-  | 'name';
+  | 'name'
+  | 'url';
 
 export type DonIdSet = {
   id: Scalars['Bytes']['output'];
@@ -3504,7 +3548,7 @@ export type _SubgraphErrorPolicy_ =
   };
 
   export type Context = {
-      ["BasecampSepolia"]: { Query: QuerySdk, Mutation: MutationSdk, Subscription: SubscriptionSdk },
+      ["BasecampSepoliaV2"]: { Query: QuerySdk, Mutation: MutationSdk, Subscription: SubscriptionSdk },
       
     };
 }

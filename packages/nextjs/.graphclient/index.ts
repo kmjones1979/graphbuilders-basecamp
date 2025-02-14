@@ -21,8 +21,8 @@ import { getMesh, ExecuteMeshFn, SubscribeMeshFn, MeshContext as BaseMeshContext
 import { MeshStore, FsStoreStorageAdapter } from '@graphql-mesh/store';
 import { path as pathModule } from '@graphql-mesh/cross-helpers';
 import { ImportFn } from '@graphql-mesh/types';
-import type { BasecampSepoliaTypes } from './sources/BasecampSepolia/types';
-import * as importedModule$0 from "./sources/BasecampSepolia/introspectionSchema";
+import type { BasecampSepoliaV2Types } from './sources/BasecampSepoliaV2/types';
+import * as importedModule$0 from "./sources/BasecampSepoliaV2/introspectionSchema";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -357,6 +357,7 @@ export type Credential = {
   enabled: Scalars['Boolean']['output'];
   Basecamp_id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
+  url: Scalars['String']['output'];
 };
 
 export type CredentialMinted = {
@@ -460,6 +461,7 @@ export type CredentialSet = {
   enabled: Scalars['Boolean']['output'];
   Basecamp_id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
+  url: Scalars['String']['output'];
   blockNumber: Scalars['BigInt']['output'];
   blockTimestamp: Scalars['BigInt']['output'];
   transactionHash: Scalars['Bytes']['output'];
@@ -508,6 +510,26 @@ export type CredentialSet_filter = {
   name_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
   name_not_ends_with?: InputMaybe<Scalars['String']['input']>;
   name_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+  url_not?: InputMaybe<Scalars['String']['input']>;
+  url_gt?: InputMaybe<Scalars['String']['input']>;
+  url_lt?: InputMaybe<Scalars['String']['input']>;
+  url_gte?: InputMaybe<Scalars['String']['input']>;
+  url_lte?: InputMaybe<Scalars['String']['input']>;
+  url_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  url_not_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  url_contains?: InputMaybe<Scalars['String']['input']>;
+  url_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_not_contains?: InputMaybe<Scalars['String']['input']>;
+  url_not_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_starts_with?: InputMaybe<Scalars['String']['input']>;
+  url_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  url_not_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_ends_with?: InputMaybe<Scalars['String']['input']>;
+  url_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  url_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
   blockNumber?: InputMaybe<Scalars['BigInt']['input']>;
   blockNumber_not?: InputMaybe<Scalars['BigInt']['input']>;
   blockNumber_gt?: InputMaybe<Scalars['BigInt']['input']>;
@@ -545,6 +567,7 @@ export type CredentialSet_orderBy =
   | 'enabled'
   | 'Basecamp_id'
   | 'name'
+  | 'url'
   | 'blockNumber'
   | 'blockTimestamp'
   | 'transactionHash';
@@ -592,6 +615,26 @@ export type Credential_filter = {
   name_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
   name_not_ends_with?: InputMaybe<Scalars['String']['input']>;
   name_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+  url_not?: InputMaybe<Scalars['String']['input']>;
+  url_gt?: InputMaybe<Scalars['String']['input']>;
+  url_lt?: InputMaybe<Scalars['String']['input']>;
+  url_gte?: InputMaybe<Scalars['String']['input']>;
+  url_lte?: InputMaybe<Scalars['String']['input']>;
+  url_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  url_not_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  url_contains?: InputMaybe<Scalars['String']['input']>;
+  url_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_not_contains?: InputMaybe<Scalars['String']['input']>;
+  url_not_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_starts_with?: InputMaybe<Scalars['String']['input']>;
+  url_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  url_not_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_ends_with?: InputMaybe<Scalars['String']['input']>;
+  url_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  url_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  url_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
   and?: InputMaybe<Array<InputMaybe<Credential_filter>>>;
@@ -602,7 +645,8 @@ export type Credential_orderBy =
   | 'id'
   | 'enabled'
   | 'Basecamp_id'
-  | 'name';
+  | 'name'
+  | 'url';
 
 export type DonIdSet = {
   id: Scalars['Bytes']['output'];
@@ -3632,6 +3676,7 @@ export type CredentialResolvers<ContextType = MeshContext, ParentType extends Re
   enabled?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   Basecamp_id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  url?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -3650,6 +3695,7 @@ export type CredentialSetResolvers<ContextType = MeshContext, ParentType extends
   enabled?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   Basecamp_id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  url?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
   blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
   transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
@@ -4033,7 +4079,7 @@ export type DirectiveResolvers<ContextType = MeshContext> = ResolversObject<{
   derivedFrom?: derivedFromDirectiveResolver<any, any, ContextType>;
 }>;
 
-export type MeshContext = BasecampSepoliaTypes.Context & BaseMeshContext;
+export type MeshContext = BasecampSepoliaV2Types.Context & BaseMeshContext;
 
 
 import { fileURLToPath } from '@graphql-mesh/utils';
@@ -4042,7 +4088,7 @@ const baseDir = pathModule.join(pathModule.dirname(fileURLToPath(import.meta.url
 const importFn: ImportFn = <T>(moduleId: string) => {
   const relativeModuleId = (pathModule.isAbsolute(moduleId) ? pathModule.relative(baseDir, moduleId) : moduleId).split('\\').join('/').replace(baseDir + '/', '');
   switch(relativeModuleId) {
-    case ".graphclient/sources/BasecampSepolia/introspectionSchema":
+    case ".graphclient/sources/BasecampSepoliaV2/introspectionSchema":
       return Promise.resolve(importedModule$0) as T;
     
     default:
@@ -4075,22 +4121,22 @@ const cache = new (MeshCache as any)({
 const sources: MeshResolvedSource[] = [];
 const transforms: MeshTransform[] = [];
 const additionalEnvelopPlugins: MeshPlugin<any>[] = [];
-const basecampSepoliaTransforms = [];
+const basecampSepoliaV2Transforms = [];
 const additionalTypeDefs = [] as any[];
-const basecampSepoliaHandler = new GraphqlHandler({
-              name: "BasecampSepolia",
-              config: {"endpoint":"https://api.studio.thegraph.com/query/37762/basecamp-basesepolia/version/latest"},
+const basecampSepoliaV2Handler = new GraphqlHandler({
+              name: "BasecampSepoliaV2",
+              config: {"endpoint":"https://api.studio.thegraph.com/query/37762/basecamp-sepoliav2/version/latest"},
               baseDir,
               cache,
               pubsub,
-              store: sourcesStore.child("BasecampSepolia"),
-              logger: logger.child("BasecampSepolia"),
+              store: sourcesStore.child("BasecampSepoliaV2"),
+              logger: logger.child("BasecampSepoliaV2"),
               importFn,
             });
 sources[0] = {
-          name: 'BasecampSepolia',
-          handler: basecampSepoliaHandler,
-          transforms: basecampSepoliaTransforms
+          name: 'BasecampSepoliaV2',
+          handler: basecampSepoliaV2Handler,
+          transforms: basecampSepoliaV2Transforms
         }
 const additionalResolvers = [] as any[]
 const merger = new(BareMerger as any)({

@@ -336,6 +336,7 @@ type Credential {
   enabled: Boolean!
   Basecamp_id: Int!
   name: String!
+  url: String!
 }
 
 type CredentialMinted {
@@ -440,6 +441,7 @@ type CredentialSet {
   enabled: Boolean!
   Basecamp_id: Int!
   name: String!
+  url: String!
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -488,6 +490,26 @@ input CredentialSet_filter {
   name_ends_with_nocase: String
   name_not_ends_with: String
   name_not_ends_with_nocase: String
+  url: String
+  url_not: String
+  url_gt: String
+  url_lt: String
+  url_gte: String
+  url_lte: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_contains: String
+  url_contains_nocase: String
+  url_not_contains: String
+  url_not_contains_nocase: String
+  url_starts_with: String
+  url_starts_with_nocase: String
+  url_not_starts_with: String
+  url_not_starts_with_nocase: String
+  url_ends_with: String
+  url_ends_with_nocase: String
+  url_not_ends_with: String
+  url_not_ends_with_nocase: String
   blockNumber: BigInt
   blockNumber_not: BigInt
   blockNumber_gt: BigInt
@@ -525,6 +547,7 @@ enum CredentialSet_orderBy {
   enabled
   Basecamp_id
   name
+  url
   blockNumber
   blockTimestamp
   transactionHash
@@ -573,6 +596,26 @@ input Credential_filter {
   name_ends_with_nocase: String
   name_not_ends_with: String
   name_not_ends_with_nocase: String
+  url: String
+  url_not: String
+  url_gt: String
+  url_lt: String
+  url_gte: String
+  url_lte: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_contains: String
+  url_contains_nocase: String
+  url_not_contains: String
+  url_not_contains_nocase: String
+  url_starts_with: String
+  url_starts_with_nocase: String
+  url_not_starts_with: String
+  url_not_starts_with_nocase: String
+  url_ends_with: String
+  url_ends_with_nocase: String
+  url_not_ends_with: String
+  url_not_ends_with_nocase: String
   """Filter for the block changed event."""
   _change_block: BlockChangedFilter
   and: [Credential_filter]
@@ -584,6 +627,7 @@ enum Credential_orderBy {
   enabled
   Basecamp_id
   name
+  url
 }
 
 type DonIdSet {

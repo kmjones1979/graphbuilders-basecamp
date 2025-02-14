@@ -1,9 +1,9 @@
 # .graphclientrc.yml
 sources:
-  - name: BasecampSepolia
+  - name: BasecampSepoliaV2
     handler:
       graphql:
-        endpoint: https://api.studio.thegraph.com/query/37762/basecamp-basesepolia/version/latest
+        endpoint: https://api.studio.thegraph.com/query/37762/basecamp-sepoliav2/version/latest
 documents:
   - ./graphql/GetUsers.gql
   - ./graphql/GetUserCredentials.gql
