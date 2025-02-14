@@ -83,7 +83,11 @@ const AdminContent: React.FC = () => {
               {currentCredentials ? (
                 <ul className="list-disc pl-5">
                   <li className="flex justify-center p-1">
-                    <img src={metadata?.image} alt={metadata?.name} className="w-96 h-96" />
+                    <img
+                      src={metadata?.image}
+                      alt={metadata?.name}
+                      className="w-96 h-96 transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
+                    />
                   </li>
                   <li>
                     <strong>Enabled:</strong> {currentCredentials[0] ? "Yes" : "No"}
