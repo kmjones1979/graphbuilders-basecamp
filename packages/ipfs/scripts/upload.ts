@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const nfturl = "https://gateway.pinata.cloud/ipfs/";
+
 const pinata = new pinataSDK(
     process.env.PINATA_API_KEY || "",
     process.env.PINATA_API_SECRET || ""
@@ -17,6 +19,23 @@ interface NFTMetadata {
     image: string;
     attributes: { trait_type: string; value: string }[];
 }
+
+const descriptions: { [key: string]: string } = {
+    "0.png":
+        "This NFT is issued for completing Mission 0 of The Graph Builders Basecamp.",
+    "1.png":
+        "This NFT is issued for completing Mission 1 of The Graph Builders Basecamp.",
+    "2.png":
+        "This NFT is issued for completing Mission 2 of The Graph Builders Basecamp.",
+    "3.png":
+        "This NFT is issued for completing Mission 3 of The Graph Builders Basecamp.",
+    "4.png":
+        "This NFT is issued for completing Mission 4 of The Graph Builders Basecamp.",
+    "5.png":
+        "This NFT is issued for completing Mission 5 of The Graph Builders Basecamp.",
+    "6.png":
+        "This NFT is issued for completing Mission 6 of The Graph Builders Basecamp.",
+};
 
 async function uploadFilesToPinata(filePaths: string[]): Promise<string[]> {
     const uploadedFiles: string[] = [];
@@ -62,10 +81,11 @@ async function main() {
 
     // https://docs.opensea.io/docs/metadata-standards
     const metadataPromises = cids.map((cid, index) => {
+        const fileName = path.basename(filePaths[index]); // Get the file name
         const metadata = {
             name: `NFT #${index}`,
-            description: `Description for NFT #${index}`,
-            image: `ipfs://${cid}`,
+            description: descriptions[fileName] || `NFT #${index}`, // Use mapping for description
+            image: `${nfturl}${cid}`,
             attributes: [
                 {
                     trait_type: "Type",
