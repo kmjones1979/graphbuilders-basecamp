@@ -52,9 +52,13 @@ const StudioContent: React.FC = () => {
         }),
       });
 
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Error ${response.status}: ${errorData.message || "An error occurred"}`);
+      }
+
       const data = await response.json();
 
-      // Check the response and update validation status
       const subgraphData = data.data.holders[0]?.transfers[0].to.id.toLowerCase();
       if (subgraphData === account) {
         setIsValidated(true);
@@ -67,8 +71,12 @@ const StudioContent: React.FC = () => {
       }
     } catch (e) {
       console.error("Error during precheck:", e);
-      setIsValidated(false);
-      setResponseMessage("Error during precheck.");
+
+      if (e instanceof Error) {
+        setResponseMessage(`Error during precheck: ${e.message}`);
+      } else {
+        setResponseMessage("An unexpected error occurred. Please try again.");
+      }
     }
   };
 

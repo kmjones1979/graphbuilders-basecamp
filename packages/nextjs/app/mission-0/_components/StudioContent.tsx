@@ -45,9 +45,13 @@ const StudioContent: React.FC = () => {
         }),
       });
 
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Error ${response.status}: ${errorData.message || "An error occurred"}`);
+      }
+
       const data = await response.json();
 
-      // Check the response and update validation status
       const newMessage = data.data.welcomeMessageChangeds[0]?.newMessage;
       if (newMessage === "Welcome to The Graph Builders Basecamp!") {
         setIsValidated(true);
@@ -60,8 +64,13 @@ const StudioContent: React.FC = () => {
       }
     } catch (e) {
       console.error("Error during precheck:", e);
+
+      if (e instanceof Error) {
+        setResponseMessage(`Error during precheck: ${e.message}`);
+      } else {
+        setResponseMessage("An unexpected error occurred. Please try again.");
+      }
       setIsValidated(false);
-      setResponseMessage("Error during precheck.");
     }
   };
 

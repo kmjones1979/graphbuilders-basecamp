@@ -98,9 +98,13 @@ if (id[0] === account) {
         }),
       });
 
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Error ${response.status}: ${errorData.message || "An error occurred"}`);
+      }
+
       const data = await response.json();
 
-      // Check the response and update validation status
       const id = data.data.enlisteds[0]?.account.toLowerCase();
       if (id === account) {
         setIsValidated(true);
@@ -113,8 +117,12 @@ if (id[0] === account) {
       }
     } catch (e) {
       console.error("Error during precheck:", e);
-      setIsValidated(false);
-      setResponseMessage("Error during precheck.");
+
+      if (e instanceof Error) {
+        setResponseMessage(`Error during precheck: ${e.message}`);
+      } else {
+        setResponseMessage("An unexpected error occurred. Please try again.");
+      }
     }
   };
 
