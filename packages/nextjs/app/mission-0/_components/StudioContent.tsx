@@ -34,11 +34,7 @@ const StudioContent: React.FC = () => {
           query: `
             {
               welcomeMessageChangeds(first: 1) {
-                id
                 newMessage
-                blockNumber
-                blockTimestamp
-                transactionHash
               }
             }
           `,

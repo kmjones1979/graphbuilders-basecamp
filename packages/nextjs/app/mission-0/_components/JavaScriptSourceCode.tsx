@@ -12,11 +12,7 @@ const graphRequest = Functions.makeHttpRequest({
     query: \`
       {
         welcomeMessageChangeds(first: 1) {
-          id
           newMessage
-          blockNumber
-          blockTimestamp
-          transactionHash
         }
       }
     \`,
