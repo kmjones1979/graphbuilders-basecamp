@@ -128,18 +128,8 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
         <div className="card shadow-xl rounded-lg bg-purple-950 bg-opacity-30 border border-purple-950">
           <div className="card-body">
             <h2 className="card-title">Achievements</h2>
-            <div className="min-h-48 flex">
-              {loading ? (
-                <p>Loading...</p>
-              ) : (
-                <div>
-                  <ul>
-                    {userCredentials?.users[0]?.credentials.map((cred, index) => (
-                      <li key={index}>Completed Mission {cred.Basecamp_id}!</li>
-                    )) || "No achievements yet"}
-                  </ul>
-                </div>
-              )}
+            <div className="min-h-48 flex items-center justify-center">
+              <p className="text-left text-gray-400">Achievements coming soon</p>
             </div>
           </div>
         </div>
@@ -147,8 +137,20 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
         <div className="card shadow-xl rounded-lg bg-purple-950 bg-opacity-30 border border-purple-950">
           <div className="card-body">
             <h2 className="card-title">Activity</h2>
-            <div className="min-h-48 flex items-center justify-center">
-              <p className="text-left text-gray-400">Activity feed coming soon</p>
+            <div className="min-h-48 flex items-center justify-left">
+              <div className="min-h-48 flex">
+                {loading ? (
+                  <p>Loading...</p>
+                ) : (
+                  <div>
+                    <ul>
+                      {userCredentials?.users[0]?.credentials.map((cred, index) => (
+                        <li key={index}>Completed Mission {cred.Basecamp_id}!</li>
+                      )) || "No activity yet"}
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
