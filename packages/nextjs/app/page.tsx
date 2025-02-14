@@ -15,8 +15,7 @@ const Home: NextPage = () => {
         <div
           className="hero min-h-screen"
           style={{
-            backgroundImage:
-              "url(https://img.freepik.com/free-photo/galactic-night-sky-astronomy-science-combined-generative-ai_188544-9656.jpg)",
+            backgroundImage: "url()",
           }}
         >
           <div className="hero-overlay bg-opacity-30"></div>
@@ -26,12 +25,12 @@ const Home: NextPage = () => {
               <h1 className="mb-5 text-5xl font-bold text-white">The Graph Builders Basecamp</h1>
               <p className="mb-5 text-white">
                 A series of missions where you will test your ability to write smart contracts and develop subgraphs on
-                The Graph protocol. To get started enlist in the program.
+                The Graph protocol.
               </p>
               <div className="flex items-center justify-center">
                 {connectedAddress ? (
-                  <button className="btn btn-success" onClick={() => router.push("/mission-2")}>
-                    Begin
+                  <button className="btn btn-success" onClick={() => router.push("/debug")}>
+                    Debug Contracts
                   </button>
                 ) : (
                   <RainbowKitCustomConnectButton />
