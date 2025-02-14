@@ -105,6 +105,8 @@ if (id[0] === account) {
 
       const data = await response.json();
 
+      console.log("GraphQL Response:", data);
+
       const id = data.data.enlisteds[0]?.account.toLowerCase();
       if (id === account) {
         setIsValidated(true);

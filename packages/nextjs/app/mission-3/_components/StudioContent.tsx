@@ -59,6 +59,8 @@ const StudioContent: React.FC = () => {
 
       const data = await response.json();
 
+      console.log("GraphQL Response:", data);
+
       const subgraphData = data.data.holders[0]?.transfers[0].to.id.toLowerCase();
       if (subgraphData === account) {
         setIsValidated(true);

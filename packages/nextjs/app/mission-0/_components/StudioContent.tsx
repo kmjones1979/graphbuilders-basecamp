@@ -52,6 +52,8 @@ const StudioContent: React.FC = () => {
 
       const data = await response.json();
 
+      console.log("GraphQL Response:", data);
+
       const newMessage = data.data.welcomeMessageChangeds[0]?.newMessage;
       if (newMessage === "Welcome to The Graph Builders Basecamp!") {
         setIsValidated(true);
