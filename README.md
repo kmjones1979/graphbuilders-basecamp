@@ -18,6 +18,12 @@ Navigate to the directory
 cd graphbuilders-basecamp
 ```
 
+Checkout `functions-poc-wip`
+
+```
+git checkout functions-poc-wip
+```
+
 Then install all the dependencies
 
 ```
@@ -47,7 +53,7 @@ yarn account
 4. On a second terminal, deploy the test contract:
 
 ```
-yarn deploy --network sepolia
+yarn deploy --network baseSepolia
 ```
 
 This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
@@ -55,7 +61,7 @@ This command deploys a test smart contract to the local network. The contract is
 ...then verify the contracts.
 
 ```
-yarn verify --network sepolia
+yarn verify --network baseSepolia
 ```
 
 5. On a third terminal, start your NextJS app:
@@ -70,7 +76,7 @@ Visit your app on: `http://localhost:3000`. You can interact with your smart con
 
 [Chainlink Functions](https://functions.chain.link/sepolia)
 
-> To see an example look at [Subscription 4207](https://functions.chain.link/sepolia/4027)
+> To see an example look at [Subscription 266](https://functions.chain.link/base-sepolia/266)
 
 You will need to:
 
@@ -82,11 +88,17 @@ This can be automated using the [Chainlink Functions toolkit](https://github.com
 
 7. Add the proper credentials
 
-Call `.addCredential` and passing the following arguments will create a credential.
+Call `.setCredential` and passing the following arguments will create a credential.
 
--   `_enabled`: `bool`
--   `_id`: `uint8`
--   `_name`: `string`
+```
+	/**
+	 * Add a credential with URL
+	 * @param _enabled Whether the credential is enabled
+	 * @param _id The ID of the credential
+	 * @param _name The name of the credential
+	 * @param _url The URL for the credential's metadata
+	 */
+```
 
 8. Add the Validator.sol as a minter on Basecamp.sol
 
@@ -94,7 +106,7 @@ Call `.addMinter` and passing `_account` as an `address`
 
 9. At the moment the subscription for chainlink is hardcoded in each studio page and used for the submission function call.
 
--   Edit `const subscriptionId = 4048;` to match your subscription ID.
+-   Edit `const subscriptionId = 266;` to match your subscription ID.
 
 ## Potential issues
 
