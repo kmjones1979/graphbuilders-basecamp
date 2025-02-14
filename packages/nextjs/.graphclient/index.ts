@@ -21,8 +21,8 @@ import { getMesh, ExecuteMeshFn, SubscribeMeshFn, MeshContext as BaseMeshContext
 import { MeshStore, FsStoreStorageAdapter } from '@graphql-mesh/store';
 import { path as pathModule } from '@graphql-mesh/cross-helpers';
 import { ImportFn } from '@graphql-mesh/types';
-import type { BasecampSepoliaV2Types } from './sources/BasecampSepoliaV2/types';
-import * as importedModule$0 from "./sources/BasecampSepoliaV2/introspectionSchema";
+import type { BasecampSepoliaV3Types } from './sources/BasecampSepoliaV3/types';
+import * as importedModule$0 from "./sources/BasecampSepoliaV3/introspectionSchema";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -4079,7 +4079,7 @@ export type DirectiveResolvers<ContextType = MeshContext> = ResolversObject<{
   derivedFrom?: derivedFromDirectiveResolver<any, any, ContextType>;
 }>;
 
-export type MeshContext = BasecampSepoliaV2Types.Context & BaseMeshContext;
+export type MeshContext = BasecampSepoliaV3Types.Context & BaseMeshContext;
 
 
 import { fileURLToPath } from '@graphql-mesh/utils';
@@ -4088,7 +4088,7 @@ const baseDir = pathModule.join(pathModule.dirname(fileURLToPath(import.meta.url
 const importFn: ImportFn = <T>(moduleId: string) => {
   const relativeModuleId = (pathModule.isAbsolute(moduleId) ? pathModule.relative(baseDir, moduleId) : moduleId).split('\\').join('/').replace(baseDir + '/', '');
   switch(relativeModuleId) {
-    case ".graphclient/sources/BasecampSepoliaV2/introspectionSchema":
+    case ".graphclient/sources/BasecampSepoliaV3/introspectionSchema":
       return Promise.resolve(importedModule$0) as T;
     
     default:
@@ -4121,22 +4121,22 @@ const cache = new (MeshCache as any)({
 const sources: MeshResolvedSource[] = [];
 const transforms: MeshTransform[] = [];
 const additionalEnvelopPlugins: MeshPlugin<any>[] = [];
-const basecampSepoliaV2Transforms = [];
+const basecampSepoliaV3Transforms = [];
 const additionalTypeDefs = [] as any[];
-const basecampSepoliaV2Handler = new GraphqlHandler({
-              name: "BasecampSepoliaV2",
-              config: {"endpoint":"https://api.studio.thegraph.com/query/37762/basecamp-sepoliav2/version/latest"},
+const basecampSepoliaV3Handler = new GraphqlHandler({
+              name: "BasecampSepoliaV3",
+              config: {"endpoint":"https://api.studio.thegraph.com/query/37762/basecamp-sepoliav3/version/latest"},
               baseDir,
               cache,
               pubsub,
-              store: sourcesStore.child("BasecampSepoliaV2"),
-              logger: logger.child("BasecampSepoliaV2"),
+              store: sourcesStore.child("BasecampSepoliaV3"),
+              logger: logger.child("BasecampSepoliaV3"),
               importFn,
             });
 sources[0] = {
-          name: 'BasecampSepoliaV2',
-          handler: basecampSepoliaV2Handler,
-          transforms: basecampSepoliaV2Transforms
+          name: 'BasecampSepoliaV3',
+          handler: basecampSepoliaV3Handler,
+          transforms: basecampSepoliaV3Transforms
         }
 const additionalResolvers = [] as any[]
 const merger = new(BareMerger as any)({

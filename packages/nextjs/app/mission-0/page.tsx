@@ -7,7 +7,7 @@ import SolidityContent from "./_components/SolidityContent";
 import StudioContent from "./_components/StudioContent";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
-import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
+import { useScaffoldReadContract, useScaffoldWatchContractEvent } from "~~/hooks/scaffold-eth";
 
 const Subgraph: NextPage = () => {
   const grixli = "/grixli.gif";
@@ -28,6 +28,17 @@ const Subgraph: NextPage = () => {
     contractName: "Validator",
     functionName: "hasRole",
     args: [adminRole, address],
+  });
+
+  useScaffoldWatchContractEvent({
+    contractName: "Basecamp",
+    eventName: "CredentialMinted",
+    onLogs: (logs: any[]) => {
+      logs.map((log: any) => {
+        const { account, id } = log.args;
+        console.log("📡 CredentialMinted event", account, id);
+      });
+    },
   });
 
   useEffect(() => {
