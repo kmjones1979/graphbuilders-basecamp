@@ -1,42 +1,29 @@
-const javaScriptSourceCode = `const account = args[0].toLowerCase()
-const query_url = args[1]
-
+const javaScriptSourceCode = `
 const graphRequest = Functions.makeHttpRequest({
-  url: \`\${query_url}\`,
+  url: args[1],
   method: "POST",
   headers: {
     "Content-Type": "application/json",
   },
-
   data: {
-    query: \`
-      {
-        welcomeMessageChangeds(first: 1) {
-          newMessage
-        }
+    query: \`{
+      welcomeMessageChangeds(first: 1) {
+        newMessage
       }
-    \`,
+    }\`
   },
 })
 
-const check = "Welcome to The Graph Builders Basecamp!"
+const CHECK = "Welcome to The Graph Builders Basecamp!"
 
-const [graphResponse] = await Promise.all([graphRequest])
-let newMessage = []
-if (!graphResponse.error) {
-  for (let i = 0; i < 1; i++) {
-    newMessage.push(graphResponse.data.data.welcomeMessageChangeds[i].newMessage)
-    console.log(i)
-  }
-} else {
-  console.log("graphResponse Error, ", graphResponse)
-}
-
-if (newMessage[0] === check) {
-  console.log(newMessage[0])
-  return Functions.encodeUint256(1)
-} else {
-  console.log(newMessage[0])
+try {
+  const [graphResponse] = await Promise.all([graphRequest])
+  const message = graphResponse.data.data.welcomeMessageChangeds[0].newMessage
+  
+  return Functions.encodeUint256(
+    message === CHECK ? 1 : 0
+  )
+} catch (error) {
   return Functions.encodeUint256(0)
 }`;
 
