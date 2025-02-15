@@ -27,6 +27,7 @@
     "burner-connector": "~0.0.8",
     "daisyui": "4.12.10",
     "graphql": "~16.8.1",
+    "lucide-react": "^0.475.0",
     "next": "~14.2.11",
     "next-nprogress-bar": "~2.3.13",
     "next-themes": "~0.3.0",

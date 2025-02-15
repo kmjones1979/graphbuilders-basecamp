@@ -35,8 +35,8 @@ const Subgraph: NextPage = () => {
     eventName: "CredentialMinted",
     onLogs: (logs: any[]) => {
       logs.map((log: any) => {
-        const { account, id } = log.args;
-        console.log("📡 CredentialMinted event", account, id);
+        const { _account, id } = log.args;
+        console.log("📡 CredentialMinted event", _account, id);
       });
     },
   });

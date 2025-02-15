@@ -3,6 +3,7 @@ import CodeSnippet from "./CodeSnippet";
 import javaScriptSourceCode from "./JavaScriptSourceCode";
 import { useAccount } from "wagmi";
 import { gasLimit, subscriptionId } from "~~/app/config/constants";
+import SuccessModal from "~~/components/SuccessModal";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 const StudioContent: React.FC = () => {
@@ -10,12 +11,13 @@ const StudioContent: React.FC = () => {
   const [queryURL, setQueryURL] = useState("");
   const [isValidated, setIsValidated] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
+  const currentMission = 0;
 
   const handleSubmit = async () => {
     try {
       await writeValidatorAsync({
         functionName: "validateMission",
-        args: [0, javaScriptSourceCode, BigInt(subscriptionId), gasLimit, queryURL],
+        args: [currentMission, javaScriptSourceCode, BigInt(subscriptionId), gasLimit, queryURL],
       });
       setIsModalOpen(false);
     } catch (e) {
@@ -332,6 +334,7 @@ const StudioContent: React.FC = () => {
           )}
         </div>
       </div>
+      <SuccessModal accountMinted={accountMinted ?? false} mission={currentMission} />
     </>
   );
 };
