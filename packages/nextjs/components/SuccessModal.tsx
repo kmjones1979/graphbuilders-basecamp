@@ -14,7 +14,7 @@ const SuccessModal = ({ accountMinted, mission }: SuccessModalProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const shareText = `I just completed Mission ${mission} of @graphprotocol's The Graph Builders Basecamp! 🎓 Ready to build some subgraphs 🚀 Come join me! https://basecamp.thegraph.com`;
+  const shareText = `I just completed Mission ${mission} of The Graph Builders Basecamp by @graphprotocol! 🎓 Ready to build some subgraphs 🚀 Come join me! https://basecamp.thegraph.com`;
   const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
   const farcasterShareUrl = `https://warpcast.com/~/compose?text=${encodeURIComponent(shareText)}`;
 
