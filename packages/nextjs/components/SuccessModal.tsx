@@ -5,12 +5,23 @@ import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 interface SuccessModalProps {
   accountMinted: boolean;
   mission: number;
+  onClose?: () => void;
 }
 
-const SuccessModal = ({ accountMinted, mission }: SuccessModalProps) => {
+interface NFTMetadata {
+  name: string;
+  description: string;
+  image: string;
+  attributes?: Array<{
+    trait_type: string;
+    value: string | number;
+  }>;
+}
+
+const SuccessModal = ({ accountMinted, mission, onClose }: SuccessModalProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [hasShown, setHasShown] = useState(false);
-  const [metadata, setMetadata] = useState<any>(null);
+  const [metadata, setMetadata] = useState<NFTMetadata | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -25,22 +36,26 @@ const SuccessModal = ({ accountMinted, mission }: SuccessModalProps) => {
   });
 
   useEffect(() => {
-    // Only show the modal if accountMinted becomes true and we haven't shown it before
     if (accountMinted && !hasShown) {
       setIsOpen(true);
       setHasShown(true);
     }
+
     const fetchMetadata = async () => {
+      if (!currentCredentials?.[2]) return;
+
       try {
         setLoading(true);
-        const response = await fetch(currentCredentials?.[2] ?? "");
+        setError(null);
+        const response = await fetch(currentCredentials[2]);
         if (!response.ok) {
-          throw new Error("Failed to fetch metadata");
+          throw new Error(`Failed to fetch metadata: ${response.statusText}`);
         }
         const data = await response.json();
         setMetadata(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "An unknown error occurred");
+        console.error("Error fetching NFT metadata:", err);
+        setError(err instanceof Error ? err.message : "Failed to load NFT metadata");
       } finally {
         setLoading(false);
       }
@@ -53,6 +68,7 @@ const SuccessModal = ({ accountMinted, mission }: SuccessModalProps) => {
 
   const handleClose = () => {
     setIsOpen(false);
+    onClose?.();
   };
 
   if (!isOpen) return null;
@@ -78,12 +94,26 @@ const SuccessModal = ({ accountMinted, mission }: SuccessModalProps) => {
 
           <div className="alert bg-slate-700 text-white">
             <span className="text-center">
-              Congratulations! Your on-chain validation is complete. You've earned a credential NFT.
+              {metadata?.name
+                ? `Congratulations! Your on-chain validation is complete.You've earned ${metadata.name}`
+                : "Congratulations! Your on-chain validation is complete.You've earned a credential NFT."}
             </span>
           </div>
 
           <div className="w-96 h-96 bg-slate-700 rounded-lg shadow-lg overflow-hidden">
-            <img src={metadata?.image} alt="Achievement NFT" className="w-full h-full object-cover" />
+            {loading ? (
+              <div className="flex items-center justify-center h-full">
+                <span className="loading loading-spinner loading-lg text-purple-500"></span>
+              </div>
+            ) : error ? (
+              <div className="flex items-center justify-center h-full text-red-500 p-4 text-center">{error}</div>
+            ) : (
+              <img
+                src={metadata?.image}
+                alt={metadata?.name || "Achievement NFT"}
+                className="w-full h-full object-cover"
+              />
+            )}
           </div>
 
           <div className="flex gap-4">

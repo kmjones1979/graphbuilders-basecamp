@@ -3,8 +3,9 @@
 import { FC, useEffect, useState } from "react";
 import { faGithub, faLinkedin, faTelegram, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getAddress } from "viem";
+import { useAccount } from "wagmi";
 import { GetUserCredentialsDocument, execute } from "~~/.graphclient";
+import SuccessModal from "~~/components/SuccessModal";
 import { Address } from "~~/components/scaffold-eth";
 
 interface UserCredentials {
@@ -18,9 +19,12 @@ interface UserCredentials {
 }
 
 const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
+  const { address: viewerAddress } = useAccount();
+  const isOwnProfile = viewerAddress?.toLowerCase() === params.address.toLowerCase();
   const { address } = params;
   const [userCredentials, setUserCredentials] = useState<UserCredentials | null>(null);
   const [loading, setLoading] = useState(true);
+  const [selectedMission, setSelectedMission] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchUserCredentials = async () => {
@@ -41,6 +45,12 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
     if (!userCredentials?.users[0]) return 0;
     const rank = Number(userCredentials.users[0].rank) || 0;
     return rank;
+  };
+
+  const handleMissionClick = (missionId: number) => {
+    if (isOwnProfile) {
+      setSelectedMission(missionId);
+    }
   };
 
   return (
@@ -142,10 +152,19 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
                 {loading ? (
                   <p>Loading...</p>
                 ) : (
-                  <div>
-                    <ul>
+                  <div className="w-full">
+                    <ul className="space-y-2">
                       {userCredentials?.users[0]?.credentials.map((cred, index) => (
-                        <li key={index}>Completed Mission {cred.Basecamp_id}!</li>
+                        <li
+                          key={index}
+                          className={`p-2 rounded ${
+                            isOwnProfile ? "hover:bg-slate-700 cursor-pointer transition-colors" : ""
+                          }`}
+                          onClick={() => handleMissionClick(Number(cred.Basecamp_id))}
+                        >
+                          Completed Mission {cred.Basecamp_id}!
+                          {isOwnProfile && <span className="text-xs text-gray-400 ml-2">(click to share)</span>}
+                        </li>
                       )) || "No activity yet"}
                     </ul>
                   </div>
@@ -155,6 +174,61 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
           </div>
         </div>
       </div>
+
+      {/* Personal Settings Section - Only visible on own profile */}
+      {isOwnProfile && (
+        <div className="card shadow-xl rounded-lg bg-purple-950 bg-opacity-30 border border-purple-950">
+          <div className="card-body">
+            <h2 className="card-title">Profile Settings</h2>
+            <div className="min-h-48 flex flex-col gap-4">
+              <div className="">
+                <span className="text-gray-400">Basecamp profile settings coming soon</span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Twitter Handle</span>
+                  </label>
+                  <input type="text" placeholder="username" className="input bg-slate-700" />
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">GitHub Username</span>
+                  </label>
+                  <input type="text" placeholder="username" className="input bg-slate-700" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">LinkedIn Handle</span>
+                  </label>
+                  <input type="text" placeholder="username" className="input bg-slate-700" />
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Telegram Handle</span>
+                  </label>
+                  <input type="text" placeholder="username" className="input bg-slate-700" />
+                </div>
+              </div>
+
+              <button className="btn btn-disabled bg-purple-500 text-white hover:bg-purple-600 w-full md:w-auto md:self-end">
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Success Modal */}
+      {selectedMission !== null && (
+        <SuccessModal accountMinted={true} mission={selectedMission} onClose={() => setSelectedMission(null)} />
+      )}
     </div>
   );
 };
