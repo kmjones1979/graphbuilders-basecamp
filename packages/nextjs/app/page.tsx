@@ -24,7 +24,7 @@ const Home: NextPage = () => {
           className="hero min-h-screen"
           style={{
             backgroundImage: resolvedTheme === "light" ? "url(/bg-light.png)" : "url(/bg-dark.png)",
-            backgroundPosition: "center top -100px",
+            backgroundPosition: "center top -50px",
             backgroundSize: "cover",
           }}
         >
@@ -61,7 +61,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-      <h2 className="text-center text-2xl font-bold p-4">Earn NFTs on Your Journey</h2>
+      <h2 className="text-center text-2xl font-bold pt-12 pb-4">Complete the Missions and Earn NFTs</h2>
       <div className="py-2 px-2 bg-base-100 items-center">
         <div className="flex justify-center">
           <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-6 justify-center">
