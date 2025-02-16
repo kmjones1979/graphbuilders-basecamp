@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import AdminContent from "./_components/AdminContent";
+import Admin from "./_components/Admin";
 import DeployContent from "./_components/DeployContent";
 import Setup from "./_components/Setup";
 import SolidityContent from "./_components/SolidityContent";
@@ -115,7 +115,7 @@ const Subgraph: NextPage = () => {
         {activeTab === "admin" && (
           <div className="justify-center top">
             <div className="flex justify-center top">
-              <AdminContent />
+              <Admin />
             </div>
           </div>
         )}
