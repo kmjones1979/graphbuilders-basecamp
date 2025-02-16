@@ -47,3 +47,27 @@ export const nftShowcase = [
     mission: 3,
   },
 ];
+
+export const nftComingSoon = [
+  {
+    id: 0,
+    name: "Crystalic Fusion",
+    description: "Coming soon",
+    image: "/nfts/4.png",
+    mission: 0,
+  },
+  {
+    id: 1,
+    name: "Interstellar Trade",
+    description: "Coming soon",
+    image: "/nfts/5.png",
+    mission: 1,
+  },
+  {
+    id: 2,
+    name: "Galactic Governance",
+    description: "Coming soon",
+    image: "/nfts/6.png",
+    mission: 2,
+  },
+];
