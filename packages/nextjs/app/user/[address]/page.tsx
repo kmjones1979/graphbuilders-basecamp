@@ -1,6 +1,7 @@
 "use client";
 
 import { FC, useEffect, useState } from "react";
+import { rankNames } from "../../config/constants";
 import { faGithub, faLinkedin, faTelegram, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe, faShareAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -49,6 +50,11 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
     if (!userCredentials?.users[0]) return 0;
     const rank = Number(userCredentials.users[0].rank) || 0;
     return rank;
+  };
+
+  const getCurrentRankName = () => {
+    const rank = getUserProgress();
+    return rankNames[rank] || "No rank";
   };
 
   const handleMissionClick = (missionId: number) => {
@@ -189,11 +195,7 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
             <div className="card-body">
               <h2 className="card-title">Current Rank</h2>
               <div className="h-32 flex items-center justify-center">
-                {loading ? (
-                  <p>Loading...</p>
-                ) : (
-                  <p className="text-2xl font-bold">{userCredentials?.users[0]?.rank || "No rank"}</p>
-                )}
+                {loading ? <p>Loading...</p> : <p className="text-2xl font-bold">{getCurrentRankName()}</p>}
               </div>
             </div>
           </div>
