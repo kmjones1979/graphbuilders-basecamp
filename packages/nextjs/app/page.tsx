@@ -128,7 +128,7 @@ const Home: NextPage = () => {
         </div>
       </div>
       <div className="p-6 bg-base-100 items-center">
-        <h2 className="text-center text-2xl mb-4">Powered by</h2>
+        <h2 className="text-center text-2xl font-bold pt-12 pb-4">Powered by</h2>
         <div className="flex justify-center space-x-8">
           <a href="https://scaffoldeth.io" target="_blank" rel="noopener noreferrer">
             <img
