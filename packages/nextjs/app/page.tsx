@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import TerminalText from "../components/TerminalText";
-import { nftComingSoon, nftShowcase } from "./config/constants";
+import { nftActive, nftComingSoon } from "./config/constants";
 import { motion } from "framer-motion";
 import type { NextPage } from "next";
 import { useTheme } from "next-themes";
@@ -61,61 +61,67 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="py-16 px-2 bg-base-100 items-center">
-        <h2 className="text-center text-4xl font-bold mb-12">Earn NFTs on Your Journey</h2>
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-6 justify-center">
-          {nftShowcase.map(nft => (
-            <Link href={`/mission-${nft.mission}`} key={nft.id}>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="card bg-base-200 hover:bg-base-300 transition-all duration-300 shadow-xl overflow-hidden group"
-              >
-                <figure className="relative aspect-square overflow-hidden">
-                  <img
-                    src={nft.image}
-                    alt={nft.name}
-                    className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p className="text-white text-sm">{nft.description}</p>
+      <h2 className="text-center text-2xl font-bold p-4">Earn NFTs on Your Journey</h2>
+      <div className="py-2 px-2 bg-base-100 items-center">
+        <div className="flex justify-center">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-6 justify-center">
+            {nftActive.map(nft => (
+              <Link href={`/mission-${nft.mission}`} key={nft.id}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="card bg-base-200 hover:bg-base-300 transition-all duration-300 shadow-xl overflow-hidden group w-full max-w-[300px]"
+                >
+                  <figure className="relative aspect-square overflow-hidden">
+                    <img
+                      src={nft.image}
+                      alt={nft.name}
+                      className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                      <p className="text-white text-sm">{nft.description}</p>
+                    </div>
+                  </figure>
+                  <div className="card-body p-4">
+                    <h3 className="card-title text-lg mb-2">{nft.name}</h3>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-purple-500">Mission {nft.mission}</span>
+                      <motion.span className="text-sm text-purple-500" whileHover={{ x: 5 }}>
+                        Start Mission →
+                      </motion.span>
+                    </div>
                   </div>
-                </figure>
-                <div className="card-body p-4">
-                  <h3 className="card-title text-lg mb-2">{nft.name}</h3>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-purple-500">Mission {nft.mission}</span>
-                    <motion.span className="text-sm text-purple-500" whileHover={{ x: 5 }}>
-                      Start Mission →
-                    </motion.span>
-                  </div>
-                </div>
-              </motion.div>
-            </Link>
-          ))}
+                </motion.div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="p-2 bg-base-100">
+      <h2 className="text-center text-1xl pt-4">Additional Missions Coming Soon...</h2>
+      <div className=" bg-base-100">
         <div className="flex justify-center">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-6 max-w-5xl place-items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-6 max-w-7xl">
             {nftComingSoon.slice(0, 3).map(nft => (
-              <div
-                key={nft.id}
-                className="card bg-base-200 hover:bg-base-300 transition-all duration-300 shadow-xl overflow-hidden group w-full max-w-[300px]"
-              >
-                <figure className="relative aspect-square overflow-hidden">
-                  <img
-                    src={nft.image}
-                    alt={nft.name}
-                    className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p className="text-white text-sm">{nft.description}</p>
+              <div key={nft.id} className="flex justify-center">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="card bg-base-200 hover:bg-base-300 transition-all duration-300 shadow-xl overflow-hidden group w-full max-w-[300px]"
+                >
+                  <figure className="relative aspect-square overflow-hidden">
+                    <img
+                      src={nft.image}
+                      alt={nft.name}
+                      className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                      <p className="text-white text-sm">{nft.description}</p>
+                    </div>
+                  </figure>
+                  <div className="card-body p-4">
+                    <h3 className="card-title text-lg mb-2">{nft.name}</h3>
                   </div>
-                </figure>
-                <div className="card-body p-4">
-                  <h3 className="card-title text-lg mb-2">{nft.name}</h3>
-                </div>
+                </motion.div>
               </div>
             ))}
           </div>

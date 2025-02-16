@@ -17,7 +17,7 @@ export const rankNames = [
 ];
 
 // NFT showcase for the homepage
-export const nftShowcase = [
+export const nftActive = [
   {
     id: 0,
     name: "Orientation",
@@ -52,21 +52,21 @@ export const nftComingSoon = [
   {
     id: 0,
     name: "Crystalic Fusion",
-    description: "Coming soon",
+    description: "",
     image: "/nfts/4.png",
     mission: 0,
   },
   {
     id: 1,
     name: "Interstellar Trade",
-    description: "Coming soon",
+    description: "",
     image: "/nfts/5.png",
     mission: 1,
   },
   {
     id: 2,
     name: "Galactic Governance",
-    description: "Coming soon",
+    description: "",
     image: "/nfts/6.png",
     mission: 2,
   },
