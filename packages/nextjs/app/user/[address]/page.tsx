@@ -2,9 +2,10 @@
 
 import { FC, useEffect, useState } from "react";
 import { faGithub, faLinkedin, faTelegram, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
+import { faGlobe, faShareAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useAccount } from "wagmi";
+import { Share2 } from "lucide-react";
+import { useAccount, useEnsName } from "wagmi";
 import { GetUserCredentialsDocument, execute } from "~~/.graphclient";
 import SuccessModal from "~~/components/SuccessModal";
 import { Address } from "~~/components/scaffold-eth";
@@ -26,6 +27,8 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
   const [userCredentials, setUserCredentials] = useState<UserCredentials | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedMission, setSelectedMission] = useState<number | null>(null);
+  const [showShareTooltip, setShowShareTooltip] = useState(false);
+  const { data: ensName } = useEnsName({ address: params.address });
 
   useEffect(() => {
     const fetchUserCredentials = async () => {
@@ -54,14 +57,45 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
     }
   };
 
-  const shareToX = (address: string) => {
-    const url = `https://twitter.com/intent/tweet?text=Check%20out%20this%20NFT%20at%20address%3A%20${address}`;
+  const getProfileName = () => {
+    return ensName || address;
+  };
+
+  const shareToX = () => {
+    const shareUrl = window.location.href;
+    const shareText = `Check out this builders profile on Graph Builders Basecamp`;
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(url, "_blank");
   };
 
-  const shareToFarcaster = (address: string) => {
-    const url = `https://farcaster.xyz/share?text=Check%20out%20this%20NFT%20at%20address%3A%20${address}`;
+  const shareToFarcaster = () => {
+    const shareUrl = window.location.href;
+    const shareText = `Check out this builders profile on Graph Builders Basecamp`;
+    const url = `https://farcaster.xyz/share?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(url, "_blank");
+  };
+
+  const handleShare = async () => {
+    const shareUrl = window.location.href;
+    const shareText = `Check out this builders profile on Graph Builders Basecamp`;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: "Graph Builders Basecamp Profile",
+          text: shareText,
+          url: shareUrl,
+        });
+      } else {
+        navigator.clipboard.writeText(shareUrl);
+        setShowShareTooltip(true);
+        setTimeout(() => setShowShareTooltip(false), 2000);
+      }
+    } catch (err) {
+      navigator.clipboard.writeText(shareUrl);
+      setShowShareTooltip(true);
+      setTimeout(() => setShowShareTooltip(false), 2000);
+    }
   };
 
   return (
@@ -69,14 +103,38 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
       {/* Profile Card */}
       <div className="card bg-base-50 w-full shadow-xl">
         <div className="card-body">
-          <h2 className="card-title flex space-x-4 mt-2 justify-center sm:justify-start">
-            <Address address={address} />
-          </h2>
+          <div className="flex justify-between items-center">
+            <h2 className="card-title flex space-x-4 mt-2 justify-center sm:justify-start">
+              <Address address={address} />
+            </h2>
+            <div className="flex space-x-2">
+              <button
+                onClick={handleShare}
+                className="btn btn-ghost btn-sm gap-2 hover:bg-slate-700 transition-colors relative"
+              >
+                <Share2 className="w-3 h-3" />
+                Share Profile
+                {showShareTooltip && (
+                  <div className="absolute -bottom-8 whitespace-nowrap bg-slate-700 text-white px-2 py-1 rounded text-sm">
+                    Copied to clipboard!
+                  </div>
+                )}
+              </button>
+              <button onClick={shareToX} className="btn btn-ghost btn-sm hover:bg-slate-700 transition-colors">
+                <Share2 className="w-3 h-3" />
+                Share on X
+              </button>
+              <button onClick={shareToFarcaster} className="btn btn-ghost btn-sm hover:bg-slate-700 transition-colors">
+                <Share2 className="w-3 h-3" />
+                Share on Farcaster
+              </button>
+            </div>
+          </div>
           <div className="flex space-x-4 mt-2 justify-center sm:justify-start">
             <FontAwesomeIcon
               icon={faTwitter}
               className="text-gray-500 w-6 h-6 hover:text-blue-400 cursor-pointer transition-colors"
-              onClick={() => shareToX(address)}
+              onClick={shareToX}
             />
             <FontAwesomeIcon
               icon={faGithub}
@@ -92,8 +150,11 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
             />
             <FontAwesomeIcon
               icon={faShareAlt}
-              className="text-gray-500 w-6 h-6 hover:text-gray-700 cursor-pointer transition-colors"
-              onClick={() => shareToFarcaster(address)}
+              className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
+            />
+            <FontAwesomeIcon
+              icon={faGlobe}
+              className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
             />
           </div>
         </div>
