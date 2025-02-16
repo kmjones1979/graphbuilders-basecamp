@@ -19,12 +19,12 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="justify-center p-1 bg-base-100">
+      <div className="justify-center p-0 sm:pt-1 bg-base-100">
         <div
           className="hero min-h-screen"
           style={{
             backgroundImage: resolvedTheme === "light" ? "url(/bg-light.png)" : "url(/bg-dark.png)",
-            backgroundPosition: "center top -50px",
+            backgroundPosition: "center top",
             backgroundSize: "cover",
           }}
         >
@@ -61,7 +61,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-      <h2 className="text-center text-2xl font-bold pt-12 pb-4">Complete the Missions and Earn NFTs</h2>
+      <h2 className="text-center text-2xl font-bold pt-12 pb-8">Complete the Missions and Earn NFTs</h2>
       <div className="py-2 px-2 bg-base-100 items-center">
         <div className="flex justify-center">
           <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-6 justify-center">
@@ -97,7 +97,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-      <h2 className="text-center text-1xl pt-4">Additional Missions Coming Soon...</h2>
+      <h2 className="text-center text-1xl p-8">Additional Missions Coming Soon...</h2>
       <div className=" bg-base-100">
         <div className="flex justify-center">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-6 max-w-7xl">
