@@ -1,4 +1,6 @@
 import React from "react";
+import { faTelegram } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { hardhat } from "viem/chains";
 import { SwitchTheme } from "~~/components/SwitchTheme";
 import { Faucet } from "~~/components/scaffold-eth";
@@ -22,7 +24,18 @@ export const Footer = () => {
               </>
             )}
           </div>
-          <SwitchTheme className={`pointer-events-auto ${isLocalNetwork ? "self-end md:self-auto" : ""}`} />
+          <div className="flex items-center gap-4 pointer-events-auto">
+            <a
+              href="https://t.me/+fafK-afX2aM0ZWZh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-gray-400 hover:text-purple-500 transition-colors"
+            >
+              <FontAwesomeIcon icon={faTelegram} className="w-5 h-5" />
+              <span className="hidden sm:inline">Support</span>
+            </a>
+            <SwitchTheme className={`pointer-events-auto ${isLocalNetwork ? "self-end md:self-auto" : ""}`} />
+          </div>
         </div>
       </div>
       <div className="w-full">
