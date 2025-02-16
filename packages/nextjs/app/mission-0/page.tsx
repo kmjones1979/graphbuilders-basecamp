@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import AdminContent from "./_components/AdminContent";
 import DeployContent from "./_components/DeployContent";
+import Setup from "./_components/Setup";
 import SolidityContent from "./_components/SolidityContent";
 import StudioContent from "./_components/StudioContent";
 import type { NextPage } from "next";
@@ -12,7 +13,7 @@ import { useScaffoldReadContract, useScaffoldWatchContractEvent } from "~~/hooks
 const Subgraph: NextPage = () => {
   const grixli = "/grixli.gif";
 
-  const [activeTab, setActiveTab] = useState("solidity");
+  const [activeTab, setActiveTab] = useState("setup");
   const { address } = useAccount();
   const { data: accountMinted } = useScaffoldReadContract({
     contractName: "Validator",
@@ -86,6 +87,12 @@ const Subgraph: NextPage = () => {
             </button>
           )}
           <button
+            className={`rounded-lg px-4 py-2 ${activeTab === "setup" ? "bg-purple-500" : "text-purple-500"}`}
+            onClick={() => setActiveTab("setup")}
+          >
+            Setup
+          </button>
+          <button
             className={`rounded-lg px-4 py-2 ${activeTab === "solidity" ? "bg-purple-500" : "text-purple-500"}`}
             onClick={() => setActiveTab("solidity")}
           >
@@ -109,6 +116,24 @@ const Subgraph: NextPage = () => {
           <div className="justify-center top">
             <div className="flex justify-center top">
               <AdminContent />
+            </div>
+          </div>
+        )}
+        {activeTab === "setup" && (
+          <div className="justify-center top">
+            <div className="flex justify-center top">
+              <Setup />
+            </div>
+            <div className="flex justify-center top">
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  setActiveTab("solidity");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                Part 1
+              </button>
             </div>
           </div>
         )}
