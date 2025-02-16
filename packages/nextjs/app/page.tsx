@@ -58,6 +58,35 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
+      <div className="p-6">
+        <h2 className="text-center text-2xl mb-4">Powered by</h2>
+        <div className="flex justify-center space-x-8">
+          <a href="https://scaffoldeth.io" target="_blank" rel="noopener noreferrer">
+            <img
+              src={resolvedTheme === "light" ? "/logos/se2-light.svg" : "/logos/se2-dark.svg"}
+              alt="Scaffold-ETH"
+              className="h-12"
+            />
+          </a>
+          <a href="https://thegraph.com" target="_blank" rel="noopener noreferrer">
+            <img
+              src={resolvedTheme === "light" ? "/logos/thegraph-dark.svg" : "/logos/thegraph-light.svg"}
+              alt="The Graph"
+              className="h-12"
+            />
+          </a>
+          <a href="https://chain.link" target="_blank" rel="noopener noreferrer">
+            <img
+              src={resolvedTheme === "light" ? "/logos/chainlink-dark.svg" : "/logos/chainlink-light.svg"}
+              alt="Chainlink"
+              className="h-12"
+            />
+          </a>
+          <a href="https://base.org" target="_blank" rel="noopener noreferrer">
+            <img src={resolvedTheme === "light" ? "/logos/base.svg" : "/logos/base.svg"} alt="Base" className="h-12" />
+          </a>
+        </div>
+      </div>
     </>
   );
 };
