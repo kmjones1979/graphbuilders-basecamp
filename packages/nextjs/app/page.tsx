@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import TerminalText from "../components/TerminalText";
+import { nftShowcase } from "./config/constants";
 import { motion } from "framer-motion";
 import type { NextPage } from "next";
 import { useTheme } from "next-themes";
@@ -15,37 +16,6 @@ const Home: NextPage = () => {
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {}, [resolvedTheme]);
-
-  const nftShowcase = [
-    {
-      id: 0,
-      name: "Orientation",
-      description: "Complete the orientation mission and earn your first NFT",
-      image: "/nfts/0.png",
-      mission: 0,
-    },
-    {
-      id: 1,
-      name: "Alpha Centauri",
-      description: "Build your first subgraph and earn this NFT",
-      image: "/nfts/1.png",
-      mission: 1,
-    },
-    {
-      id: 2,
-      name: "Establish Comms",
-      description: "Establish a comms channel with the Lunar Bbase and earn this NFT",
-      image: "/nfts/2.png",
-      mission: 2,
-    },
-    {
-      id: 3,
-      name: "Lunar Economy",
-      description: "Deploy an ERC-20 token and index the data with a subgraph and earn this NFT",
-      image: "/nfts/3.png",
-      mission: 3,
-    },
-  ];
 
   return (
     <>
@@ -93,7 +63,7 @@ const Home: NextPage = () => {
       </div>
       <div className="py-16 px-6 bg-base-100">
         <h2 className="text-center text-4xl font-bold mb-12">Earn NFTs on Your Journey</h2>
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-6">
           {nftShowcase.map(nft => (
             <Link href={`/mission-${nft.mission}`} key={nft.id}>
               <motion.div
@@ -132,25 +102,25 @@ const Home: NextPage = () => {
             <img
               src={resolvedTheme === "light" ? "/logos/se2-light.svg" : "/logos/se2-dark.svg"}
               alt="Scaffold-ETH"
-              className="h-12"
+              className="h-10"
             />
           </a>
           <a href="https://thegraph.com" target="_blank" rel="noopener noreferrer">
             <img
               src={resolvedTheme === "light" ? "/logos/thegraph-dark.svg" : "/logos/thegraph-light.svg"}
               alt="The Graph"
-              className="h-12"
+              className="h-10"
             />
           </a>
           <a href="https://chain.link" target="_blank" rel="noopener noreferrer">
             <img
               src={resolvedTheme === "light" ? "/logos/chainlink-dark.svg" : "/logos/chainlink-light.svg"}
               alt="Chainlink"
-              className="h-12"
+              className="h-10"
             />
           </a>
           <a href="https://base.org" target="_blank" rel="noopener noreferrer">
-            <img src={resolvedTheme === "light" ? "/logos/base.svg" : "/logos/base.svg"} alt="Base" className="h-12" />
+            <img src={resolvedTheme === "light" ? "/logos/base.svg" : "/logos/base.svg"} alt="Base" className="h-10" />
           </a>
         </div>
       </div>
