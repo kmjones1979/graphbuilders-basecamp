@@ -56,16 +56,39 @@ const NFTPage = () => {
     fetchMetadata();
   }, [currentCredentials]);
 
+  const shareToX = () => {
+    const shareUrl = window.location.href;
+    const shareText = metadata?.description || "Check out this NFT from Graph Builders Basecamp!";
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+    window.open(url, "_blank");
+  };
+
+  const shareToFarcaster = () => {
+    const shareUrl = window.location.href;
+    const shareText = metadata?.description || "Check out this NFT from Graph Builders Basecamp!";
+    const url = `https://farcaster.xyz/share?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+    window.open(url, "_blank");
+  };
+
   const handleShare = async () => {
+    const shareUrl = window.location.href; // Current page URL
+    const shareText = metadata?.description || "Check out this NFT from Graph Builders Basecamp!";
+
     try {
-      await navigator.share({
-        title: metadata?.name || "Graph Builders Basecamp NFT",
-        text: metadata?.description || "Check out this NFT from Graph Builders Basecamp!",
-        url: window.location.href,
-      });
+      // Check if the Web Share API is available
+      if (navigator.share) {
+        await navigator.share({
+          title: metadata?.name || "Graph Builders Basecamp NFT",
+          text: shareText,
+          url: shareUrl,
+        });
+      } else {
+        // Fallback to custom share options
+        shareToX(); // Optionally, you can call shareToFarcaster() here as well
+      }
     } catch (err) {
-      // Copy to clipboard if share API is not available
-      navigator.clipboard.writeText(window.location.href);
+      // Fallback to clipboard if share API is not available
+      navigator.clipboard.writeText(shareUrl);
       setShowShareTooltip(true);
       setTimeout(() => setShowShareTooltip(false), 2000);
     }
@@ -97,18 +120,31 @@ const NFTPage = () => {
           <ArrowLeft className="w-3 h-3" />
           Back to Home
         </Link>
-        <button
-          onClick={handleShare}
-          className="btn btn-ghost btn-sm gap-2 hover:bg-slate-700 transition-colors relative"
-        >
-          <Share2 className="w-3 h-3" />
-          Share NFT
-          {showShareTooltip && (
-            <div className="absolute -bottom-8 whitespace-nowrap bg-slate-700 text-white px-2 py-1 rounded text-sm">
-              Copied to clipboard!
-            </div>
-          )}
-        </button>
+        <div className="flex space-x-2">
+          <button
+            onClick={handleShare}
+            className="btn btn-ghost btn-sm gap-2 hover:bg-slate-700 transition-colors relative"
+          >
+            <Share2 className="w-3 h-3" />
+            Share NFT
+            {showShareTooltip && (
+              <div className="absolute -bottom-8 whitespace-nowrap bg-slate-700 text-white px-2 py-1 rounded text-sm">
+                Copied to clipboard!
+              </div>
+            )}
+          </button>
+          <button onClick={() => shareToX()} className="btn btn-ghost btn-sm hover:bg-slate-700 transition-colors">
+            <Share2 className="w-3 h-3" />
+            Share on X
+          </button>
+          <button
+            onClick={() => shareToFarcaster()}
+            className="btn btn-ghost btn-sm hover:bg-slate-700 transition-colors"
+          >
+            <Share2 className="w-3 h-3" />
+            Share on Farcaster
+          </button>
+        </div>
       </div>
 
       {/* Main Content */}

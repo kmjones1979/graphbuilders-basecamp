@@ -2,6 +2,7 @@
 
 import { FC, useEffect, useState } from "react";
 import { faGithub, faLinkedin, faTelegram, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAccount } from "wagmi";
 import { GetUserCredentialsDocument, execute } from "~~/.graphclient";
@@ -53,6 +54,16 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
     }
   };
 
+  const shareToX = (address: string) => {
+    const url = `https://twitter.com/intent/tweet?text=Check%20out%20this%20NFT%20at%20address%3A%20${address}`;
+    window.open(url, "_blank");
+  };
+
+  const shareToFarcaster = (address: string) => {
+    const url = `https://farcaster.xyz/share?text=Check%20out%20this%20NFT%20at%20address%3A%20${address}`;
+    window.open(url, "_blank");
+  };
+
   return (
     <div className="container mx-auto px-4 py-6 space-y-6">
       {/* Profile Card */}
@@ -65,6 +76,7 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
             <FontAwesomeIcon
               icon={faTwitter}
               className="text-gray-500 w-6 h-6 hover:text-blue-400 cursor-pointer transition-colors"
+              onClick={() => shareToX(address)}
             />
             <FontAwesomeIcon
               icon={faGithub}
@@ -77,6 +89,11 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
             <FontAwesomeIcon
               icon={faTelegram}
               className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
+            />
+            <FontAwesomeIcon
+              icon={faShareAlt}
+              className="text-gray-500 w-6 h-6 hover:text-gray-700 cursor-pointer transition-colors"
+              onClick={() => shareToFarcaster(address)}
             />
           </div>
         </div>
@@ -190,14 +207,14 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
                   <label className="label">
                     <span className="label-text">Twitter Handle</span>
                   </label>
-                  <input type="text" placeholder="username" className="input bg-slate-700" />
+                  <input type="text" placeholder="@vitalik" className="input bg-slate-700" />
                 </div>
 
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">GitHub Username</span>
                   </label>
-                  <input type="text" placeholder="username" className="input bg-slate-700" />
+                  <input type="text" placeholder="@vitalik" className="input bg-slate-700" />
                 </div>
               </div>
 
@@ -206,14 +223,30 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
                   <label className="label">
                     <span className="label-text">LinkedIn Handle</span>
                   </label>
-                  <input type="text" placeholder="username" className="input bg-slate-700" />
+                  <input type="text" placeholder="@vitalik" className="input bg-slate-700" />
                 </div>
 
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Telegram Handle</span>
                   </label>
-                  <input type="text" placeholder="username" className="input bg-slate-700" />
+                  <input type="text" placeholder="@vitalik" className="input bg-slate-700" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Farcaster Handle</span>
+                  </label>
+                  <input type="text" placeholder="@vitalik" className="input bg-slate-700" />
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Website</span>
+                  </label>
+                  <input type="text" placeholder="https://ethereum.org" className="input bg-slate-700" />
                 </div>
               </div>
 
