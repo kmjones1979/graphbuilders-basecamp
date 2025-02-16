@@ -58,24 +58,23 @@ const NFTPage = () => {
 
   const shareToX = () => {
     const shareUrl = window.location.href;
-    const shareText = metadata?.description || "Check out this NFT from Graph Builders Basecamp!";
+    const shareText = metadata?.description || "Check out this NFT from Graph Builders Basecamp by @graphprotocol!";
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(url, "_blank");
   };
 
   const shareToFarcaster = () => {
     const shareUrl = window.location.href;
-    const shareText = metadata?.description || "Check out this NFT from Graph Builders Basecamp!";
+    const shareText = metadata?.description || "Check out this NFT from Graph Builders Basecamp by @graphprotocol!";
     const url = `https://farcaster.xyz/share?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(url, "_blank");
   };
 
   const handleShare = async () => {
-    const shareUrl = window.location.href; // Current page URL
-    const shareText = metadata?.description || "Check out this NFT from Graph Builders Basecamp!";
+    const shareUrl = window.location.href;
+    const shareText = metadata?.description || "Check out this NFT from Graph Builders Basecamp by @graphprotocol!";
 
     try {
-      // Check if the Web Share API is available
       if (navigator.share) {
         await navigator.share({
           title: metadata?.name || "Graph Builders Basecamp NFT",
@@ -83,11 +82,9 @@ const NFTPage = () => {
           url: shareUrl,
         });
       } else {
-        // Fallback to custom share options
-        shareToX(); // Optionally, you can call shareToFarcaster() here as well
+        shareToX();
       }
     } catch (err) {
-      // Fallback to clipboard if share API is not available
       navigator.clipboard.writeText(shareUrl);
       setShowShareTooltip(true);
       setTimeout(() => setShowShareTooltip(false), 2000);

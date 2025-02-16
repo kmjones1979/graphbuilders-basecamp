@@ -63,21 +63,21 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
 
   const shareToX = () => {
     const shareUrl = window.location.href;
-    const shareText = `Check out this builders profile on Graph Builders Basecamp`;
+    const shareText = `Check out this builders profile on Graph Builders Basecamp by @graphprotocol`;
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(url, "_blank");
   };
 
   const shareToFarcaster = () => {
     const shareUrl = window.location.href;
-    const shareText = `Check out this builders profile on Graph Builders Basecamp`;
+    const shareText = `Check out this builders profile on Graph Builders Basecamp by @graphprotocol`;
     const url = `https://farcaster.xyz/share?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(url, "_blank");
   };
 
   const handleShare = async () => {
     const shareUrl = window.location.href;
-    const shareText = `Check out this builders profile on Graph Builders Basecamp`;
+    const shareText = `Check out this builders profile on Graph Builders Basecamp by @graphprotocol`;
 
     try {
       if (navigator.share) {
@@ -232,18 +232,30 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
                 ) : (
                   <div className="w-full">
                     <ul className="space-y-2">
-                      {userCredentials?.users[0]?.credentials.map((cred, index) => (
-                        <li
-                          key={index}
-                          className={`p-2 rounded ${
-                            isOwnProfile ? "hover:bg-slate-700 cursor-pointer transition-colors" : ""
-                          }`}
-                          onClick={() => handleMissionClick(Number(cred.Basecamp_id))}
-                        >
-                          Completed Mission {cred.Basecamp_id}!
-                          {isOwnProfile && <span className="text-xs text-gray-400 ml-2">(click to view)</span>}
-                        </li>
-                      )) || "No activity yet"}
+                      {userCredentials?.users[0]?.credentials.map((cred, index) => {
+                        const isClickable = !isOwnProfile;
+                        const handleClick = () => {
+                          if (isOwnProfile) {
+                            handleMissionClick(Number(cred.Basecamp_id));
+                          } else {
+                            window.location.href = `/nft/${cred.Basecamp_id}`; // Link to NFT landing page
+                          }
+                        };
+
+                        return (
+                          <li
+                            key={index}
+                            className={`p-2 rounded transition-colors ${isClickable ? "hover:bg-slate-700 cursor-pointer" : "cursor-default"}`}
+                            onClick={handleClick}
+                          >
+                            <span className="flex items-center">
+                              Completed Mission {cred.Basecamp_id} and received an NFT!
+                              {isClickable && <span className="ml-2 text-purple-500">(click to view)</span>}
+                              {isOwnProfile && <span className="ml-2 text-purple-500">(click to view)</span>}
+                            </span>
+                          </li>
+                        );
+                      }) || "No activity yet"}
                     </ul>
                   </div>
                 )}
