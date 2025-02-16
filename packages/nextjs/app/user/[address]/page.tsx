@@ -163,7 +163,7 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
                           onClick={() => handleMissionClick(Number(cred.Basecamp_id))}
                         >
                           Completed Mission {cred.Basecamp_id}!
-                          {isOwnProfile && <span className="text-xs text-gray-400 ml-2">(click to share)</span>}
+                          {isOwnProfile && <span className="text-xs text-gray-400 ml-2">(click to view)</span>}
                         </li>
                       )) || "No activity yet"}
                     </ul>
