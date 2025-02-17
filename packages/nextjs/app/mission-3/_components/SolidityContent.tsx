@@ -1,7 +1,8 @@
 import React from "react";
 import CodeSnippet from "./CodeSnippet";
 
-const CONTRACT_CODE = `contract Moon is Ownable{
+const CONTRACT_CODE = `
+contract Moon is Ownable{
 
     address public burner = 0x0000000000000000000000000000000000000000;
 
@@ -89,7 +90,7 @@ const SolidityContent: React.FC = () => {
             </p>
 
             <div className="mockup-code text-xs sm:text-sm w-full">
-              <pre>
+              <pre className="pl-8">
                 <code className="language-solidity">{CONTRACT_CODE}</code>
               </pre>
             </div>

@@ -99,15 +99,15 @@ const STUDIO_STEPS = [
 ];
 
 const VALIDATION_QUERY = `
-  {
-    welcomeMessageChangeds(first: 1) {
-      id
-      newMessage
-      blockNumber
-      blockTimestamp
-      transactionHash
-    }
-  }`;
+{
+  welcomeMessageChangeds(first: 1) {
+    id
+    newMessage
+    blockNumber
+    blockTimestamp
+    transactionHash
+  }
+}`;
 
 const StudioContent: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -266,7 +266,7 @@ const StudioContent: React.FC = () => {
             <div className="mt-4">
               <p className="text-xs sm:text-sm text-base-content/70 mb-2">Validation Query:</p>
               <div className="mockup-code text-xs sm:text-sm">
-                <pre>
+                <pre className="pl-8">
                   <code>{VALIDATION_QUERY}</code>
                 </pre>
               </div>

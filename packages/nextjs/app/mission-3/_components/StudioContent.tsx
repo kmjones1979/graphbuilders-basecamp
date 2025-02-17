@@ -7,7 +7,8 @@ import ClickableImage from "~~/components/ClickableImage";
 import SuccessModal from "~~/components/SuccessModal";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
-const NETWORKS_JSON = `{
+const NETWORKS_JSON = `
+{
   "localhost": {
     "Moon": {
       "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
@@ -20,7 +21,8 @@ const NETWORKS_JSON = `{
   }
 }`;
 
-const GRAPHQL_QUERY = `{
+const GRAPHQL_QUERY = `
+{
   holders(first: 1, orderDirection: desc, orderBy: blockTimestamp) {
     balance
     blockNumber
@@ -172,7 +174,7 @@ const StudioContent: React.FC = () => {
             </p>
 
             <div className="mockup-code text-xs sm:text-sm w-full">
-              <pre>
+              <pre className="pl-8">
                 <code>{NETWORKS_JSON}</code>
               </pre>
             </div>
@@ -184,7 +186,7 @@ const StudioContent: React.FC = () => {
                 name:
               </p>
               <div className="mockup-code text-xs sm:text-sm w-full mt-2">
-                <pre>
+                <pre className="pl-8">
                   <code>graph deploy mymission</code>
                 </pre>
               </div>
@@ -235,7 +237,7 @@ const StudioContent: React.FC = () => {
             </div>
 
             <div className="mockup-code text-xs sm:text-sm w-full mt-6">
-              <pre>
+              <pre className="pl-8">
                 <code className="language-graphql">{GRAPHQL_QUERY}</code>
               </pre>
             </div>

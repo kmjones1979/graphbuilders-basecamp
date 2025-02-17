@@ -1,7 +1,8 @@
 import React from "react";
 import CodeSnippet from "./CodeSnippet";
 
-const CONTRACT_CODE = `contract Comms {
+const CONTRACT_CODE = `
+contract Comms {
 
 	uint8 public channel;
 	uint8 public attempt;
@@ -114,7 +115,7 @@ const SolidityContent: React.FC = () => {
             </p>
 
             <div className="mockup-code text-xs sm:text-sm w-full overflow-x-auto">
-              <pre>
+              <pre className="pl-8">
                 <code className="language-solidity">{CONTRACT_CODE}</code>
               </pre>
             </div>

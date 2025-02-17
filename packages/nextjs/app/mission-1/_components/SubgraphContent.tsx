@@ -2,7 +2,8 @@ import React from "react";
 import CodeSnippet from "./CodeSnippet";
 import ClickableImage from "~~/components/ClickableImage";
 
-const SCHEMA = `type Enlisted @entity {
+const SCHEMA = `
+type Enlisted @entity {
     id: Bytes!
     account: Bytes!
     blockNumber: BigInt!
@@ -10,7 +11,8 @@ const SCHEMA = `type Enlisted @entity {
     transactionHash: Bytes!
 }`;
 
-const HANDLER_CODE = `import { Enlisted as EnlistedEvent } from "../generated/Enlist/Enlist";
+const HANDLER_CODE = `
+import { Enlisted as EnlistedEvent } from "../generated/Enlist/Enlist";
 import { Enlisted } from "../generated/schema";
 
 // Define the handleEnlisted function
@@ -18,7 +20,8 @@ export function handleEnlisted(event: EnlistedEvent): void {
     // Add logic here
 }`;
 
-const GRAPHQL_QUERY = `query MyQuery {
+const GRAPHQL_QUERY = `
+query MyQuery {
   enlisteds(first: 10, orderBy: blockTimestamp, orderDirection: asc) {
     id
     account
@@ -103,7 +106,7 @@ const SubgraphContent: React.FC = () => {
             <div className="mt-6">
               <p className="text-sm sm:text-base italic mb-2">The schema for our subgraph is as follows:</p>
               <div className="mockup-code text-xs sm:text-sm">
-                <pre>
+                <pre className="pl-8">
                   <code className="language-graphql">{SCHEMA}</code>
                 </pre>
               </div>
@@ -130,7 +133,7 @@ const SubgraphContent: React.FC = () => {
             </p>
 
             <div className="mockup-code text-xs sm:text-sm">
-              <pre>
+              <pre className="pl-8">
                 <code className="language-typescript">{HANDLER_CODE}</code>
               </pre>
             </div>
@@ -224,7 +227,7 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
               </p>
 
               <div className="mockup-code text-xs sm:text-sm">
-                <pre>
+                <pre className="pl-8">
                   <code className="language-graphql">{GRAPHQL_QUERY}</code>
                 </pre>
               </div>

@@ -206,8 +206,9 @@ if (id[0] === account) {
             <div className="mt-6">
               <p className="text-sm sm:text-base italic mb-2">✅ Success will look like this:</p>
               <div className="mockup-code text-xs sm:text-sm">
-                <pre>
-                  <code>{`Build completed: QmYour1pfsHash...
+                <pre className="pl-8">
+                  <code>{`
+Build completed: QmYour1pfsHash...
   
 Deployed to https://api.studio.thegraph.com/query/<YOUR_ID>/<SUBGRAPH_NAME>
   
@@ -229,8 +230,9 @@ Queries (HTTP):     https://api.studio.thegraph.com/query/<YOUR_ID>/<SUBGRAPH_NA
             </p>
 
             <div className="mockup-code text-xs sm:text-sm">
-              <pre>
-                <code>{`query MyQuery {
+              <pre className="pl-8">
+                <code>{`
+query MyQuery {
   enlisteds(first: 10, orderBy: blockTimestamp, orderDirection: asc) {
     id
     account

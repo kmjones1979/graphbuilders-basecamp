@@ -2,7 +2,8 @@ import React from "react";
 import CodeSnippet from "./CodeSnippet";
 import ClickableImage from "~~/components/ClickableImage";
 
-const SCHEMA = `type CommsEstablished @entity {
+const SCHEMA = `
+type CommsEstablished @entity {
     id: Bytes!
     account: Bytes!
     isCommsEstablished: Boolean!
@@ -20,7 +21,8 @@ type OwnershipTransferred @entity(immutable: true) {
     transactionHash: Bytes!
 }`;
 
-const HANDLER_CODE = `import {
+const HANDLER_CODE = `
+import {
     CommsEstablished as CommsEstablishedEvent,
     OwnershipTransferred as OwnershipTransferredEvent,
 } from "../generated/Comms/Comms";
@@ -36,7 +38,8 @@ export function handleOwnershipTransferred(
     // LOGIC GOES HERE
 }`;
 
-const GRAPHQL_QUERY = `query MyQuery {
+const GRAPHQL_QUERY = `
+query MyQuery {
   commsEstablisheds(first: 10) {
     account
     blockNumber
@@ -136,7 +139,7 @@ const SubgraphContent: React.FC = () => {
             <div className="mt-6">
               <p className="text-sm sm:text-base italic mb-2">The schema for our subgraph is as follows:</p>
               <div className="mockup-code text-xs sm:text-sm w-full">
-                <pre>
+                <pre className="pl-8">
                   <code className="language-graphql">{SCHEMA}</code>
                 </pre>
               </div>
@@ -164,7 +167,7 @@ const SubgraphContent: React.FC = () => {
             </p>
 
             <div className="mockup-code text-xs sm:text-sm w-full">
-              <pre>
+              <pre className="pl-8">
                 <code className="language-typescript">{HANDLER_CODE}</code>
               </pre>
             </div>
@@ -221,7 +224,7 @@ const SubgraphContent: React.FC = () => {
             <div className="mt-6">
               <p className="text-sm sm:text-base italic mb-2">✅ Success will look like this:</p>
               <div className="mockup-code text-xs sm:text-sm w-full">
-                <pre>
+                <pre className="pl-8">
                   <code>{`Build completed: QmSPR7AmLy1FHX4aPdSKNn7GHXy5xGxz6xR6YuD6UMcfAc
 
 Deployed to http://localhost:8000/subgraphs/name/scaffold-eth/your-contract/graphql
@@ -255,7 +258,7 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
               </p>
 
               <div className="mockup-code text-xs sm:text-sm w-full">
-                <pre>
+                <pre className="pl-8">
                   <code className="language-graphql">{GRAPHQL_QUERY}</code>
                 </pre>
               </div>

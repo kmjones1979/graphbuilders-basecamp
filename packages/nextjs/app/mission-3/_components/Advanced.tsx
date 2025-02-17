@@ -1,7 +1,8 @@
 import React from "react";
 import CodeSnippet from "./CodeSnippet";
 
-const GRAPHQL_QUERY = `query MyQuery {
+const GRAPHQL_QUERY = `
+query MyQuery {
   holders(first: 10, orderDirection: desc, orderBy: blockTimestamp) {
     balance
     blockNumber
@@ -149,7 +150,7 @@ const Advanced: React.FC = () => {
             </div>
 
             <div className="mockup-code text-xs sm:text-sm w-full mt-4">
-              <pre>
+              <pre className="pl-8">
                 <code>Which version label to use? (e.g. "v0.0.2"):</code>
               </pre>
             </div>
@@ -174,7 +175,7 @@ const Advanced: React.FC = () => {
             </p>
 
             <div className="mockup-code text-xs sm:text-sm w-full">
-              <pre>
+              <pre className="pl-8">
                 <code className="language-graphql">{GRAPHQL_QUERY}</code>
               </pre>
             </div>

@@ -89,7 +89,7 @@ const SolidityContent: React.FC = () => {
             </p>
 
             <div className="mockup-code text-xs sm:text-sm w-full overflow-x-auto">
-              <pre>
+              <pre className="pl-8">
                 <code className="language-solidity">
                   {`contract Enlist {
 

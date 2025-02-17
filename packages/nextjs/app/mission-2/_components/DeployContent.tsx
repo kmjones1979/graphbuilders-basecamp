@@ -1,11 +1,13 @@
 import React from "react";
 import CodeSnippet from "./CodeSnippet";
 
-const DEPLOY_OUTPUT = `deploying "Comms" (tx: 0xc71a6af1adb8f896b521a42b85ff1cae500d6debc0443ed42d53f3952c58ebca)...: 
+const DEPLOY_OUTPUT = `
+deploying "Comms" (tx: 0xc71a6af1adb8f896b521a42b85ff1cae500d6debc0443ed42d53f3952c58ebca)...: 
 deployed at 0x26b255424D71f00Efc718e2B182714957d76Cc64 with 375810 gas
 📝 Updated TypeScript contract definition file on ../nextjs/contracts/deployedContracts.ts`;
 
-const VERIFY_OUTPUT = `verifying Comms (0x26b255424D71f00Efc718e2B182714957d76Cc64) ...
+const VERIFY_OUTPUT = `
+verifying Comms (0x26b255424D71f00Efc718e2B182714957d76Cc64) ...
 waiting for result...
  => contract Comms is now verified`;
 
@@ -88,7 +90,7 @@ const DeployContent: React.FC = () => {
             <div className="mt-6">
               <p className="text-sm sm:text-base italic mb-2">✅ Success will look like this:</p>
               <div className="mockup-code text-xs sm:text-sm">
-                <pre>
+                <pre className="pl-8">
                   <code>{DEPLOY_OUTPUT}</code>
                 </pre>
               </div>
@@ -109,7 +111,7 @@ const DeployContent: React.FC = () => {
             <div className="mt-6">
               <p className="text-sm sm:text-base italic mb-2">✅ Success will look like this:</p>
               <div className="mockup-code text-xs sm:text-sm">
-                <pre>
+                <pre className="pl-8">
                   <code>{VERIFY_OUTPUT}</code>
                 </pre>
               </div>

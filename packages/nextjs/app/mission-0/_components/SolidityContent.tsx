@@ -113,8 +113,8 @@ const SolidityContent: React.FC = () => {
               </p>
               <div className="w-full overflow-x-auto">
                 <div className="mockup-code text-xs sm:text-sm">
-                  <pre>
-                    <code>{WELCOME_CONTRACT}</code>
+                  <pre className="pl-8">
+                    <code className="language-solidity">{WELCOME_CONTRACT}</code>
                   </pre>
                 </div>
               </div>

@@ -80,7 +80,7 @@ const SubgraphContent: React.FC = () => {
                 You will know graph-node is ready to be configured when you see the following message:
               </p>
               <div className="mockup-code text-xs sm:text-sm w-full">
-                <pre>
+                <pre className="pl-8">
                   <code>INFO Downloading latest blocks from Ethereum, this may take a few minutes...</code>
                 </pre>
               </div>
@@ -132,7 +132,7 @@ const SubgraphContent: React.FC = () => {
             <div className="mt-6">
               <p className="text-sm sm:text-base italic mb-2">The schema for our starting subgraph is as follows:</p>
               <div className="mockup-code text-xs sm:text-sm w-full">
-                <pre>
+                <pre className="pl-8">
                   <code className="language-graphql">{SCHEMA}</code>
                 </pre>
               </div>
@@ -157,7 +157,7 @@ const SubgraphContent: React.FC = () => {
             </p>
 
             <div className="mockup-code text-xs sm:text-sm w-full">
-              <pre>
+              <pre className="pl-8">
                 <code className="language-typescript">{HANDLER_CODE}</code>
               </pre>
             </div>
@@ -216,7 +216,7 @@ const SubgraphContent: React.FC = () => {
             <div className="mt-4">
               <p className="text-sm sm:text-base italic mb-2">When prompted, enter the version you want to use:</p>
               <div className="mockup-code text-xs sm:text-sm w-full">
-                <pre>
+                <pre className="pl-8">
                   <code>Which version label to use? (e.g. "v0.0.1"):</code>
                 </pre>
               </div>
@@ -225,7 +225,7 @@ const SubgraphContent: React.FC = () => {
             <div className="mt-6">
               <p className="text-sm sm:text-base italic mb-2">✅ Success will look like this:</p>
               <div className="mockup-code text-xs sm:text-sm w-full">
-                <pre>
+                <pre className="pl-8">
                   <code>{`Build completed: QmWmmvVp1eV1uYWCNE1poKHvYYa8UJxfdtCzAX1hs9gvxD
 
 Deployed to http://localhost:8000/subgraphs/name/scaffold-eth/your-contract/graphql
@@ -259,7 +259,7 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
               </p>
 
               <div className="mockup-code text-xs sm:text-sm w-full">
-                <pre>
+                <pre className="pl-8">
                   <code className="language-graphql">{GRAPHQL_QUERY}</code>
                 </pre>
               </div>
