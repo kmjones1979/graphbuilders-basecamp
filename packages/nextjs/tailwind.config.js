@@ -79,8 +79,14 @@ module.exports = {
       boxShadow: {
         center: "0 0 12px -2px rgba(124, 77, 255, 0.5)", // Purple glow effect
       },
+      keyframes: {
+        pulse: {
+          "0%, 100%": { opacity: 1 },
+          "50%": { opacity: 0.5 },
+        },
+      },
       animation: {
-        "pulse-slow": "pulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite", // Smooth pulse
+        "pulse-slow": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite", // Smooth pulse
       },
     },
   },

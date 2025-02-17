@@ -63,11 +63,9 @@ const NFTPage = () => {
     window.open(url, "_blank");
   };
 
-  const shareToFarcaster = () => {
-    const shareUrl = window.location.href;
-    const shareText = metadata?.description || "Check out this NFT from Graph Builders Basecamp by @graphprotocol!";
-    const url = `https://farcaster.xyz/share?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
-    window.open(url, "_blank");
+  const getWarpcastShareUrl = (metadata: any, id: string) => {
+    const text = `Just earned the ${metadata?.name} NFT from @graphbuilders! 🚀\n\nComplete the mission to earn yours:\nhttps://basecamp.thegraph.com/nft/${id}`;
+    return `https://warpcast.com/~/compose?text=${encodeURIComponent(text)}`;
   };
 
   const handleShare = async () => {
@@ -134,19 +132,21 @@ const NFTPage = () => {
             <Share2 className="w-3 h-3" />
             Share on X
           </button>
-          <button
-            onClick={() => shareToFarcaster()}
+          <a
+            href={getWarpcastShareUrl(metadata, id)}
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn btn-ghost btn-sm hover:bg-slate-700 transition-colors"
           >
             <Share2 className="w-3 h-3" />
-            Share on Farcaster
-          </button>
+            Share to Farcaster
+          </a>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="card bg-base-100 shadow-xl border-2 border-purple-950">
-        <div className="card-body p-6">
+        <div className="card-body pt-6">
           <div className="flex flex-col md:flex-row gap-6">
             {/* NFT Image */}
             <div className="w-full md:w-2/5">
@@ -159,9 +159,9 @@ const NFTPage = () => {
 
             {/* NFT Details */}
             <div className="w-full md:w-3/5 space-y-6">
-              <div>
+              <div className="rounded-lg pt-4">
                 <h1 className="text-2xl font-bold mb-2">{metadata?.name}</h1>
-                <div className="text-white p-4 rounded-lg">
+                <div className="rounded-lg">
                   <p className="text-base">{metadata?.description}</p>
                 </div>
               </div>
@@ -173,7 +173,7 @@ const NFTPage = () => {
                     {metadata.attributes.map((attr, index) => (
                       <div key={index} className="p-3 rounded-lg">
                         <p className="text-purple-500 font-semibold mb-1 text-sm">{attr.trait_type}</p>
-                        <p className="text-white text-sm">{attr.value}</p>
+                        <p className="text-sm">{attr.value}</p>
                       </div>
                     ))}
                   </div>
@@ -182,7 +182,7 @@ const NFTPage = () => {
 
               <div>
                 <h2 className="text-xl font-semibold mb-2">Contract Details</h2>
-                <div className="p-4 rounded-lg space-y-3">
+                <div className="pt-4 rounded-lg space-y-3">
                   <div>
                     <p className="text-purple-500 font-semibold text-sm">Token ID</p>
                     <p className="text-gray-400 text-sm">{id}</p>
