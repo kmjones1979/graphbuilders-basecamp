@@ -1,145 +1,181 @@
 import React from "react";
 import CodeSnippet from "./CodeSnippet";
 
+const DEPLOYMENT_STEPS = [
+  {
+    id: 1,
+    title: "Generate Deployer Key",
+    description: "Generate a new deployer key (don't use the local chain keys)",
+    command: "yarn run generate",
+    image: {
+      src: "/orientation/4.png",
+      alt: "Generate deployer key success",
+    },
+  },
+  {
+    id: 2,
+    title: "Fund Your Account",
+    description: "Check your balance and get a QR code for funding",
+    command: "yarn account",
+    image: {
+      src: "/orientation/5.png",
+      alt: "Account balance check",
+    },
+    resources: [
+      {
+        text: "Base Network Faucets",
+        url: "https://docs.base.org/docs/tools/network-faucets/",
+        description: "Get testnet ETH from Base faucets",
+      },
+      {
+        text: "Base Testnet Bridge",
+        url: "https://superbridge.app/base",
+        description: "Bridge ETH from Sepolia to Base Sepolia",
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "Deploy to Base Sepolia",
+    description: "Deploy your contract to the Base Sepolia network",
+    command: "yarn deploy --network baseSepolia",
+    output: `deploying "Welcome" (tx: 0x1e0f9c6d9ae147ff475169b240d226529874d921c86371cecaef8acf6c09e728)...: 
+deployed at 0xeAa2c3ae9a2Ee1dD3df0374A71C52E7335D552ac with 221179 gas
+📝 Updated TypeScript contract definition file on ../nextjs/contracts/deployedContracts.ts`,
+  },
+  {
+    id: 4,
+    title: "Verify Contract",
+    description: "Verify your contract on Base Sepolia for better interaction",
+    command: "yarn verify --network baseSepolia",
+    output: `verifying Welcome (0xeAa2c3ae9a2Ee1dD3df0374A71C52E7335D552ac) ...
+waiting for result...
+ => contract Welcome is now verified`,
+  },
+];
+
+const FRONTEND_CONFIG = {
+  title: "Configure Frontend",
+  description: "Update the frontend to use Base Sepolia network",
+  file: "scaffold.config.ts",
+  path: "packages/nextjs",
+  steps: [
+    "Change targetNetworks to use chains.baseSepolia",
+    "Reconnect with your own wallet (e.g., MetaMask)",
+    "Use the same wallet you used to sign into The Graph Builders Basecamp portal",
+  ],
+};
+
 const DeployContent: React.FC = () => {
   return (
-    <>
-      {/* Part 3 */}
-      <div className="flex justify-center">
-        <div className="max-w-sm sm:max-w-2xl w-full p-4">
-          <div className="flex justify-center top pt-4">
-            <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Smart Contract Deployment</h1>
-          </div>
-          <div className="flex justify-center top">
-            <p className="text-lg text-left max-w-2xl">
-              In this part of the mission you will deploy your smart contract to a public network. This way we can index
-              the data on The Graph's decentralized network.
-            </p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl font-bold">
-              1. In order to do this you will need to run the following command to generate a deployer key, we do not
-              want to use the keys that come shipped with our local chain:
-            </p>
-          </div>
-          <CodeSnippet code="yarn run generate" button={true} />
-          <div className="flex justify-center top">
-            <p className="text-lg text-left italic">Success will look like the following: 👇🏼</p>
-          </div>
-          <div className="flex justify-center top">
-            <img
-              className="max-w-2xl items-center w-full h-auto rounded-lg"
-              src="/orientation/4.png"
-              alt="yarn chain"
-            />
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              We will need to fund our deployer account with some testnet funds. Quick tip, use the following command to
-              check your balance and display a QR code to scan with your wallet:
-            </p>
-          </div>
-          <CodeSnippet code="yarn account" button={true} />
-          <div className="flex justify-center top">
-            <p className="text-lg text-left italic">Success will look like the following: 👇🏼</p>
-          </div>
-          <div className="flex justify-center top">
-            <img
-              className="max-w-2xl items-center w-full h-auto rounded-lg"
-              src="/orientation/5.png"
-              alt="yarn chain"
-            />
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl font-bold">
-              2. Next you will need to deploy your smart contract to the network. In our case we will deploy to
-              baseSepolia. You can either edit your hardhat configuration file to use the defaultNetwork as baseSepolia,
-              or you can use the following command.
-            </p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              If you need some baseSepolia ETH, you can get some from one of the faucets listed on this page:{" "}
-              <span className="link">
-                {" "}
-                <a href="https://docs.base.org/docs/tools/network-faucets/" target="_blank">
-                  Base Network Faucets
-                </a>{" "}
-              </span>
-            </p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              Alternatively, you can use SUPERBRIDGE to bridge ETH from Sepolia to Base Sepolia.
-              <span className="link">
-                {" "}
-                <a href="https://superbridge.app/base" target="_blank">
-                  Base Testnet Bridge
-                </a>
-              </span>
-            </p>
-          </div>
-          <CodeSnippet code="yarn deploy --network baseSepolia" button={true} />
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">✅ Success will look like the following: 👇🏼</p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
-              <pre>
-                <code className="language-solidity">
-                  {`deploying "Welcome" (tx: 0x1e0f9c6d9ae147ff475169b240d226529874d921c86371cecaef8acf6c09e728)...: 
-deployed at 0xeAa2c3ae9a2Ee1dD3df0374A71C52E7335D552ac with 221179 gas
-📝 Updated TypeScript contract definition file on ../nextjs/contracts/deployedContracts.ts`}
-                </code>
-              </pre>
-            </div>
-          </div>
+    <div className="flex justify-center">
+      <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
+        {/* Header */}
+        <div className="text-center space-y-4">
+          <h1 className="text-3xl sm:text-4xl font-bold">Smart Contract Deployment</h1>
+          <p className="text-base sm:text-xl text-base-content/80">
+            Deploy your smart contract to Base Sepolia to index the data on The Graph's decentralized network.
+          </p>
+        </div>
 
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl font-bold">
-              3. Last step we will want to verify our contract. This will make it easier for us to interact with it in
-              the future.
-            </p>
-          </div>
-          <CodeSnippet code="yarn verify --network baseSepolia" button={true} />
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">✅ Success will look like the following: 👇🏼</p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
-              <pre>
-                <code className="language-solidity">
-                  {`verifying Welcome (0xeAa2c3ae9a2Ee1dD3df0374A71C52E7335D552ac) ...
-waiting for result...
- => contract Welcome is now verified`}
-                </code>
-              </pre>
+        {/* Deployment Steps */}
+        <div className="space-y-6">
+          {DEPLOYMENT_STEPS.map(step => (
+            <div key={step.id} className="card bg-base-200 shadow-xl">
+              <div className="card-body p-4 sm:p-8">
+                <h2 className="card-title text-lg sm:text-xl flex flex-wrap items-center gap-2">
+                  <span className="badge badge-primary">{step.id}</span>
+                  {step.title}
+                </h2>
+                <p className="text-sm sm:text-base text-base-content/80">{step.description}</p>
+
+                <div className="w-full overflow-x-auto mt-4">
+                  <CodeSnippet code={step.command} button={true} />
+                </div>
+
+                {step.resources?.map((resource, index) => (
+                  <div key={index} className="alert bg-base-300 border border-base-content/10 mt-4">
+                    <div>
+                      <p className="text-sm sm:text-base text-base-content/80">
+                        {resource.description}{" "}
+                        <a href={resource.url} target="_blank" rel="noopener noreferrer" className="link link-primary">
+                          {resource.text}
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                ))}
+
+                {step.image && (
+                  <div className="mt-4">
+                    <p className="text-xs sm:text-sm text-base-content/70 mb-2">Success will look like this:</p>
+                    <div className="flex justify-center">
+                      <img
+                        className="rounded-lg border border-base-300 max-w-md w-full h-auto"
+                        src={step.image.src}
+                        alt={step.image.alt}
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {step.output && (
+                  <div className="mt-4">
+                    <p className="text-xs sm:text-sm text-base-content/70 mb-2">Expected output:</p>
+                    <div className="mockup-code text-xs sm:text-sm">
+                      <pre>
+                        <code>{step.output}</code>
+                      </pre>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Frontend Configuration */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title text-lg sm:text-xl flex flex-wrap items-center gap-2">
+              <span className="badge badge-primary">5</span>
+              {FRONTEND_CONFIG.title}
+            </h2>
+            <p className="text-sm sm:text-base text-base-content/80">{FRONTEND_CONFIG.description}</p>
+
+            <div className="mt-4">
+              <p className="text-xs sm:text-sm text-base-content/70">
+                Edit <code className="badge badge-ghost text-xs">{FRONTEND_CONFIG.file}</code> in{" "}
+                <code className="badge badge-ghost text-xs">{FRONTEND_CONFIG.path}</code>
+              </p>
+
+              <div className="alert bg-base-300 border border-base-content/10 mt-4">
+                <div>
+                  <p className="font-bold text-sm sm:text-base">Required Changes:</p>
+                  <ul className="list-disc pl-6 mt-2 text-sm sm:text-base">
+                    {FRONTEND_CONFIG.steps.map((step, index) => (
+                      <li key={index} className="text-base-content/80">
+                        {step}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl font-bold">
-              4. Next configure the frontend to use the proper network. To do this edit the{" "}
-              <span className="highlight-code">scaffold.config.ts</span> configuration file which is located in the{" "}
-              <span className="highlight-code">packages/nextjs</span> folder.
-            </p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              To make the frontend point to baseSepolia, change the targetNetworks to use{" "}
-              <span className="highlight-code">chains.baseSepolia</span>. You will get kicked out of the burner wallet
-              and from now on any interactions with the smart contract should be done with a wallet you control, such as
-              Metamask or a Wallet Connect enabled wallet like Rainbow wallet. You should use the same one that you used
-              to sign into The Graph Builders Basecamp portal.
-            </p>
-          </div>
-          <div className="flex justify-center top">
-            <p className="text-lg text-left max-w-2xl">
-              If you were successful, continue with the next part of the mission.
+        </div>
+
+        {/* Next Section */}
+        <div className="card bg-base-200 shadow-xl text-center">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title justify-center text-lg sm:text-xl">Ready to Continue?</h2>
+            <p className="text-sm sm:text-base">
+              Once you've completed these steps successfully, proceed to the next part of the mission.
             </p>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
