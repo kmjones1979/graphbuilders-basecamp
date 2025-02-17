@@ -1,184 +1,23 @@
 import React from "react";
 import CodeSnippet from "./CodeSnippet";
 
-const SubgraphContent: React.FC = () => {
-  return (
-    <>
-      {/* Part 2 */}
-      <div className="flex justify-center">
-        <div className="max-w-sm sm:max-w-2xl w-full p-4">
-          <div className="flex justify-center top pt-4">
-            <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Subgraph</h1>
-          </div>
-          <div className="flex justify-center top">
-            <p className="text-lg text-left max-w-2xl">
-              In this part of the mission you will need to set up your local development environment so that you can
-              index the data from the smart contract.
-            </p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4 ">
-            <p className="text-lg font-bold max-w-2xl">
-              1. To get started, open up a new terminal and run the following command to spin up your local Graph Node
-              inside of docker:
-            </p>
-          </div>
-          <CodeSnippet code="yarn run-node" button={true} />
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              You will know graph-node is ready to be configured when you see the following message:
-            </p>
-          </div>
-          <CodeSnippet
-            code="INFO Downloading latest blocks from Ethereum, this may take a few minutes..."
-            button={false}
-          />
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg font-bold  max-w-2xl">
-              2. Next you will need to create a subgraph configuration inside your graph-node instance.
-            </p>
-          </div>
-          <CodeSnippet code="yarn local-create" button={true} />
-
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              You can copy the ABI from the hardhat project with the following command:
-            </p>
-          </div>
-          <CodeSnippet code="yarn abi-copy" button={true} />
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">You can generate the types with the following command:</p>
-          </div>
-          <CodeSnippet code="yarn codegen" button={true} />
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg font-bold  max-w-2xl">
-              3. Now you will need to complete the code for the handler to process the event data coming off the smart
-              contract. Open up your project in a text editor and navigate to the handler in
-              <span className="highlight-code font-normal">packages/subgraph/src/mapping.ts</span>
-            </p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">The schema for our subgraph is as follows:</p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
-              <pre>
-                <code className="language-graphql">{`type Enlisted @entity {
+const SCHEMA = `type Enlisted @entity {
     id: Bytes!
     account: Bytes!
     blockNumber: BigInt!
     blockTimestamp: BigInt!
     transactionHash: Bytes!
-}`}</code>
-              </pre>
-            </div>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              In our case we have an event called Enlisted that we want to process and save to the database. In our case
-              the schema is called Enlisted and we have a function called handleEnlisted. In this function we will save
-              the event data to the database. Update the function to save the event data to the database, it should look
-              like this:
-            </p>
-          </div>
-          <h1 className="flex justify-center text-2xl font-bold">
-            {" "}
-            📝 Task: Add logic to the handler to index the Enlisted event data 📝
-          </h1>
+}`;
 
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              Here is the starting handler located in{" "}
-              <span className="highlight-code">packages/subgraph/src/mapping.ts</span>
-            </p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
-              <pre>
-                <code className="language-typescript">
-                  {`import { Enlisted as EnlistedEvent } from "../generated/Enlist/Enlist";
+const HANDLER_CODE = `import { Enlisted as EnlistedEvent } from "../generated/Enlist/Enlist";
 import { Enlisted } from "../generated/schema";
 
 // Define the handleEnlisted function
 export function handleEnlisted(event: EnlistedEvent): void {
     // Add logic here
-}
-`}
-                </code>
-              </pre>
-            </div>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4 ">
-            <p className="text-lg font-bold max-w-2xl mb-4">To complete this task, follow these steps:</p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl">
-              <ol className="list-disc list-inside mb-4">
-                <li>
-                  Use the <span className="highlight-code">Enlisted</span> schema and the{" "}
-                  <span className="highlight-code">new</span> keyword to create an entry in the database.
-                </li>
-                <li>Set the properties of the entity using event data. </li>
-                <li>
-                  Save the entity to the database using the <span className="highlight-code">save()</span> method
-                </li>
-              </ol>
-              If needed, you can reference examples of the AssemblyScript API in the docs here:
-            </p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <a target="_blank" href="https://thegraph.com/docs/en/developing/graph-ts/api/">
-              🚀 AssemblyScript API
-            </a>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <a target="_blank" href="https://github.com/graphprotocol/graph-tooling/tree/main/packages/ts">
-              📖 Graph Typescript Library
-            </a>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg font-bold  max-w-2xl">4. Now ship your changes...</p>
-          </div>
-          <CodeSnippet code="yarn local-ship" button={true} />
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">When prompted, enter the following version you want to use:</p>
-          </div>
-          <CodeSnippet code='Which version label to use? (e.g. "v0.0.1"):' button={false} />
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">✅ Success will look like this: 👇🏼</p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
-              <pre>
-                <code className="language-typescript">
-                  {`Build completed: QmSPR7AmLy1FHX4aPdSKNn7GHXy5xGxz6xR6YuD6UMcfAc
+}`;
 
-Deployed to http://localhost:8000/subgraphs/name/scaffold-eth/your-contract/graphql
-
-Subgraph endpoints:
-Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contract`}
-                </code>
-              </pre>
-            </div>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg font-bold  max-w-2xl">5. Open up the GraphiQL IDE to view your data.</p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <a target="_blank" href="http://localhost:8000/subgraphs/name/scaffold-eth/your-contract">
-              🚀 http://localhost:8000/subgraphs/name/scaffold-eth/your-contract
-            </a>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              This is a GraphiQL explorer and allows you to test out the GraphQL queries before loading them into your
-              frontend. Try out the following query to see if your data is being saved:
-            </p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
-              <pre>
-                <code className="language-typescript">
-                  {`query MyQuery {
+const GRAPHQL_QUERY = `query MyQuery {
   enlisteds(first: 10, orderBy: blockTimestamp, orderDirection: asc) {
     id
     account
@@ -186,34 +25,233 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
     blockTimestamp
     transactionHash
   }
-}`}
-                </code>
-              </pre>
-            </div>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">✅ Success will look like this: 👇🏼</p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4 ">
-            <img className="w-full h-auto rounded-lg" src="/mission-1-response.png" alt="studio" />
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg font-bold  max-w-2xl">
-              6. Now you will need to build the graph client artifacts... if you did this part correctly the results
-              should populate in the table below.
+}`;
+
+const SubgraphContent: React.FC = () => {
+  return (
+    <div className="flex justify-center">
+      <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
+        {/* Header */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h1 className="card-title text-2xl sm:text-3xl mb-4">Subgraph</h1>
+            <p className="text-sm sm:text-base text-base-content/80">
+              In this part of the mission you will need to set up your local development environment so that you can
+              index the data from the smart contract.
             </p>
           </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <CodeSnippet code="yarn graphclient:build" button={true} />
+        </div>
+
+        {/* Local Graph Node Setup */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title text-xl sm:text-2xl mb-4">1. Start Local Graph Node</h2>
+            <p className="text-sm sm:text-base text-base-content/80 mb-4">
+              To get started, open up a new terminal and run the following command to spin up your local Graph Node
+              inside of docker:
+            </p>
+            <CodeSnippet code="yarn run-node" button={true} />
+
+            <div className="mt-4">
+              <p className="text-sm sm:text-base italic mb-2">
+                You will know graph-node is ready to be configured when you see the following message:
+              </p>
+              <div className="mockup-code text-xs sm:text-sm">
+                <pre>
+                  <code>INFO Downloading latest blocks from Ethereum, this may take a few minutes...</code>
+                </pre>
+              </div>
+            </div>
           </div>
-          <div className="flex justify-center top">
-            <p className="text-lg text-left max-w-2xl">
+        </div>
+
+        {/* Subgraph Configuration */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title text-xl sm:text-2xl mb-4">2. Configure Subgraph</h2>
+            <p className="text-sm sm:text-base text-base-content/80 mb-4">
+              Next you will need to create a subgraph configuration inside your graph-node instance.
+            </p>
+            <CodeSnippet code="yarn local-create" button={true} />
+
+            <div className="space-y-4 mt-6">
+              <div>
+                <p className="text-sm sm:text-base italic mb-2">Copy the ABI from the hardhat project:</p>
+                <CodeSnippet code="yarn abi-copy" button={true} />
+              </div>
+
+              <div>
+                <p className="text-sm sm:text-base italic mb-2">Generate the types:</p>
+                <CodeSnippet code="yarn codegen" button={true} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Handler Implementation */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title text-xl sm:text-2xl mb-4">3. Implement Event Handler</h2>
+            <p className="text-sm sm:text-base text-base-content/80 mb-4">
+              Now you will need to complete the code for the handler to process the event data coming off the smart
+              contract. Open up your project in a text editor and navigate to the handler in{" "}
+              <code className="badge badge-ghost text-xs">packages/subgraph/src/mapping.ts</code>
+            </p>
+
+            <div className="mt-6">
+              <p className="text-sm sm:text-base italic mb-2">The schema for our subgraph is as follows:</p>
+              <div className="mockup-code text-xs sm:text-sm">
+                <pre>
+                  <code className="language-graphql">{SCHEMA}</code>
+                </pre>
+              </div>
+            </div>
+
+            <p className="text-sm sm:text-base text-base-content/80 mt-6">
+              In our case we have an event called Enlisted that we want to process and save to the database. In our case
+              the schema is called Enlisted and we have a function called handleEnlisted. In this function we will save
+              the event data to the database.
+            </p>
+          </div>
+        </div>
+
+        {/* Task Section */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              📝 Task: Add logic to the handler to index the Enlisted event data
+            </h2>
+
+            <p className="text-sm sm:text-base mb-4">
+              Here is the starting handler located in{" "}
+              <code className="badge badge-ghost text-xs">packages/subgraph/src/mapping.ts</code>
+            </p>
+
+            <div className="mockup-code text-xs sm:text-sm">
+              <pre>
+                <code className="language-typescript">{HANDLER_CODE}</code>
+              </pre>
+            </div>
+
+            <div className="mt-6">
+              <p className="text-base sm:text-lg font-bold mb-4">To complete this task, follow these steps:</p>
+              <ul className="list-disc list-inside space-y-2 text-sm sm:text-base text-base-content/80">
+                <li>
+                  Use the <code className="badge badge-ghost text-xs">Enlisted</code> schema and the{" "}
+                  <code className="badge badge-ghost text-xs">new</code> keyword to create an entry in the database
+                </li>
+                <li>Set the properties of the entity using event data</li>
+                <li>
+                  Save the entity to the database using the <code className="badge badge-ghost text-xs">save()</code>{" "}
+                  method
+                </li>
+              </ul>
+            </div>
+
+            <div className="mt-6 space-y-2">
+              <p className="text-sm sm:text-base">If needed, you can reference examples in the docs here:</p>
+              <div className="space-y-2">
+                <a
+                  target="_blank"
+                  href="https://thegraph.com/docs/en/developing/graph-ts/api/"
+                  className="link link-primary text-sm sm:text-base block"
+                >
+                  🚀 AssemblyScript API
+                </a>
+                <a
+                  target="_blank"
+                  href="https://github.com/graphprotocol/graph-tooling/tree/main/packages/ts"
+                  className="link link-primary text-sm sm:text-base block"
+                >
+                  📖 Graph Typescript Library
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Deployment Section */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title text-xl sm:text-2xl mb-4">4. Deploy Your Changes</h2>
+            <CodeSnippet code="yarn local-ship" button={true} />
+
+            <div className="mt-4">
+              <p className="text-sm sm:text-base italic mb-2">When prompted, enter the version you want to use:</p>
+              <div className="mockup-code text-xs sm:text-sm">
+                <pre>
+                  <code>Which version label to use? (e.g. "v0.0.1"):</code>
+                </pre>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <p className="text-sm sm:text-base italic mb-2">✅ Success will look like this:</p>
+              <div className="mockup-code text-xs sm:text-sm">
+                <pre>
+                  <code>{`Build completed: QmSPR7AmLy1FHX4aPdSKNn7GHXy5xGxz6xR6YuD6UMcfAc
+
+Deployed to http://localhost:8000/subgraphs/name/scaffold-eth/your-contract/graphql
+
+Subgraph endpoints:
+Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contract`}</code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Testing Section */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title text-xl sm:text-2xl mb-4">5. Test Your Subgraph</h2>
+            <p className="text-sm sm:text-base mb-4">Open up the GraphiQL IDE to view your data:</p>
+
+            <a
+              target="_blank"
+              href="http://localhost:8000/subgraphs/name/scaffold-eth/your-contract"
+              className="link link-primary text-sm sm:text-base"
+            >
+              🚀 http://localhost:8000/subgraphs/name/scaffold-eth/your-contract
+            </a>
+
+            <div className="mt-6">
+              <p className="text-sm sm:text-base italic mb-4">
+                This is a GraphiQL explorer and allows you to test out the GraphQL queries before loading them into your
+                frontend. Try out the following query to see if your data is being saved:
+              </p>
+
+              <div className="mockup-code text-xs sm:text-sm">
+                <pre>
+                  <code className="language-graphql">{GRAPHQL_QUERY}</code>
+                </pre>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <p className="text-sm sm:text-base italic mb-2">✅ Success will look like this:</p>
+              <img className="rounded-lg border border-base-300" src="/mission-1-response.png" alt="Query Response" />
+            </div>
+          </div>
+        </div>
+
+        {/* Graph Client Section */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title text-xl sm:text-2xl mb-4">6. Build Graph Client</h2>
+            <p className="text-sm sm:text-base mb-4">
+              Now you will need to build the graph client artifacts... if you did this part correctly the results should
+              populate in the table below.
+            </p>
+            <CodeSnippet code="yarn graphclient:build" button={true} />
+
+            <p className="text-sm sm:text-base mt-6">
               If you were successful, continue with the next part of the mission.
             </p>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

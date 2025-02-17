@@ -139,268 +139,202 @@ if (id[0] === account) {
   });
 
   return (
-    <>
-      {/* Part 4 */}
-      <div className="flex justify-center">
-        <div className="max-w-sm sm:max-w-2xl w-full p-4">
-          <div className="flex justify-center top pt-4">
-            <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Subgraph Studio</h1>
-          </div>
-          <div className="flex justify-center top">
-            <p className="text-lg text-left max-w-2xl">
-              In this part of the mission you will deploy your subgraph to The Graph Subgraph Studio. The studio is a
-              place where you can create, test, and deploy subgraphs before you publish them to the decentralized
-              network.
+    <div className="flex justify-center">
+      <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
+        {/* Header */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h1 className="card-title text-2xl sm:text-3xl mb-4">Subgraph Studio Deployment</h1>
+            <p className="text-sm sm:text-base text-base-content/80">
+              Now that you have tested your subgraph locally, it's time to deploy it to the Subgraph Studio for testing
+              before publishing to the decentralized network.
             </p>
           </div>
-          <div className="flex justify-center top mt-4 mb-4 ">
-            <p className="text-lg font-bold max-w-2xl">
-              1. First, create a subgraph in the studio by visiting the following url:
-            </p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <a target="_blank" href="https://thegraph.com/studio/">
-              🚀 https://thegraph.com/studio/
-            </a>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xlitalic">
-              You will need to connect your wallet to the studio to create a subgraph. Click the "Connect" button on the
-              top right of the screen.
-            </p>
-          </div>
-          <div className="flex justify-center">
-            <img className="max-h-96 w-full h-auto rounded-lg" src="/studio/01.png" alt="Studio Connect" />
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">Choose the wallet type you would like to connect.</p>
-          </div>
-          <div className="flex justify-center">
-            <img className="max-w-80 w-full h-auto rounded-lg" src="/studio/02.png" alt="Studio Connect" />
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">Confirm the connection in your wallet.</p>
-          </div>
-          <div className="flex justify-center">
-            <img className="max-w-80 w-full h-auto rounded-lg" src="/studio/03.png" alt="Studio Connect" />
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">Sign the message to connect your wallet.</p>
-          </div>
-          <div className="flex justify-center">
-            <img className="max-w-4xl w-full h-auto rounded-lg" src="/studio/04.png" alt="Studio Connect" />
-          </div>
-          <div className="flex justify-center top mt-4 mb-4 ">
-            <p className="text-lg max-w-2xl italic">
-              On your main subgraph dashboard, click the "Create a Subgraph" button.
-            </p>
-          </div>
-          <div className="flex justify-center">
-            <img className="max-w-80 w-full h-auto rounded-lg" src="/studio/05.png" alt="Studio Connect" />
-          </div>
-          <div className="flex justify-center top mt-4 mb-4 ">
-            <p className="text-lg max-w-2xl italic">Name your subgraph and click "Create Subgraph".</p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl font-bold">
-              2. Now that we have a subgraph in the studio available to deploy to, we want to update our{" "}
-              <span className="highlight-code">networks.json</span> configuration file to reference our newly deployed
-              contract on baseSepolia. The graph configures this as <span className="highlight-code">base-sepolia</span>
-              . This file is located in the <span className="highlight-code">packages/subgraph</span> folder.
-            </p>
-          </div>
+        </div>
 
-          <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
-              <pre>
-                <code className="language-solidity">
-                  {`{
-  "localhost": {
-    "Enlist": {
-      "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
-    }
-  },
-  "base-sepolia": {
-    "Enlist": {
-      "address": "0xeF938C265A15327D8884d83f4dd154736144c987"
-    }
-  }
-}
-`}
-                </code>
-              </pre>
+        {/* Studio Setup */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title text-xl sm:text-2xl mb-4">1. Create Subgraph in Studio</h2>
+            <p className="text-sm sm:text-base text-base-content/80 mb-4">
+              First, you'll need to create a new subgraph in the Subgraph Studio:
+            </p>
+            <div className="space-y-4">
+              <a
+                href="https://thegraph.com/studio/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary btn-sm sm:btn-md"
+              >
+                🚀 Open Subgraph Studio
+              </a>
             </div>
           </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl font-bold">
-              3. Next, we need to update the deploy command for our subgraph package to use the name we configured in
-              the studio. Update the "graph deploy" command in{" "}
-              <span className="highlight-code font-normal">packages/subgraph/package.json</span>
-              to use the name of your subgraph. In my case it is "mymission".
+        </div>
+
+        {/* Authentication */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title text-xl sm:text-2xl mb-4">2. Authenticate CLI</h2>
+            <p className="text-sm sm:text-base text-base-content/80 mb-4">
+              Get your deploy key from the Subgraph Studio and authenticate the Graph CLI:
             </p>
+            <CodeSnippet code="graph auth --studio <DEPLOY_KEY>" button={true} />
           </div>
-          <CodeSnippet code="graph deploy mymission" button={false} />
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              You will need to update your <span className="highlight-code">subgraph.yaml</span> file to include the
-              proper network, as mentioned before in this case it will be{" "}
-              <span className="highlight-code">base-sepolia</span>. You also might want to add the{" "}
-              <span className="highlight-code">startBlock</span> to the subgraph manifest. You can get this from the
-              block explorer and look at the contract creation transaction.
+        </div>
+
+        {/* Deployment */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title text-xl sm:text-2xl mb-4">3. Deploy to Studio</h2>
+            <p className="text-sm sm:text-base text-base-content/80 mb-4">
+              Deploy your subgraph to the Subgraph Studio. Make sure you're in the subgraph directory:
             </p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
-              <pre>
-                <code className="language-solidity">
-                  {`specVersion: 0.0.4
-description: Enlisted
-repository: https://github.com/scaffold-eth/se-2/packages/subgraph/
-schema:
-  file: ./src/schema.graphql
-dataSources:
-  - kind: ethereum/contract
-    name: Enlist
-    network: base-sepolia
-    source:
-      abi: Enlist
-      address: "0xeF938C265A15327D8884d83f4dd154736144c987"
-      startBlock: 7117347
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      entities:
-        - Enlisted
-      abis:
-        - name: Enlist
-          file: ./abis/localhost_Enlist.json
-      eventHandlers:
-        - event: Enlisted(indexed address)
-          handler: handleEnlisted
-      file: ./src/mapping.ts
-`}
-                </code>
-              </pre>
+            <div className="space-y-4">
+              <div>
+                <p className="text-sm sm:text-base italic mb-2">Build your subgraph:</p>
+                <CodeSnippet code="graph codegen && graph build" button={true} />
+              </div>
+
+              <div>
+                <p className="text-sm sm:text-base italic mb-2">Deploy to the studio:</p>
+                <CodeSnippet code="graph deploy --studio <SUBGRAPH_NAME>" button={true} />
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <p className="text-sm sm:text-base italic mb-2">✅ Success will look like this:</p>
+              <div className="mockup-code text-xs sm:text-sm">
+                <pre>
+                  <code>{`Build completed: QmYour1pfsHash...
+  
+Deployed to https://api.studio.thegraph.com/query/<YOUR_ID>/<SUBGRAPH_NAME>
+  
+Subgraph endpoints:
+Queries (HTTP):     https://api.studio.thegraph.com/query/<YOUR_ID>/<SUBGRAPH_NAME>/version/latest`}</code>
+                </pre>
+              </div>
             </div>
           </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              Deploy your subgraph to the studio by running the following command:
+        </div>
+
+        {/* Testing */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title text-xl sm:text-2xl mb-4">4. Test Your Deployment</h2>
+            <p className="text-sm sm:text-base text-base-content/80 mb-4">
+              Once deployed, you can test your subgraph in the Subgraph Studio's playground. Try the same query we used
+              locally:
             </p>
-          </div>
-          <CodeSnippet code="yarn studio-ship" button={true} />
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              If you did this part correctly, you should see your subgraph syncing or potentially already synced in the
-              studio.
-            </p>
-          </div>
-          <div className="flex justify-center">
-            <img className="max-w-3xl w-full h-auto rounded-lg" src="/studio/08-1.png" alt="Studio Deploy" />
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              Congratulations! You have now successfully deployed your subgraph to the studio! To complete the mission
-              navigate to the Endpoints tab on your subgraph and submit your QueryURL.
-            </p>
-          </div>
-          <div className="flex justify-center top pt-4">
-            <h1 className="text-3xl pt-4 text-left max-w-2xl italic font-bold">Validation</h1>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl">
-              <span className="font-bold text-red-400">Important:</span> In order for your mission to be properly
-              validated, the value of <span className="highlight-code">account</span> will need to successfully return
-              the address of the account you submit it from. You can test this by running the following query in the
-              GraphiQL explorer.
-            </p>
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
+
+            <div className="mockup-code text-xs sm:text-sm">
               <pre>
-                <code className="language-graphql">
-                  {`{
-  enlisteds(
-    first: 1
-    orderBy: blockTimestamp
-    orderDirection: desc
-    where: { account: "YOUR_ADDRESS" }
-  ) {
+                <code>{`query MyQuery {
+  enlisteds(first: 10, orderBy: blockTimestamp, orderDirection: asc) {
     id
     account
     blockNumber
     blockTimestamp
     transactionHash
   }
-}`}
-                </code>
+}`}</code>
               </pre>
             </div>
-          </div>
-          <div className="flex justify-center top">
-            {accountMinted ? (
-              <div className="bg-slate-700 text-green-400 px-4 py-2 rounded-lg">Mission Complete</div>
-            ) : (
-              <div className="flex justify-center top mt-4 mb-4">
-                <button className="bg-purple-500 text-white px-4 py-2 rounded-lg" onClick={() => setIsModalOpen(true)}>
-                  Submit Mission
-                </button>
-              </div>
-            )}
-          </div>
-          <div className="flex justify-center top mt-4 mb-4">
-            <p className="text-lg max-w-2xl italic">
-              If you have any issues submitting your results, please reach out to us on the official Telegram channel
-              for the Scaffold-ETH Subgraph Extension.
-            </p>
-          </div>
-          <div className="flex justify-center top">
-            {" "}
-            <a target="_blank" href="https://t.me/+fafK-afX2aM0ZWZh">
-              👉 👩‍🚀 🏗 Scaffold-ETH Subgraph Extension Support
-            </a>
-          </div>
 
-          {/* Modal */}
-          {isModalOpen && (
-            <div className="modal modal-open">
-              <div className="modal-box">
-                <h2 className="font-bold text-lg">Please enter your subgraph Query URL</h2>
-                <p>This can be found in the Endpoints tab of your subgraph in the Subgraph Studio.</p>
-                <p className="text-red-400">
-                  Note: The validation will take a few minutes to complete. Please be patient and only submit once.
+            <div className="alert bg-base-300 border border-base-content/10 mt-6">
+              <div>
+                <p className="text-sm sm:text-base text-base-content/80">
+                  <span className="font-bold">Note:</span> Make sure to save the Query URL from the Playground - you'll
+                  need it for the next step!
                 </p>
-                <input
-                  type="text"
-                  placeholder="Enter URL"
-                  className="input input-bordered w-full mt-2"
-                  value={queryURL}
-                  onChange={e => setQueryURL(e.target.value)}
-                />
-                <p className="mt-2">{responseMessage}</p>
-                <div className="modal-action">
-                  <button className="btn" onClick={handlePrecheck}>
-                    Precheck
-                  </button>
-                  <button
-                    className={`btn ${isValidated ? "bg-green-700 hover:bg-green-800" : ""}`}
-                    disabled={!isValidated}
-                    onClick={handleSubmit}
-                  >
-                    Submit
-                  </button>
-                  <button className="btn" onClick={() => setIsModalOpen(false)}>
-                    Close
-                  </button>
-                </div>
               </div>
             </div>
-          )}
+          </div>
+        </div>
+
+        {/* Validation */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title text-xl sm:text-2xl mb-4">5. Submit for Validation</h2>
+            <p className="text-sm sm:text-base text-base-content/80 mb-4">
+              Once you've confirmed your subgraph is working correctly in the Studio, submit your Query URL for
+              validation.
+            </p>
+
+            <div className="card-actions justify-center">
+              {accountMinted ? (
+                <div className="badge badge-success badge-lg">Mission Complete</div>
+              ) : (
+                <button className="btn btn-primary btn-sm sm:btn-md" onClick={() => setIsModalOpen(true)}>
+                  Submit Mission
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Validation Modal */}
+        {isModalOpen && (
+          <div className="modal modal-open">
+            <div className="modal-box w-11/12 max-w-xl p-4 sm:p-6">
+              <h2 className="font-bold text-lg sm:text-xl mb-4">Submit Query URL</h2>
+              <p className="text-sm sm:text-base text-base-content/80">
+                Enter your subgraph Query URL from the Endpoints tab in Subgraph Studio.
+              </p>
+              <div className="alert alert-warning mt-4 text-sm sm:text-base">
+                <p>
+                  Note: Click "Precheck" first then "Submit". Validation will take anywhere from 1-5 minutes. (Check the
+                  browser console output to troubleshoot)
+                </p>
+              </div>
+              <input
+                type="text"
+                placeholder="Enter URL"
+                className="input input-bordered w-full mt-4 text-sm"
+                value={queryURL}
+                onChange={e => setQueryURL(e.target.value)}
+              />
+              <p className="mt-2 text-sm sm:text-base text-base-content/80">{responseMessage}</p>
+              <div className="modal-action">
+                <button className="btn btn-sm sm:btn-md" onClick={handlePrecheck}>
+                  Precheck
+                </button>
+                <button
+                  className={`btn btn-sm sm:btn-md ${isValidated ? "btn-success" : ""}`}
+                  disabled={!isValidated}
+                  onClick={handleSubmit}
+                >
+                  Submit
+                </button>
+                <button className="btn btn-sm sm:btn-md" onClick={() => setIsModalOpen(false)}>
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <SuccessModal accountMinted={accountMinted ?? false} mission={currentMission} />
+
+        {/* Support Section */}
+        <div className="card bg-base-200 shadow-xl text-center">
+          <div className="card-body p-4 sm:p-8">
+            <h2 className="card-title justify-center text-lg sm:text-xl">Need Help?</h2>
+            <p className="text-sm sm:text-base text-base-content/80">Join our Telegram support channel:</p>
+            <div className="card-actions justify-center">
+              <a
+                href="https://t.me/+ZZIgax5l1dI1YjQx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary btn-sm sm:btn-md"
+              >
+                🗒 Mission 1: Alpha Centauri Support
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-      <SuccessModal accountMinted={accountMinted ?? false} mission={currentMission} />
-    </>
+    </div>
   );
 };
 
