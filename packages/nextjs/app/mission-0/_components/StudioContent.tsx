@@ -75,18 +75,24 @@ const STUDIO_STEPS = [
   },
   {
     id: 4,
+    title: "Navigate to Subgraph Directory",
+    description: "Navigate to the subgraph directory",
+    command: "cd mission0-test",
+  },
+  {
+    id: 5,
     title: "Authenticate to Studio",
     description: "Use your deploy key from the Studio",
     command: "graph auth <AUTH_KEY>",
   },
   {
-    id: 5,
+    id: 6,
     title: "Generate Types and Build",
     description: "Generate types and build the WASM bundle",
     command: "graph codegen && graph build",
   },
   {
-    id: 6,
+    id: 7,
     title: "Deploy Subgraph",
     description: "Deploy to the studio with your subgraph name",
     command: "graph deploy <SUBGRAPH_NAME>",
@@ -230,7 +236,7 @@ const StudioContent: React.FC = () => {
                 {step.images?.map((image, index) => (
                   <div key={index} className="mt-4">
                     <p className="text-xs sm:text-sm text-base-content/70 mb-2">{image.caption}</p>
-                    <div className="flex justify-center">
+                    <div className="max-w-xl mx-auto">
                       <ClickableImage src={image.src} alt={image.alt} caption="Click to enlarge" />
                     </div>
                   </div>
@@ -239,8 +245,13 @@ const StudioContent: React.FC = () => {
                 {step.image && (
                   <div className="mt-4">
                     <p className="text-xs sm:text-sm text-base-content/70 mb-2">{step.image.caption}</p>
-                    <div className="flex justify-center">
-                      <ClickableImage src={step.image.src} alt={step.image.alt} caption="Click to enlarge" />
+                    <div className="max-w-xl mx-auto">
+                      <ClickableImage
+                        src={step.image.src}
+                        alt={step.image.alt}
+                        caption={step.image.caption}
+                        className="max-w-xl w-full"
+                      />
                     </div>
                   </div>
                 )}

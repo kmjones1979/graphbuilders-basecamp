@@ -193,6 +193,10 @@ if (id[0] === account) {
             </p>
             <div className="space-y-4">
               <div>
+                <p className="text-sm sm:text-base italic mb-2">First, navigate into your subgraph directory:</p>
+                <CodeSnippet code="cd mission1-test" button={true} />
+              </div>
+              <div>
                 <p className="text-sm sm:text-base italic mb-2">Build your subgraph:</p>
                 <CodeSnippet code="graph codegen && graph build" button={true} />
               </div>
