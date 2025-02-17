@@ -98,12 +98,30 @@ const Setup: React.FC = () => {
   return (
     <div className="flex justify-center">
       <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-3xl sm:text-4xl font-bold">Development Environment Setup</h1>
-          <p className="text-base sm:text-xl">
-            Ready to become an interstellar subgraph developer? 🚀 Let's get your tools ready!
-          </p>
+        {/* Story Section */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body p-4 sm:p-8 prose">
+            <p className="text-sm sm:text-lg italic text-base-content/80">
+              The shuttle transporting you glides effortlessly through the vast emptiness, its engine humming softly as
+              it decelerates toward the docking bay. Your pulse quickens, a mix of awe and anticipation flooding your
+              senses, as the sprawling station looms ahead—an impossible city suspended in the void.
+            </p>
+            <p className="text-sm sm:text-lg italic text-base-content/80">
+              Before you stretches a dazzling array of shimmering towers and crystalline domes, each one bathed in the
+              cold, ethereal light of distant stars. The shuttle screeches as it arrives at the academy. You inhale
+              deeply, your gaze fixed on the unknown. With a steadying breath, you step off the shuttle and into the
+              hallway of the space academy. The future is waiting.
+            </p>
+          </div>
+        </div>
+        {/* Header Card */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body text-center space-y-4">
+            <h1 className="text-3xl sm:text-3xl font-bold">Development Environment Setup</h1>
+            <p className="text-base sm:text-xl">
+              Ready to become an interstellar subgraph developer? 🚀 Let's get your tools ready!
+            </p>
+          </div>
         </div>
 
         {/* Windows Note */}

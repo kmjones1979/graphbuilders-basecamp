@@ -33,14 +33,24 @@ const SolidityContent: React.FC = () => {
       <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
         {/* Mission Overview */}
         <div className="card bg-base-200 shadow-xl">
-          <div className="card-body p-4 sm:p-8">
-            <h1 className="card-title text-2xl sm:text-3xl mb-4">Solidity</h1>
-            <p className="text-sm sm:text-base text-base-content/80">
+          <div className="card-body text-center space-y-4">
+            <p className="text-sm sm:text-lg italic text-base-content/80">
               Congratulations on joining the Academy! Your first job as a junior cadet is to establish communications
               with the lunar base. To do this you will need to first take ownership of a special comms smart contract.
               Once you have done that you will need to establish a connection with the base by randomly generating the
               proper communication code. After that task is complete you will index all of the data into The Graph for
               the basecamp to see your success.
+            </p>
+          </div>
+        </div>
+
+        {/* Header Card */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body text-center space-y-4">
+            <h1 className="text-3xl sm:text-3xl font-bold">Smart Contract</h1>
+            <p className="text-base sm:text-xl">
+              In this part of the mission you will be creating a smart contract to establish communications with the
+              lunar base.
             </p>
           </div>
         </div>

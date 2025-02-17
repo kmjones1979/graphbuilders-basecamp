@@ -3,6 +3,7 @@ import CodeSnippet from "./CodeSnippet";
 import javaScriptSourceCode from "./JavaScriptSourceCode";
 import { useAccount } from "wagmi";
 import { gasLimit, subscriptionId } from "~~/app/config/constants";
+import ClickableImage from "~~/components/ClickableImage";
 import SuccessModal from "~~/components/SuccessModal";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
@@ -98,11 +99,11 @@ const StudioContent: React.FC = () => {
   return (
     <div className="flex justify-center">
       <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
-        {/* Header */}
+        {/* Header Card */}
         <div className="card bg-base-200 shadow-xl">
-          <div className="card-body p-4 sm:p-8">
-            <h1 className="card-title text-2xl sm:text-3xl mb-4">Subgraph Studio</h1>
-            <p className="text-sm sm:text-base text-base-content/80">
+          <div className="card-body text-center space-y-4">
+            <h1 className="text-3xl sm:text-3xl font-bold">Subgraph Studio</h1>
+            <p className="text-base sm:text-xl">
               In this part of the mission you will deploy your subgraph to The Graph Subgraph Studio. The studio is a
               place where you can create, test, and deploy subgraphs before you publish them to the decentralized
               network.
@@ -131,27 +132,27 @@ const StudioContent: React.FC = () => {
                 <p className="text-sm sm:text-base italic mb-2">
                   Connect your wallet to the studio. Click the "Connect" button on the top right:
                 </p>
-                <img className="rounded-lg border border-base-300" src="/studio/01.png" alt="Studio Connect" />
+                <ClickableImage src="/studio/01.png" alt="Studio Connect" caption="Click to enlarge" />
               </div>
 
               <div>
                 <p className="text-sm sm:text-base italic mb-2">Choose your wallet type:</p>
-                <img className="rounded-lg border border-base-300" src="/studio/02.png" alt="Wallet Selection" />
+                <ClickableImage src="/studio/02.png" alt="Wallet Selection" caption="Click to enlarge" />
               </div>
 
               <div>
                 <p className="text-sm sm:text-base italic mb-2">Confirm the connection in your wallet:</p>
-                <img className="rounded-lg border border-base-300" src="/studio/03.png" alt="Wallet Confirmation" />
+                <ClickableImage src="/studio/03.png" alt="Wallet Confirmation" caption="Click to enlarge" />
               </div>
 
               <div>
                 <p className="text-sm sm:text-base italic mb-2">Sign the message to connect:</p>
-                <img className="rounded-lg border border-base-300" src="/studio/04.png" alt="Sign Message" />
+                <ClickableImage src="/studio/04.png" alt="Sign Message" caption="Click to enlarge" />
               </div>
 
               <div>
                 <p className="text-sm sm:text-base italic mb-2">Click "Create a Subgraph" on your dashboard:</p>
-                <img className="rounded-lg border border-base-300" src="/studio/05.png" alt="Create Subgraph" />
+                <ClickableImage src="/studio/05.png" alt="Create Subgraph" caption="Click to enlarge" />
               </div>
 
               <p className="text-sm sm:text-base italic">Name your subgraph and click "Create Subgraph"</p>
@@ -210,7 +211,7 @@ const StudioContent: React.FC = () => {
               <p className="text-sm sm:text-base italic mb-2">
                 If successful, you should see your subgraph syncing or already synced in the studio:
               </p>
-              <img className="rounded-lg border border-base-300" src="/studio/08-3.png" alt="Studio Deploy" />
+              <ClickableImage src="/studio/08-3.png" alt="Studio Deploy" caption="Click to enlarge" />
             </div>
 
             <p className="text-sm sm:text-base text-base-content/80 mt-6">

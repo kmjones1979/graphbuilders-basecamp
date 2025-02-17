@@ -103,14 +103,12 @@ const StudioContent: React.FC = () => {
   return (
     <div className="flex justify-center">
       <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
-        {/* Header */}
+        {/* Header Card */}
         <div className="card bg-base-200 shadow-xl">
-          <div className="card-body p-4 sm:p-8">
-            <h1 className="card-title text-2xl sm:text-3xl mb-4">Subgraph Studio</h1>
-            <p className="text-sm sm:text-base text-base-content/80">
-              In this part of the mission you will deploy your subgraph to The Graph Subgraph Studio. The studio is a
-              place where you can create, test, and deploy subgraphs before you publish them to the decentralized
-              network.
+          <div className="card-body text-center space-y-4">
+            <h1 className="text-3xl sm:text-3xl font-bold">Subgraph Studio</h1>
+            <p className="text-base sm:text-xl">
+              In this part of the mission you will deploy your subgraph to The Graph Subgraph Studio.
             </p>
           </div>
         </div>
@@ -197,10 +195,10 @@ const StudioContent: React.FC = () => {
               Next, we need to update the deploy command for our subgraph package to use the name we configured in the
               studio. Update the "graph deploy" command in{" "}
               <code className="badge badge-ghost text-xs">packages/subgraph/package.json</code> to use the name of your
-              subgraph. In my case it is "mymission":
+              subgraph. In my case it is "mission2":
             </p>
 
-            <CodeSnippet code="graph deploy mymission" button={false} />
+            <CodeSnippet code="graph deploy <SUBGRAPH_NAME>" button={false} />
 
             <div className="alert bg-base-300 border border-base-content/10 mt-6">
               <p className="text-sm sm:text-base text-base-content/80">

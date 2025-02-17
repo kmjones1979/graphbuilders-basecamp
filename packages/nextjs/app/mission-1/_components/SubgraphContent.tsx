@@ -1,5 +1,6 @@
 import React from "react";
 import CodeSnippet from "./CodeSnippet";
+import ClickableImage from "~~/components/ClickableImage";
 
 const SCHEMA = `type Enlisted @entity {
     id: Bytes!
@@ -31,13 +32,14 @@ const SubgraphContent: React.FC = () => {
   return (
     <div className="flex justify-center">
       <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
-        {/* Header */}
+        {/* Header Card */}
         <div className="card bg-base-200 shadow-xl">
-          <div className="card-body p-4 sm:p-8">
-            <h1 className="card-title text-2xl sm:text-3xl mb-4">Subgraph</h1>
-            <p className="text-sm sm:text-base text-base-content/80">
+          <div className="card-body text-center space-y-4">
+            <h1 className="text-3xl sm:text-3xl font-bold">Subgraph Development</h1>
+            <p className="text-base sm:text-xl">
               In this part of the mission you will need to set up your local development environment so that you can
-              index the data from the smart contract.
+              index the data from the smart contract. We will do this by deploying a subgraph to your local machine via
+              Docker.
             </p>
           </div>
         </div>
@@ -230,7 +232,7 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
 
             <div className="mt-6">
               <p className="text-sm sm:text-base italic mb-2">✅ Success will look like this:</p>
-              <img className="rounded-lg border border-base-300" src="/mission-1-response.png" alt="Query Response" />
+              <ClickableImage src="/mission-1-response.png" alt="Query Response" caption="Click to enlarge" />
             </div>
           </div>
         </div>

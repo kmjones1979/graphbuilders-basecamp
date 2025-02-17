@@ -3,6 +3,7 @@ import CodeSnippet from "./CodeSnippet";
 import javaScriptSourceCode from "./JavaScriptSourceCode";
 import { useAccount } from "wagmi";
 import { gasLimit, subscriptionId } from "~~/app/config/constants";
+import ClickableImage from "~~/components/ClickableImage";
 import SuccessModal from "~~/components/SuccessModal";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
@@ -53,8 +54,9 @@ const STUDIO_STEPS = [
     id: 3,
     title: "Initialize Subgraph",
     description: "Create a new subgraph project outside the current project",
-    command: "graph init mymission",
-    output: `✔ Network · Base Sepolia Testnet · base-sepolia · https://sepolia.basescan.org
+    command: "graph init mission0-test",
+    output: `
+✔ Network · Base Sepolia Testnet · base-sepolia · https://sepolia.basescan.org
 ✔ Source · Smart Contract · ethereum
 ✔ Subgraph slug · mission0-test
 ✔ Directory to create the subgraph in · mission0-test
@@ -96,15 +98,16 @@ const STUDIO_STEPS = [
   },
 ];
 
-const VALIDATION_QUERY = `{
-  welcomeMessageChangeds(first: 1) {
-    id
-    newMessage
-    blockNumber
-    blockTimestamp
-    transactionHash
-  }
-}`;
+const VALIDATION_QUERY = `
+  {
+    welcomeMessageChangeds(first: 1) {
+      id
+      newMessage
+      blockNumber
+      blockTimestamp
+      transactionHash
+    }
+  }`;
 
 const StudioContent: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -166,13 +169,15 @@ const StudioContent: React.FC = () => {
   return (
     <div className="flex justify-center">
       <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-3xl sm:text-4xl font-bold">Subgraph Studio Deployment</h1>
-          <p className="text-base sm:text-xl text-base-content/80">
-            Create and deploy your subgraph to The Graph's Subgraph Studio for testing before publishing to the
-            decentralized network.
-          </p>
+        {/* Header Card */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body text-center space-y-4">
+            <h1 className="text-3xl sm:text-3xl font-bold">Subgraph Studio</h1>
+            <p className="text-base sm:text-xl">
+              In this part of the mission you will need to create a subgraph in The Graph Studio and then deploy it to
+              the network.
+            </p>
+          </div>
         </div>
 
         {/* Studio Steps */}
@@ -226,11 +231,7 @@ const StudioContent: React.FC = () => {
                   <div key={index} className="mt-4">
                     <p className="text-xs sm:text-sm text-base-content/70 mb-2">{image.caption}</p>
                     <div className="flex justify-center">
-                      <img
-                        className="rounded-lg border border-base-300 max-w-md w-full h-auto"
-                        src={image.src}
-                        alt={image.alt}
-                      />
+                      <ClickableImage src={image.src} alt={image.alt} caption="Click to enlarge" />
                     </div>
                   </div>
                 ))}
@@ -239,11 +240,7 @@ const StudioContent: React.FC = () => {
                   <div className="mt-4">
                     <p className="text-xs sm:text-sm text-base-content/70 mb-2">{step.image.caption}</p>
                     <div className="flex justify-center">
-                      <img
-                        className="rounded-lg border border-base-300 max-w-md w-full h-auto"
-                        src={step.image.src}
-                        alt={step.image.alt}
-                      />
+                      <ClickableImage src={step.image.src} alt={step.image.alt} caption="Click to enlarge" />
                     </div>
                   </div>
                 )}

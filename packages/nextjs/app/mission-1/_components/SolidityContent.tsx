@@ -7,7 +7,7 @@ const SolidityContent: React.FC = () => {
       <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
         {/* Story Section */}
         <div className="card bg-base-200 shadow-xl">
-          <div className="card-body p-4 sm:p-8">
+          <div className="card-body p-4 sm:p-8 prose">
             <p className="text-sm sm:text-lg italic text-base-content/80">
               You pause for a moment, breathing in the crisp, recycled air of the space academy. A sense of pride stirs
               within you, paired with the eagerness to move on to the next mission. Your eyes wander to a poster hanging
@@ -16,16 +16,13 @@ const SolidityContent: React.FC = () => {
             </p>
           </div>
         </div>
-
-        {/* Mission Overview */}
+        <div className="card bg-base-200 shadow-xl"></div>
+        {/* Header Card */}
         <div className="card bg-base-200 shadow-xl">
-          <div className="card-body p-4 sm:p-8">
-            <h1 className="card-title text-2xl sm:text-3xl mb-4">Solidity</h1>
-            <p className="text-sm sm:text-base text-base-content/80">
-              Congratulations on your progress thus far, your next step is to write a smart contract to enlist for the
-              outpost in Alpha Centauri. In this mission you will, edit a basic smart contract, create a basic
-              AssemblyScript handler to process event data and then publish that subgraph to your local machine as well
-              as the Subgraph Studio. Once you have completed this mission you will be able to move on.
+          <div className="card-body text-center space-y-4">
+            <h1 className="text-3xl sm:text-3xl font-bold">Smart Contract</h1>
+            <p className="text-base sm:text-xl">
+              In this mission you will be creating a smart contract to enlist for the outpost in Alpha Centauri.
             </p>
           </div>
         </div>

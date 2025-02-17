@@ -21,11 +21,11 @@ const Advanced: React.FC = () => {
   return (
     <div className="flex justify-center">
       <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
-        {/* Header */}
+        {/* Header Card */}
         <div className="card bg-base-200 shadow-xl">
-          <div className="card-body p-4 sm:p-8">
-            <h1 className="card-title text-2xl sm:text-3xl mb-4">Advanced Subgraph Techniques</h1>
-            <p className="text-sm sm:text-base text-base-content/80">
+          <div className="card-body text-center space-y-4">
+            <h1 className="text-3xl sm:text-3xl font-bold">Advanced Subgraph Techniques</h1>
+            <p className="text-base sm:text-xl">
               Welcome to your first advanced subgraph section! The road less-traveled can be long and arduous, but the
               rewards are often lucrative! In this section will you will learn about some key changes you can make to
               get the most out of your subgraph. You will learn about derivedFrom, graph-ts, and how to perform

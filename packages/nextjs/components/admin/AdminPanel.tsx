@@ -80,99 +80,101 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ mission, sourceCode }) =
   };
 
   return (
-    <div className="max-w-sm sm:max-w-2xl w-full p-4">
-      <div className="flex flex-col justify-center gap-4">
-        {/* Current Credentials Display */}
-        <div className="card bg-opacity-50 bg-base-200 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Current Credentials</h2>
-            {currentCredentials ? (
-              <div className="space-y-4">
-                {metadata?.image && (
-                  <div className="flex justify-center">
-                    <img
-                      src={metadata.image}
-                      alt={metadata.name}
-                      className="w-96 h-96 transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg rounded-lg"
-                    />
-                  </div>
-                )}
-                <div className="grid grid-cols-2 gap-2">
-                  <div>Enabled:</div>
-                  <div>{currentCredentials[0] ? "Yes" : "No"}</div>
-                  <div>Name:</div>
-                  <div>{currentCredentials[1]}</div>
-                  <div>URL:</div>
-                  <div className="break-all">{currentCredentials[2]}</div>
-                  {metadata && (
-                    <>
-                      <div>Metadata Name:</div>
-                      <div>{metadata.name}</div>
-                      <div>Description:</div>
-                      <div>{metadata.description}</div>
-                    </>
+    <>
+      <div className="max-w-sm sm:max-w-2xl w-full p-4">
+        <div className="flex flex-col justify-center gap-4">
+          {/* Current Credentials Display */}
+          <div className="card bg-opacity-50 bg-base-200 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title">Current Credentials</h2>
+              {currentCredentials ? (
+                <div className="space-y-4">
+                  {metadata?.image && (
+                    <div className="flex justify-center">
+                      <img
+                        src={metadata.image}
+                        alt={metadata.name}
+                        className="w-96 h-96 transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg rounded-lg"
+                      />
+                    </div>
                   )}
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>Enabled:</div>
+                    <div>{currentCredentials[0] ? "Yes" : "No"}</div>
+                    <div>Name:</div>
+                    <div>{currentCredentials[1]}</div>
+                    <div>URL:</div>
+                    <div className="break-all">{currentCredentials[2]}</div>
+                    {metadata && (
+                      <>
+                        <div>Metadata Name:</div>
+                        <div>{metadata.name}</div>
+                        <div>Description:</div>
+                        <div>{metadata.description}</div>
+                      </>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <p>No credentials available.</p>
-            )}
+              ) : (
+                <p>No credentials available.</p>
+              )}
+            </div>
           </div>
-        </div>
 
-        {/* Credentials Form */}
-        <div className="card bg-opacity-50 bg-base-200 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Update Credentials</h2>
-            <div className="form-control gap-4">
-              <label className="label cursor-pointer justify-start gap-4">
+          {/* Credentials Form */}
+          <div className="card bg-opacity-50 bg-base-200 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title">Update Credentials</h2>
+              <div className="form-control gap-4">
+                <label className="label cursor-pointer justify-start gap-4">
+                  <input
+                    type="checkbox"
+                    checked={enabled}
+                    onChange={e => setEnabled(e.target.checked)}
+                    className="checkbox"
+                  />
+                  <span className="label-text">Enabled</span>
+                </label>
                 <input
-                  type="checkbox"
-                  checked={enabled}
-                  onChange={e => setEnabled(e.target.checked)}
-                  className="checkbox"
+                  type="number"
+                  placeholder="ID"
+                  value={id}
+                  onChange={e => setId(Number(e.target.value))}
+                  className="input input-bordered"
                 />
-                <span className="label-text">Enabled</span>
-              </label>
-              <input
-                type="number"
-                placeholder="ID"
-                value={id}
-                onChange={e => setId(Number(e.target.value))}
-                className="input input-bordered"
-              />
-              <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={e => setName(e.target.value)}
-                className="input input-bordered"
-              />
-              <input
-                type="text"
-                placeholder="URL"
-                value={url}
-                onChange={e => setUrl(e.target.value)}
-                className="input input-bordered"
-              />
-              <button className="btn btn-primary" onClick={handleSetCredentials}>
-                Set Credentials
+                <input
+                  type="text"
+                  placeholder="Name"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  className="input input-bordered"
+                />
+                <input
+                  type="text"
+                  placeholder="URL"
+                  value={url}
+                  onChange={e => setUrl(e.target.value)}
+                  className="input input-bordered"
+                />
+                <button className="btn btn-primary" onClick={handleSetCredentials}>
+                  Set Credentials
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Mission Code Hash Section */}
+          <div className="card bg-opacity-50 bg-base-200 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title">Mission Code Hash</h2>
+              <p className="break-all">Current: {currentMissionCodeHash}</p>
+              <button className="btn btn-primary" onClick={handleSetMissionCodeHash}>
+                Set Mission Code Hash
               </button>
             </div>
           </div>
         </div>
-
-        {/* Mission Code Hash Section */}
-        <div className="card bg-opacity-50 bg-base-200 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Mission Code Hash</h2>
-            <p className="break-all">Current: {currentMissionCodeHash}</p>
-            <button className="btn btn-primary" onClick={handleSetMissionCodeHash}>
-              Set Mission Code Hash
-            </button>
-          </div>
-        </div>
       </div>
-    </div>
+    </>
   );
 };

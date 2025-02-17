@@ -1,7 +1,8 @@
 import React from "react";
 import CodeSnippet from "./CodeSnippet";
 
-const SCHEMA = `type OwnershipTransferred @entity(immutable: true) {
+const SCHEMA = `
+type OwnershipTransferred @entity(immutable: true) {
     id: Bytes!
     previousOwner: Bytes! # address
     newOwner: Bytes! # address
@@ -10,7 +11,8 @@ const SCHEMA = `type OwnershipTransferred @entity(immutable: true) {
     transactionHash: Bytes!
 }`;
 
-const HANDLER_CODE = `import {
+const HANDLER_CODE = `
+import {
     Approval as ApprovalEvent,
     OwnershipTransferred as OwnershipTransferredEvent,
     Transfer as TransferEvent,
@@ -53,11 +55,11 @@ const SubgraphContent: React.FC = () => {
   return (
     <div className="flex justify-center">
       <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
-        {/* Header */}
+        {/* Header Card */}
         <div className="card bg-base-200 shadow-xl">
-          <div className="card-body p-4 sm:p-8">
-            <h1 className="card-title text-2xl sm:text-3xl mb-4">Subgraph</h1>
-            <p className="text-sm sm:text-base text-base-content/80">
+          <div className="card-body text-center space-y-4">
+            <h1 className="text-3xl sm:text-3xl font-bold">Subgraph Studio</h1>
+            <p className="text-base sm:text-xl">
               In this part of the mission you will need to index the data from the Moon smart contract into The Graph.
             </p>
           </div>

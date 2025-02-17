@@ -1,7 +1,9 @@
 import React from "react";
 import CodeSnippet from "./CodeSnippet";
+import ClickableImage from "~~/components/ClickableImage";
 
-const WELCOME_CONTRACT = `//SPDX-License-Identifier: MIT
+const WELCOME_CONTRACT = `
+//SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
 import "hardhat/console.sol";
@@ -89,19 +91,14 @@ const SolidityContent: React.FC = () => {
   return (
     <div className="flex justify-center">
       <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
-        {/* Story Section */}
+        {/* Header Card */}
         <div className="card bg-base-200 shadow-xl">
-          <div className="card-body p-4 sm:p-8 prose">
-            <p className="text-sm sm:text-lg italic text-base-content/80">
-              The shuttle transporting you glides effortlessly through the vast emptiness, its engine humming softly as
-              it decelerates toward the docking bay. Your pulse quickens, a mix of awe and anticipation flooding your
-              senses, as the sprawling station looms ahead—an impossible city suspended in the void.
-            </p>
-            <p className="text-sm sm:text-lg italic text-base-content/80">
-              Before you stretches a dazzling array of shimmering towers and crystalline domes, each one bathed in the
-              cold, ethereal light of distant stars. The shuttle screeches as it arrives at the academy. You inhale
-              deeply, your gaze fixed on the unknown. With a steadying breath, you step off the shuttle and into the
-              hallway of the space academy. The future is waiting.
+          <div className="card-body text-center space-y-4">
+            <h1 className="text-3xl sm:text-3xl font-bold">Solidity</h1>
+            <p className="text-base sm:text-xl">
+              In each mission, you'll work with a basic smart contract and deploy script. Your task is to complete the
+              outlined steps, starting with Solidity code modifications, then the subgraph, and finally deploying to a
+              public network.
             </p>
           </div>
         </div>
@@ -109,13 +106,6 @@ const SolidityContent: React.FC = () => {
         {/* Contract Section */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-lg sm:text-2xl">Smart Contract Overview</h2>
-            <p className="text-sm sm:text-base text-base-content/80">
-              In each mission, you'll work with a basic smart contract and deploy script. Your task is to complete the
-              outlined steps, starting with Solidity code modifications, then the subgraph, and finally deploying to a
-              public network.
-            </p>
-
             <div className="mt-4">
               <h3 className="text-base sm:text-xl font-semibold mb-2">Welcome Contract</h3>
               <p className="text-xs sm:text-sm text-base-content/70 mb-2">
@@ -150,11 +140,7 @@ const SolidityContent: React.FC = () => {
                     <div className="mt-4">
                       <p className="text-xs sm:text-sm text-base-content/70 mb-2">Success will look like this:</p>
                       <div className="flex justify-center">
-                        <img
-                          className="rounded-lg border border-base-300 max-w-md w-full h-auto"
-                          src={step.image.src}
-                          alt={step.image.alt}
-                        />
+                        <ClickableImage src={step.image.src} alt={step.image.alt} caption="Click to enlarge" />
                       </div>
                     </div>
                   )}

@@ -1,5 +1,6 @@
 import React from "react";
 import CodeSnippet from "./CodeSnippet";
+import ClickableImage from "~~/components/ClickableImage";
 
 const DEPLOYMENT_STEPS = [
   {
@@ -70,12 +71,14 @@ const DeployContent: React.FC = () => {
   return (
     <div className="flex justify-center">
       <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-3xl sm:text-4xl font-bold">Smart Contract Deployment</h1>
-          <p className="text-base sm:text-xl text-base-content/80">
-            Deploy your smart contract to Base Sepolia to index the data on The Graph's decentralized network.
-          </p>
+        {/* Header Card */}
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body text-center space-y-4">
+            <h1 className="text-3xl sm:text-3xl font-bold">Smart Contract Deployment</h1>
+            <p className="text-base sm:text-xl">
+              Deploy your smart contract to Base Sepolia to index the data on The Graph's decentralized network.
+            </p>
+          </div>
         </div>
 
         {/* Deployment Steps */}
@@ -110,11 +113,7 @@ const DeployContent: React.FC = () => {
                   <div className="mt-4">
                     <p className="text-xs sm:text-sm text-base-content/70 mb-2">Success will look like this:</p>
                     <div className="flex justify-center">
-                      <img
-                        className="rounded-lg border border-base-300 max-w-md w-full h-auto"
-                        src={step.image.src}
-                        alt={step.image.alt}
-                      />
+                      <ClickableImage src={step.image.src} alt={step.image.alt} caption="Click to enlarge" />
                     </div>
                   </div>
                 )}

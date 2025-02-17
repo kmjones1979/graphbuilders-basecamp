@@ -141,13 +141,14 @@ if (id[0] === account) {
   return (
     <div className="flex justify-center">
       <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
-        {/* Header */}
+        {/* Header Card */}
         <div className="card bg-base-200 shadow-xl">
-          <div className="card-body p-4 sm:p-8">
-            <h1 className="card-title text-2xl sm:text-3xl mb-4">Subgraph Studio Deployment</h1>
-            <p className="text-sm sm:text-base text-base-content/80">
-              Now that you have tested your subgraph locally, it's time to deploy it to the Subgraph Studio for testing
-              before publishing to the decentralized network.
+          <div className="card-body text-center space-y-4">
+            <h1 className="text-3xl sm:text-3xl font-bold">Subgraph Studio</h1>
+            <p className="text-base sm:text-xl">
+              In this part of the mission you will deploy your subgraph to The Graph Subgraph Studio. The studio is a
+              place where you can create, test, and deploy subgraphs before you publish them to the decentralized
+              network.
             </p>
           </div>
         </div>

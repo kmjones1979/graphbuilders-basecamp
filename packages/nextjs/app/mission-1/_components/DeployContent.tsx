@@ -5,11 +5,11 @@ const DeployContent: React.FC = () => {
   return (
     <div className="flex justify-center">
       <div className="w-full p-4 space-y-6 max-w-[95vw] sm:max-w-4xl">
-        {/* Header */}
+        {/* Header Card */}
         <div className="card bg-base-200 shadow-xl">
-          <div className="card-body p-4 sm:p-8">
-            <h1 className="card-title text-2xl sm:text-3xl mb-4 justify-center">Smart Contract Deployment</h1>
-            <p className="text-sm sm:text-base text-base-content/80">
+          <div className="card-body text-center space-y-4">
+            <h1 className="text-3xl sm:text-3xl font-bold">Smart Contract Deployment</h1>
+            <p className="text-base sm:text-xl">
               Up to this point we have been doing local first development. In this part of the mission you will deploy
               your smart contract to a public network. This way we can index the data on The Graph's decentralized
               network.
