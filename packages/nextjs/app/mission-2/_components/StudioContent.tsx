@@ -3,6 +3,7 @@ import CodeSnippet from "./CodeSnippet";
 import javaScriptSourceCode from "./JavaScriptSourceCode";
 import { useAccount } from "wagmi";
 import { gasLimit, subscriptionId } from "~~/app/config/constants";
+import ClickableImage from "~~/components/ClickableImage";
 import SuccessModal from "~~/components/SuccessModal";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
@@ -118,7 +119,9 @@ const StudioContent: React.FC = () => {
         {/* Studio Setup */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">1. Create Subgraph in Studio</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">1</span>Create Subgraph in Studio
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               First, create a subgraph in the studio by visiting:
             </p>
@@ -137,29 +140,39 @@ const StudioContent: React.FC = () => {
                   You will need to connect your wallet to the studio to create a subgraph. Click the "Connect" button on
                   the top right of the screen.
                 </p>
-                <img className="rounded-lg border border-base-300" src="/studio/01.png" alt="Studio Connect" />
+                <div className="max-w-xl mx-auto">
+                  <ClickableImage src="/studio/01.png" alt="Studio Connect" caption="Click to enlarge" />
+                </div>
               </div>
 
               <div>
                 <p className="text-sm sm:text-base italic mb-2">Choose the wallet type you would like to connect.</p>
-                <img className="rounded-lg border border-base-300" src="/studio/02.png" alt="Wallet Selection" />
+                <div className="max-w-xl mx-auto">
+                  <ClickableImage src="/studio/02.png" alt="Wallet Selection" caption="Click to enlarge" />
+                </div>
               </div>
 
               <div>
                 <p className="text-sm sm:text-base italic mb-2">Confirm the connection in your wallet.</p>
-                <img className="rounded-lg border border-base-300" src="/studio/03.png" alt="Wallet Confirmation" />
+                <div className="max-w-xl mx-auto">
+                  <ClickableImage src="/studio/03.png" alt="Wallet Confirmation" caption="Click to enlarge" />
+                </div>
               </div>
 
               <div>
                 <p className="text-sm sm:text-base italic mb-2">Sign the message to connect your wallet.</p>
-                <img className="rounded-lg border border-base-300" src="/studio/04.png" alt="Message Signing" />
+                <div className="max-w-xl mx-auto">
+                  <ClickableImage src="/studio/04.png" alt="Message Signing" caption="Click to enlarge" />
+                </div>
               </div>
 
               <div>
                 <p className="text-sm sm:text-base italic mb-2">
                   On your main subgraph dashboard, click the "Create a Subgraph" button.
                 </p>
-                <img className="rounded-lg border border-base-300" src="/studio/05.png" alt="Create Subgraph" />
+                <div className="max-w-xl mx-auto">
+                  <ClickableImage src="/studio/05.png" alt="Create Subgraph" caption="Click to enlarge" />
+                </div>
               </div>
 
               <div>
@@ -172,7 +185,9 @@ const StudioContent: React.FC = () => {
         {/* Configuration */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">2. Update Configuration</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">2</span>Update Configuration
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               Now that we have a subgraph in the studio available to deploy to, we want to update our{" "}
               <code className="badge badge-ghost text-xs">networks.json</code> configuration file to reference our newly
@@ -192,7 +207,9 @@ const StudioContent: React.FC = () => {
         {/* Deployment */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">3. Deploy to Studio</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">3</span>Deploy to Studio
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               Next, we need to update the deploy command for our subgraph package to use the name we configured in the
               studio. Update the "graph deploy" command in{" "}
@@ -221,11 +238,9 @@ const StudioContent: React.FC = () => {
                 If you did this part correctly, you should see your subgraph syncing or potentially already synced in
                 the studio:
               </p>
-              <img
-                className="rounded-lg border border-base-300 mt-2"
-                src="/studio/08-2.png"
-                alt="Studio Deploy Success"
-              />
+              <div className="max-w-xl mx-auto">
+                <ClickableImage src="/studio/08-2.png" alt="Studio Deploy Success" caption="Click to enlarge" />
+              </div>
             </div>
           </div>
         </div>
@@ -233,7 +248,9 @@ const StudioContent: React.FC = () => {
         {/* Validation */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">4. Submit for Validation</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">4</span>Submit for Validation
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               Congratulations! You have now successfully deployed your subgraph to the studio! To complete the mission
               navigate to the Endpoints tab on your subgraph and submit your QueryURL.
@@ -293,10 +310,10 @@ const StudioContent: React.FC = () => {
               <p className="text-sm sm:text-base text-base-content/80">
                 Enter your subgraph Query URL from the Endpoints tab in Subgraph Studio.
               </p>
-              <div className="alert alert-warning mt-4 text-sm sm:text-base">
+              <div className="alert alert-info mt-4 text-sm sm:text-base">
                 <p>
                   Note: The validation will take a few minutes to complete. Please be patient and only submit once.
-                  (Check the browser console output to troubleshoot)
+                  (Check the console for errors and GraphQL response data)
                 </p>
               </div>
               <input

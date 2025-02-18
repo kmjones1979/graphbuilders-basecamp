@@ -59,7 +59,9 @@ const SolidityContent: React.FC = () => {
         {/* Environment Setup */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl">Environment Setup</h2>
+            <h2 className="card-title text-xl sm:text-2xl">
+              <span className="badge badge-primary">1</span>Environment Setup
+            </h2>
             <p className="text-sm sm:text-base italic mb-4">
               Before you begin, make sure you are in the proper branch.
             </p>
@@ -109,7 +111,9 @@ const SolidityContent: React.FC = () => {
         {/* Contract Code */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">Starting Contract Code</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">2</span>Starting Contract Code
+            </h2>
             <p className="text-sm sm:text-base italic mb-4">
               The starting smart contract code for this mission is as follows:
             </p>
@@ -134,7 +138,7 @@ const SolidityContent: React.FC = () => {
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
             <h2 className="card-title text-xl sm:text-2xl mb-4">
-              📝 Task 1: Take ownership of the contract with OpenZeppelin Ownable
+              <span className="badge badge-primary">1</span>Take ownership of the contract with OpenZeppelin Ownable
             </h2>
 
             <p className="text-sm sm:text-base font-bold mb-4">To complete this task, follow these steps:</p>

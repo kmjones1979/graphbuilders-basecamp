@@ -156,7 +156,9 @@ if (id[0] === account) {
         {/* Studio Setup */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">1. Create Subgraph in Studio</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">1</span>Create Subgraph in Studio
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               First, you'll need to create a new subgraph in the Subgraph Studio:
             </p>
@@ -176,7 +178,9 @@ if (id[0] === account) {
         {/* Authentication */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">2. Authenticate CLI</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">2</span>Authenticate CLI
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               Get your deploy key from the Subgraph Studio and authenticate the Graph CLI:
             </p>
@@ -187,7 +191,9 @@ if (id[0] === account) {
         {/* Deployment */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">3. Deploy to Studio</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">3</span>Deploy to Studio
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               Deploy your subgraph to the Subgraph Studio. Make sure you're in the subgraph directory:
             </p>
@@ -227,7 +233,9 @@ Queries (HTTP):     https://api.studio.thegraph.com/query/<YOUR_ID>/<SUBGRAPH_NA
         {/* Testing */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">4. Test Your Deployment</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">4</span>Test Your Deployment
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               Once deployed, you can test your subgraph in the Subgraph Studio's playground. Try the same query we used
               locally:
@@ -262,7 +270,9 @@ query MyQuery {
         {/* Validation */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">5. Submit for Validation</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">5</span>Submit for Validation
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               Once you've confirmed your subgraph is working correctly in the Studio, submit your Query URL for
               validation.
@@ -288,10 +298,10 @@ query MyQuery {
               <p className="text-sm sm:text-base text-base-content/80">
                 Enter your subgraph Query URL from the Endpoints tab in Subgraph Studio.
               </p>
-              <div className="alert alert-warning mt-4 text-sm sm:text-base">
+              <div className="alert alert-info mt-4 text-sm sm:text-base">
                 <p>
                   Note: Click "Precheck" first then "Submit". Validation will take anywhere from 1-5 minutes. (Check the
-                  browser console output to troubleshoot)
+                  console for errors and GraphQL response data)
                 </p>
               </div>
               <input

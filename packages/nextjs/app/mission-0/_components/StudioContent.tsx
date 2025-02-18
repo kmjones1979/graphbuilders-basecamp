@@ -323,10 +323,10 @@ const StudioContent: React.FC = () => {
               <p className="text-sm sm:text-base text-base-content/80">
                 Enter your subgraph Query URL from the Endpoints tab in Subgraph Studio.
               </p>
-              <div className="alert alert-warning mt-4 text-sm sm:text-base">
+              <div className="alert alert-info mt-4 text-sm sm:text-base">
                 <p>
                   Note: Click "Precheck" first then "Submit". Validation will take anywhere from 1-5 minutes. (Check the
-                  browser console output to troubleshoot)
+                  console for errors and GraphQL response data)
                 </p>
               </div>
               <input

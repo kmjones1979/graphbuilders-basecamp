@@ -30,7 +30,9 @@ const SolidityContent: React.FC = () => {
         {/* Environment Setup */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl">1. Environment Setup</h2>
+            <h2 className="card-title text-xl sm:text-2xl">
+              <span className="badge badge-primary">1</span>Environment Setup
+            </h2>
             <p className="text-sm sm:text-base italic mb-4">
               Before you begin, make sure you are in the proper branch.
             </p>
@@ -70,11 +72,15 @@ const SolidityContent: React.FC = () => {
         {/* Deployment Steps */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl">2. Deploy Contract</h2>
+            <h2 className="card-title text-xl sm:text-2xl">
+              <span className="badge badge-primary">2</span>Deploy Contract
+            </h2>
             <p className="text-sm sm:text-base italic mb-2">(In a new terminal)</p>
             <CodeSnippet code="yarn deploy" button={true} />
 
-            <h2 className="card-title text-xl sm:text-2xl mt-6">3. Start Frontend</h2>
+            <h2 className="card-title text-xl sm:text-2xl mt-6">
+              <span className="badge badge-primary">3</span>Start Frontend
+            </h2>
             <p className="text-sm sm:text-base italic mb-2">(In a new terminal)</p>
             <CodeSnippet code="yarn start" button={true} />
           </div>
@@ -83,7 +89,9 @@ const SolidityContent: React.FC = () => {
         {/* Contract Code */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">Starting Contract Code</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">4</span>Starting Contract Code
+            </h2>
             <p className="text-sm sm:text-base italic mb-4">
               The starting smart contract code for this mission is as follows:
             </p>
@@ -119,7 +127,7 @@ const SolidityContent: React.FC = () => {
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
             <h2 className="card-title text-xl sm:text-2xl mb-4">
-              📝 Task 1: Add an event to track addresses which have enlisted
+              <span className="badge badge-primary">5</span>Add an event to track addresses which have enlisted
             </h2>
 
             <p className="text-sm sm:text-base font-bold mb-4">To complete this task, follow these steps:</p>
@@ -150,12 +158,16 @@ const SolidityContent: React.FC = () => {
             </div>
 
             <div className="mt-6">
-              <p className="text-sm sm:text-base italic mb-2">Deploy your changes:</p>
+              <p className="text-sm sm:text-base italic mb-2">
+                <span className="badge badge-primary">6</span>Deploy your changes:
+              </p>
               <CodeSnippet code="yarn deploy --reset" button={true} />
             </div>
 
             <div className="mt-6">
-              <p className="text-sm sm:text-base italic mb-2">✅ Success will look like this:</p>
+              <p className="text-sm sm:text-base italic mb-2">
+                <span className="badge badge-primary">7</span>✅ Success will look like this:
+              </p>
               <div className="mockup-code text-xs sm:text-sm">
                 <pre>
                   <code>deployed at 0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6 with 283218 gas</code>

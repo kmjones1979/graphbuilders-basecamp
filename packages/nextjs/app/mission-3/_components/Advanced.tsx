@@ -39,6 +39,9 @@ const Advanced: React.FC = () => {
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
             <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">1</span>Modify your subgraph
+            </h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
               📝 Task 1: Track accounts that hold the Moon Token using derivedFrom
             </h2>
 
@@ -135,7 +138,9 @@ const Advanced: React.FC = () => {
         {/* Deployment Section */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">Deploy Your Changes</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">2</span>Deploy Your Changes
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               After you have completed the tasks, deploy your changes:
             </p>
@@ -160,7 +165,9 @@ const Advanced: React.FC = () => {
         {/* Testing Section */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">Test Your Implementation</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">3</span>Test Your Implementation
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               Now we can test to make sure our subgraph is properly indexing using the GraphiQL explorer. Visit the{" "}
               <a

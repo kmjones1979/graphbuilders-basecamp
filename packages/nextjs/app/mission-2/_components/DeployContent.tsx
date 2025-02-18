@@ -29,7 +29,9 @@ const DeployContent: React.FC = () => {
         {/* Generate Deployer Key */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">1. Generate Deployer Key</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">1</span>Generate Deployer Key
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               First, generate a new deployer key - we don't want to use the keys that come shipped with our local chain:
             </p>
@@ -40,7 +42,9 @@ const DeployContent: React.FC = () => {
         {/* Account Funding */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">2. Fund Your Account</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">2</span>Fund Your Account
+            </h2>
             <p className="text-sm sm:text-base italic mb-4">
               We will need to fund our deployer account with some testnet funds. Quick tip, use the following command to
               check your balance and display a QR code to scan with your wallet:
@@ -79,7 +83,9 @@ const DeployContent: React.FC = () => {
         {/* Contract Deployment */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">3. Deploy Contract</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">3</span>Deploy Contract
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               Next you will need to deploy your smart contract to the network. In our case we will deploy to
               baseSepolia. You can either edit your hardhat configuration file to use the defaultNetwork as baseSepolia,
@@ -101,7 +107,9 @@ const DeployContent: React.FC = () => {
         {/* Contract Verification */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">4. Verify Contract</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">4</span>Verify Contract
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               Last step we will want to verify our contract. This will make it easier for us to interact with it in the
               future.
@@ -122,7 +130,9 @@ const DeployContent: React.FC = () => {
         {/* Frontend Configuration */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">5. Configure Frontend</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">5</span>Configure Frontend
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               Next configure the frontend to use the proper network. To do this edit the{" "}
               <code className="badge badge-ghost text-xs">scaffold.config.ts</code> configuration file which is located

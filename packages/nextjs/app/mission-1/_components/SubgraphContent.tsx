@@ -50,7 +50,9 @@ const SubgraphContent: React.FC = () => {
         {/* Local Graph Node Setup */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">1. Start Local Graph Node</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">1</span>Start Local Graph Node
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               To get started, open up a new terminal and run the following command to spin up your local Graph Node
               inside of docker:
@@ -73,7 +75,9 @@ const SubgraphContent: React.FC = () => {
         {/* Subgraph Configuration */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">2. Configure Subgraph</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">2</span>Configure Subgraph
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               Next you will need to create a subgraph configuration inside your graph-node instance.
             </p>
@@ -96,7 +100,9 @@ const SubgraphContent: React.FC = () => {
         {/* Handler Implementation */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">3. Implement Event Handler</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">3</span>Implement Event Handler
+            </h2>
             <p className="text-sm sm:text-base text-base-content/80 mb-4">
               Now you will need to complete the code for the handler to process the event data coming off the smart
               contract. Open up your project in a text editor and navigate to the handler in{" "}
@@ -124,7 +130,7 @@ const SubgraphContent: React.FC = () => {
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
             <h2 className="card-title text-xl sm:text-2xl mb-4">
-              📝 Task: Add logic to the handler to index the Enlisted event data
+              <span className="badge badge-primary">4</span>Add logic to the handler to index the Enlisted event data
             </h2>
 
             <p className="text-sm sm:text-base mb-4">
@@ -178,7 +184,9 @@ const SubgraphContent: React.FC = () => {
         {/* Deployment Section */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">4. Deploy Your Changes</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">5</span>Deploy Your Changes
+            </h2>
             <CodeSnippet code="yarn local-ship" button={true} />
 
             <div className="mt-4">
@@ -209,7 +217,9 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
         {/* Testing Section */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">5. Test Your Subgraph</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">6</span>Test Your Subgraph
+            </h2>
             <p className="text-sm sm:text-base mb-4">Open up the GraphiQL IDE to view your data:</p>
 
             <a
@@ -243,10 +253,14 @@ Queries (HTTP):     http://localhost:8000/subgraphs/name/scaffold-eth/your-contr
         {/* Graph Client Section */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">6. Build Graph Client</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">7</span>Build Graph Client
+            </h2>
             <p className="text-sm sm:text-base mb-4">
-              Now you will need to build the graph client artifacts... if you did this part correctly the results should
-              populate in the table below.
+              This part of the mission is optional. If you would like to build the graph client, you can run the
+              following command, this will create a new folder called{" "}
+              <code className="badge badge-ghost text-xs">graphclient</code>
+              that will contain the artifacts:
             </p>
             <CodeSnippet code="yarn graphclient:build" button={true} />
 
