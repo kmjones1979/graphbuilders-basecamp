@@ -50,13 +50,13 @@ const Hero = ({ resolvedTheme, router }: ComponentProps) => (
         <div className="flex justify-center">
           <TerminalText
             text="Builders Basecamp"
-            className={`mb-5 text-3xl sm:text-6xl silkscreen-text text-center ${
+            className={`mb-5 text-4xl sm:text-6xl silkscreen-text text-center ${
               resolvedTheme === "light" ? "text-gray-500" : "text-white"
             }`}
           />
         </div>
         <div className="flex flex-col items-center">
-          <p className="p-6 mb-10 max-w-lg text-center text-sm sm:text-xl text-violet-300 the-graph-text">
+          <p className="p-2 mb-10 max-w-lg text-center text-sm sm:text-xl text-violet-300 the-graph-text">
             A series of missions where you will test your ability to write smart contracts and develop subgraphs on The
             Graph protocol. To get started click the button below.
           </p>
