@@ -2,6 +2,8 @@
 
 import { FC, useEffect, useState } from "react";
 import { rankNames } from "../../config/constants";
+import BuidlGuidlProfileLink from "./_components/BuidlGuidlProfileLink";
+import BuidlGuidlLink from "./_components/BuidlGuidlProfileLink";
 import { faGithub, faLinkedin, faTelegram, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe, faShareAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,6 +32,7 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
   const [selectedMission, setSelectedMission] = useState<number | null>(null);
   const [showShareTooltip, setShowShareTooltip] = useState(false);
   const { data: ensName } = useEnsName({ address: params.address });
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     const fetchUserCredentials = async () => {
@@ -45,6 +48,10 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
 
     fetchUserCredentials();
   }, [address]);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const getUserProgress = () => {
     if (!userCredentials?.users[0]) return 0;
@@ -121,31 +128,37 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
               </h2>
 
               <div className="flex space-x-4 mt-2 justify-center sm:justify-start ">
-                <FontAwesomeIcon
-                  icon={faTwitter}
-                  className="text-gray-500 w-6 h-6 hover:text-blue-400 cursor-pointer transition-colors"
-                  onClick={shareToX}
-                />
-                <FontAwesomeIcon
-                  icon={faGithub}
-                  className="text-gray-500 w-6 h-6 hover:text-gray-700 cursor-pointer transition-colors"
-                />
-                <FontAwesomeIcon
-                  icon={faLinkedin}
-                  className="text-gray-500 w-6 h-6 hover:text-blue-600 cursor-pointer transition-colors"
-                />
-                <FontAwesomeIcon
-                  icon={faTelegram}
-                  className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
-                />
-                <FontAwesomeIcon
-                  icon={faShareAlt}
-                  className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
-                />
-                <FontAwesomeIcon
-                  icon={faGlobe}
-                  className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
-                />
+                {isMounted && (
+                  <>
+                    <FontAwesomeIcon
+                      icon={faTwitter}
+                      className="text-gray-500 w-6 h-6 hover:text-blue-400 cursor-pointer transition-colors"
+                      onClick={shareToX}
+                    />
+                    <FontAwesomeIcon
+                      icon={faGithub}
+                      className="text-gray-500 w-6 h-6 hover:text-gray-700 cursor-pointer transition-colors"
+                    />
+                    <FontAwesomeIcon
+                      icon={faLinkedin}
+                      className="text-gray-500 w-6 h-6 hover:text-blue-600 cursor-pointer transition-colors"
+                    />
+                    <FontAwesomeIcon
+                      icon={faTelegram}
+                      className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
+                    />
+                    <FontAwesomeIcon
+                      icon={faShareAlt}
+                      className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
+                    />
+                    <FontAwesomeIcon
+                      icon={faGlobe}
+                      className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
+                    />
+
+                    <BuidlGuidlProfileLink address={address} />
+                  </>
+                )}
               </div>
             </div>
             <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 mt-4 sm:mt-0">
