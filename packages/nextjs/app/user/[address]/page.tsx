@@ -133,7 +133,6 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
                     <FontAwesomeIcon
                       icon={faTwitter}
                       className="text-gray-500 w-6 h-6 hover:text-blue-400 cursor-pointer transition-colors"
-                      onClick={shareToX}
                     />
                     <FontAwesomeIcon
                       icon={faGithub}
