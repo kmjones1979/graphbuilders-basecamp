@@ -169,7 +169,7 @@ const Home: NextPage = () => {
 
         <div className="bg-base-100">
           <div className="flex justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-6 max-w-7xl">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-6 justify-center">
               {nftComingSoon.slice(0, 3).map(nft => (
                 <div key={nft.id} className="flex justify-center">
                   <NFTCard nft={nft} isActive={false} />
