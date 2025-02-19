@@ -93,14 +93,19 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
           url: shareUrl,
         });
       } else {
-        navigator.clipboard.writeText(shareUrl);
+        await navigator.clipboard.writeText(shareUrl);
         setShowShareTooltip(true);
         setTimeout(() => setShowShareTooltip(false), 2000);
       }
     } catch (err) {
-      navigator.clipboard.writeText(shareUrl);
-      setShowShareTooltip(true);
-      setTimeout(() => setShowShareTooltip(false), 2000);
+      console.error("Error sharing:", err);
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        setShowShareTooltip(true);
+        setTimeout(() => setShowShareTooltip(false), 2000);
+      } catch (clipboardError) {
+        console.error("Failed to write to clipboard:", clipboardError);
+      }
     }
   };
 
@@ -109,11 +114,41 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
       {/* Profile Card */}
       <div className="card bg-base-50 w-full shadow-xl">
         <div className="card-body">
-          <div className="flex justify-between items-center">
-            <h2 className="card-title flex space-x-4 mt-2 justify-center sm:justify-start">
-              <Address address={address} />
-            </h2>
-            <div className="flex space-x-2">
+          <div className="flex flex-col sm:flex-row justify-between items-center">
+            <div className="sm:flex-row justify-between items-center">
+              <h2 className="card-title flex space-x-4 mt-2 justify-center sm:justify-start">
+                <Address address={address} />
+              </h2>
+
+              <div className="flex space-x-4 mt-2 justify-center sm:justify-start ">
+                <FontAwesomeIcon
+                  icon={faTwitter}
+                  className="text-gray-500 w-6 h-6 hover:text-blue-400 cursor-pointer transition-colors"
+                  onClick={shareToX}
+                />
+                <FontAwesomeIcon
+                  icon={faGithub}
+                  className="text-gray-500 w-6 h-6 hover:text-gray-700 cursor-pointer transition-colors"
+                />
+                <FontAwesomeIcon
+                  icon={faLinkedin}
+                  className="text-gray-500 w-6 h-6 hover:text-blue-600 cursor-pointer transition-colors"
+                />
+                <FontAwesomeIcon
+                  icon={faTelegram}
+                  className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
+                />
+                <FontAwesomeIcon
+                  icon={faShareAlt}
+                  className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
+                />
+                <FontAwesomeIcon
+                  icon={faGlobe}
+                  className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 mt-4 sm:mt-0">
               <button
                 onClick={handleShare}
                 className="btn btn-ghost btn-sm gap-2 hover:bg-slate-700 transition-colors relative"
@@ -135,33 +170,6 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
                 Share on Farcaster
               </button>
             </div>
-          </div>
-          <div className="flex space-x-4 mt-2 justify-center sm:justify-start">
-            <FontAwesomeIcon
-              icon={faTwitter}
-              className="text-gray-500 w-6 h-6 hover:text-blue-400 cursor-pointer transition-colors"
-              onClick={shareToX}
-            />
-            <FontAwesomeIcon
-              icon={faGithub}
-              className="text-gray-500 w-6 h-6 hover:text-gray-700 cursor-pointer transition-colors"
-            />
-            <FontAwesomeIcon
-              icon={faLinkedin}
-              className="text-gray-500 w-6 h-6 hover:text-blue-600 cursor-pointer transition-colors"
-            />
-            <FontAwesomeIcon
-              icon={faTelegram}
-              className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
-            />
-            <FontAwesomeIcon
-              icon={faShareAlt}
-              className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
-            />
-            <FontAwesomeIcon
-              icon={faGlobe}
-              className="text-gray-500 w-6 h-6 hover:text-blue-500 cursor-pointer transition-colors"
-            />
           </div>
         </div>
       </div>
