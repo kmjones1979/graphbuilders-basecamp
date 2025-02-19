@@ -4,7 +4,7 @@ import { FC, useEffect, useState } from "react";
 import { rankNames } from "../../config/constants";
 import BuidlGuidlProfileLink from "./_components/BuidlGuidlProfileLink";
 import BuidlGuidlLink from "./_components/BuidlGuidlProfileLink";
-import { faGithub, faLinkedin, faTelegram, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faLinkedin, faTelegram, faTwitter, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe, faShareAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Share2 } from "lucide-react";
@@ -131,7 +131,7 @@ const User: FC<{ params: { address: `0x${string}` } }> = ({ params }) => {
                 {isMounted && (
                   <>
                     <FontAwesomeIcon
-                      icon={faTwitter}
+                      icon={faXTwitter}
                       className="text-gray-500 w-6 h-6 hover:text-blue-400 cursor-pointer transition-colors"
                     />
                     <FontAwesomeIcon
