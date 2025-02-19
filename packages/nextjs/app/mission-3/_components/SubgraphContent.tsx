@@ -159,42 +159,59 @@ const SubgraphContent: React.FC = () => {
               <span className="badge badge-primary">4</span>Add the ERC-20 Events to the Subgraph
             </h2>
 
-            <p className="text-sm sm:text-base mb-4">
-              Here is the starting handler located in{" "}
-              <code className="badge badge-ghost text-xs">packages/subgraph/src/mapping.ts</code>
-            </p>
-
-            <div className="mockup-code text-xs sm:text-sm w-full">
-              <pre className="pl-8">
-                <code className="language-typescript">{HANDLER_CODE}</code>
-              </pre>
+            <div className="alert bg-base-300 border border-base-content/10 mb-6">
+              <div>
+                <p className="text-sm sm:text-base text-base-content/80">
+                  <span className="font-bold">Goal:</span> Add support for indexing ERC-20 Transfer and Approval events
+                </p>
+              </div>
             </div>
 
-            <div className="mt-6">
-              <p className="text-base sm:text-lg font-bold mb-4">To complete this task, follow these steps:</p>
-              <ul className="list-disc list-inside space-y-2 text-sm sm:text-base text-base-content/80">
-                <li>
-                  Use the <code className="badge badge-ghost text-xs">yarn scaffold</code> command to generate a
-                  subgraph configuration. This will be generated in the{" "}
-                  <code className="badge badge-ghost text-xs">packages/subgraph</code> directory. Then you can use that
-                  as a reference to modify the existing subgraph.
-                </li>
-                <li>
-                  Add the needed entities to the <code className="badge badge-ghost text-xs">schema.graphql</code> file.
-                </li>
-                <li>
-                  Add the handlers for the events to the <code className="badge badge-ghost text-xs">mapping.ts</code>{" "}
-                  file.
-                </li>
-                <li>
-                  Add the needed events and handlers to the{" "}
-                  <code className="badge badge-ghost text-xs">subgraph.yaml</code> file.
-                </li>
-              </ul>
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-bold mb-2">Step 1: Generate Reference Subgraph</h3>
+                <CodeSnippet code="cd packages/subgraph && yarn scaffold" button={true} />
+                <p className="text-sm mt-2 text-base-content/70">
+                  This will create a reference subgraph you can use as a guide
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-bold mb-2">Step 2: Update Schema</h3>
+                <p className="text-sm mb-2">
+                  Add these entities to <code className="badge badge-ghost text-xs">schema.graphql</code>:
+                </p>
+                <ul className="list-disc list-inside space-y-1 ml-4">
+                  <li>Transfer entity (from, to, value)</li>
+                  <li>Approval entity (owner, spender, value)</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-bold mb-2">Step 3: Update Mapping</h3>
+                <p className="text-sm mb-2">
+                  In <code className="badge badge-ghost text-xs">mapping.ts</code>:
+                </p>
+                <ul className="list-disc list-inside space-y-1 ml-4">
+                  <li>Implement handleTransfer function</li>
+                  <li>Implement handleApproval function</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-bold mb-2">Step 4: Update Manifest</h3>
+                <p className="text-sm mb-2">
+                  In <code className="badge badge-ghost text-xs">subgraph.yaml</code>:
+                </p>
+                <ul className="list-disc list-inside space-y-1 ml-4">
+                  <li>Add Transfer event handler</li>
+                  <li>Add Approval event handler</li>
+                </ul>
+              </div>
             </div>
 
             <div className="mt-6 space-y-2">
-              <p className="text-sm sm:text-base">If needed, you can reference examples in the docs here:</p>
+              <p className="text-sm sm:text-base">Need help? Check these resources:</p>
               <div className="space-y-2">
                 <a
                   target="_blank"
