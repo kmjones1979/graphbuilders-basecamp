@@ -6,7 +6,7 @@ import { getMetadata } from "~~/utils/scaffold-eth/getMetadata";
 
 export const metadata = getMetadata({
   title: "Graph Builders Basecamp",
-  description: "A game for learning about The Graph",
+  description: "Earn NFTs for completing missions on The Graph!",
 });
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {

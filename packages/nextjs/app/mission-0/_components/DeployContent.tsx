@@ -111,7 +111,7 @@ const DeployContent: React.FC = () => {
 
                 {step.image && (
                   <div className="mt-4">
-                    <p className="text-xs sm:text-sm text-base-content/70 mb-2">Success will look like this:</p>
+                    <p className="text-xs sm:text-sm text-base-content/70 mb-2">Output will look like this:</p>
                     <div className="flex justify-center">
                       <ClickableImage src={step.image.src} alt={step.image.alt} caption="Click to enlarge" />
                     </div>
