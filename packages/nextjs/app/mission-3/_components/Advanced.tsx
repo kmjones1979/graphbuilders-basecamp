@@ -39,21 +39,79 @@ const Advanced: React.FC = () => {
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
             <h2 className="card-title text-xl sm:text-2xl mb-4">
-              <span className="badge badge-primary">1</span>Modify your subgraph
-            </h2>
-            <h2 className="card-title text-xl sm:text-2xl mb-4">
-              📝 Task 1: Track accounts that hold the Moon Token using derivedFrom
+              <span className="badge badge-primary">1</span>Create Token Holder Tracking
             </h2>
 
-            <p className="text-sm sm:text-base text-base-content/80 mb-4">
-              The <code className="badge badge-ghost text-xs">derivedFrom</code> field is a powerful feature that allows
-              you to optimize your subgraph by reducing the amount of data that needs to be indexed. It is used to
-              create relationships between entities and can be used to optimize the performance of your subgraph.
-            </p>
+            <div className="alert bg-base-300 border border-base-content/10 mb-6">
+              <div>
+                <p className="text-sm sm:text-base text-base-content/80">
+                  <span className="font-bold">Goal:</span> Create a new entity to track:
+                  <ul className="list-disc list-inside mt-2 ml-4">
+                    <li>Token holder addresses</li>
+                    <li>Current token balances</li>
+                    <li>Transfer history (using derivedFrom)</li>
+                  </ul>
+                </p>
+              </div>
+            </div>
+
+            <div className="alert alert-info mb-6">
+              <div className="flex items-start">
+                <span className="text-lg mr-2">💡</span>
+                <p>
+                  The <code className="badge badge-ghost text-xs">@derivedFrom</code> field creates a virtual
+                  relationship without storing duplicate data, improving efficiency.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-bold mb-2 flex items-center">
+                  <span className="badge badge-secondary mr-2">Step 1</span>
+                  Create Holder Entity
+                </h3>
+                <p className="text-sm mb-2">
+                  In <code className="badge badge-ghost text-xs">schema.graphql</code> add:
+                </p>
+                <ul className="list-disc list-inside space-y-1 ml-4">
+                  <li>
+                    Create a new <code className="badge badge-ghost text-xs">Holder</code> entity type
+                  </li>
+                  <li>Add fields for address (id), balance, and transfer history</li>
+                  <li>
+                    Use <code className="badge badge-ghost text-xs">@derivedFrom</code> to link transfers
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-bold mb-2 flex items-center">
+                  <span className="badge badge-secondary mr-2">Step 2</span>
+                  Update Transfer Handler
+                </h3>
+                <p className="text-sm mb-2">
+                  In <code className="badge badge-ghost text-xs">mapping.ts</code>:
+                </p>
+                <ul className="list-disc list-inside space-y-1 ml-4">
+                  <li>Handle both sender and receiver in transfers</li>
+                  <li>Create new holders if they don't exist</li>
+                  <li>Update balances using graph-ts math operations</li>
+                  <li>Remember to save your changes!</li>
+                </ul>
+              </div>
+
+              <div className="alert alert-success">
+                <div className="flex items-start">
+                  <span className="text-lg mr-2">✓</span>
+                  <p>Your subgraph will now track token holders and their balances automatically as transfers occur</p>
+                </div>
+              </div>
+            </div>
 
             <div className="alert bg-base-300 border border-base-content/10">
               <div className="space-y-2">
-                <p className="text-sm sm:text-base text-base-content/80">To learn more about derivedFrom, check out:</p>
+                <p className="text-sm sm:text-base text-base-content/80">To learn more about derivedFrom:</p>
                 <div className="space-y-1">
                   <a
                     href="https://thegraph.com/docs/en/developing/graph-ts/api/#looking-up-derived-entities"
@@ -63,35 +121,8 @@ const Advanced: React.FC = () => {
                   >
                     📚 The Graph Documentation
                   </a>
-                  <a
-                    href="https://thegraph.com/blog/improve-subgraph-performance-avoiding-large-arrays/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link link-primary text-sm sm:text-base block"
-                  >
-                    📝 Performance Optimization Blog Post
-                  </a>
                 </div>
               </div>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-base sm:text-lg font-bold mb-4">To complete this task, follow these steps:</p>
-              <ul className="list-disc list-inside space-y-2 text-sm sm:text-base text-base-content/80">
-                <li>
-                  Create a new entity in <code className="badge badge-ghost text-xs">schema.graphql</code> called{" "}
-                  <code className="badge badge-ghost text-xs">Holder</code>
-                </li>
-                <li>
-                  Add a <code className="badge badge-ghost text-xs">transfers</code> field to that entity
-                </li>
-                <li>
-                  Configure the transfers entity to use the{" "}
-                  <code className="badge badge-ghost text-xs">derivedFrom</code> field to associate the Transfer
-                  entities to the Holder entity
-                </li>
-                <li>Update the logic of your handler to create a Holder entity as needed</li>
-              </ul>
             </div>
           </div>
         </div>
@@ -99,38 +130,39 @@ const Advanced: React.FC = () => {
         {/* Task 2 */}
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
-            <h2 className="card-title text-xl sm:text-2xl mb-4">📝 Task 2: Calculate balances for each account</h2>
+            <h2 className="card-title text-xl sm:text-2xl mb-4">
+              <span className="badge badge-primary">2</span>Calculate Token Balances
+            </h2>
 
-            <p className="text-sm sm:text-base text-base-content/80 mb-4">
-              Now that we have accounts that hold Moon token, we can calculate the balance for each account by using the{" "}
-              <code className="badge badge-ghost text-xs">graph-ts</code> package. This package provides a set of
-              functions that allow us to perform off-chain calculations which can then be stored in The Graph.
-            </p>
-
-            <div className="alert bg-base-300 border border-base-content/10">
-              <p className="text-sm sm:text-base text-base-content/80">
-                To learn more about graph-ts, check out the{" "}
-                <a
-                  href="https://github.com/graphprotocol/graph-tooling/tree/main/packages/ts"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link link-primary"
-                >
-                  graph-tooling repository
-                </a>
-              </p>
+            <div className="alert bg-base-300 border border-base-content/10 mb-6">
+              <div>
+                <p className="text-sm sm:text-base text-base-content/80">
+                  <span className="font-bold">Goal:</span> Use graph-ts to calculate and track token balances for each
+                  holder
+                </p>
+              </div>
             </div>
 
-            <div className="mt-6">
-              <p className="text-base sm:text-lg font-bold mb-4">To complete this task, follow these steps:</p>
-              <ul className="list-disc list-inside space-y-2 text-sm sm:text-base text-base-content/80">
-                <li>Add a balance field to the Holder entity</li>
-                <li>
-                  Use the <code className="badge badge-ghost text-xs">graph-ts</code> package and modify the{" "}
-                  <code className="badge badge-ghost text-xs">handleTransfer</code> function to calculate and store the
-                  balance for each account as transfers are created
-                </li>
-              </ul>
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-bold mb-2">Step 1: Import Required Types</h3>
+                <p className="text-sm mb-2">
+                  Add to top of <code className="badge badge-ghost text-xs">mapping.ts</code>:
+                </p>
+                <ul className="list-disc list-inside space-y-1 ml-4">
+                  <li>Import BigInt from @graphprotocol/graph-ts</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-bold mb-2">Step 2: Update Balance Logic</h3>
+                <p className="text-sm mb-2">In handleTransfer function:</p>
+                <ul className="list-disc list-inside space-y-1 ml-4">
+                  <li>Subtract amount from sender's balance</li>
+                  <li>Add amount to receiver's balance</li>
+                  <li>Handle new account case (balance = 0)</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

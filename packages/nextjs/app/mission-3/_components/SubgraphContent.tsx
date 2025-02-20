@@ -122,33 +122,77 @@ const SubgraphContent: React.FC = () => {
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
             <h2 className="card-title text-xl sm:text-2xl mb-4">
-              <span className="badge badge-primary">3</span>Implement Event Handlers
+              <span className="badge badge-primary">3</span>Add Event Entities
             </h2>
-            <p className="text-sm sm:text-base text-base-content/80 mb-4">
-              Now you will need to complete the code for the handler to process the event data coming off the smart
-              contract. Open up your project in a text editor and navigate to the handler in{" "}
-              <code className="badge badge-ghost text-xs">packages/subgraph/src/mapping.ts</code>
-            </p>
 
-            <div className="mt-6">
-              <p className="text-sm sm:text-base italic mb-2">Open the project in your editor:</p>
-              <CodeSnippet code="code ." button={true} />
-            </div>
-
-            <div className="mt-6">
-              <p className="text-sm sm:text-base italic mb-2">The schema for our starting subgraph is as follows:</p>
-              <div className="mockup-code text-xs sm:text-sm w-full">
-                <pre className="pl-8">
-                  <code className="language-graphql">{SCHEMA}</code>
-                </pre>
+            <div className="alert bg-base-300 border border-base-content/10 mb-6">
+              <div>
+                <p className="text-sm sm:text-base text-base-content/80">
+                  <span className="font-bold">Goal:</span> Add two new entities to track ERC-20 events:
+                  <ul className="list-disc list-inside mt-2 ml-4">
+                    <li>Transfer events (when tokens move between accounts)</li>
+                    <li>Approval events (when spending is approved)</li>
+                  </ul>
+                </p>
               </div>
             </div>
 
-            <p className="text-sm sm:text-base text-base-content/80 mt-6">
-              You already have the entity to store the{" "}
-              <code className="badge badge-ghost text-xs">OwnershipTransferred</code> events but since we have inherited
-              the ERC-20 standard, we will need to add the events for that standard to the subgraph configuration.
-            </p>
+            <div className="alert alert-info mb-6">
+              <div className="flex items-start">
+                <span className="text-lg mr-2">💡</span>
+                <p>
+                  You already have the <code className="badge badge-ghost text-xs">OwnershipTransferred</code> entity.
+                  Now we'll add two more entities to track ERC-20 functionality.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-bold mb-2 flex items-center">
+                  <span className="badge badge-secondary mr-2">Step 1</span>
+                  Open the Schema File
+                </h3>
+                <p className="text-sm mb-2">
+                  Navigate to <code className="badge badge-ghost text-xs">packages/subgraph/src/schema.graphql</code>
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-bold mb-2 flex items-center">
+                  <span className="badge badge-secondary mr-2">Step 2</span>
+                  Add New Entities
+                </h3>
+                <p className="text-sm mb-2">Add these two entities to your schema:</p>
+                <ul className="list-disc list-inside space-y-1 ml-4">
+                  <li>
+                    <span className="font-bold">Transfer</span> entity with fields:
+                    <ul className="list-disc list-inside ml-8">
+                      <li>from: Bytes!</li>
+                      <li>to: Bytes!</li>
+                      <li>value: BigInt!</li>
+                    </ul>
+                  </li>
+                  <li className="mt-2">
+                    <span className="font-bold">Approval</span> entity with fields:
+                    <ul className="list-disc list-inside ml-8">
+                      <li>owner: Bytes!</li>
+                      <li>spender: Bytes!</li>
+                      <li>value: BigInt!</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="alert alert-success">
+                <div className="flex items-start">
+                  <span className="text-lg mr-2">✓</span>
+                  <p>
+                    When complete, your schema will have three entities: OwnershipTransferred, Transfer, and Approval
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -156,37 +200,17 @@ const SubgraphContent: React.FC = () => {
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body p-4 sm:p-8">
             <h2 className="card-title text-xl sm:text-2xl mb-4">
-              <span className="badge badge-primary">4</span>Add the ERC-20 Events to the Subgraph
+              <span className="badge badge-primary">4</span>Update the handler to save the data to each entity
             </h2>
-
             <div className="alert bg-base-300 border border-base-content/10 mb-6">
               <div>
                 <p className="text-sm sm:text-base text-base-content/80">
-                  <span className="font-bold">Goal:</span> Add support for indexing ERC-20 Transfer and Approval events
+                  <span className="font-bold">Goal:</span> Implement the event handlers to save the data to the entities
                 </p>
               </div>
             </div>
 
             <div className="space-y-6">
-              <div>
-                <h3 className="font-bold mb-2">Step 1: Generate Reference Subgraph</h3>
-                <CodeSnippet code="cd packages/subgraph && yarn scaffold" button={true} />
-                <p className="text-sm mt-2 text-base-content/70">
-                  This will create a reference subgraph you can use as a guide
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-bold mb-2">Step 2: Update Schema</h3>
-                <p className="text-sm mb-2">
-                  Add these entities to <code className="badge badge-ghost text-xs">schema.graphql</code>:
-                </p>
-                <ul className="list-disc list-inside space-y-1 ml-4">
-                  <li>Transfer entity (from, to, value)</li>
-                  <li>Approval entity (owner, spender, value)</li>
-                </ul>
-              </div>
-
               <div>
                 <h3 className="font-bold mb-2">Step 3: Update Mapping</h3>
                 <p className="text-sm mb-2">
