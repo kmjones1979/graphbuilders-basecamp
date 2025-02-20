@@ -228,6 +228,8 @@ const SubgraphContent: React.FC = () => {
                   In <code className="badge badge-ghost text-xs">subgraph.yaml</code>:
                 </p>
                 <ul className="list-disc list-inside space-y-1 ml-4">
+                  <li>Add Approval entity</li>
+                  <li>Add Transfer entity</li>
                   <li>Add Transfer event handler</li>
                   <li>Add Approval event handler</li>
                 </ul>
