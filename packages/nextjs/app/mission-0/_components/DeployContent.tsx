@@ -30,8 +30,8 @@ const DEPLOYMENT_STEPS = [
       },
       {
         text: "Base Testnet Bridge",
-        url: "https://superbridge.app/base",
-        description: "Bridge ETH from Sepolia to Base Sepolia",
+        url: "https://testnets.superbridge.app/",
+        description: "Another option is to bridge ETH from Sepolia to Base Sepolia",
       },
     ],
   },
