@@ -82,7 +82,7 @@ const STUDIO_STEPS = [
   {
     id: 5,
     title: "Authenticate to Studio",
-    description: "Use your deploy key from the Studio",
+    description: "The AUTH_KEY can be found on the subgraph page in Subgraph Studio",
     command: "graph auth <AUTH_KEY>",
   },
   {
