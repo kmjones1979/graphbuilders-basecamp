@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Analytics, track } from "@vercel/analytics/react";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 import { useTheme } from "next-themes";
 import { Toaster } from "react-hot-toast";
@@ -15,6 +17,20 @@ import { wagmiConfig } from "~~/services/web3/wagmiConfig";
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   useInitializeNativeCurrencyPrice();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const ref = searchParams.get("ref");
+    if (ref) {
+      track("referral", { ref });
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.delete("ref");
+      const newUrl = newSearchParams.toString() ? `${pathname}?${newSearchParams.toString()}` : pathname;
+      router.replace(newUrl);
+    }
+  }, [searchParams, pathname, router]);
 
   return (
     <>
@@ -26,6 +42,7 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
         </div>
         <Toaster />
       </div>
+      <Analytics />
     </>
   );
 };

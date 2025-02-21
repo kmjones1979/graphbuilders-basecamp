@@ -4,6 +4,7 @@ import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { HomeIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useAccount } from "wagmi";
 import {
@@ -117,6 +118,12 @@ export const Missions = () => {
   return (
     <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-80 p-2 shadow">
       <li>
+        <a href="/">
+          <HomeIcon className="h-4 w-4" />
+          Home
+        </a>
+      </li>
+      <li>
         <a href="/mission-0">
           <BookOpenIcon className="h-4 w-4" />
           0: Orientation {userCredential0?.data ? <Complete /> : <Ready />}
@@ -156,6 +163,12 @@ export const Missions = () => {
         <a>
           <DocumentCurrencyBangladeshiIcon className="h-4 w-4" />
           6: Galactic Governance <Locked />
+        </a>
+      </li>
+      <li>
+        <a href="/leaderboard">
+          <ChartBarIcon className="h-4 w-4" />
+          Leaderboard
         </a>
       </li>
     </ul>
