@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Suspense } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -15,8 +16,7 @@ import { BlockieAvatar } from "~~/components/scaffold-eth";
 import { useInitializeNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
 import { wagmiConfig } from "~~/services/web3/wagmiConfig";
 
-const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
-  useInitializeNativeCurrencyPrice();
+const SearchParamsHandler = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -32,6 +32,12 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
     }
   }, [searchParams, pathname, router]);
 
+  return null;
+};
+
+const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
+  useInitializeNativeCurrencyPrice();
+
   return (
     <>
       <div className="bg-base-100">
@@ -43,6 +49,9 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
         <Toaster />
       </div>
       <Analytics />
+      <Suspense fallback={null}>
+        <SearchParamsHandler />
+      </Suspense>
     </>
   );
 };
