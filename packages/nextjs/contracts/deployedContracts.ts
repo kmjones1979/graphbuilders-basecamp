@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   84532: {
     Basecamp: {
-      address: "0xEd101069B62d91D44781023eBfdFDcae3Ec02bCD",
+      address: "0x4c5617011fd2D176bFa4Edd27440f9eaaF4E3f29",
       abi: [
         {
           anonymous: false,
@@ -257,6 +257,16 @@ const deployedContracts = {
         },
         {
           inputs: [],
+          name: "EnforcedPause",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "ExpectedPause",
+          type: "error",
+        },
+        {
+          inputs: [],
           name: "InvalidInitialization",
           type: "error",
         },
@@ -450,6 +460,19 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
+              indexed: false,
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "Paused",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
               indexed: true,
               internalType: "bytes32",
               name: "role",
@@ -612,6 +635,19 @@ const deployedContracts = {
             },
           ],
           name: "URI",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "Unpaused",
           type: "event",
         },
         {
@@ -917,6 +953,26 @@ const deployedContracts = {
           type: "function",
         },
         {
+          inputs: [],
+          name: "pause",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "paused",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
           inputs: [
             {
               internalType: "address",
@@ -1143,6 +1199,13 @@ const deployedContracts = {
           type: "function",
         },
         {
+          inputs: [],
+          name: "unpause",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
           inputs: [
             {
               internalType: "uint256",
@@ -1193,7 +1256,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Basecamp_Implementation: {
-      address: "0x43dB1d3881d3e52F027249a91F463A610c2B8C76",
+      address: "0x8D696cB6be57Eb8DFf5d7A704e2d5178345E63e8",
       abi: [
         {
           inputs: [],
@@ -1325,6 +1388,16 @@ const deployedContracts = {
         },
         {
           inputs: [],
+          name: "EnforcedPause",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "ExpectedPause",
+          type: "error",
+        },
+        {
+          inputs: [],
           name: "InvalidInitialization",
           type: "error",
         },
@@ -1518,6 +1591,19 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
+              indexed: false,
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "Paused",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
               indexed: true,
               internalType: "bytes32",
               name: "role",
@@ -1680,6 +1766,19 @@ const deployedContracts = {
             },
           ],
           name: "URI",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "Unpaused",
           type: "event",
         },
         {
@@ -1985,6 +2084,26 @@ const deployedContracts = {
           type: "function",
         },
         {
+          inputs: [],
+          name: "pause",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "paused",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
           inputs: [
             {
               internalType: "address",
@@ -2211,6 +2330,13 @@ const deployedContracts = {
           type: "function",
         },
         {
+          inputs: [],
+          name: "unpause",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
           inputs: [
             {
               internalType: "uint256",
@@ -2244,7 +2370,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Basecamp_Proxy: {
-      address: "0xEd101069B62d91D44781023eBfdFDcae3Ec02bCD",
+      address: "0x4c5617011fd2D176bFa4Edd27440f9eaaF4E3f29",
       abi: [
         {
           inputs: [
@@ -2394,7 +2520,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     DefaultProxyAdmin: {
-      address: "0xEA154D8CccA1b4A59A7DF7C58A3CC99483F8E4f1",
+      address: "0x385F5E5Ba3AAcF87a5FCbE3C5B64CE1e648fA6dD",
       abi: [
         {
           inputs: [
@@ -2560,7 +2686,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Validator: {
-      address: "0x612e5a5c45100585394C2D85eBb6A9C1C0AA5aE2",
+      address: "0x0C8aa46F82c5446B85C3AC69De92808c50B984A9",
       abi: [
         {
           anonymous: false,
@@ -2723,6 +2849,16 @@ const deployedContracts = {
         },
         {
           inputs: [],
+          name: "EnforcedPause",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "ExpectedPause",
+          type: "error",
+        },
+        {
+          inputs: [],
           name: "InvalidInitialization",
           type: "error",
         },
@@ -2924,6 +3060,19 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
+              indexed: false,
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "Paused",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
               indexed: true,
               internalType: "bytes32",
               name: "id",
@@ -3019,6 +3168,19 @@ const deployedContracts = {
             },
           ],
           name: "RoleRevoked",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "Unpaused",
           type: "event",
         },
         {
@@ -3238,6 +3400,26 @@ const deployedContracts = {
         },
         {
           inputs: [],
+          name: "pause",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "paused",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
           name: "renounceOwnership",
           outputs: [],
           stateMutability: "nonpayable",
@@ -3351,6 +3533,13 @@ const deployedContracts = {
             },
           ],
           name: "transferOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "unpause",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
@@ -3426,7 +3615,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Validator_Implementation: {
-      address: "0xcF9d05cF74CBe22548259a61aB57c426E1118537",
+      address: "0xF0b6D1aA3314ecad6F44074E22ee1a95d2893f75",
       abi: [
         {
           inputs: [
@@ -3473,6 +3662,16 @@ const deployedContracts = {
         {
           inputs: [],
           name: "EmptySource",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "EnforcedPause",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "ExpectedPause",
           type: "error",
         },
         {
@@ -3678,6 +3877,19 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
+              indexed: false,
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "Paused",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
               indexed: true,
               internalType: "bytes32",
               name: "id",
@@ -3773,6 +3985,19 @@ const deployedContracts = {
             },
           ],
           name: "RoleRevoked",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "Unpaused",
           type: "event",
         },
         {
@@ -3992,6 +4217,26 @@ const deployedContracts = {
         },
         {
           inputs: [],
+          name: "pause",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "paused",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
           name: "renounceOwnership",
           outputs: [],
           stateMutability: "nonpayable",
@@ -4110,6 +4355,13 @@ const deployedContracts = {
           type: "function",
         },
         {
+          inputs: [],
+          name: "unpause",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
           inputs: [
             {
               internalType: "uint8",
@@ -4163,7 +4415,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Validator_Proxy: {
-      address: "0x612e5a5c45100585394C2D85eBb6A9C1C0AA5aE2",
+      address: "0x0C8aa46F82c5446B85C3AC69De92808c50B984A9",
       abi: [
         {
           inputs: [

@@ -5,6 +5,7 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
 
 /**
  * A smart contract for the The Graph Builders Basecamp challenges
@@ -14,7 +15,8 @@ contract Basecamp is
 	Initializable,
 	OwnableUpgradeable,
 	ERC1155Upgradeable,
-	AccessControlUpgradeable
+	AccessControlUpgradeable,
+	PausableUpgradeable
 {
 	string public name;
 	string public symbol;
@@ -47,6 +49,7 @@ contract Basecamp is
 		__Ownable_init(_owner);
 		__ERC1155_init("http://example.com/");
 		__AccessControl_init();
+		__Pausable_init();
 
 		name = "Basecamp";
 		symbol = "CRED";
@@ -78,7 +81,7 @@ contract Basecamp is
 	 * @param id The ID of the credential
 	 * @param _account The account to mint the credential to
 	 */
-	function mint(uint8 id, address _account) public onlyRole(MINTER_ROLE) {
+	function mint(uint8 id, address _account) public onlyRole(MINTER_ROLE) whenNotPaused {
 		require(credentials[id].enabled, "credential not enabled");
 		_mint(_account, id, 1, "0x00");
 		emit CredentialMinted(_account, id);
@@ -181,5 +184,19 @@ contract Basecamp is
 		bytes memory data
 	) public override(ERC1155Upgradeable) {
 		revert("Token soulbound!");
+	}
+
+	/**
+	 * @dev Pauses all token transfers
+	 */
+	function pause() public onlyRole(ADMIN_ROLE) {
+		_pause();
+	}
+
+	/**
+	 * @dev Unpauses all token transfers
+	 */
+	function unpause() public onlyRole(ADMIN_ROLE) {
+		_unpause();
 	}
 }

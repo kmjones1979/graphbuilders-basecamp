@@ -9,11 +9,13 @@ import { Basecamp } from "./Basecamp.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
 
 contract Validator is
     FunctionsClient,
     OwnableUpgradeable,
-    AccessControlUpgradeable
+    AccessControlUpgradeable,
+    PausableUpgradeable
 {
     using FunctionsRequest for FunctionsRequest.Request;
 
@@ -67,6 +69,7 @@ contract Validator is
     ) external initializer {
         __Ownable_init(_owner);
         __AccessControl_init();
+        __Pausable_init();
 
         _grantRole(ADMIN_ROLE_HASH, _owner);
         basecamp = Basecamp(payable(_basecampAddress));
@@ -101,7 +104,7 @@ contract Validator is
         uint64 subscriptionId,
         uint32 gasLimit,
         string calldata queryUrl
-    ) external returns (bytes32) {
+    ) external whenNotPaused returns (bytes32) {
         if(accountMinted[missionIndex][msg.sender]) {
             revert AlreadyMinted();
         }
@@ -186,6 +189,20 @@ contract Validator is
         (bool success, ) = payable(owner()).call{value: balance}("");
         if(!success) revert TransferFailed();
         emit Withdraw(balance);
+    }
+
+    /**
+     * @dev Pauses all validations
+     */
+    function pause() public onlyRole(ADMIN_ROLE_HASH) {
+        _pause();
+    }
+
+    /**
+     * @dev Unpauses all validations
+     */
+    function unpause() public onlyRole(ADMIN_ROLE_HASH) {
+        _unpause();
     }
 
     receive() external payable {}
