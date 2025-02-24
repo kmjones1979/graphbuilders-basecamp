@@ -47,7 +47,8 @@ const STUDIO_STEPS = [
   {
     id: 2,
     title: "Install The Graph CLI",
-    description: "Install the CLI tool using npm or yarn",
+    description:
+      "If you haven't already installed, The Graph CLI, install it using npm or yarn. You should run this command in your terminal outside of the mission 0 project.",
     commands: ["npm install -g @graphprotocol/graph-cli", "yarn global add @graphprotocol/graph-cli"],
   },
   {
