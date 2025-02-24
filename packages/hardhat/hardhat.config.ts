@@ -104,6 +104,12 @@ const config: HardhatUserConfig = {
     base: {
       url: "https://mainnet.base.org",
       accounts: [deployerPrivateKey],
+      verify: {
+        etherscan: {
+          apiUrl: "https://api.basescan.org",
+          apiKey: baseScanApiKey, // Use BaseScan API key here
+        },
+      },
     },
 
     baseSepolia: {

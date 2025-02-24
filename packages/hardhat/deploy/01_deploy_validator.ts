@@ -14,8 +14,8 @@ const deployValidator: DeployFunction = async function (hre: HardhatRuntimeEnvir
 
   const basecamp = await hre.ethers.getContract<Contract>("Basecamp", deployer);
   const basecampAddress = await basecamp.getAddress();
-  const functionsRouterAddress = "0xf9B8fc078197181C841c296C876945aaa425B278"; // baseSepolia functions router address
-  const donId = "0x66756e2d626173652d7365706f6c69612d310000000000000000000000000000"; // baseSepolia DON ID
+  const functionsRouterAddress = "0xf9b8fc078197181c841c296c876945aaa425b278"; // base mainnet functions router address
+  const donId = "0x66756e2d626173652d6d61696e6e65742d310000000000000000000000000000"; // base mainnet DON ID
 
   const owner = "0x007e483cf6df009db5ec571270b454764d954d95";
 

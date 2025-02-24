@@ -62,6 +62,12 @@ contract Validator is
         ADMIN_ROLE_HASH = keccak256("ADMIN_ROLE");
     }
 
+    /**
+     * @dev Initializes the contract
+     * @param _owner The owner of the contract
+     * @param _basecampAddress The address of the basecamp contract
+     * @param _donId The DON ID
+     */
     function initialize(
         address _owner,
         address _basecampAddress,
@@ -79,6 +85,11 @@ contract Validator is
         emit DonIdSet(donId);
     }
 
+    /**
+     * @dev Sets the mission code hash
+     * @param missionIndex The index of the mission
+     * @param javaScriptSourceCode The source code of the mission
+     */
     function setMissionCodeHash(
         uint8 missionIndex,
         string calldata javaScriptSourceCode
@@ -86,6 +97,10 @@ contract Validator is
         missionCodeHashes[missionIndex] = keccak256(bytes(javaScriptSourceCode));
     }
 
+    /**
+     * @dev Sets the basecamp address
+     * @param _basecampAddress The address of the basecamp contract
+     */
     function setBasecampAddress(
         address _basecampAddress
     ) external onlyRole(ADMIN_ROLE_HASH) {
@@ -93,11 +108,23 @@ contract Validator is
         emit BasecampAddressSet(_basecampAddress);
     }
 
+    /**
+     * @dev Sets the DON ID
+     * @param _donId The DON ID
+     */
     function setDonId(bytes32 _donId) external onlyRole(ADMIN_ROLE_HASH) {
         donId = _donId;
         emit DonIdSet(_donId);
     }
 
+    /**
+     * @dev Validates the mission
+     * @param missionIndex The index of the mission
+     * @param javaScriptSourceCode The source code of the mission
+     * @param subscriptionId The subscription ID
+     * @param gasLimit The gas limit
+     * @param queryUrl The query URL
+     */
     function validateMission(
         uint8 missionIndex,
         string calldata javaScriptSourceCode,
@@ -139,6 +166,12 @@ contract Validator is
         return requestId;
     }
 
+    /**
+     * @dev Fulfills the request
+     * @param requestId The request ID
+     * @param response The response
+     * @param err The error
+     */
     function fulfillRequest(
         bytes32 requestId,
         bytes memory response,
@@ -148,7 +181,7 @@ contract Validator is
             revert(string(err));
         }
 
-
+        
         MissionRequest storage request = requests[requestId];
         if(request.isProcessed) {
             return;
@@ -184,6 +217,9 @@ contract Validator is
         revert ValidationFailed();
     }
 
+    /**
+     * @dev Withdraws the balance of the contract
+     */
     function withdraw() external onlyOwner {
         uint256 balance = address(this).balance;
         (bool success, ) = payable(owner()).call{value: balance}("");

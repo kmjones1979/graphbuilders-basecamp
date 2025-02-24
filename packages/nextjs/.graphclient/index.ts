@@ -5215,7 +5215,7 @@ const basecampSepoliaV3Transforms = [];
 const additionalTypeDefs = [] as any[];
 const basecampSepoliaV3Handler = new GraphqlHandler({
               name: "BasecampSepoliaV3",
-              config: {"endpoint":"https://api.studio.thegraph.com/query/37762/stage-basesepolia-graphbuilders/version/latest"},
+              config: {"endpoint":"https://api.studio.thegraph.com/query/37762/prod-base-graphbuilders/version/latest"},
               baseDir,
               cache,
               pubsub,

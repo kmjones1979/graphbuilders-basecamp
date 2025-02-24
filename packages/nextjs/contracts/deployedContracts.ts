@@ -5,9 +5,9 @@
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
-  84532: {
+  8453: {
     Basecamp: {
-      address: "0x4c5617011fd2D176bFa4Edd27440f9eaaF4E3f29",
+      address: "0x26Ed98bf771f9fABc226E64Cf34E9C4b6ccE90d0",
       abi: [
         {
           anonymous: false,
@@ -1256,7 +1256,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Basecamp_Implementation: {
-      address: "0x8D696cB6be57Eb8DFf5d7A704e2d5178345E63e8",
+      address: "0xd3eA07CfcDC4651b9494aD4B7e53122eDa80A0cB",
       abi: [
         {
           inputs: [],
@@ -2370,7 +2370,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Basecamp_Proxy: {
-      address: "0x4c5617011fd2D176bFa4Edd27440f9eaaF4E3f29",
+      address: "0x26Ed98bf771f9fABc226E64Cf34E9C4b6ccE90d0",
       abi: [
         {
           inputs: [
@@ -2520,7 +2520,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     DefaultProxyAdmin: {
-      address: "0x385F5E5Ba3AAcF87a5FCbE3C5B64CE1e648fA6dD",
+      address: "0xFD6bb55396aEe5E41642dC3EA117c6E1C89696f2",
       abi: [
         {
           inputs: [
@@ -2686,7 +2686,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Validator: {
-      address: "0x0C8aa46F82c5446B85C3AC69De92808c50B984A9",
+      address: "0xB982983D4f941beEFDe0b517a53Ca39a0224fCBB",
       abi: [
         {
           anonymous: false,
@@ -3615,7 +3615,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Validator_Implementation: {
-      address: "0xF0b6D1aA3314ecad6F44074E22ee1a95d2893f75",
+      address: "0x67729488FACb317002A7caB1D7e0829e4b51953a",
       abi: [
         {
           inputs: [
@@ -4415,7 +4415,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Validator_Proxy: {
-      address: "0x0C8aa46F82c5446B85C3AC69De92808c50B984A9",
+      address: "0xB982983D4f941beEFDe0b517a53Ca39a0224fCBB",
       abi: [
         {
           inputs: [

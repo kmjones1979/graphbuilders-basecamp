@@ -1,5 +1,5 @@
 // Subscription ID for Chainlink Functions
-export const subscriptionId = 266;
+export const subscriptionId = 42;
 
 // Gas limit for the validateMission function
 export const gasLimit = 100_000;

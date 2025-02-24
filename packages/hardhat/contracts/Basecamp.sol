@@ -45,6 +45,11 @@ contract Basecamp is
 		_disableInitializers();
 	}
 
+	/**
+	 * @dev Initializes the contract
+	 * @param _owner The owner of the contract
+	 * @param _minter The minter of the contract
+	 */
 	function initialize(address _owner, address _minter) public initializer {
 		__Ownable_init(_owner);
 		__ERC1155_init("http://example.com/");
@@ -148,6 +153,14 @@ contract Basecamp is
 		return credentials[uint8(id)].url;
 	}
 
+	/**
+	 * @dev Returns true if this contract implements the interface defined by
+	 * `interfaceId`. See the corresponding
+	 * https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section]
+	 * to learn more about how these ids are created.
+	 *
+	 * This function call must use less than 30 000 gas.
+	 */
 	function supportsInterface(
 		bytes4 interfaceId
 	)

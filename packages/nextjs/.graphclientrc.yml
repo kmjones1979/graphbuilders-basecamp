@@ -3,7 +3,7 @@ sources:
   - name: BasecampSepoliaV3
     handler:
       graphql:
-        endpoint: https://api.studio.thegraph.com/query/37762/stage-basesepolia-graphbuilders/version/latest
+        endpoint: https://api.studio.thegraph.com/query/37762/prod-base-graphbuilders/version/latest
 documents:
   - ./graphql/GetUsers.gql
   - ./graphql/GetUserCredentials.gql

@@ -39,7 +39,14 @@ export const menuLinks: HeaderMenuLink[] = [
 ];
 
 export const HeaderMenuLinks = () => {
+  const { address } = useAccount();
   const pathname = usePathname();
+
+  const { data: hasRoleAdmin } = useScaffoldReadContract({
+    contractName: "Basecamp",
+    functionName: "hasRole",
+    args: ["0xa49807205ce4d355092ef5a8a18f56e8913cf4a201fbe287825b095693c21775", address],
+  });
 
   return (
     <>
@@ -75,10 +82,12 @@ export const LeaderboardLink = () => {
 
 export const DebugContractsLink = () => {
   return (
-    <Link href="/debug" passHref className="ml-1 btn btn-ghost">
-      <BugAntIcon className="h-4 w-4" />
-      Debug Contracts
-    </Link>
+    <>
+      <Link href="/debug" passHref className="ml-1 btn btn-ghost">
+        <BugAntIcon className="h-4 w-4" />
+        Debug Contracts
+      </Link>
+    </>
   );
 };
 
@@ -117,7 +126,7 @@ export const Missions = () => {
 
   return (
     <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-80 p-2 shadow">
-      <li>
+      <li className="lg:hidden">
         <a href="/">
           <HomeIcon className="h-4 w-4" />
           Home
@@ -165,7 +174,7 @@ export const Missions = () => {
           6: Galactic Governance <Locked />
         </a>
       </li>
-      <li>
+      <li className="lg:hidden">
         <a href="/leaderboard">
           <ChartBarIcon className="h-4 w-4" />
           Leaderboard
@@ -206,6 +215,14 @@ export const Header = () => {
     burgerMenuRef,
     useCallback(() => setIsDrawerOpen(false), []),
   );
+
+  const { address } = useAccount();
+
+  const { data: hasRoleAdmin } = useScaffoldReadContract({
+    contractName: "Basecamp",
+    functionName: "hasRole",
+    args: ["0xa49807205ce4d355092ef5a8a18f56e8913cf4a201fbe287825b095693c21775", address],
+  });
 
   return (
     <div className="sticky lg:static top-0 navbar bg-base-100 min-h-0 flex-shrink-0 justify-between z-20 shadow-md shadow-secondary px-0 sm:px-2">
@@ -250,7 +267,7 @@ export const Header = () => {
         <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
           <MissionDropdown />
           <LeaderboardLink />
-          <DebugContractsLink />
+          {hasRoleAdmin ? <DebugContractsLink /> : <></>}
         </ul>
       </div>
       <div className="navbar-end flex-grow mr-4">
