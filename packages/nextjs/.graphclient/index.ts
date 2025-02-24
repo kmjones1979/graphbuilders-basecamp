@@ -716,15 +716,15 @@ export type DonIdSet_orderBy =
   | 'blockTimestamp'
   | 'transactionHash';
 
-export type FunctionsRouterAddressSet = {
+export type Initialized = {
   id: Scalars['Bytes']['output'];
-  newFunctionsRouterAddress: Scalars['Bytes']['output'];
+  version: Scalars['BigInt']['output'];
   blockNumber: Scalars['BigInt']['output'];
   blockTimestamp: Scalars['BigInt']['output'];
   transactionHash: Scalars['Bytes']['output'];
 };
 
-export type FunctionsRouterAddressSet_filter = {
+export type Initialized_filter = {
   id?: InputMaybe<Scalars['Bytes']['input']>;
   id_not?: InputMaybe<Scalars['Bytes']['input']>;
   id_gt?: InputMaybe<Scalars['Bytes']['input']>;
@@ -735,16 +735,14 @@ export type FunctionsRouterAddressSet_filter = {
   id_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
   id_contains?: InputMaybe<Scalars['Bytes']['input']>;
   id_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
-  newFunctionsRouterAddress?: InputMaybe<Scalars['Bytes']['input']>;
-  newFunctionsRouterAddress_not?: InputMaybe<Scalars['Bytes']['input']>;
-  newFunctionsRouterAddress_gt?: InputMaybe<Scalars['Bytes']['input']>;
-  newFunctionsRouterAddress_lt?: InputMaybe<Scalars['Bytes']['input']>;
-  newFunctionsRouterAddress_gte?: InputMaybe<Scalars['Bytes']['input']>;
-  newFunctionsRouterAddress_lte?: InputMaybe<Scalars['Bytes']['input']>;
-  newFunctionsRouterAddress_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
-  newFunctionsRouterAddress_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
-  newFunctionsRouterAddress_contains?: InputMaybe<Scalars['Bytes']['input']>;
-  newFunctionsRouterAddress_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  version?: InputMaybe<Scalars['BigInt']['input']>;
+  version_not?: InputMaybe<Scalars['BigInt']['input']>;
+  version_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  version_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  version_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  version_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  version_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  version_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
   blockNumber?: InputMaybe<Scalars['BigInt']['input']>;
   blockNumber_not?: InputMaybe<Scalars['BigInt']['input']>;
   blockNumber_gt?: InputMaybe<Scalars['BigInt']['input']>;
@@ -773,13 +771,13 @@ export type FunctionsRouterAddressSet_filter = {
   transactionHash_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<FunctionsRouterAddressSet_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<FunctionsRouterAddressSet_filter>>>;
+  and?: InputMaybe<Array<InputMaybe<Initialized_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<Initialized_filter>>>;
 };
 
-export type FunctionsRouterAddressSet_orderBy =
+export type Initialized_orderBy =
   | 'id'
-  | 'newFunctionsRouterAddress'
+  | 'version'
   | 'blockNumber'
   | 'blockTimestamp'
   | 'transactionHash';
@@ -1223,11 +1221,75 @@ export type OwnershipTransferred_orderBy =
   | 'blockTimestamp'
   | 'transactionHash';
 
+export type Paused = {
+  id: Scalars['Bytes']['output'];
+  account: Scalars['Bytes']['output'];
+  blockNumber: Scalars['BigInt']['output'];
+  blockTimestamp: Scalars['BigInt']['output'];
+  transactionHash: Scalars['Bytes']['output'];
+};
+
+export type Paused_filter = {
+  id?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  account?: InputMaybe<Scalars['Bytes']['input']>;
+  account_not?: InputMaybe<Scalars['Bytes']['input']>;
+  account_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  account_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  account_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  account_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  account_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  account_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  account_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  account_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  blockNumber?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  transactionHash?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<Paused_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<Paused_filter>>>;
+};
+
+export type Paused_orderBy =
+  | 'id'
+  | 'account'
+  | 'blockNumber'
+  | 'blockTimestamp'
+  | 'transactionHash';
+
 export type Query = {
-  user?: Maybe<User>;
-  users: Array<User>;
-  credential?: Maybe<Credential>;
-  credentials: Array<Credential>;
   adminAdded?: Maybe<AdminAdded>;
   adminAddeds: Array<AdminAdded>;
   adminRemoved?: Maybe<AdminRemoved>;
@@ -1238,12 +1300,16 @@ export type Query = {
   credentialMinteds: Array<CredentialMinted>;
   credentialSet?: Maybe<CredentialSet>;
   credentialSets: Array<CredentialSet>;
+  initialized?: Maybe<Initialized>;
+  initializeds: Array<Initialized>;
   minterAdded?: Maybe<MinterAdded>;
   minterAddeds: Array<MinterAdded>;
   minterRemoved?: Maybe<MinterRemoved>;
   minterRemoveds: Array<MinterRemoved>;
   ownershipTransferred?: Maybe<OwnershipTransferred>;
   ownershipTransferreds: Array<OwnershipTransferred>;
+  paused?: Maybe<Paused>;
+  pauseds: Array<Paused>;
   roleAdminChanged?: Maybe<RoleAdminChanged>;
   roleAdminChangeds: Array<RoleAdminChanged>;
   roleGranted?: Maybe<RoleGranted>;
@@ -1256,64 +1322,44 @@ export type Query = {
   transferSingles: Array<TransferSingle>;
   uri?: Maybe<URI>;
   uris: Array<URI>;
+  unpaused?: Maybe<Unpaused>;
+  unpauseds: Array<Unpaused>;
   withdraw?: Maybe<Withdraw>;
   withdraws: Array<Withdraw>;
   basecampAddressSet?: Maybe<BasecampAddressSet>;
   basecampAddressSets: Array<BasecampAddressSet>;
   donIdSet?: Maybe<DonIdSet>;
   donIdSets: Array<DonIdSet>;
-  functionsRouterAddressSet?: Maybe<FunctionsRouterAddressSet>;
-  functionsRouterAddressSets: Array<FunctionsRouterAddressSet>;
+  validatorInitialized?: Maybe<ValidatorInitialized>;
+  validatorInitializeds: Array<ValidatorInitialized>;
   missionSubmitted?: Maybe<MissionSubmitted>;
   missionSubmitteds: Array<MissionSubmitted>;
   missionValidated?: Maybe<MissionValidated>;
   missionValidateds: Array<MissionValidated>;
   validatorOwnershipTransferred?: Maybe<ValidatorOwnershipTransferred>;
   validatorOwnershipTransferreds: Array<ValidatorOwnershipTransferred>;
+  validatorPaused?: Maybe<ValidatorPaused>;
+  validatorPauseds: Array<ValidatorPaused>;
   requestFulfilled?: Maybe<RequestFulfilled>;
   requestFulfilleds: Array<RequestFulfilled>;
   requestSent?: Maybe<RequestSent>;
   requestSents: Array<RequestSent>;
+  validatorRoleAdminChanged?: Maybe<ValidatorRoleAdminChanged>;
+  validatorRoleAdminChangeds: Array<ValidatorRoleAdminChanged>;
+  validatorRoleGranted?: Maybe<ValidatorRoleGranted>;
+  validatorRoleGranteds: Array<ValidatorRoleGranted>;
+  validatorRoleRevoked?: Maybe<ValidatorRoleRevoked>;
+  validatorRoleRevokeds: Array<ValidatorRoleRevoked>;
+  validatorUnpaused?: Maybe<ValidatorUnpaused>;
+  validatorUnpauseds: Array<ValidatorUnpaused>;
   validatorWithdraw?: Maybe<ValidatorWithdraw>;
   validatorWithdraws: Array<ValidatorWithdraw>;
+  user?: Maybe<User>;
+  users: Array<User>;
+  credential?: Maybe<Credential>;
+  credentials: Array<Credential>;
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
-};
-
-
-export type QueryuserArgs = {
-  id: Scalars['ID']['input'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QueryusersArgs = {
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<User_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<User_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QuerycredentialArgs = {
-  id: Scalars['ID']['input'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QuerycredentialsArgs = {
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<Credential_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<Credential_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
 };
 
 
@@ -1407,6 +1453,24 @@ export type QuerycredentialSetsArgs = {
 };
 
 
+export type QueryinitializedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryinitializedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Initialized_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<Initialized_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
 export type QueryminterAddedArgs = {
   id: Scalars['ID']['input'];
   block?: InputMaybe<Block_height>;
@@ -1456,6 +1520,24 @@ export type QueryownershipTransferredsArgs = {
   orderBy?: InputMaybe<OwnershipTransferred_orderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
   where?: InputMaybe<OwnershipTransferred_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QuerypausedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QuerypausedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Paused_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<Paused_filter>;
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
@@ -1569,6 +1651,24 @@ export type QueryurisArgs = {
 };
 
 
+export type QueryunpausedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryunpausedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Unpaused_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<Unpaused_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
 export type QuerywithdrawArgs = {
   id: Scalars['ID']['input'];
   block?: InputMaybe<Block_height>;
@@ -1623,19 +1723,19 @@ export type QuerydonIdSetsArgs = {
 };
 
 
-export type QueryfunctionsRouterAddressSetArgs = {
+export type QueryvalidatorInitializedArgs = {
   id: Scalars['ID']['input'];
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
 
-export type QueryfunctionsRouterAddressSetsArgs = {
+export type QueryvalidatorInitializedsArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<FunctionsRouterAddressSet_orderBy>;
+  orderBy?: InputMaybe<ValidatorInitialized_orderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<FunctionsRouterAddressSet_filter>;
+  where?: InputMaybe<ValidatorInitialized_filter>;
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
@@ -1695,6 +1795,24 @@ export type QueryvalidatorOwnershipTransferredsArgs = {
 };
 
 
+export type QueryvalidatorPausedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryvalidatorPausedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<ValidatorPaused_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<ValidatorPaused_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
 export type QueryrequestFulfilledArgs = {
   id: Scalars['ID']['input'];
   block?: InputMaybe<Block_height>;
@@ -1731,6 +1849,78 @@ export type QueryrequestSentsArgs = {
 };
 
 
+export type QueryvalidatorRoleAdminChangedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryvalidatorRoleAdminChangedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<ValidatorRoleAdminChanged_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<ValidatorRoleAdminChanged_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryvalidatorRoleGrantedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryvalidatorRoleGrantedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<ValidatorRoleGranted_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<ValidatorRoleGranted_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryvalidatorRoleRevokedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryvalidatorRoleRevokedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<ValidatorRoleRevoked_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<ValidatorRoleRevoked_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryvalidatorUnpausedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryvalidatorUnpausedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<ValidatorUnpaused_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<ValidatorUnpaused_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
 export type QueryvalidatorWithdrawArgs = {
   id: Scalars['ID']['input'];
   block?: InputMaybe<Block_height>;
@@ -1744,6 +1934,42 @@ export type QueryvalidatorWithdrawsArgs = {
   orderBy?: InputMaybe<ValidatorWithdraw_orderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
   where?: InputMaybe<ValidatorWithdraw_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryuserArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryusersArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<User_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<User_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QuerycredentialArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QuerycredentialsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Credential_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<Credential_filter>;
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
@@ -2166,10 +2392,6 @@ export type RoleRevoked_orderBy =
   | 'transactionHash';
 
 export type Subscription = {
-  user?: Maybe<User>;
-  users: Array<User>;
-  credential?: Maybe<Credential>;
-  credentials: Array<Credential>;
   adminAdded?: Maybe<AdminAdded>;
   adminAddeds: Array<AdminAdded>;
   adminRemoved?: Maybe<AdminRemoved>;
@@ -2180,12 +2402,16 @@ export type Subscription = {
   credentialMinteds: Array<CredentialMinted>;
   credentialSet?: Maybe<CredentialSet>;
   credentialSets: Array<CredentialSet>;
+  initialized?: Maybe<Initialized>;
+  initializeds: Array<Initialized>;
   minterAdded?: Maybe<MinterAdded>;
   minterAddeds: Array<MinterAdded>;
   minterRemoved?: Maybe<MinterRemoved>;
   minterRemoveds: Array<MinterRemoved>;
   ownershipTransferred?: Maybe<OwnershipTransferred>;
   ownershipTransferreds: Array<OwnershipTransferred>;
+  paused?: Maybe<Paused>;
+  pauseds: Array<Paused>;
   roleAdminChanged?: Maybe<RoleAdminChanged>;
   roleAdminChangeds: Array<RoleAdminChanged>;
   roleGranted?: Maybe<RoleGranted>;
@@ -2198,64 +2424,44 @@ export type Subscription = {
   transferSingles: Array<TransferSingle>;
   uri?: Maybe<URI>;
   uris: Array<URI>;
+  unpaused?: Maybe<Unpaused>;
+  unpauseds: Array<Unpaused>;
   withdraw?: Maybe<Withdraw>;
   withdraws: Array<Withdraw>;
   basecampAddressSet?: Maybe<BasecampAddressSet>;
   basecampAddressSets: Array<BasecampAddressSet>;
   donIdSet?: Maybe<DonIdSet>;
   donIdSets: Array<DonIdSet>;
-  functionsRouterAddressSet?: Maybe<FunctionsRouterAddressSet>;
-  functionsRouterAddressSets: Array<FunctionsRouterAddressSet>;
+  validatorInitialized?: Maybe<ValidatorInitialized>;
+  validatorInitializeds: Array<ValidatorInitialized>;
   missionSubmitted?: Maybe<MissionSubmitted>;
   missionSubmitteds: Array<MissionSubmitted>;
   missionValidated?: Maybe<MissionValidated>;
   missionValidateds: Array<MissionValidated>;
   validatorOwnershipTransferred?: Maybe<ValidatorOwnershipTransferred>;
   validatorOwnershipTransferreds: Array<ValidatorOwnershipTransferred>;
+  validatorPaused?: Maybe<ValidatorPaused>;
+  validatorPauseds: Array<ValidatorPaused>;
   requestFulfilled?: Maybe<RequestFulfilled>;
   requestFulfilleds: Array<RequestFulfilled>;
   requestSent?: Maybe<RequestSent>;
   requestSents: Array<RequestSent>;
+  validatorRoleAdminChanged?: Maybe<ValidatorRoleAdminChanged>;
+  validatorRoleAdminChangeds: Array<ValidatorRoleAdminChanged>;
+  validatorRoleGranted?: Maybe<ValidatorRoleGranted>;
+  validatorRoleGranteds: Array<ValidatorRoleGranted>;
+  validatorRoleRevoked?: Maybe<ValidatorRoleRevoked>;
+  validatorRoleRevokeds: Array<ValidatorRoleRevoked>;
+  validatorUnpaused?: Maybe<ValidatorUnpaused>;
+  validatorUnpauseds: Array<ValidatorUnpaused>;
   validatorWithdraw?: Maybe<ValidatorWithdraw>;
   validatorWithdraws: Array<ValidatorWithdraw>;
+  user?: Maybe<User>;
+  users: Array<User>;
+  credential?: Maybe<Credential>;
+  credentials: Array<Credential>;
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
-};
-
-
-export type SubscriptionuserArgs = {
-  id: Scalars['ID']['input'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionusersArgs = {
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<User_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<User_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptioncredentialArgs = {
-  id: Scalars['ID']['input'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptioncredentialsArgs = {
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<Credential_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<Credential_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
 };
 
 
@@ -2349,6 +2555,24 @@ export type SubscriptioncredentialSetsArgs = {
 };
 
 
+export type SubscriptioninitializedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptioninitializedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Initialized_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<Initialized_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
 export type SubscriptionminterAddedArgs = {
   id: Scalars['ID']['input'];
   block?: InputMaybe<Block_height>;
@@ -2398,6 +2622,24 @@ export type SubscriptionownershipTransferredsArgs = {
   orderBy?: InputMaybe<OwnershipTransferred_orderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
   where?: InputMaybe<OwnershipTransferred_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionpausedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionpausedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Paused_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<Paused_filter>;
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
@@ -2511,6 +2753,24 @@ export type SubscriptionurisArgs = {
 };
 
 
+export type SubscriptionunpausedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionunpausedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Unpaused_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<Unpaused_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
 export type SubscriptionwithdrawArgs = {
   id: Scalars['ID']['input'];
   block?: InputMaybe<Block_height>;
@@ -2565,19 +2825,19 @@ export type SubscriptiondonIdSetsArgs = {
 };
 
 
-export type SubscriptionfunctionsRouterAddressSetArgs = {
+export type SubscriptionvalidatorInitializedArgs = {
   id: Scalars['ID']['input'];
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionfunctionsRouterAddressSetsArgs = {
+export type SubscriptionvalidatorInitializedsArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<FunctionsRouterAddressSet_orderBy>;
+  orderBy?: InputMaybe<ValidatorInitialized_orderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<FunctionsRouterAddressSet_filter>;
+  where?: InputMaybe<ValidatorInitialized_filter>;
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
@@ -2637,6 +2897,24 @@ export type SubscriptionvalidatorOwnershipTransferredsArgs = {
 };
 
 
+export type SubscriptionvalidatorPausedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionvalidatorPausedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<ValidatorPaused_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<ValidatorPaused_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
 export type SubscriptionrequestFulfilledArgs = {
   id: Scalars['ID']['input'];
   block?: InputMaybe<Block_height>;
@@ -2673,6 +2951,78 @@ export type SubscriptionrequestSentsArgs = {
 };
 
 
+export type SubscriptionvalidatorRoleAdminChangedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionvalidatorRoleAdminChangedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<ValidatorRoleAdminChanged_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<ValidatorRoleAdminChanged_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionvalidatorRoleGrantedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionvalidatorRoleGrantedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<ValidatorRoleGranted_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<ValidatorRoleGranted_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionvalidatorRoleRevokedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionvalidatorRoleRevokedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<ValidatorRoleRevoked_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<ValidatorRoleRevoked_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionvalidatorUnpausedArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionvalidatorUnpausedsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<ValidatorUnpaused_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<ValidatorUnpaused_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
 export type SubscriptionvalidatorWithdrawArgs = {
   id: Scalars['ID']['input'];
   block?: InputMaybe<Block_height>;
@@ -2686,6 +3036,42 @@ export type SubscriptionvalidatorWithdrawsArgs = {
   orderBy?: InputMaybe<ValidatorWithdraw_orderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
   where?: InputMaybe<ValidatorWithdraw_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionuserArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionusersArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<User_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<User_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptioncredentialArgs = {
+  id: Scalars['ID']['input'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptioncredentialsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Credential_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<Credential_filter>;
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
@@ -3003,6 +3389,74 @@ export type URI_orderBy =
   | 'blockTimestamp'
   | 'transactionHash';
 
+export type Unpaused = {
+  id: Scalars['Bytes']['output'];
+  account: Scalars['Bytes']['output'];
+  blockNumber: Scalars['BigInt']['output'];
+  blockTimestamp: Scalars['BigInt']['output'];
+  transactionHash: Scalars['Bytes']['output'];
+};
+
+export type Unpaused_filter = {
+  id?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  account?: InputMaybe<Scalars['Bytes']['input']>;
+  account_not?: InputMaybe<Scalars['Bytes']['input']>;
+  account_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  account_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  account_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  account_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  account_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  account_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  account_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  account_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  blockNumber?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  transactionHash?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<Unpaused_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<Unpaused_filter>>>;
+};
+
+export type Unpaused_orderBy =
+  | 'id'
+  | 'account'
+  | 'blockNumber'
+  | 'blockTimestamp'
+  | 'transactionHash';
+
 export type User = {
   id: Scalars['Bytes']['output'];
   address: Scalars['Bytes']['output'];
@@ -3103,6 +3557,72 @@ export type User_orderBy =
   | 'blockTimestamp'
   | 'transactionHash';
 
+export type ValidatorInitialized = {
+  id: Scalars['Bytes']['output'];
+  version: Scalars['BigInt']['output'];
+  blockNumber: Scalars['BigInt']['output'];
+  blockTimestamp: Scalars['BigInt']['output'];
+  transactionHash: Scalars['Bytes']['output'];
+};
+
+export type ValidatorInitialized_filter = {
+  id?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  version?: InputMaybe<Scalars['BigInt']['input']>;
+  version_not?: InputMaybe<Scalars['BigInt']['input']>;
+  version_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  version_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  version_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  version_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  version_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  version_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockNumber?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  transactionHash?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<ValidatorInitialized_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<ValidatorInitialized_filter>>>;
+};
+
+export type ValidatorInitialized_orderBy =
+  | 'id'
+  | 'version'
+  | 'blockNumber'
+  | 'blockTimestamp'
+  | 'transactionHash';
+
 export type ValidatorOwnershipTransferred = {
   id: Scalars['Bytes']['output'];
   previousOwner: Scalars['Bytes']['output'];
@@ -3179,6 +3699,418 @@ export type ValidatorOwnershipTransferred_orderBy =
   | 'id'
   | 'previousOwner'
   | 'newOwner'
+  | 'blockNumber'
+  | 'blockTimestamp'
+  | 'transactionHash';
+
+export type ValidatorPaused = {
+  id: Scalars['Bytes']['output'];
+  account: Scalars['Bytes']['output'];
+  blockNumber: Scalars['BigInt']['output'];
+  blockTimestamp: Scalars['BigInt']['output'];
+  transactionHash: Scalars['Bytes']['output'];
+};
+
+export type ValidatorPaused_filter = {
+  id?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  account?: InputMaybe<Scalars['Bytes']['input']>;
+  account_not?: InputMaybe<Scalars['Bytes']['input']>;
+  account_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  account_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  account_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  account_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  account_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  account_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  account_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  account_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  blockNumber?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  transactionHash?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<ValidatorPaused_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<ValidatorPaused_filter>>>;
+};
+
+export type ValidatorPaused_orderBy =
+  | 'id'
+  | 'account'
+  | 'blockNumber'
+  | 'blockTimestamp'
+  | 'transactionHash';
+
+export type ValidatorRoleAdminChanged = {
+  id: Scalars['Bytes']['output'];
+  role: Scalars['Bytes']['output'];
+  previousAdminRole: Scalars['Bytes']['output'];
+  newAdminRole: Scalars['Bytes']['output'];
+  blockNumber: Scalars['BigInt']['output'];
+  blockTimestamp: Scalars['BigInt']['output'];
+  transactionHash: Scalars['Bytes']['output'];
+};
+
+export type ValidatorRoleAdminChanged_filter = {
+  id?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  role?: InputMaybe<Scalars['Bytes']['input']>;
+  role_not?: InputMaybe<Scalars['Bytes']['input']>;
+  role_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  role_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  role_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  role_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  role_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  role_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  role_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  role_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  previousAdminRole?: InputMaybe<Scalars['Bytes']['input']>;
+  previousAdminRole_not?: InputMaybe<Scalars['Bytes']['input']>;
+  previousAdminRole_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  previousAdminRole_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  previousAdminRole_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  previousAdminRole_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  previousAdminRole_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  previousAdminRole_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  previousAdminRole_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  previousAdminRole_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  newAdminRole?: InputMaybe<Scalars['Bytes']['input']>;
+  newAdminRole_not?: InputMaybe<Scalars['Bytes']['input']>;
+  newAdminRole_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  newAdminRole_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  newAdminRole_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  newAdminRole_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  newAdminRole_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  newAdminRole_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  newAdminRole_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  newAdminRole_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  blockNumber?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  transactionHash?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<ValidatorRoleAdminChanged_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<ValidatorRoleAdminChanged_filter>>>;
+};
+
+export type ValidatorRoleAdminChanged_orderBy =
+  | 'id'
+  | 'role'
+  | 'previousAdminRole'
+  | 'newAdminRole'
+  | 'blockNumber'
+  | 'blockTimestamp'
+  | 'transactionHash';
+
+export type ValidatorRoleGranted = {
+  id: Scalars['Bytes']['output'];
+  role: Scalars['Bytes']['output'];
+  account: Scalars['Bytes']['output'];
+  sender: Scalars['Bytes']['output'];
+  blockNumber: Scalars['BigInt']['output'];
+  blockTimestamp: Scalars['BigInt']['output'];
+  transactionHash: Scalars['Bytes']['output'];
+};
+
+export type ValidatorRoleGranted_filter = {
+  id?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  role?: InputMaybe<Scalars['Bytes']['input']>;
+  role_not?: InputMaybe<Scalars['Bytes']['input']>;
+  role_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  role_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  role_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  role_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  role_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  role_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  role_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  role_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  account?: InputMaybe<Scalars['Bytes']['input']>;
+  account_not?: InputMaybe<Scalars['Bytes']['input']>;
+  account_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  account_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  account_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  account_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  account_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  account_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  account_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  account_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  sender?: InputMaybe<Scalars['Bytes']['input']>;
+  sender_not?: InputMaybe<Scalars['Bytes']['input']>;
+  sender_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  sender_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  sender_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  sender_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  sender_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  sender_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  sender_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  sender_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  blockNumber?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  transactionHash?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<ValidatorRoleGranted_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<ValidatorRoleGranted_filter>>>;
+};
+
+export type ValidatorRoleGranted_orderBy =
+  | 'id'
+  | 'role'
+  | 'account'
+  | 'sender'
+  | 'blockNumber'
+  | 'blockTimestamp'
+  | 'transactionHash';
+
+export type ValidatorRoleRevoked = {
+  id: Scalars['Bytes']['output'];
+  role: Scalars['Bytes']['output'];
+  account: Scalars['Bytes']['output'];
+  sender: Scalars['Bytes']['output'];
+  blockNumber: Scalars['BigInt']['output'];
+  blockTimestamp: Scalars['BigInt']['output'];
+  transactionHash: Scalars['Bytes']['output'];
+};
+
+export type ValidatorRoleRevoked_filter = {
+  id?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  role?: InputMaybe<Scalars['Bytes']['input']>;
+  role_not?: InputMaybe<Scalars['Bytes']['input']>;
+  role_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  role_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  role_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  role_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  role_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  role_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  role_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  role_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  account?: InputMaybe<Scalars['Bytes']['input']>;
+  account_not?: InputMaybe<Scalars['Bytes']['input']>;
+  account_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  account_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  account_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  account_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  account_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  account_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  account_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  account_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  sender?: InputMaybe<Scalars['Bytes']['input']>;
+  sender_not?: InputMaybe<Scalars['Bytes']['input']>;
+  sender_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  sender_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  sender_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  sender_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  sender_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  sender_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  sender_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  sender_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  blockNumber?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  transactionHash?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<ValidatorRoleRevoked_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<ValidatorRoleRevoked_filter>>>;
+};
+
+export type ValidatorRoleRevoked_orderBy =
+  | 'id'
+  | 'role'
+  | 'account'
+  | 'sender'
+  | 'blockNumber'
+  | 'blockTimestamp'
+  | 'transactionHash';
+
+export type ValidatorUnpaused = {
+  id: Scalars['Bytes']['output'];
+  account: Scalars['Bytes']['output'];
+  blockNumber: Scalars['BigInt']['output'];
+  blockTimestamp: Scalars['BigInt']['output'];
+  transactionHash: Scalars['Bytes']['output'];
+};
+
+export type ValidatorUnpaused_filter = {
+  id?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  id_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  id_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  id_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  account?: InputMaybe<Scalars['Bytes']['input']>;
+  account_not?: InputMaybe<Scalars['Bytes']['input']>;
+  account_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  account_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  account_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  account_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  account_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  account_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  account_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  account_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  blockNumber?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_not?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  transactionHash?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  transactionHash_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<ValidatorUnpaused_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<ValidatorUnpaused_filter>>>;
+};
+
+export type ValidatorUnpaused_orderBy =
+  | 'id'
+  | 'account'
   | 'blockNumber'
   | 'blockTimestamp'
   | 'transactionHash';
@@ -3466,10 +4398,10 @@ export type ResolversTypes = ResolversObject<{
   DonIdSet_filter: DonIdSet_filter;
   DonIdSet_orderBy: DonIdSet_orderBy;
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
-  FunctionsRouterAddressSet: ResolverTypeWrapper<FunctionsRouterAddressSet>;
-  FunctionsRouterAddressSet_filter: FunctionsRouterAddressSet_filter;
-  FunctionsRouterAddressSet_orderBy: FunctionsRouterAddressSet_orderBy;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
+  Initialized: ResolverTypeWrapper<Initialized>;
+  Initialized_filter: Initialized_filter;
+  Initialized_orderBy: Initialized_orderBy;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Int8: ResolverTypeWrapper<Scalars['Int8']['output']>;
   MinterAdded: ResolverTypeWrapper<MinterAdded>;
@@ -3488,6 +4420,9 @@ export type ResolversTypes = ResolversObject<{
   OwnershipTransferred: ResolverTypeWrapper<OwnershipTransferred>;
   OwnershipTransferred_filter: OwnershipTransferred_filter;
   OwnershipTransferred_orderBy: OwnershipTransferred_orderBy;
+  Paused: ResolverTypeWrapper<Paused>;
+  Paused_filter: Paused_filter;
+  Paused_orderBy: Paused_orderBy;
   Query: ResolverTypeWrapper<{}>;
   RequestFulfilled: ResolverTypeWrapper<RequestFulfilled>;
   RequestFulfilled_filter: RequestFulfilled_filter;
@@ -3516,12 +4451,33 @@ export type ResolversTypes = ResolversObject<{
   URI: ResolverTypeWrapper<URI>;
   URI_filter: URI_filter;
   URI_orderBy: URI_orderBy;
+  Unpaused: ResolverTypeWrapper<Unpaused>;
+  Unpaused_filter: Unpaused_filter;
+  Unpaused_orderBy: Unpaused_orderBy;
   User: ResolverTypeWrapper<User>;
   User_filter: User_filter;
   User_orderBy: User_orderBy;
+  ValidatorInitialized: ResolverTypeWrapper<ValidatorInitialized>;
+  ValidatorInitialized_filter: ValidatorInitialized_filter;
+  ValidatorInitialized_orderBy: ValidatorInitialized_orderBy;
   ValidatorOwnershipTransferred: ResolverTypeWrapper<ValidatorOwnershipTransferred>;
   ValidatorOwnershipTransferred_filter: ValidatorOwnershipTransferred_filter;
   ValidatorOwnershipTransferred_orderBy: ValidatorOwnershipTransferred_orderBy;
+  ValidatorPaused: ResolverTypeWrapper<ValidatorPaused>;
+  ValidatorPaused_filter: ValidatorPaused_filter;
+  ValidatorPaused_orderBy: ValidatorPaused_orderBy;
+  ValidatorRoleAdminChanged: ResolverTypeWrapper<ValidatorRoleAdminChanged>;
+  ValidatorRoleAdminChanged_filter: ValidatorRoleAdminChanged_filter;
+  ValidatorRoleAdminChanged_orderBy: ValidatorRoleAdminChanged_orderBy;
+  ValidatorRoleGranted: ResolverTypeWrapper<ValidatorRoleGranted>;
+  ValidatorRoleGranted_filter: ValidatorRoleGranted_filter;
+  ValidatorRoleGranted_orderBy: ValidatorRoleGranted_orderBy;
+  ValidatorRoleRevoked: ResolverTypeWrapper<ValidatorRoleRevoked>;
+  ValidatorRoleRevoked_filter: ValidatorRoleRevoked_filter;
+  ValidatorRoleRevoked_orderBy: ValidatorRoleRevoked_orderBy;
+  ValidatorUnpaused: ResolverTypeWrapper<ValidatorUnpaused>;
+  ValidatorUnpaused_filter: ValidatorUnpaused_filter;
+  ValidatorUnpaused_orderBy: ValidatorUnpaused_orderBy;
   ValidatorWithdraw: ResolverTypeWrapper<ValidatorWithdraw>;
   ValidatorWithdraw_filter: ValidatorWithdraw_filter;
   ValidatorWithdraw_orderBy: ValidatorWithdraw_orderBy;
@@ -3558,9 +4514,9 @@ export type ResolversParentTypes = ResolversObject<{
   DonIdSet: DonIdSet;
   DonIdSet_filter: DonIdSet_filter;
   Float: Scalars['Float']['output'];
-  FunctionsRouterAddressSet: FunctionsRouterAddressSet;
-  FunctionsRouterAddressSet_filter: FunctionsRouterAddressSet_filter;
   ID: Scalars['ID']['output'];
+  Initialized: Initialized;
+  Initialized_filter: Initialized_filter;
   Int: Scalars['Int']['output'];
   Int8: Scalars['Int8']['output'];
   MinterAdded: MinterAdded;
@@ -3573,6 +4529,8 @@ export type ResolversParentTypes = ResolversObject<{
   MissionValidated_filter: MissionValidated_filter;
   OwnershipTransferred: OwnershipTransferred;
   OwnershipTransferred_filter: OwnershipTransferred_filter;
+  Paused: Paused;
+  Paused_filter: Paused_filter;
   Query: {};
   RequestFulfilled: RequestFulfilled;
   RequestFulfilled_filter: RequestFulfilled_filter;
@@ -3593,10 +4551,24 @@ export type ResolversParentTypes = ResolversObject<{
   TransferSingle_filter: TransferSingle_filter;
   URI: URI;
   URI_filter: URI_filter;
+  Unpaused: Unpaused;
+  Unpaused_filter: Unpaused_filter;
   User: User;
   User_filter: User_filter;
+  ValidatorInitialized: ValidatorInitialized;
+  ValidatorInitialized_filter: ValidatorInitialized_filter;
   ValidatorOwnershipTransferred: ValidatorOwnershipTransferred;
   ValidatorOwnershipTransferred_filter: ValidatorOwnershipTransferred_filter;
+  ValidatorPaused: ValidatorPaused;
+  ValidatorPaused_filter: ValidatorPaused_filter;
+  ValidatorRoleAdminChanged: ValidatorRoleAdminChanged;
+  ValidatorRoleAdminChanged_filter: ValidatorRoleAdminChanged_filter;
+  ValidatorRoleGranted: ValidatorRoleGranted;
+  ValidatorRoleGranted_filter: ValidatorRoleGranted_filter;
+  ValidatorRoleRevoked: ValidatorRoleRevoked;
+  ValidatorRoleRevoked_filter: ValidatorRoleRevoked_filter;
+  ValidatorUnpaused: ValidatorUnpaused;
+  ValidatorUnpaused_filter: ValidatorUnpaused_filter;
   ValidatorWithdraw: ValidatorWithdraw;
   ValidatorWithdraw_filter: ValidatorWithdraw_filter;
   Withdraw: Withdraw;
@@ -3711,9 +4683,9 @@ export type DonIdSetResolvers<ContextType = MeshContext, ParentType extends Reso
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export type FunctionsRouterAddressSetResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['FunctionsRouterAddressSet'] = ResolversParentTypes['FunctionsRouterAddressSet']> = ResolversObject<{
+export type InitializedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Initialized'] = ResolversParentTypes['Initialized']> = ResolversObject<{
   id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  newFunctionsRouterAddress?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  version?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
   blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
   blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
   transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
@@ -3777,11 +4749,16 @@ export type OwnershipTransferredResolvers<ContextType = MeshContext, ParentType 
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export type PausedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Paused'] = ResolversParentTypes['Paused']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  account?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type QueryResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
-  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryuserArgs, 'id' | 'subgraphError'>>;
-  users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryusersArgs, 'skip' | 'first' | 'subgraphError'>>;
-  credential?: Resolver<Maybe<ResolversTypes['Credential']>, ParentType, ContextType, RequireFields<QuerycredentialArgs, 'id' | 'subgraphError'>>;
-  credentials?: Resolver<Array<ResolversTypes['Credential']>, ParentType, ContextType, RequireFields<QuerycredentialsArgs, 'skip' | 'first' | 'subgraphError'>>;
   adminAdded?: Resolver<Maybe<ResolversTypes['AdminAdded']>, ParentType, ContextType, RequireFields<QueryadminAddedArgs, 'id' | 'subgraphError'>>;
   adminAddeds?: Resolver<Array<ResolversTypes['AdminAdded']>, ParentType, ContextType, RequireFields<QueryadminAddedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   adminRemoved?: Resolver<Maybe<ResolversTypes['AdminRemoved']>, ParentType, ContextType, RequireFields<QueryadminRemovedArgs, 'id' | 'subgraphError'>>;
@@ -3792,12 +4769,16 @@ export type QueryResolvers<ContextType = MeshContext, ParentType extends Resolve
   credentialMinteds?: Resolver<Array<ResolversTypes['CredentialMinted']>, ParentType, ContextType, RequireFields<QuerycredentialMintedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   credentialSet?: Resolver<Maybe<ResolversTypes['CredentialSet']>, ParentType, ContextType, RequireFields<QuerycredentialSetArgs, 'id' | 'subgraphError'>>;
   credentialSets?: Resolver<Array<ResolversTypes['CredentialSet']>, ParentType, ContextType, RequireFields<QuerycredentialSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  initialized?: Resolver<Maybe<ResolversTypes['Initialized']>, ParentType, ContextType, RequireFields<QueryinitializedArgs, 'id' | 'subgraphError'>>;
+  initializeds?: Resolver<Array<ResolversTypes['Initialized']>, ParentType, ContextType, RequireFields<QueryinitializedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   minterAdded?: Resolver<Maybe<ResolversTypes['MinterAdded']>, ParentType, ContextType, RequireFields<QueryminterAddedArgs, 'id' | 'subgraphError'>>;
   minterAddeds?: Resolver<Array<ResolversTypes['MinterAdded']>, ParentType, ContextType, RequireFields<QueryminterAddedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   minterRemoved?: Resolver<Maybe<ResolversTypes['MinterRemoved']>, ParentType, ContextType, RequireFields<QueryminterRemovedArgs, 'id' | 'subgraphError'>>;
   minterRemoveds?: Resolver<Array<ResolversTypes['MinterRemoved']>, ParentType, ContextType, RequireFields<QueryminterRemovedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   ownershipTransferred?: Resolver<Maybe<ResolversTypes['OwnershipTransferred']>, ParentType, ContextType, RequireFields<QueryownershipTransferredArgs, 'id' | 'subgraphError'>>;
   ownershipTransferreds?: Resolver<Array<ResolversTypes['OwnershipTransferred']>, ParentType, ContextType, RequireFields<QueryownershipTransferredsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  paused?: Resolver<Maybe<ResolversTypes['Paused']>, ParentType, ContextType, RequireFields<QuerypausedArgs, 'id' | 'subgraphError'>>;
+  pauseds?: Resolver<Array<ResolversTypes['Paused']>, ParentType, ContextType, RequireFields<QuerypausedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   roleAdminChanged?: Resolver<Maybe<ResolversTypes['RoleAdminChanged']>, ParentType, ContextType, RequireFields<QueryroleAdminChangedArgs, 'id' | 'subgraphError'>>;
   roleAdminChangeds?: Resolver<Array<ResolversTypes['RoleAdminChanged']>, ParentType, ContextType, RequireFields<QueryroleAdminChangedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   roleGranted?: Resolver<Maybe<ResolversTypes['RoleGranted']>, ParentType, ContextType, RequireFields<QueryroleGrantedArgs, 'id' | 'subgraphError'>>;
@@ -3810,26 +4791,42 @@ export type QueryResolvers<ContextType = MeshContext, ParentType extends Resolve
   transferSingles?: Resolver<Array<ResolversTypes['TransferSingle']>, ParentType, ContextType, RequireFields<QuerytransferSinglesArgs, 'skip' | 'first' | 'subgraphError'>>;
   uri?: Resolver<Maybe<ResolversTypes['URI']>, ParentType, ContextType, RequireFields<QueryuriArgs, 'id' | 'subgraphError'>>;
   uris?: Resolver<Array<ResolversTypes['URI']>, ParentType, ContextType, RequireFields<QueryurisArgs, 'skip' | 'first' | 'subgraphError'>>;
+  unpaused?: Resolver<Maybe<ResolversTypes['Unpaused']>, ParentType, ContextType, RequireFields<QueryunpausedArgs, 'id' | 'subgraphError'>>;
+  unpauseds?: Resolver<Array<ResolversTypes['Unpaused']>, ParentType, ContextType, RequireFields<QueryunpausedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   withdraw?: Resolver<Maybe<ResolversTypes['Withdraw']>, ParentType, ContextType, RequireFields<QuerywithdrawArgs, 'id' | 'subgraphError'>>;
   withdraws?: Resolver<Array<ResolversTypes['Withdraw']>, ParentType, ContextType, RequireFields<QuerywithdrawsArgs, 'skip' | 'first' | 'subgraphError'>>;
   basecampAddressSet?: Resolver<Maybe<ResolversTypes['BasecampAddressSet']>, ParentType, ContextType, RequireFields<QuerybasecampAddressSetArgs, 'id' | 'subgraphError'>>;
   basecampAddressSets?: Resolver<Array<ResolversTypes['BasecampAddressSet']>, ParentType, ContextType, RequireFields<QuerybasecampAddressSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
   donIdSet?: Resolver<Maybe<ResolversTypes['DonIdSet']>, ParentType, ContextType, RequireFields<QuerydonIdSetArgs, 'id' | 'subgraphError'>>;
   donIdSets?: Resolver<Array<ResolversTypes['DonIdSet']>, ParentType, ContextType, RequireFields<QuerydonIdSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  functionsRouterAddressSet?: Resolver<Maybe<ResolversTypes['FunctionsRouterAddressSet']>, ParentType, ContextType, RequireFields<QueryfunctionsRouterAddressSetArgs, 'id' | 'subgraphError'>>;
-  functionsRouterAddressSets?: Resolver<Array<ResolversTypes['FunctionsRouterAddressSet']>, ParentType, ContextType, RequireFields<QueryfunctionsRouterAddressSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  validatorInitialized?: Resolver<Maybe<ResolversTypes['ValidatorInitialized']>, ParentType, ContextType, RequireFields<QueryvalidatorInitializedArgs, 'id' | 'subgraphError'>>;
+  validatorInitializeds?: Resolver<Array<ResolversTypes['ValidatorInitialized']>, ParentType, ContextType, RequireFields<QueryvalidatorInitializedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   missionSubmitted?: Resolver<Maybe<ResolversTypes['MissionSubmitted']>, ParentType, ContextType, RequireFields<QuerymissionSubmittedArgs, 'id' | 'subgraphError'>>;
   missionSubmitteds?: Resolver<Array<ResolversTypes['MissionSubmitted']>, ParentType, ContextType, RequireFields<QuerymissionSubmittedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   missionValidated?: Resolver<Maybe<ResolversTypes['MissionValidated']>, ParentType, ContextType, RequireFields<QuerymissionValidatedArgs, 'id' | 'subgraphError'>>;
   missionValidateds?: Resolver<Array<ResolversTypes['MissionValidated']>, ParentType, ContextType, RequireFields<QuerymissionValidatedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   validatorOwnershipTransferred?: Resolver<Maybe<ResolversTypes['ValidatorOwnershipTransferred']>, ParentType, ContextType, RequireFields<QueryvalidatorOwnershipTransferredArgs, 'id' | 'subgraphError'>>;
   validatorOwnershipTransferreds?: Resolver<Array<ResolversTypes['ValidatorOwnershipTransferred']>, ParentType, ContextType, RequireFields<QueryvalidatorOwnershipTransferredsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  validatorPaused?: Resolver<Maybe<ResolversTypes['ValidatorPaused']>, ParentType, ContextType, RequireFields<QueryvalidatorPausedArgs, 'id' | 'subgraphError'>>;
+  validatorPauseds?: Resolver<Array<ResolversTypes['ValidatorPaused']>, ParentType, ContextType, RequireFields<QueryvalidatorPausedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   requestFulfilled?: Resolver<Maybe<ResolversTypes['RequestFulfilled']>, ParentType, ContextType, RequireFields<QueryrequestFulfilledArgs, 'id' | 'subgraphError'>>;
   requestFulfilleds?: Resolver<Array<ResolversTypes['RequestFulfilled']>, ParentType, ContextType, RequireFields<QueryrequestFulfilledsArgs, 'skip' | 'first' | 'subgraphError'>>;
   requestSent?: Resolver<Maybe<ResolversTypes['RequestSent']>, ParentType, ContextType, RequireFields<QueryrequestSentArgs, 'id' | 'subgraphError'>>;
   requestSents?: Resolver<Array<ResolversTypes['RequestSent']>, ParentType, ContextType, RequireFields<QueryrequestSentsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  validatorRoleAdminChanged?: Resolver<Maybe<ResolversTypes['ValidatorRoleAdminChanged']>, ParentType, ContextType, RequireFields<QueryvalidatorRoleAdminChangedArgs, 'id' | 'subgraphError'>>;
+  validatorRoleAdminChangeds?: Resolver<Array<ResolversTypes['ValidatorRoleAdminChanged']>, ParentType, ContextType, RequireFields<QueryvalidatorRoleAdminChangedsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  validatorRoleGranted?: Resolver<Maybe<ResolversTypes['ValidatorRoleGranted']>, ParentType, ContextType, RequireFields<QueryvalidatorRoleGrantedArgs, 'id' | 'subgraphError'>>;
+  validatorRoleGranteds?: Resolver<Array<ResolversTypes['ValidatorRoleGranted']>, ParentType, ContextType, RequireFields<QueryvalidatorRoleGrantedsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  validatorRoleRevoked?: Resolver<Maybe<ResolversTypes['ValidatorRoleRevoked']>, ParentType, ContextType, RequireFields<QueryvalidatorRoleRevokedArgs, 'id' | 'subgraphError'>>;
+  validatorRoleRevokeds?: Resolver<Array<ResolversTypes['ValidatorRoleRevoked']>, ParentType, ContextType, RequireFields<QueryvalidatorRoleRevokedsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  validatorUnpaused?: Resolver<Maybe<ResolversTypes['ValidatorUnpaused']>, ParentType, ContextType, RequireFields<QueryvalidatorUnpausedArgs, 'id' | 'subgraphError'>>;
+  validatorUnpauseds?: Resolver<Array<ResolversTypes['ValidatorUnpaused']>, ParentType, ContextType, RequireFields<QueryvalidatorUnpausedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   validatorWithdraw?: Resolver<Maybe<ResolversTypes['ValidatorWithdraw']>, ParentType, ContextType, RequireFields<QueryvalidatorWithdrawArgs, 'id' | 'subgraphError'>>;
   validatorWithdraws?: Resolver<Array<ResolversTypes['ValidatorWithdraw']>, ParentType, ContextType, RequireFields<QueryvalidatorWithdrawsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryuserArgs, 'id' | 'subgraphError'>>;
+  users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryusersArgs, 'skip' | 'first' | 'subgraphError'>>;
+  credential?: Resolver<Maybe<ResolversTypes['Credential']>, ParentType, ContextType, RequireFields<QuerycredentialArgs, 'id' | 'subgraphError'>>;
+  credentials?: Resolver<Array<ResolversTypes['Credential']>, ParentType, ContextType, RequireFields<QuerycredentialsArgs, 'skip' | 'first' | 'subgraphError'>>;
   _meta?: Resolver<Maybe<ResolversTypes['_Meta_']>, ParentType, ContextType, Partial<Query_metaArgs>>;
 }>;
 
@@ -3885,10 +4882,6 @@ export type RoleRevokedResolvers<ContextType = MeshContext, ParentType extends R
 }>;
 
 export type SubscriptionResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Subscription'] = ResolversParentTypes['Subscription']> = ResolversObject<{
-  user?: SubscriptionResolver<Maybe<ResolversTypes['User']>, "user", ParentType, ContextType, RequireFields<SubscriptionuserArgs, 'id' | 'subgraphError'>>;
-  users?: SubscriptionResolver<Array<ResolversTypes['User']>, "users", ParentType, ContextType, RequireFields<SubscriptionusersArgs, 'skip' | 'first' | 'subgraphError'>>;
-  credential?: SubscriptionResolver<Maybe<ResolversTypes['Credential']>, "credential", ParentType, ContextType, RequireFields<SubscriptioncredentialArgs, 'id' | 'subgraphError'>>;
-  credentials?: SubscriptionResolver<Array<ResolversTypes['Credential']>, "credentials", ParentType, ContextType, RequireFields<SubscriptioncredentialsArgs, 'skip' | 'first' | 'subgraphError'>>;
   adminAdded?: SubscriptionResolver<Maybe<ResolversTypes['AdminAdded']>, "adminAdded", ParentType, ContextType, RequireFields<SubscriptionadminAddedArgs, 'id' | 'subgraphError'>>;
   adminAddeds?: SubscriptionResolver<Array<ResolversTypes['AdminAdded']>, "adminAddeds", ParentType, ContextType, RequireFields<SubscriptionadminAddedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   adminRemoved?: SubscriptionResolver<Maybe<ResolversTypes['AdminRemoved']>, "adminRemoved", ParentType, ContextType, RequireFields<SubscriptionadminRemovedArgs, 'id' | 'subgraphError'>>;
@@ -3899,12 +4892,16 @@ export type SubscriptionResolvers<ContextType = MeshContext, ParentType extends 
   credentialMinteds?: SubscriptionResolver<Array<ResolversTypes['CredentialMinted']>, "credentialMinteds", ParentType, ContextType, RequireFields<SubscriptioncredentialMintedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   credentialSet?: SubscriptionResolver<Maybe<ResolversTypes['CredentialSet']>, "credentialSet", ParentType, ContextType, RequireFields<SubscriptioncredentialSetArgs, 'id' | 'subgraphError'>>;
   credentialSets?: SubscriptionResolver<Array<ResolversTypes['CredentialSet']>, "credentialSets", ParentType, ContextType, RequireFields<SubscriptioncredentialSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  initialized?: SubscriptionResolver<Maybe<ResolversTypes['Initialized']>, "initialized", ParentType, ContextType, RequireFields<SubscriptioninitializedArgs, 'id' | 'subgraphError'>>;
+  initializeds?: SubscriptionResolver<Array<ResolversTypes['Initialized']>, "initializeds", ParentType, ContextType, RequireFields<SubscriptioninitializedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   minterAdded?: SubscriptionResolver<Maybe<ResolversTypes['MinterAdded']>, "minterAdded", ParentType, ContextType, RequireFields<SubscriptionminterAddedArgs, 'id' | 'subgraphError'>>;
   minterAddeds?: SubscriptionResolver<Array<ResolversTypes['MinterAdded']>, "minterAddeds", ParentType, ContextType, RequireFields<SubscriptionminterAddedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   minterRemoved?: SubscriptionResolver<Maybe<ResolversTypes['MinterRemoved']>, "minterRemoved", ParentType, ContextType, RequireFields<SubscriptionminterRemovedArgs, 'id' | 'subgraphError'>>;
   minterRemoveds?: SubscriptionResolver<Array<ResolversTypes['MinterRemoved']>, "minterRemoveds", ParentType, ContextType, RequireFields<SubscriptionminterRemovedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   ownershipTransferred?: SubscriptionResolver<Maybe<ResolversTypes['OwnershipTransferred']>, "ownershipTransferred", ParentType, ContextType, RequireFields<SubscriptionownershipTransferredArgs, 'id' | 'subgraphError'>>;
   ownershipTransferreds?: SubscriptionResolver<Array<ResolversTypes['OwnershipTransferred']>, "ownershipTransferreds", ParentType, ContextType, RequireFields<SubscriptionownershipTransferredsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  paused?: SubscriptionResolver<Maybe<ResolversTypes['Paused']>, "paused", ParentType, ContextType, RequireFields<SubscriptionpausedArgs, 'id' | 'subgraphError'>>;
+  pauseds?: SubscriptionResolver<Array<ResolversTypes['Paused']>, "pauseds", ParentType, ContextType, RequireFields<SubscriptionpausedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   roleAdminChanged?: SubscriptionResolver<Maybe<ResolversTypes['RoleAdminChanged']>, "roleAdminChanged", ParentType, ContextType, RequireFields<SubscriptionroleAdminChangedArgs, 'id' | 'subgraphError'>>;
   roleAdminChangeds?: SubscriptionResolver<Array<ResolversTypes['RoleAdminChanged']>, "roleAdminChangeds", ParentType, ContextType, RequireFields<SubscriptionroleAdminChangedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   roleGranted?: SubscriptionResolver<Maybe<ResolversTypes['RoleGranted']>, "roleGranted", ParentType, ContextType, RequireFields<SubscriptionroleGrantedArgs, 'id' | 'subgraphError'>>;
@@ -3917,26 +4914,42 @@ export type SubscriptionResolvers<ContextType = MeshContext, ParentType extends 
   transferSingles?: SubscriptionResolver<Array<ResolversTypes['TransferSingle']>, "transferSingles", ParentType, ContextType, RequireFields<SubscriptiontransferSinglesArgs, 'skip' | 'first' | 'subgraphError'>>;
   uri?: SubscriptionResolver<Maybe<ResolversTypes['URI']>, "uri", ParentType, ContextType, RequireFields<SubscriptionuriArgs, 'id' | 'subgraphError'>>;
   uris?: SubscriptionResolver<Array<ResolversTypes['URI']>, "uris", ParentType, ContextType, RequireFields<SubscriptionurisArgs, 'skip' | 'first' | 'subgraphError'>>;
+  unpaused?: SubscriptionResolver<Maybe<ResolversTypes['Unpaused']>, "unpaused", ParentType, ContextType, RequireFields<SubscriptionunpausedArgs, 'id' | 'subgraphError'>>;
+  unpauseds?: SubscriptionResolver<Array<ResolversTypes['Unpaused']>, "unpauseds", ParentType, ContextType, RequireFields<SubscriptionunpausedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   withdraw?: SubscriptionResolver<Maybe<ResolversTypes['Withdraw']>, "withdraw", ParentType, ContextType, RequireFields<SubscriptionwithdrawArgs, 'id' | 'subgraphError'>>;
   withdraws?: SubscriptionResolver<Array<ResolversTypes['Withdraw']>, "withdraws", ParentType, ContextType, RequireFields<SubscriptionwithdrawsArgs, 'skip' | 'first' | 'subgraphError'>>;
   basecampAddressSet?: SubscriptionResolver<Maybe<ResolversTypes['BasecampAddressSet']>, "basecampAddressSet", ParentType, ContextType, RequireFields<SubscriptionbasecampAddressSetArgs, 'id' | 'subgraphError'>>;
   basecampAddressSets?: SubscriptionResolver<Array<ResolversTypes['BasecampAddressSet']>, "basecampAddressSets", ParentType, ContextType, RequireFields<SubscriptionbasecampAddressSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
   donIdSet?: SubscriptionResolver<Maybe<ResolversTypes['DonIdSet']>, "donIdSet", ParentType, ContextType, RequireFields<SubscriptiondonIdSetArgs, 'id' | 'subgraphError'>>;
   donIdSets?: SubscriptionResolver<Array<ResolversTypes['DonIdSet']>, "donIdSets", ParentType, ContextType, RequireFields<SubscriptiondonIdSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  functionsRouterAddressSet?: SubscriptionResolver<Maybe<ResolversTypes['FunctionsRouterAddressSet']>, "functionsRouterAddressSet", ParentType, ContextType, RequireFields<SubscriptionfunctionsRouterAddressSetArgs, 'id' | 'subgraphError'>>;
-  functionsRouterAddressSets?: SubscriptionResolver<Array<ResolversTypes['FunctionsRouterAddressSet']>, "functionsRouterAddressSets", ParentType, ContextType, RequireFields<SubscriptionfunctionsRouterAddressSetsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  validatorInitialized?: SubscriptionResolver<Maybe<ResolversTypes['ValidatorInitialized']>, "validatorInitialized", ParentType, ContextType, RequireFields<SubscriptionvalidatorInitializedArgs, 'id' | 'subgraphError'>>;
+  validatorInitializeds?: SubscriptionResolver<Array<ResolversTypes['ValidatorInitialized']>, "validatorInitializeds", ParentType, ContextType, RequireFields<SubscriptionvalidatorInitializedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   missionSubmitted?: SubscriptionResolver<Maybe<ResolversTypes['MissionSubmitted']>, "missionSubmitted", ParentType, ContextType, RequireFields<SubscriptionmissionSubmittedArgs, 'id' | 'subgraphError'>>;
   missionSubmitteds?: SubscriptionResolver<Array<ResolversTypes['MissionSubmitted']>, "missionSubmitteds", ParentType, ContextType, RequireFields<SubscriptionmissionSubmittedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   missionValidated?: SubscriptionResolver<Maybe<ResolversTypes['MissionValidated']>, "missionValidated", ParentType, ContextType, RequireFields<SubscriptionmissionValidatedArgs, 'id' | 'subgraphError'>>;
   missionValidateds?: SubscriptionResolver<Array<ResolversTypes['MissionValidated']>, "missionValidateds", ParentType, ContextType, RequireFields<SubscriptionmissionValidatedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   validatorOwnershipTransferred?: SubscriptionResolver<Maybe<ResolversTypes['ValidatorOwnershipTransferred']>, "validatorOwnershipTransferred", ParentType, ContextType, RequireFields<SubscriptionvalidatorOwnershipTransferredArgs, 'id' | 'subgraphError'>>;
   validatorOwnershipTransferreds?: SubscriptionResolver<Array<ResolversTypes['ValidatorOwnershipTransferred']>, "validatorOwnershipTransferreds", ParentType, ContextType, RequireFields<SubscriptionvalidatorOwnershipTransferredsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  validatorPaused?: SubscriptionResolver<Maybe<ResolversTypes['ValidatorPaused']>, "validatorPaused", ParentType, ContextType, RequireFields<SubscriptionvalidatorPausedArgs, 'id' | 'subgraphError'>>;
+  validatorPauseds?: SubscriptionResolver<Array<ResolversTypes['ValidatorPaused']>, "validatorPauseds", ParentType, ContextType, RequireFields<SubscriptionvalidatorPausedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   requestFulfilled?: SubscriptionResolver<Maybe<ResolversTypes['RequestFulfilled']>, "requestFulfilled", ParentType, ContextType, RequireFields<SubscriptionrequestFulfilledArgs, 'id' | 'subgraphError'>>;
   requestFulfilleds?: SubscriptionResolver<Array<ResolversTypes['RequestFulfilled']>, "requestFulfilleds", ParentType, ContextType, RequireFields<SubscriptionrequestFulfilledsArgs, 'skip' | 'first' | 'subgraphError'>>;
   requestSent?: SubscriptionResolver<Maybe<ResolversTypes['RequestSent']>, "requestSent", ParentType, ContextType, RequireFields<SubscriptionrequestSentArgs, 'id' | 'subgraphError'>>;
   requestSents?: SubscriptionResolver<Array<ResolversTypes['RequestSent']>, "requestSents", ParentType, ContextType, RequireFields<SubscriptionrequestSentsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  validatorRoleAdminChanged?: SubscriptionResolver<Maybe<ResolversTypes['ValidatorRoleAdminChanged']>, "validatorRoleAdminChanged", ParentType, ContextType, RequireFields<SubscriptionvalidatorRoleAdminChangedArgs, 'id' | 'subgraphError'>>;
+  validatorRoleAdminChangeds?: SubscriptionResolver<Array<ResolversTypes['ValidatorRoleAdminChanged']>, "validatorRoleAdminChangeds", ParentType, ContextType, RequireFields<SubscriptionvalidatorRoleAdminChangedsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  validatorRoleGranted?: SubscriptionResolver<Maybe<ResolversTypes['ValidatorRoleGranted']>, "validatorRoleGranted", ParentType, ContextType, RequireFields<SubscriptionvalidatorRoleGrantedArgs, 'id' | 'subgraphError'>>;
+  validatorRoleGranteds?: SubscriptionResolver<Array<ResolversTypes['ValidatorRoleGranted']>, "validatorRoleGranteds", ParentType, ContextType, RequireFields<SubscriptionvalidatorRoleGrantedsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  validatorRoleRevoked?: SubscriptionResolver<Maybe<ResolversTypes['ValidatorRoleRevoked']>, "validatorRoleRevoked", ParentType, ContextType, RequireFields<SubscriptionvalidatorRoleRevokedArgs, 'id' | 'subgraphError'>>;
+  validatorRoleRevokeds?: SubscriptionResolver<Array<ResolversTypes['ValidatorRoleRevoked']>, "validatorRoleRevokeds", ParentType, ContextType, RequireFields<SubscriptionvalidatorRoleRevokedsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  validatorUnpaused?: SubscriptionResolver<Maybe<ResolversTypes['ValidatorUnpaused']>, "validatorUnpaused", ParentType, ContextType, RequireFields<SubscriptionvalidatorUnpausedArgs, 'id' | 'subgraphError'>>;
+  validatorUnpauseds?: SubscriptionResolver<Array<ResolversTypes['ValidatorUnpaused']>, "validatorUnpauseds", ParentType, ContextType, RequireFields<SubscriptionvalidatorUnpausedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   validatorWithdraw?: SubscriptionResolver<Maybe<ResolversTypes['ValidatorWithdraw']>, "validatorWithdraw", ParentType, ContextType, RequireFields<SubscriptionvalidatorWithdrawArgs, 'id' | 'subgraphError'>>;
   validatorWithdraws?: SubscriptionResolver<Array<ResolversTypes['ValidatorWithdraw']>, "validatorWithdraws", ParentType, ContextType, RequireFields<SubscriptionvalidatorWithdrawsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  user?: SubscriptionResolver<Maybe<ResolversTypes['User']>, "user", ParentType, ContextType, RequireFields<SubscriptionuserArgs, 'id' | 'subgraphError'>>;
+  users?: SubscriptionResolver<Array<ResolversTypes['User']>, "users", ParentType, ContextType, RequireFields<SubscriptionusersArgs, 'skip' | 'first' | 'subgraphError'>>;
+  credential?: SubscriptionResolver<Maybe<ResolversTypes['Credential']>, "credential", ParentType, ContextType, RequireFields<SubscriptioncredentialArgs, 'id' | 'subgraphError'>>;
+  credentials?: SubscriptionResolver<Array<ResolversTypes['Credential']>, "credentials", ParentType, ContextType, RequireFields<SubscriptioncredentialsArgs, 'skip' | 'first' | 'subgraphError'>>;
   _meta?: SubscriptionResolver<Maybe<ResolversTypes['_Meta_']>, "_meta", ParentType, ContextType, Partial<Subscription_metaArgs>>;
 }>;
 
@@ -3980,6 +4993,15 @@ export type URIResolvers<ContextType = MeshContext, ParentType extends Resolvers
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export type UnpausedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Unpaused'] = ResolversParentTypes['Unpaused']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  account?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type UserResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = ResolversObject<{
   id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
   address?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
@@ -3992,10 +5014,70 @@ export type UserResolvers<ContextType = MeshContext, ParentType extends Resolver
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export type ValidatorInitializedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['ValidatorInitialized'] = ResolversParentTypes['ValidatorInitialized']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  version?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type ValidatorOwnershipTransferredResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['ValidatorOwnershipTransferred'] = ResolversParentTypes['ValidatorOwnershipTransferred']> = ResolversObject<{
   id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
   previousOwner?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
   newOwner?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type ValidatorPausedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['ValidatorPaused'] = ResolversParentTypes['ValidatorPaused']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  account?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type ValidatorRoleAdminChangedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['ValidatorRoleAdminChanged'] = ResolversParentTypes['ValidatorRoleAdminChanged']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  role?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  previousAdminRole?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  newAdminRole?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type ValidatorRoleGrantedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['ValidatorRoleGranted'] = ResolversParentTypes['ValidatorRoleGranted']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  role?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  account?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  sender?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type ValidatorRoleRevokedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['ValidatorRoleRevoked'] = ResolversParentTypes['ValidatorRoleRevoked']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  role?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  account?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  sender?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type ValidatorUnpausedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['ValidatorUnpaused'] = ResolversParentTypes['ValidatorUnpaused']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  account?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
   blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
   blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
   transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
@@ -4047,13 +5129,14 @@ export type Resolvers<ContextType = MeshContext> = ResolversObject<{
   CredentialMinted?: CredentialMintedResolvers<ContextType>;
   CredentialSet?: CredentialSetResolvers<ContextType>;
   DonIdSet?: DonIdSetResolvers<ContextType>;
-  FunctionsRouterAddressSet?: FunctionsRouterAddressSetResolvers<ContextType>;
+  Initialized?: InitializedResolvers<ContextType>;
   Int8?: GraphQLScalarType;
   MinterAdded?: MinterAddedResolvers<ContextType>;
   MinterRemoved?: MinterRemovedResolvers<ContextType>;
   MissionSubmitted?: MissionSubmittedResolvers<ContextType>;
   MissionValidated?: MissionValidatedResolvers<ContextType>;
   OwnershipTransferred?: OwnershipTransferredResolvers<ContextType>;
+  Paused?: PausedResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   RequestFulfilled?: RequestFulfilledResolvers<ContextType>;
   RequestSent?: RequestSentResolvers<ContextType>;
@@ -4065,8 +5148,15 @@ export type Resolvers<ContextType = MeshContext> = ResolversObject<{
   TransferBatch?: TransferBatchResolvers<ContextType>;
   TransferSingle?: TransferSingleResolvers<ContextType>;
   URI?: URIResolvers<ContextType>;
+  Unpaused?: UnpausedResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
+  ValidatorInitialized?: ValidatorInitializedResolvers<ContextType>;
   ValidatorOwnershipTransferred?: ValidatorOwnershipTransferredResolvers<ContextType>;
+  ValidatorPaused?: ValidatorPausedResolvers<ContextType>;
+  ValidatorRoleAdminChanged?: ValidatorRoleAdminChangedResolvers<ContextType>;
+  ValidatorRoleGranted?: ValidatorRoleGrantedResolvers<ContextType>;
+  ValidatorRoleRevoked?: ValidatorRoleRevokedResolvers<ContextType>;
+  ValidatorUnpaused?: ValidatorUnpausedResolvers<ContextType>;
   ValidatorWithdraw?: ValidatorWithdrawResolvers<ContextType>;
   Withdraw?: WithdrawResolvers<ContextType>;
   _Block_?: _Block_Resolvers<ContextType>;
@@ -4125,7 +5215,7 @@ const basecampSepoliaV3Transforms = [];
 const additionalTypeDefs = [] as any[];
 const basecampSepoliaV3Handler = new GraphqlHandler({
               name: "BasecampSepoliaV3",
-              config: {"endpoint":"https://api.studio.thegraph.com/query/37762/basecamp-sepoliav3/version/latest"},
+              config: {"endpoint":"https://api.studio.thegraph.com/query/37762/stage-basesepolia-graphbuilders/version/latest"},
               baseDir,
               cache,
               pubsub,
