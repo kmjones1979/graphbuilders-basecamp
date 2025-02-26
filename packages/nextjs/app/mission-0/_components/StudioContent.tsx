@@ -10,7 +10,7 @@ import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaf
 const STUDIO_STEPS = [
   {
     id: 1,
-    title: "Create Subgraph in Studio",
+    title: "Create a Subgraph in Subgraph Studio",
     description: "Login and create your subgraph in The Graph Studio",
     link: {
       text: "🚀 The Graph Studio",
@@ -53,8 +53,9 @@ const STUDIO_STEPS = [
   },
   {
     id: 3,
-    title: "Initialize Subgraph",
-    description: "Create a new subgraph project outside the current project",
+    title: "Initialize your Subgraph",
+    description:
+      "Create a new subgraph project outside the current project, such as your home directory or a projects directory",
     command: "graph init mission0-test",
     output: `
 ✔ Network · Base Sepolia Testnet · base-sepolia · https://sepolia.basescan.org
@@ -76,25 +77,25 @@ const STUDIO_STEPS = [
   },
   {
     id: 4,
-    title: "Navigate to Subgraph Directory",
+    title: "Navigate to your Subgraph Directory",
     description: "Navigate to the subgraph directory",
     command: "cd mission0-test",
   },
   {
     id: 5,
-    title: "Authenticate to Studio",
+    title: "Authenticate to Subgraph Studio",
     description: "The AUTH_KEY can be found on the subgraph page in Subgraph Studio",
     command: "graph auth <AUTH_KEY>",
   },
   {
     id: 6,
-    title: "Generate Types and Build",
+    title: "Generate the types and build the WASM bundle",
     description: "Generate types and build the WASM bundle",
     command: "graph codegen && graph build",
   },
   {
     id: 7,
-    title: "Deploy Subgraph",
+    title: "Deploy your Subgraph",
     description: "Deploy to the studio with your subgraph name",
     command: "graph deploy <SUBGRAPH_NAME>",
     image: {

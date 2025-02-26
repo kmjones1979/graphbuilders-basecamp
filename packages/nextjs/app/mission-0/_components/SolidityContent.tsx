@@ -22,27 +22,27 @@ contract Welcome {
 const SETUP_STEPS = [
   {
     id: 1,
-    title: "Clone Repository",
+    title: "Clone the Mission 0 repository",
     command: "git clone https://github.com/kmjones1979/graphbuilders-basecamp mission-0-orientation",
   },
   {
     id: 2,
-    title: "Navigate to Directory",
+    title: "Navigate to the Mission 0 directory",
     command: "cd mission-0-orientation",
   },
   {
     id: 3,
-    title: "Switch Branch",
+    title: "Switch to the Mission 0 branch",
     command: "git checkout mission-0-orientation",
   },
   {
     id: 4,
-    title: "Install Dependencies",
+    title: "Install all dependencies",
     command: "yarn install",
   },
   {
     id: 5,
-    title: "Start Local Blockchain",
+    title: "Start the local blockchain, this window will stay open",
     command: "yarn chain",
     image: {
       src: "/orientation/1.png",
@@ -51,7 +51,7 @@ const SETUP_STEPS = [
   },
   {
     id: 6,
-    title: "Deploy Contract",
+    title: "In a new terminal, deploy the Welcome contract",
     command: "yarn deploy",
     image: {
       src: "/orientation/3.png",
@@ -60,7 +60,7 @@ const SETUP_STEPS = [
   },
   {
     id: 7,
-    title: "Start Frontend",
+    title: "In a new terminal, start the frontend",
     command: "yarn start",
     image: {
       src: "/orientation/2.png",
@@ -156,7 +156,7 @@ const SolidityContent: React.FC = () => {
             <h2 className="card-title text-lg sm:text-2xl">Subgraph Configuration</h2>
             <p className="text-sm sm:text-base text-base-content/80">
               The following files in <code className="badge badge-ghost text-xs">packages/subgraph</code> will be used
-              in future missions:
+              in future missions, take a second to familiarize yourself with them:
             </p>
             <div className="grid gap-4 mt-4">
               {SUBGRAPH_FILES.map((file, index) => (

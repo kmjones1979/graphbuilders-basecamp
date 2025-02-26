@@ -5,8 +5,8 @@ import ClickableImage from "~~/components/ClickableImage";
 const DEPLOYMENT_STEPS = [
   {
     id: 1,
-    title: "Generate Deployer Key",
-    description: "Generate a new deployer key (don't use the local chain keys)",
+    title: "Generate a deployer key, in the same terminal you deployed your contract",
+    description: "We don't want to use the local chain keys for this deployment because they are shared",
     command: "yarn run generate",
     image: {
       src: "/orientation/4.png",
@@ -15,7 +15,7 @@ const DEPLOYMENT_STEPS = [
   },
   {
     id: 2,
-    title: "Fund Your Account",
+    title: "Fund your account",
     description: "Check your balance and get a QR code for funding",
     command: "yarn account",
     image: {
@@ -46,7 +46,7 @@ deployed at 0xeAa2c3ae9a2Ee1dD3df0374A71C52E7335D552ac with 221179 gas
   },
   {
     id: 4,
-    title: "Verify Contract",
+    title: "Verify your contract",
     description: "Verify your contract on Base Sepolia for better interaction",
     command: "yarn verify --network baseSepolia",
     output: `verifying Welcome (0xeAa2c3ae9a2Ee1dD3df0374A71C52E7335D552ac) ...
@@ -56,15 +56,11 @@ waiting for result...
 ];
 
 const FRONTEND_CONFIG = {
-  title: "Configure Frontend",
+  title: "Configure the frontend",
   description: "Update the frontend to use Base Sepolia network",
   file: "scaffold.config.ts",
   path: "packages/nextjs",
-  steps: [
-    "Change targetNetworks to use chains.baseSepolia",
-    "Reconnect with your own wallet (e.g., MetaMask)",
-    "Use the same wallet you used to sign into The Graph Builders Basecamp portal",
-  ],
+  steps: ["Change targetNetworks to use chains.baseSepolia", "Reconnect with your own wallet (e.g., MetaMask)"],
 };
 
 const DeployContent: React.FC = () => {
