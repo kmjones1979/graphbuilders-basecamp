@@ -18,10 +18,10 @@ Navigate to the directory
 cd graphbuilders-basecamp
 ```
 
-Checkout `functions-poc-wip`
+Checkout `prod-base
 
 ```
-git checkout functions-poc-wip
+git checkout prod-base
 ```
 
 Then install all the dependencies
