@@ -1,4 +1,4 @@
-type Enlisted @entity {
+type Enlisted @entity(immutable: true) {
     id: Bytes!
     account: Bytes!
     blockNumber: BigInt!
