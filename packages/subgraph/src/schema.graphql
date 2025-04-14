@@ -1,4 +1,4 @@
-type CommsEstablished @entity {
+type CommsEstablished @entity(immutable: true) {
     id: Bytes!
     account: Bytes!
     isCommsEstablished: Boolean!
