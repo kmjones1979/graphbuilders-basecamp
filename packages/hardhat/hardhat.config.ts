@@ -20,7 +20,7 @@ const deployerPrivateKey =
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY || "VSB3KZNV8C1H2J7DF6P6C1ZHQGSSVB41CX";
 const baseScanApiKey = process.env.BASESCAN_API_KEY || "YSMUEFAKMAENYWXUX7R1PVURXE36YEJEXA";
 // forking rpc url
-const forkingURL = process.env.FORKING_URL || "";
+// const forkingURL = process.env.FORKING_URL || "";
 
 const config: HardhatUserConfig = {
   solidity: {
