@@ -18073,6 +18073,7 @@ __metadata:
   dependencies:
     husky: ~8.0.3
     lint-staged: ~13.2.2
+    vercel: latest
   languageName: unknown
   linkType: soft
 
